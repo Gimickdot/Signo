@@ -10,15 +10,15 @@ import { ClientLayout } from './components/client-layout'
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Signo FSL Translator',
-    template: '%s | Signo FSL Translator',
+    default: 'Signo FSL Learning Application',
+    template: '%s | Signo FSL Learning Application',
   },
-  description: 'This is the Signo FSL Translator webapp.',
+  description: 'This is the Signo FSL Learning Application webapp.',
   openGraph: {
-    title: 'Signo FSL Translator',
-    description: 'This is the Signo FSL Translator webapp.',
+    title: 'Signo FSL Learning Application',
+    description: 'This is the Signo FSL Learning Application webapp.',
     url: baseUrl,
-    siteName: 'Signo FSL Translator',
+    siteName: 'Signo FSL Learning Application',
     locale: 'en_US',
     type: 'website',
   },
