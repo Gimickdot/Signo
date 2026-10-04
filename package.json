@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^7.12.1",
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/drawing_utils": "^0.3.1675466124",
+    "@mediapipe/holistic": "^0.5.1675471629",
+    "@prisma/client": "^6.19.3",
+    "@react-oauth/google": "^0.13.5",
+    "@tailwindcss/postcss": "4.0.0-alpha.13",
+    "@tensorflow/tfjs": "^4.21.0",
+    "@types/node": "20.11.17",
+    "@types/nodemailer": "^8.0.1",
+    "@types/react": "18.2.55",
+    "@types/react-dom": "18.2.19",
+    "@vercel/analytics": "^1.1.3",
+    "@vercel/speed-insights": "^1.0.9",
+    "geist": "1.2.2",
+    "lodash": "^4.17.21",
+    "next": "canary",
+    "next-mdx-remote": "^4.4.1",
+    "nodemailer": "^9.0.3",
+    "postcss": "^8.4.35",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-webcam": "^7.2.0",
+    "sugar-high": "^0.6.0",
+    "tailwindcss": "4.0.0-alpha.13",
+    "typescript": "5.3.3"
+  },
+  "devDependencies": {
+    "prisma": "^6.19.3"
+  }
+}

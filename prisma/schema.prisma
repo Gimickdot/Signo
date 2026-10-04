@@ -1,0 +1,111 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  GURO
+  ADMIN
+}
+
+enum Status {
+  AKTIBO
+  HINDI_AKTIBO
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String?
+  name         String
+  school       String
+  role         Role      @default(GURO)
+  status       Status    @default(AKTIBO)
+  emoji        String    @default("👩‍🏫")
+  profileIcon  String?
+  profileBgColor String?
+  isVerified   Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relations
+  students     Student[]
+  sessions     Session[]
+  auditLogs    AuditLog[]
+  teacherActivities TeacherActivity[]
+}
+
+model VerificationToken {
+  id        String   @id @default(uuid())
+  email     String
+  code      String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
+
+model Student {
+  id        String    @id @default(uuid())
+  name      String
+  grade     String
+  emoji     String    @default("👧")
+  teacherId String
+  teacher   User      @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Relations
+  progress  Progress[]
+  sessions  Session[]
+}
+
+model Session {
+  id         String     @id @default(uuid())
+  title      String
+  date       DateTime   @default(now())
+  teacherId  String
+  teacher    User       @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  studentId  String?
+  student    Student?   @relation(fields: [studentId], references: [id], onDelete: SetNull)
+  accuracy   Float
+  predictions Json      // Store dynamic predictions list as JSON
+  createdAt  DateTime   @default(now())
+}
+
+model Progress {
+  id          String   @id @default(uuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  category    String   // e.g., 'GREETING', 'SURVIVAL', 'CALENDAR'
+  completed   Boolean  @default(false)
+  score       Int      @default(0)
+  updatedAt   DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  type      String   // 'audit', 'app', or 'error'
+  message   String
+  timestamp DateTime @default(now())
+}
+
+model TeacherActivity {
+  id          String   @id @default(uuid())
+  teacherId   String
+  teacher     User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  studentName String
+  emoji       String   @default("??")
+  type        String
+  mode        String?
+  timestamp   DateTime @default(now())
+
+  @@index([teacherId])
+}
