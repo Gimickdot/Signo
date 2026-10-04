@@ -4259,15 +4259,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-2 overflow-hidden hover:border-fuchsia-400 hover:scale-105 transition-all active:scale-95 cursor-pointer"
                 style={{ backgroundColor: activeUser.profileBgColor || '#1c1ae3' }}
               >
-                {activeUser.profileIcon ? (
-                  <img
-                    src={TEACHER_ICONS.find(i => i.key === activeUser.profileIcon)?.src}
-                    alt="Profile"
-                    className="w-12 h-12 object-contain"
-                  />
-                ) : (
-                  <span className="text-4xl md:text-5xl select-none">{activeUser.emoji}</span>
-                )}
+                <img src={TEACHER_ICONS.find(i => i.key === (activeUser.profileIcon || "tmale1"))?.src} alt="Profile" className="w-12 h-12 object-contain" />
               </button>
             ) : (
               <div className="text-4xl md:text-5xl bg-white/15 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-2 select-none">
