@@ -4570,7 +4570,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   >
                     
                     
-                    <option value="Grade 2" className="bg-[#3b125e] text-white">Grade 2</option>
+                    <option value="Grade 1" className="bg-[#3b125e] text-white">Grade 1</option>`n<option value="Grade 2" className="bg-[#3b125e] text-white">Grade 2</option>
                     <option value="Grade 3" className="bg-[#3b125e] text-white">Grade 3</option>
                   </select>
                 </div>
@@ -4680,7 +4680,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       >
                         
                         
-                        <option value="Grade 2" className="bg-[#3b125e] text-white">Grade 2</option>
+                        <option value="Grade 1" className="bg-[#3b125e] text-white">Grade 1</option>`n<option value="Grade 2" className="bg-[#3b125e] text-white">Grade 2</option>
                         <option value="Grade 3" className="bg-[#3b125e] text-white">Grade 3</option>
                       </select>
                     </div>
