@@ -5188,7 +5188,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     setAuthError('Nabigo ang Google Login. Subukan muli.');
                   }}
                   theme="filled_black"
-                  shape="pill"
+                  shape="rectangular"
                 />
               </GoogleOAuthProvider>
             </div>
