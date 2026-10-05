@@ -506,6 +506,7 @@ function App() {
   const [studentToPlayConfirm, setStudentToPlayConfirm] = useState<any>(null);
   const [studentIdToDelete, setStudentIdToDelete] = useState<string | number | null>(null);
   const [newStudentName, setNewStudentName] = useState('');
+  const [isAddingStudent, setIsAddingStudent] = useState(false);
   const [newStudentGrade, setNewStudentGrade] = useState('Grade 1');
   const [newStudentPoints, setNewStudentPoints] = useState('0');
   const [newStudentEmoji, setNewStudentEmoji] = useState('👧');
@@ -2015,8 +2016,12 @@ function App() {
   // Add a Student to PostgreSQL Database
   const handleAddStudentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newStudentName.trim()) return;
-    
+    if (!newStudentName.trim() || isAddingStudent) return;
+    if (studentsList.some(s => s.name.trim().toLowerCase() === newStudentName.trim().toLowerCase())) {
+      alert('A student with this name already exists in your class!');
+      return;
+    }
+    setIsAddingStudent(true);
     try {
       const response = await fetch('/api/students', {
         method: 'POST',
@@ -4583,12 +4588,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     ))}
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md active:scale-95 uppercase mt-6"
-                >
-                  Launch Explorer
-                </button>
+                <button type="submit" disabled={isAddingStudent} className={isAddingStudent ? 'w-full py-2.5 text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md uppercase mt-6 bg-gray-500 cursor-not-allowed' : 'w-full py-2.5 text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md uppercase mt-6 bg-[#b01bb8] hover:bg-[#c924d2] active:scale-95'}> {isAddingStudent ? 'Launching...' : 'Launch Explorer'}</button>
               </form>
             </div>
           </div>
