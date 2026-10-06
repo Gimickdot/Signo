@@ -2746,9 +2746,82 @@ function App() {
         </div>
           </div>
           
-          {/* RIGHT COLUMN */}
+                    {/* RIGHT COLUMN */}
           <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
-            
+            {/* Sign Demonstration & Accuracy Feed */}
+          {selectedSign && (
+            <div className={`bg-[#5c3ba8]/85 backdrop-blur-sm border rounded-3xl p-6 shadow-xl flex flex-col justify-start space-y-4 text-left h-full overflow-y-auto transition-all duration-300 lg:mt-0 ${
+              isCorrectSign 
+                ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
+                : 'border-white/10'
+            }`}>
+              <div className="flex items-center justify-between mb-4">
+                <div>
+                  <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Sign Demonstration</span>
+                  <h2 className="text-2xl font-black text-white mt-0.5">{selectedSign.name}</h2>
+                </div>
+                <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
+                  categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
+                }`}>
+                  {selectedSign.category}
+                </span>
+              </div>
+              
+              <div className="relative w-full h-40 md:h-52 lg:h-56 2xl:h-64 flex items-center justify-center rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
+                {selectedSign.category === 'ALPHABET' ? (
+                  <HandSVG letter={selectedSign.name} />
+                ) : (
+                  <video
+                    key={selectedSign.id}
+                    src={`/fsl/demos/${selectedSign.id}.mov`}
+                    autoPlay
+                    loop
+                    muted
+                    className="w-full h-full object-cover"
+                  />
+                )}
+              </div>
+              
+              {/* Accuracy Validation Panel */}
+              <div className="border-t border-purple-800/40 pt-4 mt-4">
+                <div className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Practice Mode Feedback</div>
+                
+                {(!lastPrediction || lastPrediction === 'No sign detected') ? (
+                  <div className="flex items-center space-x-3.5 p-3 bg-purple-950/40 rounded-2xl border border-purple-850/50 text-slate-300 font-sans">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
+                      <span className="text-sm animate-pulse">🌌</span>
+                    </div>
+                    <div>
+                      <p className="text-xs font-black text-slate-200">Waiting for your space gesture...</p>
+                      <p className="text-[10px] text-slate-400">Perform the sign shown above in the camera frame.</p>
+                    </div>
+                  </div>
+                ) : lastPrediction === selectedSign.name ? (
+                  <div className="flex items-center space-x-3.5 p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-emerald-400 animate-bounce">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                      ✨
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-emerald-300">OUT OF THIS WORLD! (CORRECT)</p>
+                      <p className="text-[10px] text-emerald-500/80 font-sans">Awesome job! You made the gesture perfectly.</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-3.5 p-3 bg-rose-500/10 rounded-2xl border border-rose-500/20 text-rose-400">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">
+                      ☄️
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-rose-300">TRY AGAIN</p>
+                      <p className="text-[10px] text-rose-400/80 font-sans">
+                        Detected: <strong className="underline uppercase">{lastPrediction}</strong> (wanted: {selectedSign.name}).
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
           </div>
           
         </div>
