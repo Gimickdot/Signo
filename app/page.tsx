@@ -2767,7 +2767,7 @@ function App() {
                 </span>
               </div>
               
-              <div className="relative w-full h-40 md:h-52 lg:h-56 2xl:h-64 flex items-center justify-center rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
+              <div className="relative w-full flex-1 min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem] flex items-center justify-center rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
                 {selectedSign.category === 'ALPHABET' ? (
                   <HandSVG letter={selectedSign.name} />
                 ) : (
