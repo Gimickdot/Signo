@@ -2471,7 +2471,7 @@ function App() {
         </div>
       </div>
 
-      <div className="relative h-40 md:h-52 lg:h-56 2xl:h-64 w-full bg-slate-950 flex items-center justify-center overflow-hidden rounded-b-xl flex-shrink-0">
+      <div className="relative h-48 md:h-72 lg:h-80 2xl:h-[22rem] w-full bg-slate-950 flex items-center justify-center overflow-hidden rounded-b-xl flex-shrink-0">
         {!(isModelLoaded && isCameraReady) && !modelError && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950/90 text-slate-300 p-4">
             <svg className="animate-spin h-9 w-9 text-cyan-400 mb-2.5" fill="none" viewBox="0 0 24 24">
@@ -2659,21 +2659,21 @@ function App() {
     </div>
   );
 
-  const renderSandboxView = () => (
+      const renderSandboxView = () => (
     <div className="flex flex-col lg:flex-row gap-6 h-full overflow-hidden">
       {/* Main Sandbox Area */}
       <div className="flex-1 flex flex-col space-y-6 h-full overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch h-full min-h-0">
-          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto pr-2">
+          
+          {/* LEFT COLUMN */}
+          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
             <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
               <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
                 {headerText}
               </h1>
             </div>
             {renderLiveCameraFeed()}
-          </div>
-          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
-        {/* Explorer Section */}
+            {/* Explorer Section */}
         <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col space-y-4 text-left">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3.5 sm:space-y-0">
             <div>
@@ -2746,89 +2746,17 @@ function App() {
         </div>
           </div>
           
-          {/* Sign Demonstration & Accuracy Feed */}
-          {selectedSign && (
-            <div className={`bg-[#5c3ba8]/85 backdrop-blur-sm border rounded-3xl p-6 shadow-xl flex flex-col justify-start space-y-4 text-left h-full overflow-y-auto transition-all duration-300 lg:mt-0 ${
-              isCorrectSign 
-                ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
-                : 'border-white/10'
-            }`}>
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Sign Demonstration</span>
-                  <h2 className="text-2xl font-black text-white mt-0.5">{selectedSign.name}</h2>
-                </div>
-                <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
-                  categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
-                }`}>
-                  {selectedSign.category}
-                </span>
-              </div>
-              
-              <div className="relative w-full h-40 md:h-52 lg:h-56 2xl:h-64 flex items-center justify-center rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
-                {selectedSign.category === 'ALPHABET' ? (
-                  <HandSVG letter={selectedSign.name} />
-                ) : (
-                  <video
-                    key={selectedSign.id}
-                    src={`/fsl/demos/${selectedSign.id}.mov`}
-                    autoPlay
-                    loop
-                    muted
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-              
-              {/* Accuracy Validation Panel */}
-              <div className="border-t border-purple-800/40 pt-4 mt-4">
-                <div className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Practice Mode Feedback</div>
-                
-                {(!lastPrediction || lastPrediction === 'No sign detected') ? (
-                  <div className="flex items-center space-x-3.5 p-3 bg-purple-950/40 rounded-2xl border border-purple-850/50 text-slate-300 font-sans">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                      <span className="text-sm animate-pulse">🌌</span>
-                    </div>
-                    <div>
-                      <p className="text-xs font-black text-slate-200">Waiting for your space gesture...</p>
-                      <p className="text-[10px] text-slate-400">Perform the sign shown above in the camera frame.</p>
-                    </div>
-                  </div>
-                ) : lastPrediction === selectedSign.name ? (
-                  <div className="flex items-center space-x-3.5 p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-emerald-400 animate-bounce">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                      ✨
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-emerald-300">OUT OF THIS WORLD! (CORRECT)</p>
-                      <p className="text-[10px] text-emerald-500/80 font-sans">Awesome job! You made the gesture perfectly.</p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-3.5 p-3 bg-rose-500/10 rounded-2xl border border-rose-500/20 text-rose-400">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">
-                      ☄️
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-rose-300">TRY AGAIN</p>
-                      <p className="text-[10px] text-rose-400/80 font-sans">
-                        Detected: <strong className="underline uppercase">{lastPrediction}</strong> (wanted: {selectedSign.name}).
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+          {/* RIGHT COLUMN */}
+          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
+            
+          </div>
+          
         </div>
-
       </div>
-      
-
     </div>
   );
 
-  const renderSpellingView = () => {
+const renderSpellingView = () => {
     const playingStudent = studentsList.find(s => s.id === activeStudentId);
     return (
       <div className="flex flex-col lg:flex-row gap-6 h-full overflow-hidden">
