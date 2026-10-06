@@ -5142,7 +5142,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your email address:"
+                placeholder="Enter your email address"
               />
             </div>
 
@@ -5154,7 +5154,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your password:"
+                placeholder="Enter your password"
               />
             </div>
 
@@ -5235,7 +5235,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your password:"
+                placeholder="Enter your password"
               />
             </div>
 
@@ -5286,7 +5286,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your email address:"
+                placeholder="Enter your email address"
               />
             </div>
 
@@ -5298,7 +5298,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your password:"
+                placeholder="Enter your password"
               />
             </div>
 
@@ -5310,7 +5310,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 value={confirmPasswordInput}
                 onChange={(e) => setConfirmPasswordInput(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your password:"
+                placeholder="Enter your password"
               />
             </div>
 
@@ -5370,7 +5370,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
                     className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                    placeholder="Enter your email address:"
+                    placeholder="Enter your email address"
                   />
                 </div>
 
@@ -5424,7 +5424,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     value={newPasswordInput}
                     onChange={(e) => setNewPasswordInput(e.target.value)}
                     className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                    placeholder="Enter your password:"
+                    placeholder="Enter your password"
                   />
                 </div>
 
@@ -5437,7 +5437,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     value={confirmNewPasswordInput}
                     onChange={(e) => setConfirmNewPasswordInput(e.target.value)}
                     className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
-                    placeholder="Enter your password:"
+                    placeholder="Enter your password"
                   />
                 </div>
 
