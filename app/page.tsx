@@ -3715,9 +3715,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                 <option value="Grade 1">Grade 1</option>
                 <option value="Grade 2">Grade 2</option>
                 <option value="Grade 3">Grade 3</option>
-                <option value="Grade 4">Grade 4</option>
-                <option value="Grade 5">Grade 5</option>
-                <option value="Grade 6">Grade 6</option>
+                
               </select>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
