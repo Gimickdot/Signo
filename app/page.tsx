@@ -3537,6 +3537,17 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
     const sortedLeaderboard = [...filteredLeaderboard].sort((a, b) => (b.points || 0) - (a.points || 0));
 
     const handleExportCSV = () => {
+      let selectionText = "";
+      if (progressStudentId !== 'ALL') {
+        const std = studentsList.find((s: any) => s.id === progressStudentId);
+        selectionText = std ? `the progress for student: ${std.name}` : "this student's progress";
+      } else {
+        selectionText = progressGradeFilter === 'ALL' ? "the progress for all students" : `the progress for ${progressGradeFilter}`;
+      }
+
+      const confirmExport = window.confirm(`Are you sure you want to export ${selectionText}?`);
+      if (!confirmExport) return;
+
       let targetStudents: any[] = [];
       if (progressStudentId !== 'ALL') {
         const std = studentsList.find((s: any) => s.id === progressStudentId);
