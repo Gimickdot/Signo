@@ -3617,9 +3617,9 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
     let selectionText = "";
     if (progressStudentId !== 'ALL') {
       const std = studentsList.find((s: any) => s.id === progressStudentId);
-      selectionText = std ? `the progress for student: ${std.name}` : "this student's progress";
+      selectionText = std ? `Student: ${std.name}` : "This Student";
     } else {
-      selectionText = progressGradeFilter === 'ALL' ? "the progress for all students" : `the progress for ${progressGradeFilter}`;
+      selectionText = progressGradeFilter === 'ALL' ? "All Students" : progressGradeFilter;
     }
 
     const activeList = (progressTab === 'titik' ? lettersProgress : kilosProgress) as any[];
@@ -3633,9 +3633,12 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               </div>
               <h3 className="text-xl font-black text-white mb-2 uppercase tracking-wide">Export CSV?</h3>
-              <p className="text-purple-200 text-sm font-medium mb-4">
-                Are you sure you want to export {selectionText}?
-              </p>
+              <div className="text-purple-200 text-sm font-medium mb-5 text-center leading-relaxed flex flex-col items-center">
+                Are you sure you want to export the progress for:
+                <span className="inline-block mt-2 px-4 py-1.5 bg-emerald-500/10 border-2 border-emerald-400/50 text-emerald-300 font-black rounded-xl uppercase tracking-widest shadow-inner text-xs">
+                  {selectionText}
+                </span>
+              </div>
               
               <div className="w-full flex flex-col space-y-2 mb-6">
                 <span className="text-[10px] font-black text-emerald-200/80 uppercase tracking-widest text-left ml-1">Select Data to Export:</span>
