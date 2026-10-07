@@ -3608,7 +3608,11 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `Signo_Progress_${progressStudentId !== 'ALL' ? 'Student' : progressGradeFilter.replace(' ', '_')}_${csvExportType.toUpperCase()}.csv`);
+      const teacherStr = activeUser ? activeUser.name.replace(/\s+/g, '_') : 'Admin';
+      const targetStr = progressStudentId !== 'ALL' && targetStudents.length > 0 
+        ? targetStudents[0].name.replace(/\s+/g, '_') 
+        : progressGradeFilter.replace(' ', '_');
+      link.setAttribute('download', `Signo_Progress_${teacherStr}_${targetStr}_${csvExportType.toUpperCase()}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
