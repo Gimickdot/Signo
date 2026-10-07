@@ -343,6 +343,7 @@ function App() {
   const [teacherToDelete, setTeacherToDelete] = useState<string | number | null>(null);
   const [navConfirmTab, setNavConfirmTab] = useState<any>(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [showCsvConfirm, setShowCsvConfirm] = useState(false);
   const [progressSearchTerm, setProgressSearchTerm] = useState('');
   const [progressGradeFilter, setProgressGradeFilter] = useState('ALL');
   const [guroSearchTerm, setGuroSearchTerm] = useState('');
@@ -3536,18 +3537,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
     });
     const sortedLeaderboard = [...filteredLeaderboard].sort((a, b) => (b.points || 0) - (a.points || 0));
 
-    const handleExportCSV = () => {
-      let selectionText = "";
-      if (progressStudentId !== 'ALL') {
-        const std = studentsList.find((s: any) => s.id === progressStudentId);
-        selectionText = std ? `the progress for student: ${std.name}` : "this student's progress";
-      } else {
-        selectionText = progressGradeFilter === 'ALL' ? "the progress for all students" : `the progress for ${progressGradeFilter}`;
-      }
-
-      const confirmExport = window.confirm(`Are you sure you want to export ${selectionText}?`);
-      if (!confirmExport) return;
-
+        const handleExportClick = () => {
       let targetStudents: any[] = [];
       if (progressStudentId !== 'ALL') {
         const std = studentsList.find((s: any) => s.id === progressStudentId);
@@ -3559,6 +3549,18 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       if (targetStudents.length === 0) {
         alert("No students to export.");
         return;
+      }
+      setShowCsvConfirm(true);
+    };
+
+    const executeExportCSV = () => {
+      setShowCsvConfirm(false);
+      let targetStudents: any[] = [];
+      if (progressStudentId !== 'ALL') {
+        const std = studentsList.find((s: any) => s.id === progressStudentId);
+        if (std) targetStudents = [std];
+      } else {
+        targetStudents = studentsList.filter((s: any) => progressGradeFilter === 'ALL' || s.grade === progressGradeFilter);
       }
 
       const header = ["Student Name", "Grade", "Total Points"];
@@ -3603,10 +3605,45 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       document.body.removeChild(link);
     };
 
+    let selectionText = "";
+    if (progressStudentId !== 'ALL') {
+      const std = studentsList.find((s: any) => s.id === progressStudentId);
+      selectionText = std ? `the progress for student: ${std.name}` : "this student's progress";
+    } else {
+      selectionText = progressGradeFilter === 'ALL' ? "the progress for all students" : `the progress for ${progressGradeFilter}`;
+    }
+
     const activeList = (progressTab === 'titik' ? lettersProgress : kilosProgress) as any[];
 
     return (
       <div className="flex flex-col space-y-5 text-left">
+        {showCsvConfirm && (
+          <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
+            <div className="bg-[#2a1b54] border-2 border-emerald-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(16,185,129,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
+              <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4 text-emerald-400 shadow-inner border border-emerald-400/30">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+              </div>
+              <h3 className="text-xl font-black text-white mb-2 uppercase tracking-wide">Export CSV?</h3>
+              <p className="text-purple-200 text-sm font-medium mb-6">
+                Are you sure you want to export {selectionText}?
+              </p>
+              <div className="flex items-center space-x-3 w-full">
+                <button 
+                  onClick={() => setShowCsvConfirm(false)}
+                  className="flex-1 py-3 bg-purple-900/60 hover:bg-purple-800 text-purple-200 text-sm font-black rounded-xl tracking-wider transition-all shadow-md"
+                >
+                  CANCEL
+                </button>
+                <button 
+                  onClick={executeExportCSV}
+                  className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+                >
+                  EXPORT
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
           <h2 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">PROGRESS</h2>
         </div>
@@ -3651,7 +3688,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             )}
           
             <button
-              onClick={handleExportCSV}
+              onClick={handleExportClick}
               className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black px-4 py-2 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
