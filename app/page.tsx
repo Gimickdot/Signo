@@ -3564,7 +3564,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         targetStudents = studentsList.filter((s: any) => progressGradeFilter === 'ALL' || s.grade === progressGradeFilter);
       }
 
-      const header = ["Student Name", "Grade", "Total Points"];
+      const header = ["Student Name", "Teacher Name", "Grade", "Total Points"];
       if (csvExportType === 'both' || csvExportType === 'letters') {
         alphabetLetters.forEach(l => header.push(`Letter ${l} (%)`));
       }
@@ -3577,6 +3577,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       targetStudents.forEach((student: any) => {
         const row = [
           `"${student.name}"`, 
+          `"${activeUser ? activeUser.name : 'Admin'}"`,
           `"${student.grade || 'N/A'}"`, 
           student.points || 0
         ];
