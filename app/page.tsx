@@ -344,6 +344,7 @@ function App() {
   const [navConfirmTab, setNavConfirmTab] = useState<any>(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [progressSearchTerm, setProgressSearchTerm] = useState('');
+  const [progressGradeFilter, setProgressGradeFilter] = useState('ALL');
   const [guroSearchTerm, setGuroSearchTerm] = useState('');
   const [recognitionMode, setRecognitionModeState] = useState<'gestures' | 'alphabets'>('gestures');
   const recognitionModeRef = useRef<'gestures' | 'alphabets'>('gestures');
@@ -3528,8 +3529,69 @@ const kilosProgress = defaultKilosList.map((item) => {
     });
 
     // Sorted leaderboard based on dynamic studentList state points
-const filteredLeaderboard = studentsList.filter(s => s.name.toLowerCase().includes(progressSearchTerm.toLowerCase()));
+const filteredLeaderboard = studentsList.filter((s: any) => {
+      const matchesSearch = s.name.toLowerCase().includes(progressSearchTerm.toLowerCase());
+      const matchesGrade = progressGradeFilter === 'ALL' || s.grade === progressGradeFilter;
+      return matchesSearch && matchesGrade;
+    });
     const sortedLeaderboard = [...filteredLeaderboard].sort((a, b) => (b.points || 0) - (a.points || 0));
+
+    const handleExportCSV = () => {
+      let targetStudents: any[] = [];
+      if (progressStudentId !== 'ALL') {
+        const std = studentsList.find((s: any) => s.id === progressStudentId);
+        if (std) targetStudents = [std];
+      } else {
+        targetStudents = studentsList.filter((s: any) => progressGradeFilter === 'ALL' || s.grade === progressGradeFilter);
+      }
+
+      if (targetStudents.length === 0) {
+        alert("No students to export.");
+        return;
+      }
+
+      const header = ["Student Name", "Grade", "Total Points"];
+      alphabetLetters.forEach(l => header.push(`Letter ${l} (%)`));
+      defaultKilosList.forEach(k => header.push(`Sign ${k.name} (%)`));
+      
+      const rows = [header.join(",")];
+
+      targetStudents.forEach((student: any) => {
+        const row = [
+          `"${student.name}"`, 
+          `"${student.grade || 'N/A'}"`, 
+          student.points || 0
+        ];
+        
+        alphabetLetters.forEach(letter => {
+          const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category && r.category.toUpperCase() === letter.toUpperCase());
+          let maxOccurrences = letterFrequencies[letter] || 1;
+          const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxOccurrences), 0);
+          const val = Math.min(100, Math.round((totalScore / maxOccurrences) * 100));
+          row.push(`${val}%`);
+        });
+
+        defaultKilosList.forEach(kilo => {
+          const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category === kilo.key);
+          const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), 1), 0);
+          const val = Math.min(100, Math.round((totalScore / 1) * 100));
+          row.push(`${val}%`);
+        });
+
+        rows.push(row.join(","));
+      });
+
+      const csvContent = rows.join("\n");
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `Signo_Progress_${progressStudentId !== 'ALL' ? 'Student' : progressGradeFilter.replace(' ', '_')}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
     const activeList = (progressTab === 'titik' ? lettersProgress : kilosProgress) as any[];
 
     return (
@@ -3576,6 +3638,14 @@ const filteredLeaderboard = studentsList.filter(s => s.name.toLowerCase().includ
                 ← View Class Progress
               </button>
             )}
+          
+            <button
+              onClick={handleExportCSV}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black px-4 py-2 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+              <span>Export CSV</span>
+            </button>
           </div>
         </div>
 
@@ -3632,6 +3702,23 @@ const filteredLeaderboard = studentsList.filter(s => s.name.toLowerCase().includ
                   <span>Top Students</span>
                 </h3>
               </div>
+            <div className="flex items-center space-x-2">
+              <select
+                value={progressGradeFilter}
+                onChange={(e) => {
+                   setProgressGradeFilter(e.target.value);
+                   setProgressStudentId('ALL');
+                }}
+                className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 font-sans"
+              >
+                <option value="ALL">All Grades</option>
+                <option value="Grade 1">Grade 1</option>
+                <option value="Grade 2">Grade 2</option>
+                <option value="Grade 3">Grade 3</option>
+                <option value="Grade 4">Grade 4</option>
+                <option value="Grade 5">Grade 5</option>
+                <option value="Grade 6">Grade 6</option>
+              </select>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <svg className="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -3641,9 +3728,10 @@ const filteredLeaderboard = studentsList.filter(s => s.name.toLowerCase().includ
                   placeholder="Search..."
                   value={progressSearchTerm}
                   onChange={(e) => setProgressSearchTerm(e.target.value)}
-                  className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-48 font-sans"
+                  className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-32 md:w-40 font-sans"
                 />
               </div>
+            </div>
             </div>
 
             <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col space-y-3.5 flex-1 justify-start overflow-y-auto max-h-[65vh] scrollbar-thin scrollbar-thumb-fuchsia-500 pr-2">
