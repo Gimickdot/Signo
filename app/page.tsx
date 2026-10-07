@@ -344,6 +344,7 @@ function App() {
   const [navConfirmTab, setNavConfirmTab] = useState<any>(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [showCsvConfirm, setShowCsvConfirm] = useState(false);
+  const [csvExportType, setCsvExportType] = useState<'both' | 'letters' | 'gestures'>('both');
   const [progressSearchTerm, setProgressSearchTerm] = useState('');
   const [progressGradeFilter, setProgressGradeFilter] = useState('ALL');
   const [guroSearchTerm, setGuroSearchTerm] = useState('');
@@ -3564,8 +3565,12 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       }
 
       const header = ["Student Name", "Grade", "Total Points"];
-      alphabetLetters.forEach(l => header.push(`Letter ${l} (%)`));
-      defaultKilosList.forEach(k => header.push(`Sign ${k.name} (%)`));
+      if (csvExportType === 'both' || csvExportType === 'letters') {
+        alphabetLetters.forEach(l => header.push(`Letter ${l} (%)`));
+      }
+      if (csvExportType === 'both' || csvExportType === 'gestures') {
+        defaultKilosList.forEach(k => header.push(`Sign ${k.name} (%)`));
+      }
       
       const rows = [header.join(",")];
 
@@ -3576,20 +3581,24 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           student.points || 0
         ];
         
-        alphabetLetters.forEach(letter => {
-          const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category && r.category.toUpperCase() === letter.toUpperCase());
-          let maxOccurrences = letterFrequencies[letter] || 1;
-          const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxOccurrences), 0);
-          const val = Math.min(100, Math.round((totalScore / maxOccurrences) * 100));
-          row.push(`${val}%`);
-        });
+        if (csvExportType === 'both' || csvExportType === 'letters') {
+          alphabetLetters.forEach(letter => {
+            const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category && r.category.toUpperCase() === letter.toUpperCase());
+            let maxOccurrences = letterFrequencies[letter] || 1;
+            const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxOccurrences), 0);
+            const val = Math.min(100, Math.round((totalScore / maxOccurrences) * 100));
+            row.push(`${val}%`);
+          });
+        }
 
-        defaultKilosList.forEach(kilo => {
-          const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category === kilo.key);
-          const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), 1), 0);
-          const val = Math.min(100, Math.round((totalScore / 1) * 100));
-          row.push(`${val}%`);
-        });
+        if (csvExportType === 'both' || csvExportType === 'gestures') {
+          defaultKilosList.forEach(kilo => {
+            const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category === kilo.key);
+            const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), 1), 0);
+            const val = Math.min(100, Math.round((totalScore / 1) * 100));
+            row.push(`${val}%`);
+          });
+        }
 
         rows.push(row.join(","));
       });
@@ -3599,7 +3608,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `Signo_Progress_${progressStudentId !== 'ALL' ? 'Student' : progressGradeFilter.replace(' ', '_')}.csv`);
+      link.setAttribute('download', `Signo_Progress_${progressStudentId !== 'ALL' ? 'Student' : progressGradeFilter.replace(' ', '_')}_${csvExportType.toUpperCase()}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -3624,9 +3633,33 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               </div>
               <h3 className="text-xl font-black text-white mb-2 uppercase tracking-wide">Export CSV?</h3>
-              <p className="text-purple-200 text-sm font-medium mb-6">
+              <p className="text-purple-200 text-sm font-medium mb-4">
                 Are you sure you want to export {selectionText}?
               </p>
+              
+              <div className="w-full flex flex-col space-y-2 mb-6">
+                <span className="text-[10px] font-black text-emerald-200/80 uppercase tracking-widest text-left ml-1">Select Data to Export:</span>
+                <div className="flex bg-black/40 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+                  <button
+                    onClick={() => setCsvExportType('both')}
+                    className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${csvExportType === 'both' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
+                  >
+                    BOTH
+                  </button>
+                  <button
+                    onClick={() => setCsvExportType('letters')}
+                    className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${csvExportType === 'letters' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
+                  >
+                    LETTERS
+                  </button>
+                  <button
+                    onClick={() => setCsvExportType('gestures')}
+                    className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${csvExportType === 'gestures' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
+                  >
+                    GESTURES
+                  </button>
+                </div>
+              </div>
               <div className="flex items-center space-x-3 w-full">
                 <button 
                   onClick={() => setShowCsvConfirm(false)}
