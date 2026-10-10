@@ -2341,34 +2341,33 @@ function App() {
             filteredStudents.map((std) => (
               <div 
                 key={std.id} 
-                className="bg-[#200b3b]/90 backdrop-blur-sm border-2 border-purple-500/20 rounded-3xl p-6 flex flex-col justify-between shadow-xl relative overflow-hidden transition-all hover:border-purple-500/40"
+                className="bg-slate-900/90 backdrop-blur-sm border-2 border-cyan-500/30 rounded-3xl p-6 flex flex-col justify-between shadow-[0_0_20px_rgba(6,182,212,0.2)] relative overflow-hidden transition-all hover:border-cyan-500/50"
               >
                 {/* Delete button (X) top right */}
                 <button
                   onClick={(e) => { e.stopPropagation(); setStudentIdToDelete(std.id); }}
-                  className="absolute top-4 right-4 text-purple-400 hover:text-rose-400 font-black text-sm select-none transition-colors"
+                  className="absolute top-4 right-5 text-cyan-400 hover:text-rose-400 font-black text-xl select-none transition-colors"
                   title="Remove student"
                 >
                   ✕
                 </button>
 
-                <div className="flex items-center space-x-4 mb-4">
+                <div className="flex items-center space-x-5 mb-5 mt-2">
                   {/* Circular profile emoji background */}
-                  <div className="text-4xl bg-yellow-500/10 w-16 h-16 rounded-full border-2 border-yellow-500/30 flex items-center justify-center select-none shadow-inner">
+                  <div className="text-6xl bg-yellow-500/10 min-w-[96px] w-24 h-24 rounded-full border-2 border-yellow-500/40 flex flex-col items-center justify-center select-none shadow-inner flex-shrink-0">
                     {std.emoji}
                   </div>
-                  <div>
+                  
+                  {/* Right side: Name, Grade, Points */}
+                  <div className="flex flex-col items-start pr-6 flex-1">
+                    <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase mb-1">{std.name}</h3>
+                    <p className="text-sm text-purple-200 font-sans font-semibold mb-3">{std.grade}</p>
                     {/* Points badge with Star */}
-                    <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-2.5 py-0.5 w-fit">
-                      <span className="text-yellow-400 text-xs">⭐</span>
-                      <span className="text-[10px] font-black text-yellow-300 font-sans">Total Points: {std.points}</span>
+                    <div className="flex items-center space-x-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-3 py-1 w-fit">
+                      <span className="text-yellow-400 text-sm">⭐</span>
+                      <span className="text-xs font-black text-yellow-300 font-sans tracking-wide">Total Points: {std.points}</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="mb-4">
-                  <h3 className="text-xl font-black text-white leading-tight">{std.name}</h3>
-                  <p className="text-xs text-purple-300 font-sans font-semibold mt-0.5">{std.grade}</p>
                 </div>
 
                 <button 
