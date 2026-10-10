@@ -3701,7 +3701,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
         )}
-        <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 mb-12 w-full">
+        <div className="relative flex flex-col md:flex-row items-end justify-between gap-6 mb-4 w-full h-[120px] pb-2">
           <div className="absolute inset-0 flex justify-center pointer-events-none z-0">
               <div className="bg-[#0f172a] backdrop-blur-md border border-cyan-400/80 rounded-[40px] px-24 py-8 h-fit shadow-[0_0_30px_rgba(6,182,212,0.4)] text-center hidden lg:block -mt-4">
                 <h1 className="text-5xl font-black text-white tracking-widest uppercase" style={{ textShadow: '0 0 20px rgba(6,182,212,1), 0 0 30px rgba(6,182,212,0.8)' }}>PROGRESS</h1>
