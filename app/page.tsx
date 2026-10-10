@@ -3429,7 +3429,7 @@ const renderSpellingView = () => {
           <div className="w-24 h-24 rounded-full bg-purple-900/50 flex items-center justify-center mb-6 border border-purple-700/50 group-hover:border-fuchsia-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">👐</span>
           </div>
-          <h2 className="text-3xl font-black text-white mb-3">Practice</h2>
+          <h2 className="text-3xl font-black text-fuchsia-400 mb-3">Practice</h2>
           <p className="text-sm font-sans text-slate-300 mb-6">Explore and practice FSL signs at your own pace with real-time AI feedback.</p>
           <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-fuchsia-300 bg-fuchsia-950/60 border border-fuchsia-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-fuchsia-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
@@ -3709,7 +3709,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           </div>
           <div className="flex-1 flex justify-start z-10 w-full md:w-auto">
           {/* Sub tabs switcher */}
-          <div className="flex items-center space-x-3 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-2 w-fit font-sans">
+          <div className="flex items-center space-x-3 w-fit font-sans">
             <button
               type="button"
               onClick={() => setProgressTab('titik')}
@@ -4982,7 +4982,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     </div>
                     <div>
                       <span className="text-[10px] font-black text-fuchsia-400 uppercase tracking-widest">Mode Tutorial</span>
-                      <h3 className="text-2xl font-black text-white leading-tight">Practice Guide</h3>
+                      <h3 className="text-2xl font-black text-fuchsia-400 leading-tight">Practice Guide</h3>
                       <p className="text-xs text-purple-300 font-medium">Practice Filipino Sign Language freely with real-time AI recognition.</p>
                     </div>
                   </div>
@@ -5033,13 +5033,13 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 </div>
               ) : modeTutorialModal === 'game' ? (
                 <div className="flex flex-col space-y-5">
-                  <div className="flex items-center space-x-3 border-b border-purple-800/40 pb-4">
+                  <div className="flex items-center space-x-3 border-b border-cyan-500/40 pb-4">
                     <div className="w-14 h-14 rounded-2xl bg-cyan-900/50 border border-cyan-500/40 flex items-center justify-center text-3xl flex-shrink-0 shadow-inner">
                       🎮
                     </div>
                     <div>
                       <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest">Mode Tutorial</span>
-                      <h3 className="text-2xl font-black text-white leading-tight">Situational Game Guide</h3>
+                      <h3 className="text-2xl font-black text-cyan-400 leading-tight">Situational Game Guide</h3>
                       <p className="text-xs text-slate-400 font-medium">Solve interactive social scenarios using Filipino Sign Language.</p>
                     </div>
                   </div>
@@ -5094,13 +5094,13 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 </div>
               ) : (
                 <div className="flex flex-col space-y-5">
-                  <div className="flex items-center space-x-3 border-b border-purple-800/40 pb-4">
+                  <div className="flex items-center space-x-3 border-b border-emerald-500/40 pb-4">
                     <div className="w-14 h-14 rounded-2xl bg-emerald-900/50 border border-emerald-500/40 flex items-center justify-center text-3xl flex-shrink-0 shadow-inner">
                       🔤
                     </div>
                     <div>
                       <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Mode Tutorial</span>
-                      <h3 className="text-2xl font-black text-white leading-tight">Spelling Game Guide</h3>
+                      <h3 className="text-2xl font-black text-emerald-400 leading-tight">Spelling Game Guide</h3>
                       <p className="text-xs text-slate-400 font-medium">Practice spelling child-friendly words using Filipino Sign Language.</p>
                     </div>
                   </div>
