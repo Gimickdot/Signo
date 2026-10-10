@@ -2386,10 +2386,10 @@ function App() {
   };
 
   const renderStudentSelectorSidebar = () => (
-      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-8 shadow-xl flex flex-col h-[600px] lg:h-auto space-y-6 text-left w-full">
+      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col h-[480px] lg:h-auto space-y-4 text-left w-full max-h-[85vh]">
         <div>
-          <h2 className="text-3xl font-black text-white mb-2">Select Student</h2>
-          <p className="text-sm font-bold text-purple-300 font-sans">Choose who is currently playing</p>
+          <h2 className="text-2xl font-black text-white mb-1">Select Student</h2>
+          <p className="text-xs font-bold text-purple-300 font-sans">Choose who is currently playing</p>
         </div>
         
         <div className="relative w-full font-sans">
