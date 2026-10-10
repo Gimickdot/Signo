@@ -2448,15 +2448,15 @@ function App() {
                       }
                     }}
                     disabled={!!activeStudentId && activeStudentId !== student.id}
-                  className={`w-full flex items-center p-4 rounded-2xl transition duration-200 text-left border ${
+                  className={`w-full flex items-center p-3 rounded-2xl transition duration-200 text-left border ${
                     (!!activeStudentId && activeStudentId !== student.id) ? 'opacity-40 cursor-not-allowed grayscale ' : ''} ${isActive ? bgActive : bgInactive
                   }`}
                 >
-                  <div className={`flex-shrink-0 w-12 h-12 rounded-full ${circleBg} flex items-center justify-center text-xl mr-4 shadow-inner border border-white/10`}>
+                  <div className={`flex-shrink-0 w-12 h-12 aspect-square rounded-2xl ${circleBg} flex items-center justify-center text-xl mr-3 shadow-inner border border-white/10`}>
                     {student.emoji}
                   </div>
                   <div>
-                    <h4 className={`text-lg font-black tracking-wide ${isActive ? 'text-white' : 'text-slate-200'}`}>{student.name}</h4>
+                    <h4 className={`text-base leading-tight font-black tracking-wide ${isActive ? 'text-white' : 'text-slate-200'}`}>{student.name}</h4>
                     <p className={`text-sm font-bold font-sans ${pointsText}`}>{student.points} Points</p>
                   </div>
                 </button>
