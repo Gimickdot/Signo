@@ -2337,7 +2337,7 @@ function App() {
             filteredStudents.map((std) => (
               <div 
                 key={std.id} 
-                className={`bg-slate-900/90 backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "border-blue-500/40 shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:border-blue-400" : std.grade === "Grade 2" ? "border-yellow-500/40 shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:border-yellow-400" : std.grade === "Grade 3" ? "border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-400" : "border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:border-cyan-500/50"}`}
+                className={`backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-950/30 border-blue-500/40 shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:border-blue-400 hover:bg-blue-900/40" : std.grade === "Grade 2" ? "bg-yellow-950/30 border-yellow-500/40 shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:border-yellow-400 hover:bg-yellow-900/40" : std.grade === "Grade 3" ? "bg-emerald-950/30 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-400 hover:bg-emerald-900/40" : "bg-slate-900/90 border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:border-cyan-500/50 hover:bg-slate-800/90"}`}
               >
                 {/* Delete button (X) top right */}
                 <button
@@ -3820,10 +3820,10 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                 }}
                 className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl px-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
               >
-                <option value="ALL" className="bg-[#0f172a] text-white">All Grades</option>
-                <option value="Grade 1" className="bg-[#0f172a] text-white">Grade 1</option>
-                <option value="Grade 2" className="bg-[#0f172a] text-white">Grade 2</option>
-                <option value="Grade 3" className="bg-[#0f172a] text-white">Grade 3</option>
+                <option value="ALL" className="bg-slate-800 text-white font-bold">All Grades</option>
+                <option value="Grade 1" className="bg-slate-800 text-blue-400 font-bold">Grade 1</option>
+                <option value="Grade 2" className="bg-slate-800 text-yellow-400 font-bold">Grade 2</option>
+                <option value="Grade 3" className="bg-slate-800 text-emerald-400 font-bold">Grade 3</option>
                 
               </select>
               <div className="relative">
@@ -3851,8 +3851,8 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   onClick={() => setProgressStudentId(std.id)}
                   className={`border rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] ${
                     progressStudentId === std.id 
-                      ? 'bg-[#3b125e] border-fuchsia-400 ring-2 ring-fuchsia-400/50' 
-                      : 'bg-[#1e083c]/90 border-purple-800/30 hover:bg-[#3b125e]/80 hover:border-purple-600/50'
+                      ? (std.grade === "Grade 1" ? 'bg-blue-900/60 border-blue-400 ring-2 ring-blue-400/50' : std.grade === "Grade 2" ? 'bg-yellow-900/60 border-yellow-400 ring-2 ring-yellow-400/50' : std.grade === "Grade 3" ? 'bg-emerald-900/60 border-emerald-400 ring-2 ring-emerald-400/50' : 'bg-cyan-900/60 border-cyan-400 ring-2 ring-cyan-400/50')
+                      : (std.grade === "Grade 1" ? 'bg-blue-950/30 border-blue-900/50 hover:bg-blue-900/40 hover:border-blue-500/50' : std.grade === "Grade 2" ? 'bg-yellow-950/30 border-yellow-900/50 hover:bg-yellow-900/40 hover:border-yellow-500/50' : std.grade === "Grade 3" ? 'bg-emerald-950/30 border-emerald-900/50 hover:bg-emerald-900/40 hover:border-emerald-500/50' : 'bg-slate-800/80 border-slate-700 hover:bg-slate-700/80 hover:border-cyan-500/50')
                   }`}
                 >
                   <div className={`absolute top-0 left-0 w-2 h-full ${std.grade === "Grade 1" ? "bg-blue-500" : std.grade === "Grade 2" ? "bg-yellow-500" : std.grade === "Grade 3" ? "bg-emerald-500" : "bg-cyan-500"}`} />
