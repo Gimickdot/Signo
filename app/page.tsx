@@ -2337,7 +2337,7 @@ function App() {
             filteredStudents.map((std) => (
               <div 
                 key={std.id} 
-                className={`backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-950/30 border-blue-500/40 shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:border-blue-400 hover:bg-blue-900/40" : std.grade === "Grade 2" ? "bg-yellow-950/30 border-yellow-500/40 shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:border-yellow-400 hover:bg-yellow-900/40" : std.grade === "Grade 3" ? "bg-emerald-950/30 border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-400 hover:bg-emerald-900/40" : "bg-slate-900/90 border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:border-cyan-500/50 hover:bg-slate-800/90"}`}
+                className={`backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-900/70 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:border-blue-400 hover:bg-blue-800/80" : std.grade === "Grade 2" ? "bg-yellow-900/70 border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:bg-yellow-800/80" : std.grade === "Grade 3" ? "bg-emerald-900/70 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:border-emerald-400 hover:bg-emerald-800/80" : "bg-slate-900/95 border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:bg-slate-800"}`}
               >
                 {/* Delete button (X) top right */}
                 <button
@@ -3762,7 +3762,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           
           {/* Progress Columns */}
-          <div className="lg:col-span-3 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col max-h-[70vh] overflow-y-auto relative">
+          <div className="lg:col-span-3 bg-slate-950/95 backdrop-blur-md border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-3xl p-6 shadow-xl flex flex-col max-h-[70vh] overflow-y-auto relative">
             <div className="absolute top-[20%] left-[10%] opacity-5 text-5xl pointer-events-none select-none">🖐️</div>
             <div className="absolute bottom-[30%] right-[15%] opacity-5 text-5xl pointer-events-none select-none">✌️</div>
             <div className="absolute top-[60%] right-[30%] opacity-5 text-5xl pointer-events-none select-none">👍</div>
@@ -3852,7 +3852,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   className={`border rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] ${
                     progressStudentId === std.id 
                       ? (std.grade === "Grade 1" ? 'bg-blue-900/60 border-blue-400 ring-2 ring-blue-400/50' : std.grade === "Grade 2" ? 'bg-yellow-900/60 border-yellow-400 ring-2 ring-yellow-400/50' : std.grade === "Grade 3" ? 'bg-emerald-900/60 border-emerald-400 ring-2 ring-emerald-400/50' : 'bg-cyan-900/60 border-cyan-400 ring-2 ring-cyan-400/50')
-                      : (std.grade === "Grade 1" ? 'bg-blue-950/30 border-blue-900/50 hover:bg-blue-900/40 hover:border-blue-500/50' : std.grade === "Grade 2" ? 'bg-yellow-950/30 border-yellow-900/50 hover:bg-yellow-900/40 hover:border-yellow-500/50' : std.grade === "Grade 3" ? 'bg-emerald-950/30 border-emerald-900/50 hover:bg-emerald-900/40 hover:border-emerald-500/50' : 'bg-slate-800/80 border-slate-700 hover:bg-slate-700/80 hover:border-cyan-500/50')
+                      : (std.grade === "Grade 1" ? 'bg-blue-900/70 border-blue-800/50 hover:bg-blue-800/80 hover:border-blue-500/50' : std.grade === "Grade 2" ? 'bg-yellow-900/70 border-yellow-800/50 hover:bg-yellow-800/80 hover:border-yellow-500/50' : std.grade === "Grade 3" ? 'bg-emerald-900/70 border-emerald-800/50 hover:bg-emerald-800/80 hover:border-emerald-500/50' : 'bg-slate-800/95 border-slate-600 hover:bg-slate-700/90 hover:border-cyan-500/50')
                   }`}
                 >
                   <div className={`absolute top-0 left-0 w-2 h-full ${std.grade === "Grade 1" ? "bg-blue-500" : std.grade === "Grade 2" ? "bg-yellow-500" : std.grade === "Grade 3" ? "bg-emerald-500" : "bg-cyan-500"}`} />
@@ -5040,38 +5040,38 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     <div>
                       <span className="text-[10px] font-black text-cyan-400 uppercase tracking-widest">Mode Tutorial</span>
                       <h3 className="text-2xl font-black text-white leading-tight">Situational Game Guide</h3>
-                      <p className="text-xs text-purple-300 font-medium">Solve interactive social scenarios using Filipino Sign Language.</p>
+                      <p className="text-xs text-slate-400 font-medium">Solve interactive social scenarios using Filipino Sign Language.</p>
                     </div>
                   </div>
 
                   <div className="space-y-3 font-sans">
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                    <div className="flex items-start space-x-3.5 bg-slate-800/80 border border-cyan-500/30 shadow-inner rounded-2xl p-5">
                       <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 font-black text-lg flex-shrink-0">
                         1
                       </div>
                       <div>
                         <h4 className="text-base md:text-lg font-black text-amber-200">Choose Who is Playing</h4>
-                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Click on your name from the list so you can earn points!</p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-1">Click on your name from the list so you can earn points!</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                    <div className="flex items-start space-x-3.5 bg-slate-800/80 border border-cyan-500/30 shadow-inner rounded-2xl p-5">
                       <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-lg flex-shrink-0">
                         2
                       </div>
                       <div>
                         <h4 className="text-base md:text-lg font-black text-cyan-200">Pick a Game Topic</h4>
-                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Choose what you want to learn today, like Greetings or Family.</p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-1">Choose what you want to learn today, like Greetings or Family.</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                    <div className="flex items-start space-x-3.5 bg-slate-800/80 border border-cyan-500/30 shadow-inner rounded-2xl p-5">
                       <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 font-black text-lg flex-shrink-0">
                         3
                       </div>
                       <div>
                         <h4 className="text-base md:text-lg font-black text-emerald-200">Play and Win!</h4>
-                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Read the story and show the right sign to the camera to get points.</p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-1">Read the story and show the right sign to the camera to get points.</p>
                       </div>
                     </div>
                   </div>
@@ -5101,38 +5101,38 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     <div>
                       <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Mode Tutorial</span>
                       <h3 className="text-2xl font-black text-white leading-tight">Spelling Game Guide</h3>
-                      <p className="text-xs text-purple-300 font-medium">Practice spelling child-friendly words using Filipino Sign Language.</p>
+                      <p className="text-xs text-slate-400 font-medium">Practice spelling child-friendly words using Filipino Sign Language.</p>
                     </div>
                   </div>
 
                   <div className="space-y-3 font-sans">
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                    <div className="flex items-start space-x-3.5 bg-slate-800/80 border border-emerald-500/30 shadow-inner rounded-2xl p-5">
                       <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 font-black text-lg flex-shrink-0">
                         1
                       </div>
                       <div>
                         <h4 className="text-base md:text-lg font-black text-amber-200">Choose Who is Playing</h4>
-                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Click on your name from the list so you can earn points!</p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-1">Click on your name from the list so you can earn points!</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                    <div className="flex items-start space-x-3.5 bg-slate-800/80 border border-emerald-500/30 shadow-inner rounded-2xl p-5">
                       <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-lg flex-shrink-0">
                         2
                       </div>
                       <div>
                         <h4 className="text-base md:text-lg font-black text-cyan-200">Spell the Word</h4>
-                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Look at the word on the screen and sign each letter.</p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-1">Look at the word on the screen and sign each letter.</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                    <div className="flex items-start space-x-3.5 bg-slate-800/80 border border-emerald-500/30 shadow-inner rounded-2xl p-5">
                       <div className="w-10 h-10 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/30 flex items-center justify-center text-fuchsia-300 font-black text-lg flex-shrink-0">
                         3
                       </div>
                       <div>
                         <h4 className="text-base md:text-lg font-black text-fuchsia-200">Need Help?</h4>
-                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Look at the small picture on the screen if you forget how to sign a letter.</p>
+                        <p className="text-sm text-slate-300 leading-relaxed mt-1">Look at the small picture on the screen if you forget how to sign a letter.</p>
                       </div>
                     </div>
                   </div>
