@@ -3872,7 +3872,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                 <div 
                   key={std.id}
                   onClick={() => setProgressStudentId(std.id)}
-                  className={`border rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] ${
+                  className={`border rounded-2xl px-4 py-2 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] shrink-0 ${
                     progressStudentId === std.id 
                       ? (std.grade === "Grade 1" ? 'bg-blue-900/60 border-blue-400 ring-2 ring-blue-400/50' : std.grade === "Grade 2" ? 'bg-yellow-900/60 border-yellow-400 ring-2 ring-yellow-400/50' : std.grade === "Grade 3" ? 'bg-emerald-900/60 border-emerald-400 ring-2 ring-emerald-400/50' : 'bg-cyan-900/60 border-cyan-400 ring-2 ring-cyan-400/50')
                       : (std.grade === "Grade 1" ? 'bg-blue-900/70 border-blue-800/50 hover:bg-blue-800/80 hover:border-blue-500/50' : std.grade === "Grade 2" ? 'bg-yellow-900/70 border-yellow-800/50 hover:bg-yellow-800/80 hover:border-yellow-500/50' : std.grade === "Grade 3" ? 'bg-emerald-900/70 border-emerald-800/50 hover:bg-emerald-800/80 hover:border-emerald-500/50' : 'bg-slate-800/95 border-slate-600 hover:bg-slate-700/90 hover:border-cyan-500/50')
@@ -3895,7 +3895,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                       <span className="text-yellow-400 text-sm">⭐</span>
                       <span className="text-sm font-black text-yellow-300 font-sans">{std.points} Points</span>
                     </div>
-                    <span className="text-sm md:text-base text-slate-300 font-black tracking-widest mt-1.5 font-sans">
+                    <span className="text-sm md:text-base text-slate-400 font-black tracking-widest mt-0 font-sans absolute bottom-1 right-4 opacity-50">
                       #{index + 1}
                     </span>
                   </div>
