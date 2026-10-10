@@ -3494,7 +3494,7 @@ const renderSpellingView = () => {
         }
         
         const val = Math.min(100, Math.round((totalScore / maxOccurrences) * 100));
-      const color = val >= 80 ? "bg-emerald-500" : val >= 50 ? "bg-cyan-500" : val > 0 ? "bg-yellow-500" : "bg-purple-950/40";
+      const color = val > 0 ? "bg-emerald-500" : "bg-slate-800/60";
       const warn = val > 0 && val < 50;
       return { name: letter, val, color, warn };
     });
@@ -3541,7 +3541,7 @@ const kilosProgress = defaultKilosList.map((item) => {
       const progressPercent = Math.min(100, Math.round((totalScore / maxScore) * 100));
       
       const val = progressPercent;
-      const color = val >= 80 ? "bg-emerald-500" : val >= 50 ? "bg-cyan-500" : val > 0 ? "bg-yellow-500" : "bg-purple-950/40";
+      const color = val > 0 ? "bg-emerald-500" : "bg-slate-800/60";
       const warn = val > 0 && val < 50;
       return { name: item.name, emoji: item.emoji, val, color, warn };
     });
@@ -3701,8 +3701,12 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
         )}
-        <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
-          <h2 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">PROGRESS</h2>
+        <div className="flex justify-center w-full mb-8">
+          <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-12 py-6 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
+            <h1 className="text-3xl md:text-5xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
+              PROGRESS
+            </h1>
+          </div>
         </div>
         <div className="flex flex-wrap gap-4 items-center justify-between">
           {/* Sub tabs switcher */}
@@ -3710,7 +3714,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             <button
               type="button"
               onClick={() => setProgressTab('titik')}
-              className={`px-4 py-2 rounded-xl text-xs font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
+              className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
                 progressTab === 'titik'
                   ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                   : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -3723,7 +3727,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             <button
               type="button"
               onClick={() => setProgressTab('kilos')}
-              className={`px-4 py-2 rounded-xl text-xs font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
+              className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
                 progressTab === 'kilos'
                   ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                   : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -3738,7 +3742,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             {progressStudentId !== 'ALL' && (
               <button
                 onClick={() => setProgressStudentId('ALL')}
-                className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-xs font-black px-4 py-2 rounded-xl border border-fuchsia-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide"
+                className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm md:text-base font-black px-6 py-3 rounded-xl border border-fuchsia-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide"
               >
                 ← View Class Progress
               </button>
@@ -3746,7 +3750,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           
             <button
               onClick={handleExportClick}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black px-4 py-2 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm md:text-base font-black px-6 py-3 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               <span>Export CSV</span>
@@ -3768,27 +3772,27 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
               {activeList.map((item) => (
                 <div key={item.name} className="flex items-center space-x-4">
                   {progressTab === 'titik' ? (
-                    <div className="w-8 h-8 rounded-full bg-indigo-900/60 border border-indigo-500/30 flex items-center justify-center font-black text-xs text-cyan-300 select-none flex-shrink-0 shadow-inner">
+                    <div className="w-12 h-12 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center font-black text-lg text-cyan-300 select-none flex-shrink-0 shadow-inner">
                       {item.name}
                     </div>
                   ) : (
-                    <div className="w-8 h-8 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-sm select-none flex-shrink-0">
+                    <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-xl select-none flex-shrink-0">
                       {item.emoji}
                     </div>
                   )}
 
                   {progressTab === 'kilos' && (
-                    <div className="w-40 text-xs font-bold text-slate-200 truncate flex-shrink-0 text-left">
+                    <div className="w-48 text-sm font-bold text-slate-200 truncate flex-shrink-0 text-left">
                       {item.name}
                     </div>
                   )}
 
-                  <div className="flex-1 bg-purple-950/60 rounded-full h-3 border border-purple-900/40 overflow-hidden shadow-inner relative">
-                    <div className={`${item.color} h-3 rounded-full transition-all duration-500`} style={{ width: `${item.val}%` }}></div>
+                  <div className="flex-1 bg-slate-900/80 rounded-full h-6 border border-cyan-500/30 overflow-hidden shadow-inner relative">
+                    <div className={`${item.color} h-6 rounded-full transition-all duration-500`} style={{ width: `${item.val}%` }}></div>
                   </div>
 
                   <div className="w-16 flex items-center justify-end space-x-1.5 flex-shrink-0 text-right">
-                    <span className="text-xs font-black text-slate-100">{item.val}%</span>
+                    <span className="text-sm md:text-base font-black text-slate-100">{item.val}%</span>
                     {item.warn && (
                       <span className="text-xs text-yellow-400 select-none animate-pulse" title="Needs practice!">⚠️</span>
                     )}
@@ -3801,8 +3805,8 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 {/* Leaderboard Column */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
             <div className="flex items-center justify-between">
-              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-5 py-2.5 w-fit shadow-lg text-left select-none">
-                <h3 className="text-xs font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
+              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-3 w-fit shadow-lg text-left select-none">
+                <h3 className="text-base md:text-lg font-black text-white tracking-widest uppercase flex items-center space-x-2">
                   <span>🏆</span>
                   <span>Top Students</span>
                 </h3>
@@ -4312,7 +4316,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <button
             type="button"
             onClick={() => setAdminLogTab('app')}
-            className={`px-4 py-2 rounded-xl text-xs font-black tracking-wide transition duration-200 border ${
+            className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border ${
               adminLogTab === 'app'
                 ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                 : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -4324,7 +4328,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <button
             type="button"
             onClick={() => setAdminLogTab('audit')}
-            className={`px-4 py-2 rounded-xl text-xs font-black tracking-wide transition duration-200 border ${
+            className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border ${
               adminLogTab === 'audit'
                 ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                 : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -4336,7 +4340,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <button
             type="button"
             onClick={() => setAdminLogTab('error')}
-            className={`px-4 py-2 rounded-xl text-xs font-black tracking-wide transition duration-200 border ${
+            className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border ${
               adminLogTab === 'error'
                 ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                 : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
