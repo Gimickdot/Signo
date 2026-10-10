@@ -3827,21 +3827,21 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 
 {/* Leaderboard Column */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
-            <div className="flex flex-wrap items-center justify-start gap-4">
-                <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-4 py-2 w-fit shadow-lg text-left select-none flex items-center h-12">
+            <div className="flex items-center justify-between gap-2 w-full">
+                <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-3 py-2 w-fit shadow-lg text-left select-none flex items-center h-12 shrink-0">
                 <h3 className="text-sm font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
                   <span>🏆</span>
                   <span>Top Students</span>
                 </h3>
               </div>
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2">
                 <select
                 value={progressGradeFilter}
                 onChange={(e) => {
                    setProgressGradeFilter(e.target.value);
                    setProgressStudentId('ALL');
                 }}
-                className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl px-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
+                className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm font-bold rounded-xl px-3 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
               >
                 <option value="ALL" className="bg-slate-800 text-white font-bold">All Grades</option>
                 <option value="Grade 1" className="bg-slate-800 text-blue-400 font-bold">Grade 1</option>
@@ -3858,7 +3858,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   placeholder="Search..."
                   value={progressSearchTerm}
                   onChange={(e) => setProgressSearchTerm(e.target.value)}
-                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl pl-11 pr-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-40 md:w-56 font-sans shadow-inner placeholder-slate-400"
+                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm font-bold rounded-xl pl-11 pr-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-32 md:w-40 lg:w-48 font-sans shadow-inner placeholder-slate-400"
                 />
               </div>
             </div>
