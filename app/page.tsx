@@ -3703,17 +3703,17 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         )}
         <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 mb-12 w-full">
           <div className="absolute inset-0 flex justify-center pointer-events-none z-0">
-            <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-12 py-3 h-fit shadow-[0_0_20px_rgba(6,182,212,0.6)] text-center hidden lg:block">
-              <h1 className="text-3xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">PROGRESS</h1>
+              <div className="bg-[#0f172a] backdrop-blur-md border border-cyan-400/80 rounded-[40px] px-24 py-8 h-fit shadow-[0_0_30px_rgba(6,182,212,0.4)] text-center hidden lg:block -mt-4">
+                <h1 className="text-5xl font-black text-white tracking-widest uppercase" style={{ textShadow: '0 0 20px rgba(6,182,212,1), 0 0 30px rgba(6,182,212,0.8)' }}>PROGRESS</h1>
+              </div>
             </div>
-          </div>
           <div className="flex-1 flex justify-start z-10 w-full md:w-auto">
           {/* Sub tabs switcher */}
-          <div className="flex items-center space-x-3 w-fit font-sans">
+          <div className="flex items-center space-x-1.5 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-1.5 w-fit font-sans">
             <button
               type="button"
               onClick={() => setProgressTab('titik')}
-              className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
+              className={`px-5 py-2.5 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
                 progressTab === 'titik'
                   ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                   : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -3726,7 +3726,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             <button
               type="button"
               onClick={() => setProgressTab('kilos')}
-              className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
+              className={`px-5 py-2.5 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
                 progressTab === 'kilos'
                   ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                   : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -3750,7 +3750,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           
             <button
               onClick={handleExportClick}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm md:text-base font-black px-6 py-3 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm md:text-base font-black px-5 py-2.5 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               <span>Export CSV</span>
