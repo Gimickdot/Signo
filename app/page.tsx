@@ -2386,63 +2386,86 @@ function App() {
   };
 
   const renderStudentSelectorSidebar = () => (
-    <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col h-[500px] lg:h-auto space-y-4 text-left w-full">
-      <div>
-        <h2 className="text-lg font-black text-white">Select Student</h2>
-        <p className="text-[10px] font-bold text-purple-300 font-sans">Choose who is currently playing</p>
-      </div>
-      
-      <div className="relative w-full font-sans">
-        <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400">🔍</span>
-        <input
-          type="text"
-          placeholder="Search students..."
-          value={studentSearch}
-          onChange={(e) => setStudentSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs text-slate-100 placeholder-purple-400"
-        />
-      </div>
+      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-8 shadow-xl flex flex-col h-[600px] lg:h-auto space-y-6 text-left w-full">
+        <div>
+          <h2 className="text-3xl font-black text-white mb-2">Select Student</h2>
+          <p className="text-sm font-bold text-purple-300 font-sans">Choose who is currently playing</p>
+        </div>
+        
+        <div className="relative w-full font-sans">
+          <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-purple-400 text-lg">🔍</span>
+          <input
+            type="text"
+            placeholder="Search students..."
+            value={studentSearch}
+            onChange={(e) => setStudentSearch(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-sm text-slate-100 placeholder-purple-400"
+          />
+        </div>
 
-      <div className="flex-1 overflow-y-auto space-y-2 pr-1 scrollbar-thin scrollbar-thumb-purple-800">
-        {studentsList.filter(s => s.name.toLowerCase().includes(studentSearch.toLowerCase())).length === 0 ? (
-           <p className="text-xs text-purple-400 text-center py-4">No students found.</p>
-        ) : (
-          studentsList.filter(s => s.name.toLowerCase().includes(studentSearch.toLowerCase())).map(student => {
-            const isActive = activeStudentId === student.id || (!activeStudentId && studentsList[0]?.id === student.id);
-            return (
-              <button
-                key={student.id}
-                onClick={() => {
-                    // If a student is already actively playing in a game/session, ignore clicks on other students
-                    if (activeStudentId && activeStudentId !== student.id) return;
-                    
-                    // If we are in a session dashboard and about to start, show confirmation popup
-                    if (!activeStudentId && currentView.startsWith('dashboard-') && ['sandbox', 'game', 'spelling'].includes(sessionMode)) {
-                      setStudentToPlayConfirm(student);
-                    } else {
-                      setActiveStudentId(student.id);
-                    }
-                  }}
-                  disabled={!!activeStudentId && activeStudentId !== student.id}
-                className={`w-full flex items-center p-3 rounded-xl transition duration-200 text-left border ${
-                  (!!activeStudentId && activeStudentId !== student.id) ? 'opacity-40 cursor-not-allowed grayscale ' : ''} ${isActive ? 'bg-purple-900/60 border-fuchsia-500 shadow-md ring-2 ring-fuchsia-600/30'
-                    : 'bg-purple-950/30 hover:bg-purple-950/50 border-purple-900/40'
-                }`}
-              >
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-purple-800/50 flex items-center justify-center text-sm mr-3">
-                  {student.emoji}
-                </div>
-                <div>
-                  <h4 className={`text-xs font-black ${isActive ? 'text-white' : 'text-slate-200'}`}>{student.name}</h4>
-                  <p className="text-[10px] text-purple-300 font-sans">{student.points} Points</p>
-                </div>
-              </button>
-            )
-          })
-        )}
+        <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-purple-800">
+          {studentsList.filter(s => s.name.toLowerCase().includes(studentSearch.toLowerCase())).length === 0 ? (
+             <p className="text-sm text-purple-400 text-center py-4">No students found.</p>
+          ) : (
+            studentsList.filter(s => s.name.toLowerCase().includes(studentSearch.toLowerCase())).map(student => {
+              const isActive = activeStudentId === student.id || (!activeStudentId && studentsList[0]?.id === student.id);
+              
+              // Determine grade color
+              let bgActive = 'bg-cyan-900/60 border-cyan-400 ring-2 ring-cyan-400/50';
+              let bgInactive = 'bg-cyan-900/30 border-cyan-800/40 hover:bg-cyan-800/50 hover:border-cyan-500/50';
+              let circleBg = 'bg-cyan-800/50 text-cyan-200';
+              let pointsText = 'text-cyan-200';
+              
+              if (student.grade === 'Grade 1') {
+                bgActive = 'bg-blue-900/60 border-blue-400 ring-2 ring-blue-400/50';
+                bgInactive = 'bg-blue-900/30 border-blue-800/40 hover:bg-blue-800/50 hover:border-blue-500/50';
+                circleBg = 'bg-blue-800/50 text-blue-200';
+                pointsText = 'text-blue-200';
+              } else if (student.grade === 'Grade 2') {
+                bgActive = 'bg-yellow-900/60 border-yellow-400 ring-2 ring-yellow-400/50';
+                bgInactive = 'bg-yellow-900/30 border-yellow-800/40 hover:bg-yellow-800/50 hover:border-yellow-500/50';
+                circleBg = 'bg-yellow-800/50 text-yellow-200';
+                pointsText = 'text-yellow-200';
+              } else if (student.grade === 'Grade 3') {
+                bgActive = 'bg-emerald-900/60 border-emerald-400 ring-2 ring-emerald-400/50';
+                bgInactive = 'bg-emerald-900/30 border-emerald-800/40 hover:bg-emerald-800/50 hover:border-emerald-500/50';
+                circleBg = 'bg-emerald-800/50 text-emerald-200';
+                pointsText = 'text-emerald-200';
+              }
+
+              return (
+                <button
+                  key={student.id}
+                  onClick={() => {
+                      // If a student is already actively playing in a game/session, ignore clicks on other students
+                      if (activeStudentId && activeStudentId !== student.id) return;
+                      
+                      // If we are in a session dashboard and about to start, show confirmation popup
+                      if (!activeStudentId && currentView.startsWith('dashboard-') && ['sandbox', 'game', 'spelling'].includes(sessionMode)) {
+                        setStudentToPlayConfirm(student);
+                      } else {
+                        setActiveStudentId(student.id);
+                      }
+                    }}
+                    disabled={!!activeStudentId && activeStudentId !== student.id}
+                  className={`w-full flex items-center p-4 rounded-2xl transition duration-200 text-left border ${
+                    (!!activeStudentId && activeStudentId !== student.id) ? 'opacity-40 cursor-not-allowed grayscale ' : ''} ${isActive ? bgActive : bgInactive
+                  }`}
+                >
+                  <div className={`flex-shrink-0 w-12 h-12 rounded-full ${circleBg} flex items-center justify-center text-xl mr-4 shadow-inner border border-white/10`}>
+                    {student.emoji}
+                  </div>
+                  <div>
+                    <h4 className={`text-lg font-black tracking-wide ${isActive ? 'text-white' : 'text-slate-200'}`}>{student.name}</h4>
+                    <p className={`text-sm font-bold font-sans ${pointsText}`}>{student.points} Points</p>
+                  </div>
+                </button>
+              )
+            })
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
 
   const isCorrectSign = Boolean(
       (currentView !== 'dashboard-spelling' && selectedSign && (
@@ -3804,7 +3827,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 
 {/* Leaderboard Column */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-start gap-4">
                 <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-4 py-2 w-fit shadow-lg text-left select-none flex items-center h-12">
                 <h3 className="text-sm font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
                   <span>🏆</span>
