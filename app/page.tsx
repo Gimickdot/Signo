@@ -3419,9 +3419,11 @@ const renderSpellingView = () => {
 
   const renderSesyonMenu = () => (
     <div className="flex flex-col items-center justify-center space-y-8 min-h-[60vh]">
-      <div className="text-center">
-        <h1 className="text-4xl font-black text-white mb-2">Choose Session Mode</h1>
-        <p className="text-sm font-bold text-purple-300 font-sans">Select how you want to practice today</p>
+      <div className="flex justify-center w-full mb-8">
+        <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-12 py-6 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
+          <h1 className="text-3xl md:text-5xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)] mb-2">Choose Session Mode</h1>
+          <p className="text-lg md:text-xl font-bold text-cyan-200 font-sans">Select how you want to practice today</p>
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-5xl">
         <button
@@ -3431,9 +3433,9 @@ const renderSpellingView = () => {
           <div className="w-24 h-24 rounded-full bg-purple-900/50 flex items-center justify-center mb-6 border border-purple-700/50 group-hover:border-fuchsia-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">👐</span>
           </div>
-          <h2 className="text-2xl font-black text-white mb-2">Sandbox Training</h2>
-          <p className="text-xs font-sans text-purple-200 mb-4">Explore and practice FSL signs at your own pace with real-time AI feedback.</p>
-          <span className="mt-auto inline-flex items-center space-x-1.5 text-[11px] font-black text-fuchsia-300 bg-fuchsia-950/60 border border-fuchsia-500/40 px-4 py-1.5 rounded-full uppercase tracking-wider group-hover:bg-fuchsia-600 group-hover:text-white transition-all">
+          <h2 className="text-3xl font-black text-white mb-3">Practice</h2>
+          <p className="text-sm font-sans text-slate-300 mb-6">Explore and practice FSL signs at your own pace with real-time AI feedback.</p>
+          <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-fuchsia-300 bg-fuchsia-950/60 border border-fuchsia-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-fuchsia-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
           </span>
         </button>
@@ -3445,9 +3447,9 @@ const renderSpellingView = () => {
           <div className="w-24 h-24 rounded-full bg-cyan-900/30 flex items-center justify-center mb-6 border border-cyan-500/50 group-hover:border-cyan-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">🎮</span>
           </div>
-          <h2 className="text-2xl font-black text-cyan-300 mb-2">Situational Game</h2>
-          <p className="text-xs font-sans text-cyan-100/80 mb-4">Play an interactive game where you respond to scenarios using FSL.</p>
-          <span className="mt-auto inline-flex items-center space-x-1.5 text-[11px] font-black text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 px-4 py-1.5 rounded-full uppercase tracking-wider group-hover:bg-cyan-600 group-hover:text-white transition-all">
+          <h2 className="text-3xl font-black text-cyan-300 mb-3">Situational Game</h2>
+          <p className="text-sm font-sans text-cyan-100/80 mb-6">Play an interactive game where you respond to scenarios using FSL.</p>
+          <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-cyan-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
           </span>
         </button>
@@ -3459,9 +3461,9 @@ const renderSpellingView = () => {
           <div className="w-24 h-24 rounded-full bg-emerald-900/30 flex items-center justify-center mb-6 border border-emerald-500/50 group-hover:border-emerald-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">🔤</span>
           </div>
-          <h2 className="text-2xl font-black text-emerald-300 mb-2">Spelling Game</h2>
-          <p className="text-xs font-sans text-emerald-100/80 mb-4">Practice your FSL alphabet by spelling out words!</p>
-          <span className="mt-auto inline-flex items-center space-x-1.5 text-[11px] font-black text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 px-4 py-1.5 rounded-full uppercase tracking-wider group-hover:bg-emerald-600 group-hover:text-white transition-all">
+          <h2 className="text-3xl font-black text-emerald-300 mb-3">Spelling Game</h2>
+          <p className="text-sm font-sans text-emerald-100/80 mb-6">Practice your FSL alphabet by spelling out words!</p>
+          <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-emerald-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
           </span>
         </button>
@@ -4980,7 +4982,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     </div>
                     <div>
                       <span className="text-[10px] font-black text-fuchsia-400 uppercase tracking-widest">Mode Tutorial</span>
-                      <h3 className="text-2xl font-black text-white leading-tight">Sandbox Training Guide</h3>
+                      <h3 className="text-2xl font-black text-white leading-tight">Practice Guide</h3>
                       <p className="text-xs text-purple-300 font-medium">Practice Filipino Sign Language freely with real-time AI recognition.</p>
                     </div>
                   </div>
@@ -5024,9 +5026,9 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       setCurrentView('dashboard-sandbox');
                       setModeTutorialModal(null);
                     }}
-                    className="w-full py-3.5 bg-gradient-to-r from-fuchsia-600 to-indigo-600 hover:from-fuchsia-500 hover:to-indigo-500 text-white text-xs font-black rounded-2xl tracking-wider transition-all shadow-xl active:scale-95 uppercase mt-2 flex items-center justify-center space-x-2 border border-fuchsia-400/40"
+                    className="w-full py-3.5 bg-gradient-to-r from-fuchsia-600 to-indigo-600 hover:from-fuchsia-500 hover:to-indigo-500 text-white text-sm font-black rounded-2xl py-4 tracking-wider transition-all shadow-xl active:scale-95 uppercase mt-2 flex items-center justify-center space-x-2 border border-fuchsia-400/40"
                   >
-                    <span>🚀 Start Sandbox Session</span>
+                    <span>🚀 Start Practice Session</span>
                   </button>
                 </div>
               ) : modeTutorialModal === 'game' ? (
@@ -5085,7 +5087,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                         setCurrentView('dashboard-game');
                       setModeTutorialModal(null);
                     }}
-                    className="w-full py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-black rounded-2xl tracking-wider transition-all shadow-xl active:scale-95 uppercase mt-2 flex items-center justify-center space-x-2 border border-cyan-400/40"
+                    className="w-full py-3.5 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-sm font-black rounded-2xl py-4 tracking-wider transition-all shadow-xl active:scale-95 uppercase mt-2 flex items-center justify-center space-x-2 border border-cyan-400/40"
                   >
                     <span>🎮 Start Game Adventure</span>
                   </button>
@@ -5146,7 +5148,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       setCurrentView('dashboard-spelling');
                       setModeTutorialModal(null);
                     }}
-                    className="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-black rounded-2xl tracking-wider transition-all shadow-xl active:scale-95 uppercase mt-2 flex items-center justify-center space-x-2 border border-emerald-400/40"
+                    className="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-sm font-black rounded-2xl py-4 tracking-wider transition-all shadow-xl active:scale-95 uppercase mt-2 flex items-center justify-center space-x-2 border border-emerald-400/40"
                   >
                     <span>🔤 Start Spelling Game</span>
                   </button>
