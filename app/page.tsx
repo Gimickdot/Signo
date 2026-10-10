@@ -2296,7 +2296,7 @@ function App() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Widescreen Search Student Bar */}
             <div className="relative flex-1 font-sans">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-purple-400">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-cyan-400 text-xl md:text-2xl">
                 🔍
               </span>
               <input
@@ -2304,7 +2304,7 @@ function App() {
                 placeholder="Search student name"
                 value={studentSearch}
                 onChange={(e) => setStudentSearch(e.target.value)}
-                className="w-full pl-12 pr-4 py-3.5 bg-slate-800/60 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-sm font-bold text-slate-100 placeholder-slate-400 shadow-inner"
+                className="w-full pl-14 pr-5 py-4 bg-slate-800/60 border border-cyan-500/40 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-base md:text-lg font-bold text-slate-100 placeholder-slate-400 shadow-[0_0_15px_rgba(6,182,212,0.15)]"
               />
             </div>
             
@@ -2323,11 +2323,7 @@ function App() {
               <button
                 key={grade}
                 onClick={() => setStudentFilter(grade)}
-                className={`px-3 py-1.5 rounded-lg text-[10px] font-black tracking-wide whitespace-nowrap transition duration-200 border ${
-                  studentFilter === grade
-                    ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
-                    : 'bg-purple-950/60 text-purple-300 hover:text-white border-purple-900/40'
-                }`}
+                className={`px-6 py-3 rounded-xl text-sm font-black tracking-widest whitespace-nowrap transition duration-200 border ${studentFilter === grade ? 'bg-blue-600 text-white border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.6)] scale-105' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-white'}`}
               >
                 {grade}
               </button>
