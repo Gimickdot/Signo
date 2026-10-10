@@ -2323,7 +2323,7 @@ function App() {
               <button
                 key={grade}
                 onClick={() => setStudentFilter(grade)}
-                className={`px-6 py-3 rounded-xl text-sm font-black tracking-widest whitespace-nowrap transition duration-200 border ${studentFilter === grade ? 'bg-blue-600 text-white border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.6)] scale-105' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-white'}`}
+                className={`px-6 py-3 rounded-xl text-sm font-black tracking-widest whitespace-nowrap transition duration-200 border ${studentFilter === grade ? (grade === 'Grade 2' ? 'bg-yellow-600 border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.6)] text-white scale-105' : grade === 'Grade 3' ? 'bg-emerald-600 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.6)] text-white scale-105' : 'bg-blue-600 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.6)] text-white scale-105') : (grade === 'Grade 2' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-yellow-300 hover:border-yellow-400' : grade === 'Grade 3' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-emerald-300 hover:border-emerald-400' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-blue-300 hover:border-blue-400')}`}
               >
                 {grade}
               </button>
@@ -2337,7 +2337,7 @@ function App() {
             filteredStudents.map((std) => (
               <div 
                 key={std.id} 
-                className="bg-slate-900/90 backdrop-blur-sm border-2 border-cyan-500/30 rounded-3xl p-6 flex flex-col justify-between shadow-[0_0_20px_rgba(6,182,212,0.2)] relative overflow-hidden transition-all hover:border-cyan-500/50"
+                className={`bg-slate-900/90 backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "border-blue-500/40 shadow-[0_0_20px_rgba(59,130,246,0.2)] hover:border-blue-400" : std.grade === "Grade 2" ? "border-yellow-500/40 shadow-[0_0_20px_rgba(234,179,8,0.2)] hover:border-yellow-400" : std.grade === "Grade 3" ? "border-emerald-500/40 shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:border-emerald-400" : "border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] hover:border-cyan-500/50"}`}
               >
                 {/* Delete button (X) top right */}
                 <button
@@ -3701,14 +3701,13 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
         )}
-        <div className="flex justify-center w-full mb-8">
-          <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-12 py-6 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
-            <h1 className="text-3xl md:text-5xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
-              PROGRESS
-            </h1>
+        <div className="relative flex flex-col md:flex-row items-center justify-between gap-6 mb-12 w-full">
+          <div className="absolute inset-0 flex justify-center pointer-events-none z-0">
+            <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-12 py-3 h-fit shadow-[0_0_20px_rgba(6,182,212,0.6)] text-center hidden lg:block">
+              <h1 className="text-3xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">PROGRESS</h1>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-wrap gap-4 items-center justify-between">
+          <div className="flex-1 flex justify-start z-10 w-full md:w-auto">
           {/* Sub tabs switcher */}
           <div className="flex items-center space-x-3 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-2 w-fit font-sans">
             <button
@@ -3738,7 +3737,8 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </button>
           </div>
 
-          <div className="flex items-center space-x-2">
+          </div>
+          <div className="flex-1 flex justify-end z-10 w-full md:w-auto space-x-2">
             {progressStudentId !== 'ALL' && (
               <button
                 onClick={() => setProgressStudentId('ALL')}
@@ -3855,7 +3855,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                       : 'bg-[#1e083c]/90 border-purple-800/30 hover:bg-[#3b125e]/80 hover:border-purple-600/50'
                   }`}
                 >
-                  <div className={`absolute top-0 left-0 w-1.5 h-full ${progressStudentId === std.id ? 'bg-fuchsia-400' : 'bg-fuchsia-500'}`} />
+                  <div className={`absolute top-0 left-0 w-2 h-full ${std.grade === "Grade 1" ? "bg-blue-500" : std.grade === "Grade 2" ? "bg-yellow-500" : std.grade === "Grade 3" ? "bg-emerald-500" : "bg-cyan-500"}`} />
 
                   <div className="flex items-center space-x-3 text-left">
                     <div className="text-3xl bg-yellow-500/10 w-11 h-11 rounded-full border border-yellow-500/20 flex items-center justify-center select-none">
@@ -3868,11 +3868,11 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   </div>
 
                   <div className="flex flex-col items-end">
-                    <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-2 py-0.5 select-none">
-                      <span className="text-yellow-400 text-[10px]">⭐</span>
-                      <span className="text-[9px] font-black text-yellow-300 font-sans">{std.points} Points</span>
+                    <div className="flex items-center space-x-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-3 py-1 select-none">
+                      <span className="text-yellow-400 text-sm">⭐</span>
+                      <span className="text-sm font-black text-yellow-300 font-sans">{std.points} Points</span>
                     </div>
-                    <span className="text-[9px] text-purple-400 font-black tracking-widest mt-1 font-sans">
+                    <span className="text-sm md:text-base text-slate-300 font-black tracking-widest mt-1.5 font-sans">
                       #{index + 1}
                     </span>
                   </div>
