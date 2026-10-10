@@ -102,6 +102,8 @@ interface ProfileCustomizationModalProps {
   setSelectedIcon: (v: string) => void;
   selectedBgColor: string;
   setSelectedBgColor: (v: string) => void;
+  selectedName: string;
+  setSelectedName: (v: string) => void;
   saving: boolean;
   saveMsg: string | null;
   onSave: () => void;
@@ -114,6 +116,8 @@ function ProfileCustomizationModal({
   setSelectedIcon,
   selectedBgColor,
   setSelectedBgColor,
+  selectedName,
+  setSelectedName,
   saving,
   saveMsg,
   onSave,
@@ -137,7 +141,7 @@ function ProfileCustomizationModal({
         >✕</button>
 
         <h2 className="text-center text-base font-black uppercase tracking-widest mb-1">Customize Profile</h2>
-        <p className="text-center text-[10px] text-purple-300 mb-4">Choose your icon and background color</p>
+        <p className="text-center text-[10px] text-purple-300 mb-4">Customize your name, icon, and background color</p>
 
         {/* Preview */}
         <div className="flex justify-center mb-5">
@@ -152,6 +156,17 @@ function ProfileCustomizationModal({
             )}
           </div>
         </div>
+
+        {/* Name input */}
+        <p className="text-[10px] font-bold text-purple-200 uppercase tracking-widest mb-2">Display Name</p>
+        <input
+          type="text"
+          value={selectedName}
+          onChange={(e) => setSelectedName(e.target.value)}
+          maxLength={40}
+          placeholder="Enter your display name"
+          className="w-full px-4 py-2.5 bg-white/10 border border-purple-500/30 rounded-xl text-white text-xs font-bold placeholder-purple-400 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 mb-5 transition-all"
+        />
 
         {/* Icon picker */}
         <p className="text-[10px] font-bold text-purple-200 uppercase tracking-widest mb-2">Choose an Icon</p>
@@ -398,6 +413,7 @@ function App() {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [selectedProfileIcon, setSelectedProfileIcon] = useState<string>('');
   const [selectedProfileBgColor, setSelectedProfileBgColor] = useState<string>('#1c1ae3');
+  const [selectedProfileName, setSelectedProfileName] = useState<string>('');
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileSaveMsg, setProfileSaveMsg] = useState<string | null>(null);
   
@@ -2152,40 +2168,43 @@ function App() {
       <div className="flex flex-col space-y-6">
         {/* Top Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: Students */}
-          <div className="bg-[#5b32a1]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 flex items-center space-x-4 shadow-xl relative overflow-hidden text-left">
-            <div className="text-4xl bg-yellow-400/20 w-16 h-16 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
+          {/* Card 1: Students — Teal/Cyan */}
+          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/30 rounded-3xl p-6 flex items-center space-x-4 shadow-xl shadow-cyan-900/40 relative overflow-hidden text-left">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.15),transparent_70%)] pointer-events-none" />
+            <div className="text-4xl bg-cyan-300/20 w-16 h-16 rounded-2xl border border-cyan-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               👧
             </div>
             <div>
-              <div className="text-4xl font-black text-white">{studentsList.length}</div>
-              <div className="text-sm font-semibold text-purple-200">Students</div>
+              <div className="text-4xl font-black text-white drop-shadow">{studentsList.length}</div>
+              <div className="text-sm font-semibold text-cyan-200">Students</div>
             </div>
           </div>
           
-          {/* Card 2: Avg. Points (Logo Watermark Removed) */}
-          <div className="bg-[#6b664d]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 flex items-center space-x-4 shadow-xl relative overflow-hidden text-left">
-            <div className="text-4xl bg-yellow-400/20 w-16 h-16 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
+          {/* Card 2: Avg. Points — Amber/Gold */}
+          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/30 rounded-3xl p-6 flex items-center space-x-4 shadow-xl shadow-amber-900/40 relative overflow-hidden text-left">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,191,36,0.15),transparent_70%)] pointer-events-none" />
+            <div className="text-4xl bg-amber-300/20 w-16 h-16 rounded-2xl border border-amber-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ✨
             </div>
             <div>
-              <div className="text-4xl font-black text-white">
+              <div className="text-4xl font-black text-white drop-shadow">
                 {avgPointsPercentage}
               </div>
-              <div className="text-sm font-semibold text-yellow-100 font-sans">Avg. Points</div>
+              <div className="text-sm font-semibold text-amber-200 font-sans">Avg. Points</div>
             </div>
           </div>
           
-          {/* Card 3: Total Sessions (Resets every 24 hours) */}
-          <div className="bg-[#854545]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 flex items-center space-x-4 shadow-xl relative overflow-hidden text-left">
-            <div className="text-4xl bg-red-400/20 w-16 h-16 rounded-2xl border border-red-400/30 flex items-center justify-center">
+          {/* Card 3: Total Sessions — Rose/Pink */}
+          <div className="bg-gradient-to-br from-[#9f1239] to-[#500724] backdrop-blur-sm border border-rose-400/30 rounded-3xl p-6 flex items-center space-x-4 shadow-xl shadow-rose-900/40 relative overflow-hidden text-left">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,113,133,0.15),transparent_70%)] pointer-events-none" />
+            <div className="text-4xl bg-rose-300/20 w-16 h-16 rounded-2xl border border-rose-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ⏱️
             </div>
             <div>
-              <div className="text-4xl font-black text-white">{totalSessionsCount}</div>
-              <div className="text-sm font-semibold text-red-200 font-sans flex items-center space-x-1">
+              <div className="text-4xl font-black text-white drop-shadow">{totalSessionsCount}</div>
+              <div className="text-sm font-semibold text-rose-200 font-sans flex items-center space-x-1">
                 <span>Signs Practiced Today</span>
-                <span className="text-[10px] text-red-300/80 font-normal">(24h Reset)</span>
+                <span className="text-[10px] text-rose-300/80 font-normal">(24h Reset)</span>
               </div>
             </div>
           </div>
@@ -2194,37 +2213,37 @@ function App() {
       {/* Bottom Row: Recent Activities & Dynamic Sign of the Day */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Recent Activities */}
-        <div className="lg:col-span-3 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl text-left">
-          <div className="flex items-center space-x-2 text-lg font-black text-white mb-4 pb-2 border-b border-purple-800/40">
+        <div className="lg:col-span-3 bg-gradient-to-br from-[#1e1060]/90 to-[#2d0f6b]/90 backdrop-blur-sm border border-violet-500/30 rounded-3xl p-6 shadow-xl shadow-violet-900/30 text-left">
+          <div className="flex items-center space-x-2 text-lg font-black text-white mb-4 pb-2 border-b border-violet-600/30">
             <span className="text-2xl">💡</span>
             <h2>Recent Activities</h2>
           </div>
           
           <div className="space-y-3 max-h-[380px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500 hover:scrollbar-thumb-fuchsia-400">
             {teacherActivities.length > 0 ? teacherActivities.map((act, i) => (
-                <div key={act.id + i} className="bg-[#3b125e]/60 border border-purple-800/30 rounded-2xl p-4 flex items-center justify-between">
+                <div key={act.id + i} className="bg-white/5 border border-violet-500/20 rounded-2xl p-4 flex items-center justify-between hover:bg-white/10 transition-colors">
                   <div className="flex items-center space-x-3.5">
-                    <div className="text-3xl bg-yellow-400/10 w-12 h-12 rounded-xl border border-yellow-400/20 flex items-center justify-center">
+                    <div className="text-3xl bg-amber-400/10 w-12 h-12 rounded-xl border border-amber-400/20 flex items-center justify-center">
                       {act.emoji}
                     </div>
                     <div>
                       <h4 className="font-extrabold text-white text-base">{act.name}</h4>
-                      <p className="text-xs text-purple-200 font-sans">
+                      <p className="text-xs text-violet-300 font-sans">
                         {act.type === 'ADD' ? 'Added new student' : act.type === 'EDIT' ? 'Updated profile' : act.type === 'DELETE' ? 'Deleted student' : `Played ${act.mode || 'session'}`}
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-purple-300 font-sans font-medium">{getTimeAgo(act.timestamp || Date.now())}</span>
+                  <span className="text-xs text-violet-300 font-sans font-medium">{getTimeAgo(act.timestamp || Date.now())}</span>
                 </div>
               )) : (
-                <p className="text-purple-300 text-sm font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
+                <p className="text-violet-400 text-sm font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
               )}
           </div>
         </div>
 
         {/* Dynamic Sign of the Day */}
-        <div className="lg:col-span-2 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col items-center justify-between text-center min-h-[280px] h-fit">
-          <div className="flex items-center justify-between w-full border-b border-purple-800/40 pb-3 mb-2">
+        <div className="lg:col-span-2 bg-gradient-to-br from-[#4c1d95]/90 to-[#312e81]/90 backdrop-blur-sm border border-purple-500/30 rounded-3xl p-6 shadow-xl shadow-purple-900/30 flex flex-col items-center justify-between text-center min-h-[280px] h-fit">
+          <div className="flex items-center justify-between w-full border-b border-purple-600/30 pb-3 mb-2">
             <h2 className="text-lg font-black text-white tracking-wide">Sign of the Day</h2>
             {signOfTheDay && (
               <span className={`text-xs font-black px-3 py-1 rounded-full border uppercase tracking-wider ${
@@ -2238,7 +2257,7 @@ function App() {
           <div className="my-3 flex flex-col items-center justify-center w-full">
             {signOfTheDay ? (
               <>
-                <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 flex items-center justify-center rounded-3xl bg-purple-950/70 border-2 border-purple-500/50 p-2 shadow-2xl my-2 transition-all">
+                <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 flex items-center justify-center rounded-3xl bg-purple-950/70 border-2 border-fuchsia-500/40 p-2 shadow-2xl shadow-fuchsia-900/30 my-2 transition-all">
                   {signOfTheDay.category === 'ALPHABET' ? (
                     <HandSVG letter={signOfTheDay.name} />
                   ) : (
@@ -4436,6 +4455,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 onClick={() => {
                   setSelectedProfileIcon(activeUser.profileIcon || '');
                   setSelectedProfileBgColor(activeUser.profileBgColor || '#1c1ae3');
+                  setSelectedProfileName(activeUser.name || '');
                   setProfileSaveMsg(null);
                   setShowProfileModal(true);
                 }}
@@ -4901,11 +4921,13 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             setSelectedIcon={setSelectedProfileIcon}
             selectedBgColor={selectedProfileBgColor}
             setSelectedBgColor={setSelectedProfileBgColor}
+            selectedName={selectedProfileName}
+            setSelectedName={setSelectedProfileName}
             saving={profileSaving}
             saveMsg={profileSaveMsg}
             onClose={() => setShowProfileModal(false)}
             onSave={async () => {
-              if (!selectedProfileIcon && !selectedProfileBgColor) return;
+              if (!selectedProfileIcon && !selectedProfileBgColor && !selectedProfileName.trim()) return;
               setProfileSaving(true);
               setProfileSaveMsg(null);
               try {
@@ -4914,13 +4936,14 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({
                     userId: activeUser.id,
+                    name: selectedProfileName.trim() || activeUser.name,
                     profileIcon: selectedProfileIcon,
                     profileBgColor: selectedProfileBgColor,
                   }),
                 });
                 const data = await res.json();
                 if (data.success) {
-                  const updated = { ...activeUser, profileIcon: selectedProfileIcon, profileBgColor: selectedProfileBgColor };
+                  const updated = { ...activeUser, name: selectedProfileName.trim() || activeUser.name, profileIcon: selectedProfileIcon, profileBgColor: selectedProfileBgColor };
                   setActiveUser(updated);
                   localStorage.setItem('signo_active_user', JSON.stringify(updated));
                   setProfileSaveMsg('✓ Profile saved successfully!');
@@ -5251,26 +5274,26 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
       </div>
 
       {/* Card Body */}
-      <div className="w-full max-w-sm bg-[#3a1c6a]/85 backdrop-blur-md rounded-[32px] border-2 border-purple-500/20 p-8 shadow-2xl relative z-10 text-center flex flex-col items-center">
+      <div className="w-full max-w-md bg-[#3a1c6a]/90 backdrop-blur-md rounded-[36px] border-2 border-purple-400/30 p-10 shadow-[0_0_60px_rgba(168,85,247,0.25)] relative z-10 text-center flex flex-col items-center">
         {/* Logo Icon top overlap */}
-        <div className="absolute -top-20">
-          <AstronautLogo className="w-36 h-36 drop-shadow-xl" />
+        <div className="absolute -top-24">
+          <AstronautLogo className="w-44 h-44 drop-shadow-xl" />
         </div>
         
         {/* Spacer */}
-        <div className="h-16 w-full"></div>
+        <div className="h-20 w-full"></div>
 
         {/* Switcher Tab header (Only show on Login forms, not on Register or Forgot password) */}
         {(isTeacherLogin || isAdminLogin) && (
-          <div className="flex border-b border-purple-750/50 w-full mb-6 mt-4">
+          <div className="flex border-b border-purple-500/40 w-full mb-7 mt-2">
             <button
               type="button"
               onClick={() => {
                 setCurrentView('teacher-login');
                 setUserRole('guro');
               }}
-              className={`flex-1 pb-2 text-xs font-black tracking-wide uppercase transition-all ${
-                isTeacherLogin ? 'text-white border-b-2 border-fuchsia-500' : 'text-purple-400 hover:text-purple-200'
+              className={`flex-1 pb-3 text-sm font-black tracking-wide uppercase transition-all ${
+                isTeacherLogin ? 'text-white border-b-2 border-fuchsia-400' : 'text-purple-400 hover:text-purple-200'
               }`}
             >
               Guro Portal
@@ -5281,8 +5304,8 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setCurrentView('admin-login');
                 setUserRole('admin');
               }}
-              className={`flex-1 pb-2 text-xs font-black tracking-wide uppercase transition-all ${
-                isAdminLogin ? 'text-white border-b-2 border-fuchsia-500' : 'text-purple-400 hover:text-purple-200'
+              className={`flex-1 pb-3 text-sm font-black tracking-wide uppercase transition-all ${
+                isAdminLogin ? 'text-white border-b-2 border-fuchsia-400' : 'text-purple-400 hover:text-purple-200'
               }`}
             >
               Admin Portal
@@ -5294,57 +5317,57 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         
         {/* 1. Teacher/Guro Login Form */}
         {isTeacherLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-4">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-2">
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-black text-center mb-4 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-3 rounded-xl text-xs font-sans font-black text-center mb-5 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-3 bg-[#4d286d]/85 p-3 rounded-2xl border border-purple-500/20 mb-5">
-              <div className="flex-shrink-0 bg-yellow-500 p-2 rounded-xl text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-3 bg-[#4d286d]/85 p-4 rounded-2xl border border-purple-400/25 mb-6">
+              <div className="flex-shrink-0 bg-yellow-500 p-2.5 rounded-xl text-2xl shadow-inner select-none">
                 👩‍🏫
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm font-black text-white leading-tight">Kamusta, Guro!</h3>
-                <p className="text-[10px] text-purple-200 font-bold">Welcome back, Teacher!</p>
+                <h3 className="text-base font-black text-white leading-tight">Kamusta, Guro!</h3>
+                <p className="text-xs text-purple-200 font-bold">Welcome back, Teacher!</p>
               </div>
             </div>
 
-            <div className="mb-4 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Email Address:</label>
+            <div className="mb-5 text-left font-sans">
+              <label className="block text-sm font-bold text-purple-200 mb-1.5">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-6 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Password:</label>
+            <div className="mb-7 text-left font-sans">
+              <label className="block text-sm font-bold text-purple-200 mb-1.5">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="flex space-x-3 w-full mb-4">
+            <div className="flex space-x-3 w-full mb-5">
               <button
                 type="submit"
-                className="flex-1 py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
+                className="flex-1 py-3 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all shadow-lg active:scale-95"
               >
                 Sign In
               </button>
               <button
                 type="button"
                 onClick={() => setCurrentView('register')}
-                className="flex-1 py-2.5 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all border border-[#bf5cd7]/20 shadow-md active:scale-95"
+                className="flex-1 py-3 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all border border-[#bf5cd7]/20 shadow-lg active:scale-95"
               >
                 Register
               </button>
@@ -5372,7 +5395,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setForgotPasswordStep('email');
                 setCurrentView('forgot-password');
               }}
-              className="text-[10px] text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
+              className="text-xs text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
             >
               Forgot password?
             </a>
@@ -5381,43 +5404,42 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 2. Admin Login Form */}
         {isAdminLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-4">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-2">
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-black text-center mb-4 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-3 rounded-xl text-xs font-sans font-black text-center mb-5 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <h2 className="text-sm font-black text-purple-200 uppercase tracking-widest text-center mb-5 font-sans">
-              Welcome back, Admin!
-            </h2>
+            <h2 className="text-base font-black text-purple-200 uppercase tracking-widest text-center mb-6 font-sans">
+              Welcome back, Admin!</h2>
 
-            <div className="mb-4 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Username:</label>
+            <div className="mb-5 text-left font-sans">
+              <label className="block text-sm font-bold text-purple-200 mb-1.5">Username:</label>
               <input
                 type="text"
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
                 placeholder="Enter your username"
               />
             </div>
 
-            <div className="mb-6 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Password:</label>
+            <div className="mb-7 text-left font-sans">
+              <label className="block text-sm font-bold text-purple-200 mb-1.5">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-32 py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mx-auto mb-4"
+              className="w-40 py-3 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all shadow-lg active:scale-95 mx-auto mb-5"
             >
               Sign In
             </button>
