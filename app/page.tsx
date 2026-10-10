@@ -3818,24 +3818,24 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                    setProgressGradeFilter(e.target.value);
                    setProgressStudentId('ALL');
                 }}
-                className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 font-sans"
+                className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
               >
-                <option value="ALL">All Grades</option>
-                <option value="Grade 1">Grade 1</option>
-                <option value="Grade 2">Grade 2</option>
-                <option value="Grade 3">Grade 3</option>
+                <option value="ALL" className="bg-[#0f172a] text-white">All Grades</option>
+                <option value="Grade 1" className="bg-[#0f172a] text-white">Grade 1</option>
+                <option value="Grade 2" className="bg-[#0f172a] text-white">Grade 2</option>
+                <option value="Grade 3" className="bg-[#0f172a] text-white">Grade 3</option>
                 
               </select>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg className="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
                 <input
                   type="text"
                   placeholder="Search..."
                   value={progressSearchTerm}
                   onChange={(e) => setProgressSearchTerm(e.target.value)}
-                  className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-32 md:w-40 font-sans"
+                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-40 md:w-56 font-sans shadow-inner placeholder-slate-400"
                 />
               </div>
             </div>
@@ -4041,8 +4041,8 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <div className="flex items-center justify-between w-full">
             <h3 className="text-sm font-black text-white tracking-widest uppercase">Teacher Masterlist</h3>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
               <input
                 type="text"
