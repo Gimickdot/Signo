@@ -132,7 +132,7 @@ function ProfileCustomizationModal({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="relative bg-gradient-to-br from-[#1c1ae3] via-[#2d1b8e] to-[#0d0b6b] rounded-3xl border border-white/20 shadow-2xl p-6 w-[90vw] max-w-sm text-white font-sans">
+      <div className="relative bg-gradient-to-br from-slate-900 via-[#0f172a] to-[#020617] rounded-3xl border border-cyan-500/30 shadow-2xl p-6 w-[90vw] max-w-sm text-white font-sans">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -315,14 +315,14 @@ interface NavIconButtonProps {
   accentClass?: string;
 }
 
-function NavIconButton({ label, icon, isActive, onClick, accentClass = "bg-gradient-to-br from-fuchsia-600 to-indigo-600" }: NavIconButtonProps) {
+function NavIconButton({ label, icon, isActive, onClick, accentClass = "bg-gradient-to-br from-sky-400 to-sky-700" }: NavIconButtonProps) {
   return (
     <button
       onClick={onClick}
       className={`relative w-18 h-18 md:w-20 md:h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl border-2 ${
         isActive
           ? 'border-white ' + accentClass + ' shadow-fuchsia-500/30 scale-105 ring-2 ring-white/30'
-          : 'border-white/10 bg-purple-950/60 hover:border-white/40 hover:bg-purple-900/50'
+          : 'border-cyan-500/20 bg-slate-900/60 hover:border-cyan-400/50 hover:bg-slate-800/60'
       }`}
     >
       <span className="text-2xl md:text-3xl mb-1 drop-shadow-md select-none">{icon}</span>
@@ -2292,7 +2292,7 @@ function App() {
     return (
       <div className="flex flex-col space-y-6">
         {/* Search, Filter & Add Student Controls */}
-        <div className="bg-[#5c3ba8]/40 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl text-left flex flex-col space-y-4">
+        <div className="bg-[#0f172a]/40 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl text-left flex flex-col space-y-4">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Widescreen Search Student Bar */}
             <div className="relative flex-1 font-sans">
@@ -2380,7 +2380,7 @@ function App() {
               </div>
             ))
           ) : (
-            <div className="col-span-full bg-[#5c3ba8]/30 backdrop-blur-sm border border-white/10 rounded-3xl p-12 text-center text-purple-300 font-sans flex flex-col items-center">
+            <div className="col-span-full bg-[#0f172a]/30 backdrop-blur-sm border border-white/10 rounded-3xl p-12 text-center text-purple-300 font-sans flex flex-col items-center">
               <span className="text-4xl mb-2">🪐</span>
               <p className="text-sm font-bold">No students found matching your filters.</p>
             </div>
@@ -2391,7 +2391,7 @@ function App() {
   };
 
   const renderStudentSelectorSidebar = () => (
-    <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col h-[500px] lg:h-auto space-y-4 text-left w-full">
+    <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col h-[500px] lg:h-auto space-y-4 text-left w-full">
       <div>
         <h2 className="text-lg font-black text-white">Select Student</h2>
         <p className="text-[10px] font-bold text-purple-300 font-sans">Choose who is currently playing</p>
@@ -2471,7 +2471,7 @@ function App() {
   }, [isCorrectSign]);
 
   const renderLiveCameraFeed = () => (
-    <div className={`bg-[#5c3ba8]/85 backdrop-blur-sm border rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 ${
+    <div className={`bg-[#0f172a]/85 backdrop-blur-sm border rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 ${
       isCorrectSign 
         ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
         : 'border-white/10'
@@ -2689,14 +2689,14 @@ function App() {
           
           {/* LEFT COLUMN */}
           <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
-            <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
+            <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
               <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
                 {headerText}
               </h1>
             </div>
             {renderLiveCameraFeed()}
             {/* Explorer Section */}
-        <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col space-y-4 text-left">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col space-y-4 text-left">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3.5 sm:space-y-0">
             <div>
               <h2 className="text-lg font-black text-white">FSL Sign Explorer</h2>
@@ -2772,7 +2772,7 @@ function App() {
           <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
             {/* Sign Demonstration & Accuracy Feed */}
           {selectedSign && (
-            <div className={`bg-[#5c3ba8]/85 backdrop-blur-sm border rounded-3xl p-6 shadow-xl flex flex-col justify-start space-y-4 text-left h-full overflow-y-auto transition-all duration-300 lg:mt-0 ${
+            <div className={`bg-[#0f172a]/85 backdrop-blur-sm border rounded-3xl p-6 shadow-xl flex flex-col justify-start space-y-4 text-left h-full overflow-y-auto transition-all duration-300 lg:mt-0 ${
               isCorrectSign 
                 ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
                 : 'border-white/10'
@@ -2857,14 +2857,14 @@ const renderSpellingView = () => {
       <div className="flex flex-col lg:flex-row gap-6 h-full overflow-hidden">
         <div className="flex-1 flex flex-col space-y-6 h-full overflow-hidden">
           {!activeStudentId ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
               <h2 className="text-4xl font-black text-white mb-2">Spelling Game</h2>
               <p className="font-bold text-yellow-400 text-lg animate-pulse">
                 ⚠️ Please select a student from the sidebar before playing!
               </p>
             </div>
                   ) : spellingSetupMode === null ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
             <h2 className="text-4xl font-black text-white mb-2">Spelling Setup</h2>
             <p className="text-lg text-purple-200 mb-8">How would you like to pick the 5 words?</p>
             <div className="flex space-x-6">
@@ -2875,7 +2875,7 @@ const renderSpellingView = () => {
                <button onClick={() => setSpellingSetupMode('manual')} className="px-8 py-10 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-3xl hover:scale-105 transition-all text-white font-black text-2xl shadow-xl flex flex-col items-center space-y-4">
                   <span className="text-5xl">👆</span>
                   <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-8 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-sm transition-colors">Go back to Main Menu</button></div>) : spellingSetupMode === 'manual' && spellingCurrentWordList.length !== 5 ? (
-          <div className="flex-1 flex flex-col bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl h-full max-h-[calc(100vh-160px)] relative overflow-hidden">
+          <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl h-full max-h-[calc(100vh-160px)] relative overflow-hidden">
              <div className="text-center mb-4 shrink-0 relative">
                <button onClick={() => setSpellingSetupMode(null)} className="absolute top-2 left-2 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1"><span className="text-2xl mr-2">⬅️</span> Back</button>
                <h2 className="text-3xl font-black text-white mb-2">Select 5 Words</h2>
@@ -2927,13 +2927,13 @@ const renderSpellingView = () => {
              </div>
           </div>
           ) : isSavingProgress ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-6 bg-[#5c3ba8]/90 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-6 bg-[#0f172a]/90 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
                 <div className="w-20 h-20 border-8 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
                 <h2 className="text-4xl font-black text-white animate-pulse mt-4">Saving Progress...</h2>
                 <p className="text-xl text-purple-200">Please wait while we record your awesome score!</p>
             </div>
           ) : spellingShowGameOver ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
               <h2 className="text-5xl font-black text-yellow-400 mb-2 drop-shadow-lg">🎉 Fantastic Spelling! 🎉</h2>
               <p className="text-xl text-white font-bold">You completed the spelling challenge!</p>
               <div className="flex space-x-6 mt-8">
@@ -2978,7 +2978,7 @@ const renderSpellingView = () => {
               )}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch h-full min-h-0">
                 <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto pr-2">
-                  <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
+                  <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
                     <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
                       {headerText}
                     </h1>
@@ -2987,7 +2987,7 @@ const renderSpellingView = () => {
                 </div>
                 
                 {/* Spelling Logic Panel */}
-                <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col justify-start text-left h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500">
+                <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-start text-left h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Spelling Game - Word {spellingCurrentWordIndex + 1} of 5</span>
@@ -3060,14 +3060,14 @@ const renderSpellingView = () => {
 
       <div className="flex-1 flex flex-col space-y-6 h-full overflow-hidden">
         {!activeStudentId ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
             <h2 className="text-4xl font-black text-white mb-2">Situational Game</h2>
             <p className="font-bold text-yellow-400 text-lg animate-pulse">
               ⚠️ Please select a student from the sidebar before playing!
             </p>
           </div>
         ) : gameSetupMode === null ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
             <h2 className="text-4xl font-black text-white mb-2">Game Setup</h2>
             <p className="text-lg text-purple-200 mb-8">How would you like to pick the 5 questions?</p>
             <div className="flex space-x-6">
@@ -3078,7 +3078,7 @@ const renderSpellingView = () => {
                <button onClick={() => setGameSetupMode('manual')} className="px-8 py-10 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-3xl hover:scale-105 transition-all text-white font-black text-2xl shadow-xl flex flex-col items-center space-y-4">
                   <span className="text-5xl">👆</span>
                   <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-8 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-sm transition-colors">Go back to Main Menu</button></div>) : gameSetupMode === 'manual' && gameCategory !== 'CUSTOM' ? (
-          <div className="flex-1 flex flex-col bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl h-full max-h-[calc(100vh-160px)] relative overflow-hidden">
+          <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl h-full max-h-[calc(100vh-160px)] relative overflow-hidden">
              <div className="text-center mb-4 shrink-0 relative">
                <button onClick={() => setGameSetupMode(null)} className="absolute top-2 left-2 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1"><span className="text-2xl mr-2">⬅️</span> Back</button>
                <h2 className="text-3xl font-black text-white mb-2">Select 5 Questions</h2>
@@ -3131,7 +3131,7 @@ const renderSpellingView = () => {
              </div>
           </div>
         ) : !gameCategory ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full">
              <div className="text-center">
                <h2 className="text-4xl font-black text-white mb-2">Adventure Map</h2>
                <p className={`font-bold ${!activeStudentId ? 'text-yellow-400 text-lg animate-pulse' : 'text-purple-300'}`}>
@@ -3158,13 +3158,13 @@ const renderSpellingView = () => {
              </button>
           </div>
           ) : isSavingProgress ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-6 bg-[#5c3ba8]/90 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-6 bg-[#0f172a]/90 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
                 <div className="w-20 h-20 border-8 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
                 <h2 className="text-4xl font-black text-white animate-pulse mt-4">Saving Progress...</h2>
                 <p className="text-xl text-purple-200">Please wait while we record your awesome score!</p>
             </div>
           ) : showGameOver ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
             <h2 className="text-5xl font-black text-yellow-400 mb-2 drop-shadow-lg">🎉 Great Job! 🎉</h2>
             <p className="text-xl text-white font-bold">You completed 5 questions in the {gameCategory} category!</p>
             <div className="flex space-x-6 mt-8">
@@ -3195,7 +3195,7 @@ const renderSpellingView = () => {
             </div>
           </div>
         ) : !activeStudentId ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
             <h2 className="text-4xl font-black text-white mb-2">{gameCategory} Adventure</h2>
             <p className="font-bold text-yellow-400 text-lg animate-pulse">
               ⚠️ Please select a student from the sidebar before playing!
@@ -3222,7 +3222,7 @@ const renderSpellingView = () => {
         )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch h-full min-h-0">
           <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto pr-2">
-            <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
+            <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
               <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
                 {headerText}
               </h1>
@@ -3232,7 +3232,7 @@ const renderSpellingView = () => {
           
           {/* Game Mode Panel */}
           {gameStep !== 'practice' && currentQuestion && (
-            <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Situational Game - Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
@@ -3315,7 +3315,7 @@ const renderSpellingView = () => {
 
           {/* Practice target for game mode */}
           {gameStep === 'practice' && selectedSign && (
-            <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Sign Demonstration</span>
@@ -3427,7 +3427,7 @@ const renderSpellingView = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-5xl">
         <button
           onClick={() => setModeTutorialModal('sandbox')}
-          className="bg-[#5c3ba8]/85 hover:bg-[#6b4ab8] backdrop-blur-sm border-2 border-fuchsia-500/30 hover:border-fuchsia-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-[#0f172a]/85 hover:bg-[#1e293b] backdrop-blur-sm border-2 border-fuchsia-500/30 hover:border-fuchsia-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
         >
           <div className="w-24 h-24 rounded-full bg-purple-900/50 flex items-center justify-center mb-6 border border-purple-700/50 group-hover:border-fuchsia-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">👐</span>
@@ -3441,7 +3441,7 @@ const renderSpellingView = () => {
 
         <button
           onClick={() => setModeTutorialModal('game')}
-          className="bg-[#5c3ba8]/85 hover:bg-[#6b4ab8] backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-[#0f172a]/85 hover:bg-[#1e293b] backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
         >
           <div className="w-24 h-24 rounded-full bg-cyan-900/30 flex items-center justify-center mb-6 border border-cyan-500/50 group-hover:border-cyan-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">🎮</span>
@@ -3455,7 +3455,7 @@ const renderSpellingView = () => {
 
         <button
           onClick={() => setModeTutorialModal('spelling')}
-          className="bg-[#5c3ba8]/85 hover:bg-[#6b4ab8] backdrop-blur-sm border-2 border-emerald-500/30 hover:border-emerald-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-[#0f172a]/85 hover:bg-[#1e293b] backdrop-blur-sm border-2 border-emerald-500/30 hover:border-emerald-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
         >
           <div className="w-24 h-24 rounded-full bg-emerald-900/30 flex items-center justify-center mb-6 border border-emerald-500/50 group-hover:border-emerald-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">🔤</span>
@@ -3652,7 +3652,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       <div className="flex flex-col space-y-5 text-left">
         {showCsvConfirm && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
-            <div className="bg-[#2a1b54] border-2 border-emerald-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(16,185,129,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
+            <div className="bg-[#020617] border-2 border-emerald-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(16,185,129,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4 text-emerald-400 shadow-inner border border-emerald-400/30">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               </div>
@@ -3704,12 +3704,12 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
         )}
-        <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
+        <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
           <h2 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">PROGRESS</h2>
         </div>
         <div className="flex flex-wrap gap-4 items-center justify-between">
           {/* Sub tabs switcher */}
-          <div className="flex items-center space-x-3 bg-[#5c3ba8]/40 border border-white/10 rounded-2xl p-2 w-fit font-sans">
+          <div className="flex items-center space-x-3 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-2 w-fit font-sans">
             <button
               type="button"
               onClick={() => setProgressTab('titik')}
@@ -3761,7 +3761,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           
           {/* Progress Columns */}
-          <div className="lg:col-span-3 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col max-h-[70vh] overflow-y-auto relative">
+          <div className="lg:col-span-3 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col max-h-[70vh] overflow-y-auto relative">
             <div className="absolute top-[20%] left-[10%] opacity-5 text-5xl pointer-events-none select-none">🖐️</div>
             <div className="absolute bottom-[30%] right-[15%] opacity-5 text-5xl pointer-events-none select-none">✌️</div>
             <div className="absolute top-[60%] right-[30%] opacity-5 text-5xl pointer-events-none select-none">👍</div>
@@ -3804,7 +3804,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 {/* Leaderboard Column */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
             <div className="flex items-center justify-between">
-              <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-2.5 w-fit shadow-lg text-left select-none">
+              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-5 py-2.5 w-fit shadow-lg text-left select-none">
                 <h3 className="text-xs font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
                   <span>🏆</span>
                   <span>Top Students</span>
@@ -3840,7 +3840,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
             </div>
 
-            <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl flex flex-col space-y-3.5 flex-1 justify-start overflow-y-auto max-h-[65vh] scrollbar-thin scrollbar-thumb-fuchsia-500 pr-2">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col space-y-3.5 flex-1 justify-start overflow-y-auto max-h-[65vh] scrollbar-thin scrollbar-thumb-fuchsia-500 pr-2">
               <p className="text-[10px] text-fuchsia-300 font-bold uppercase tracking-wider mb-1 text-center bg-fuchsia-900/30 py-1.5 rounded-lg border border-fuchsia-400/20">
                 👆 Click a student to view their progress
               </p>
@@ -3929,7 +3929,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           </div>
   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
-            <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-[32px] p-6 shadow-xl flex flex-col space-y-4">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col space-y-4">
               <h3 className="text-sm font-black text-white uppercase tracking-widest">Platform Usage</h3>
               <div className="flex-1 flex flex-col justify-center items-center space-y-4 opacity-90 py-4">
                 <div className="w-20 h-20 bg-blue-500/20 rounded-full border-4 border-blue-400 flex items-center justify-center">
@@ -3949,7 +3949,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
               </div>
             </div>
             
-            <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-[32px] p-6 shadow-xl flex flex-col space-y-4">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col space-y-4">
               <h3 className="text-sm font-black text-white uppercase tracking-widest">Top 5 Students</h3>
               <div className="flex-1 flex flex-col space-y-3 pr-2">
                 {globalTopStudents.length > 0 ? globalTopStudents.map((student, i) => (
@@ -4036,7 +4036,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         </div>
 
         {/* Table container */}
-        <div className="flex-1 bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-[32px] p-6 shadow-xl flex flex-col space-y-4 w-full">
+        <div className="flex-1 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col space-y-4 w-full">
           <div className="flex items-center justify-between w-full">
             <h3 className="text-sm font-black text-white tracking-widest uppercase">Teacher Masterlist</h3>
             <div className="relative">
@@ -4055,7 +4055,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <div className="flex-1 overflow-y-auto pr-2 w-full scrollbar-thin scrollbar-thumb-fuchsia-500">
             <div className="w-full min-w-[800px] flex flex-col font-sans text-xs">
               {/* Grid Header */}
-              <div className="grid grid-cols-12 gap-4 border-b border-purple-800/40 text-purple-200 font-black uppercase tracking-wider text-[10px] pb-4 pt-2 px-4 sticky top-0 bg-[#5c3ba8] z-10 shadow-sm w-full">
+              <div className="grid grid-cols-12 gap-4 border-b border-purple-800/40 text-purple-200 font-black uppercase tracking-wider text-[10px] pb-4 pt-2 px-4 sticky top-0 bg-[#0f172a] z-10 shadow-sm w-full">
                 <div className="col-span-3 flex items-center">Teacher</div>
                 <div className="col-span-3 flex items-center">Email</div>
                 <div className="col-span-3 flex items-center">School</div>
@@ -4141,7 +4141,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         {/* Custom Delete Modal Overlay */}
         {teacherToDelete && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-            <div className="bg-[#2a1b54] border border-purple-500/30 p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 flex flex-col items-center text-center space-y-5">
+            <div className="bg-slate-900 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 flex flex-col items-center text-center space-y-5">
               <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-2">
                 <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
               </div>
@@ -4174,7 +4174,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
   const renderAdminAnalyticsView = () => {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left font-sans">
-        <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-[32px] p-6 shadow-xl flex flex-col justify-between">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col justify-between">
           <div className="flex items-center space-x-2 mb-6">
             <span className="inline-block w-3.5 h-3.5 bg-blue-500 rounded" />
             <h3 className="text-xs font-black text-white uppercase tracking-wider">Sessions Per Day</h3>
@@ -4219,7 +4219,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           </div>
         </div>
 
-        <div className="bg-[#5c3ba8]/85 backdrop-blur-sm border border-white/10 rounded-[32px] p-6 shadow-xl flex flex-col justify-between">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col justify-between">
           <div className="flex items-center space-x-2 mb-6">
             <span className="inline-block w-3.5 h-3.5 bg-emerald-500 rounded" />
             <h3 className="text-xs font-black text-white uppercase tracking-wider">Paggamit ng Bawat Modyul</h3>
@@ -4311,7 +4311,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
     return (
       <div className="flex flex-col space-y-5 text-left font-sans">
-        <div className="flex items-center space-x-3 bg-[#5c3ba8]/40 border border-white/10 rounded-2xl p-2 w-fit">
+        <div className="flex items-center space-x-3 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-2 w-fit">
           <button
             type="button"
             onClick={() => setAdminLogTab('app')}
@@ -4445,7 +4445,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         `}</style>
 
         {/* Sidebar */}
-        <div className="w-24 md:w-28 bg-[#1c1ae3]/85 backdrop-blur-md rounded-3xl flex flex-col items-center py-6 border border-white/10 shadow-2xl flex-shrink-0">
+        <div className="w-24 md:w-28 bg-slate-900/85 backdrop-blur-md rounded-3xl flex flex-col items-center py-6 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.5)] flex-shrink-0">
           {/* Profile avatar at top */}
           <div className="flex flex-col items-center select-none text-center px-2 mb-4">
             {userRole !== 'admin' && activeUser ? (
@@ -4514,21 +4514,21 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   icon="🏠"
                   isActive={currentView === 'dashboard-home'}
                   onClick={() => handleNavClick('dashboard-home')}
-                  accentClass="bg-gradient-to-br from-[#ff8753] via-[#ff4d4d] to-[#990000]"
+                  accentClass="bg-gradient-to-br from-cyan-600 via-blue-700 to-blue-900"
                 />
                 <NavIconButton
                   label="STUDENTS"
                   icon="👥"
                   isActive={currentView === 'dashboard-students'}
                   onClick={() => handleNavClick('dashboard-students')}
-                  accentClass="bg-gradient-to-br from-[#e2c19c] via-[#b68f63] to-[#593d1d]"
+                  accentClass="bg-gradient-to-br from-emerald-500 via-teal-600 to-teal-900"
                 />
                 <NavIconButton
                   label="SESSION"
                   icon="🎥"
                   isActive={currentView === 'dashboard-sesyon' || currentView === 'dashboard-sandbox' || currentView === 'dashboard-game' || currentView === 'dashboard-spelling'}
                   onClick={() => handleNavClick('dashboard-sesyon')}
-                  accentClass="bg-gradient-to-br from-[#53f3ff] via-[#3b82f6] to-[#1e3a8a]"
+                  accentClass="bg-gradient-to-br from-indigo-500 via-indigo-700 to-indigo-900"
                 />
                 <NavIconButton
                   label="PROGRESS"
@@ -4554,10 +4554,12 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         <div className="flex-1 flex flex-col pl-4 md:pl-6 overflow-y-auto">
           {/* Greeting Box */}
           {currentView === 'dashboard-home' && (
-            <div className="bg-[#1c1ae3]/85 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-2.5 w-fit mb-5 shadow-lg flex-shrink-0 text-left">
-              <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
-                {headerText}
-              </h1>
+            <div className="flex justify-center w-full mb-8 mt-4">
+              <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-10 py-4 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
+                <h1 className="text-2xl md:text-4xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
+                  {headerText}
+                </h1>
+              </div>
             </div>
           )}
           {/* Main Dashboard Pages */}
@@ -4589,7 +4591,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         {/* Navigation Confirm Modal */}
         {navConfirmTab && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
-            <div className="bg-[#2a1b54] border-2 border-fuchsia-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(192,38,211,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
+            <div className="bg-[#020617] border-2 border-fuchsia-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(192,38,211,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-rose-500/20 rounded-full flex items-center justify-center mb-4 text-4xl shadow-inner border border-rose-400/30 animate-pulse">
                 ⚠️
               </div>
@@ -4632,7 +4634,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         {/* Logout Confirm Modal */}
         {showLogoutConfirm && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
-            <div className="bg-[#2a1b54] border-2 border-fuchsia-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(192,38,211,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
+            <div className="bg-[#020617] border-2 border-fuchsia-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(192,38,211,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-fuchsia-500/20 rounded-full flex items-center justify-center mb-4 text-4xl shadow-inner border border-fuchsia-400/30">
                 🚪
               </div>
@@ -4670,7 +4672,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         {/* Play Session Confirmation Modal */}
         {studentToPlayConfirm && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
-            <div className="bg-[#2a1b54] border-2 border-fuchsia-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(192,38,211,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
+            <div className="bg-[#020617] border-2 border-fuchsia-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(192,38,211,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
               <div className="w-20 h-20 bg-fuchsia-500/20 rounded-full flex items-center justify-center mb-4 text-4xl shadow-inner border border-fuchsia-400/30">
                 {studentToPlayConfirm.emoji}
               </div>
