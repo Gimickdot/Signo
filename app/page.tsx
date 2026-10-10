@@ -3805,8 +3805,8 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 {/* Leaderboard Column */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
             <div className="flex items-center justify-between">
-              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-3 w-fit shadow-lg text-left select-none">
-                <h3 className="text-base md:text-lg font-black text-white tracking-widest uppercase flex items-center space-x-2">
+              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-4 py-2 w-fit shadow-lg text-left select-none flex items-center h-12">
+                <h3 className="text-sm font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
                   <span>🏆</span>
                   <span>Top Students</span>
                 </h3>
@@ -3818,7 +3818,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                    setProgressGradeFilter(e.target.value);
                    setProgressStudentId('ALL');
                 }}
-                className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
+                className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl px-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
               >
                 <option value="ALL" className="bg-[#0f172a] text-white">All Grades</option>
                 <option value="Grade 1" className="bg-[#0f172a] text-white">Grade 1</option>
@@ -3835,14 +3835,14 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   placeholder="Search..."
                   value={progressSearchTerm}
                   onChange={(e) => setProgressSearchTerm(e.target.value)}
-                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl pl-11 pr-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-40 md:w-56 font-sans shadow-inner placeholder-slate-400"
+                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm md:text-base font-bold rounded-xl pl-11 pr-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-40 md:w-56 font-sans shadow-inner placeholder-slate-400"
                 />
               </div>
             </div>
             </div>
 
             <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col space-y-3.5 flex-1 justify-start overflow-y-auto max-h-[65vh] scrollbar-thin scrollbar-thumb-fuchsia-500 pr-2">
-              <p className="text-[10px] text-fuchsia-300 font-bold uppercase tracking-wider mb-1 text-center bg-fuchsia-900/30 py-1.5 rounded-lg border border-fuchsia-400/20">
+              <p className="text-sm md:text-base text-fuchsia-300 font-bold uppercase tracking-widest mb-3 text-center bg-fuchsia-900/30 py-4 rounded-xl border border-fuchsia-400/30">
                 👆 Click a student to view their progress
               </p>
               {sortedLeaderboard.map((std, index) => (
