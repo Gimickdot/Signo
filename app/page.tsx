@@ -4988,33 +4988,33 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   </div>
 
                   <div className="space-y-3 font-sans">
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-lg flex-shrink-0">
                         1
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-cyan-200">Live Camera Setup</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Turn on your camera feed. Position yourself so your hand gestures are clearly visible inside the frame.</p>
+                        <h4 className="text-base md:text-lg font-black text-cyan-200">Turn On Your Camera</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Make sure your camera is on and you can see yourself clearly on the screen.</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/30 flex items-center justify-center text-fuchsia-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/30 flex items-center justify-center text-fuchsia-300 font-black text-lg flex-shrink-0">
                         2
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-fuchsia-200">Select a Sign to Practice</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Pick any sign (Alphabet letters or Greetings/Kilos) from the demonstration explorer on the right.</p>
+                        <h4 className="text-base md:text-lg font-black text-fuchsia-200">Pick a Sign to Learn</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Choose a letter or greeting you want to practice from the list.</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 font-black text-lg flex-shrink-0">
                         3
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-emerald-200">Real-Time AI Validation</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Perform the gesture in front of the camera. The AI detector will validate your gesture instantly!</p>
+                        <h4 className="text-base md:text-lg font-black text-emerald-200">Copy the Sign</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Copy the sign in front of the camera. The computer will tell you if you got it right!</p>
                       </div>
                     </div>
                   </div>
@@ -5045,33 +5045,33 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   </div>
 
                   <div className="space-y-3 font-sans">
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 font-black text-lg flex-shrink-0">
                         1
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-amber-200">Select Playing Student</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Pick a student from the right sidebar to record scores and track individual progress.</p>
+                        <h4 className="text-base md:text-lg font-black text-amber-200">Choose Who is Playing</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Click on your name from the list so you can earn points!</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-lg flex-shrink-0">
                         2
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-cyan-200">Choose Adventure Category</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Select an adventure topic (Greetings, Everyday, Days, or Family) on the adventure map.</p>
+                        <h4 className="text-base md:text-lg font-black text-cyan-200">Pick a Game Topic</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Choose what you want to learn today, like Greetings or Family.</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 font-black text-lg flex-shrink-0">
                         3
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-emerald-200">Answer Scenarios & Level Up</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Read the situation card, perform the required Filipino Sign Language gesture in front of the camera to earn points and advance levels!</p>
+                        <h4 className="text-base md:text-lg font-black text-emerald-200">Play and Win!</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Read the story and show the right sign to the camera to get points.</p>
                       </div>
                     </div>
                   </div>
@@ -5106,33 +5106,33 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   </div>
 
                   <div className="space-y-3 font-sans">
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 font-black text-lg flex-shrink-0">
                         1
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-amber-200">Select Playing Student</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Pick a student from the right sidebar to record scores and track progress.</p>
+                        <h4 className="text-base md:text-lg font-black text-amber-200">Choose Who is Playing</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Click on your name from the list so you can earn points!</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 font-black text-lg flex-shrink-0">
                         2
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-cyan-200">Spell the Words</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Look at the word presented and use sign language to spell each letter one by one.</p>
+                        <h4 className="text-base md:text-lg font-black text-cyan-200">Spell the Word</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Look at the word on the screen and sign each letter.</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-3.5">
-                      <div className="w-8 h-8 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/30 flex items-center justify-center text-fuchsia-300 font-black text-sm flex-shrink-0">
+                    <div className="flex items-start space-x-3.5 bg-purple-950/60 border border-purple-800/40 rounded-2xl p-5">
+                      <div className="w-10 h-10 rounded-xl bg-fuchsia-500/20 border border-fuchsia-400/30 flex items-center justify-center text-fuchsia-300 font-black text-lg flex-shrink-0">
                         3
                       </div>
                       <div>
-                        <h4 className="text-xs font-black text-fuchsia-200">Follow the Overlay</h4>
-                        <p className="text-[11px] text-purple-200 leading-snug">Check the Instructional Overlay if you forget a sign for a particular letter.</p>
+                        <h4 className="text-base md:text-lg font-black text-fuchsia-200">Need Help?</h4>
+                        <p className="text-sm text-purple-200 leading-relaxed mt-1">Look at the small picture on the screen if you forget how to sign a letter.</p>
                       </div>
                     </div>
                   </div>
