@@ -3701,7 +3701,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
         )}
-        <div className="relative flex flex-col md:flex-row items-end justify-between gap-6 mb-4 w-full h-[120px] pb-2">
+        <div className="relative flex flex-col md:flex-row items-end justify-between gap-6 mb-4 w-full h-[140px]">
           <div className="absolute inset-0 flex justify-center pointer-events-none z-0">
               <div className="bg-[#0f172a] backdrop-blur-md border border-cyan-400/80 rounded-[40px] px-24 py-8 h-fit shadow-[0_0_30px_rgba(6,182,212,0.4)] text-center hidden lg:block -mt-4">
                 <h1 className="text-5xl font-black text-white tracking-widest uppercase" style={{ textShadow: '0 0 20px rgba(6,182,212,1), 0 0 30px rgba(6,182,212,0.8)' }}>PROGRESS</h1>
@@ -3804,15 +3804,15 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 
 {/* Leaderboard Column */}
           <div className="lg:col-span-2 flex flex-col space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-4 py-2 w-fit shadow-lg text-left select-none flex items-center h-12">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-4 py-2 w-fit shadow-lg text-left select-none flex items-center h-12">
                 <h3 className="text-sm font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
                   <span>🏆</span>
                   <span>Top Students</span>
                 </h3>
               </div>
-            <div className="flex items-center space-x-2">
-              <select
+            <div className="flex flex-wrap items-center gap-2">
+                <select
                 value={progressGradeFilter}
                 onChange={(e) => {
                    setProgressGradeFilter(e.target.value);
@@ -4966,7 +4966,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         {/* Mode Tutorial Popup Modal */}
         {modeTutorialModal && (
           <div className="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 font-sans text-left animate-fadeIn">
-            <div className="bg-[#1c0838]/95 border-2 border-fuchsia-500/50 rounded-[32px] p-6 md:p-8 w-full max-w-xl shadow-[0_0_50px_rgba(192,38,211,0.35)] relative overflow-hidden">
+            <div className={`${modeTutorialModal === 'sandbox' ? 'bg-[#1c0838]/95 border-fuchsia-500/50 shadow-[0_0_50px_rgba(192,38,211,0.35)]' : modeTutorialModal === 'game' ? 'bg-[#020617]/95 border-cyan-500/50 shadow-[0_0_50px_rgba(6,182,212,0.35)]' : 'bg-[#020617]/95 border-emerald-500/50 shadow-[0_0_50px_rgba(16,185,129,0.35)]'} border-2 rounded-[32px] p-6 md:p-8 w-full max-w-xl relative overflow-hidden`}>
               <button 
                 onClick={() => setModeTutorialModal(null)}
                 className="absolute top-4 right-4 text-purple-300 hover:text-white font-bold text-lg w-8 h-8 rounded-full bg-purple-900/40 flex items-center justify-center border border-purple-700/50 transition-all"
