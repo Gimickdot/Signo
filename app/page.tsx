@@ -2169,7 +2169,7 @@ function App() {
         {/* Top Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: Students — Teal/Cyan */}
-          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/30 rounded-3xl p-6 flex items-center space-x-4 shadow-xl shadow-cyan-900/40 relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/50 rounded-3xl p-10 flex items-center space-x-4 shadow-[0_0_30px_rgba(34,211,238,0.5)] relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.15),transparent_70%)] pointer-events-none" />
             <div className="text-4xl bg-cyan-300/20 w-16 h-16 rounded-2xl border border-cyan-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               👧
@@ -2181,7 +2181,7 @@ function App() {
           </div>
           
           {/* Card 2: Avg. Points — Amber/Gold */}
-          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/30 rounded-3xl p-6 flex items-center space-x-4 shadow-xl shadow-amber-900/40 relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/50 rounded-3xl p-10 flex items-center space-x-4 shadow-[0_0_30px_rgba(251,191,36,0.5)] relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,191,36,0.15),transparent_70%)] pointer-events-none" />
             <div className="text-4xl bg-amber-300/20 w-16 h-16 rounded-2xl border border-amber-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ✨
@@ -2213,37 +2213,37 @@ function App() {
       {/* Bottom Row: Recent Activities & Dynamic Sign of the Day */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Recent Activities */}
-        <div className="lg:col-span-3 bg-gradient-to-br from-[#1e1060]/90 to-[#2d0f6b]/90 backdrop-blur-sm border border-violet-500/30 rounded-3xl p-6 shadow-xl shadow-violet-900/30 text-left">
-          <div className="flex items-center space-x-2 text-lg font-black text-white mb-4 pb-2 border-b border-violet-600/30">
+        <div className="lg:col-span-3 bg-slate-900/90 backdrop-blur-sm border border-cyan-500/40 rounded-3xl p-8 shadow-[0_0_25px_rgba(6,182,212,0.4)] text-left">
+          <div className="flex items-center space-x-2 text-lg font-black text-white mb-4 pb-2 border-b border-cyan-500/30">
             <span className="text-2xl">💡</span>
             <h2>Recent Activities</h2>
           </div>
           
           <div className="space-y-3 max-h-[380px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500 hover:scrollbar-thumb-fuchsia-400">
             {teacherActivities.length > 0 ? teacherActivities.map((act, i) => (
-                <div key={act.id + i} className="bg-white/5 border border-violet-500/20 rounded-2xl p-4 flex items-center justify-between hover:bg-white/10 transition-colors">
+                <div key={act.id + i} className="bg-slate-800/60 border border-cyan-500/30 rounded-2xl p-4 flex items-center justify-between hover:bg-white/10 transition-colors">
                   <div className="flex items-center space-x-3.5">
                     <div className="text-3xl bg-amber-400/10 w-12 h-12 rounded-xl border border-amber-400/20 flex items-center justify-center">
                       {act.emoji}
                     </div>
                     <div>
                       <h4 className="font-extrabold text-white text-base">{act.name}</h4>
-                      <p className="text-xs text-violet-300 font-sans">
+                      <p className="text-xs text-cyan-300 font-sans">
                         {act.type === 'ADD' ? 'Added new student' : act.type === 'EDIT' ? 'Updated profile' : act.type === 'DELETE' ? 'Deleted student' : `Played ${act.mode || 'session'}`}
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-violet-300 font-sans font-medium">{getTimeAgo(act.timestamp || Date.now())}</span>
+                  <span className="text-xs text-cyan-300 font-sans font-medium">{getTimeAgo(act.timestamp || Date.now())}</span>
                 </div>
               )) : (
-                <p className="text-violet-400 text-sm font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
+                <p className="text-cyan-400 text-sm font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
               )}
           </div>
         </div>
 
         {/* Dynamic Sign of the Day */}
-        <div className="lg:col-span-2 bg-gradient-to-br from-[#4c1d95]/90 to-[#312e81]/90 backdrop-blur-sm border border-purple-500/30 rounded-3xl p-6 shadow-xl shadow-purple-900/30 flex flex-col items-center justify-between text-center min-h-[280px] h-fit">
-          <div className="flex items-center justify-between w-full border-b border-purple-600/30 pb-3 mb-2">
+        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-3xl p-8 shadow-[0_0_25px_rgba(217,70,239,0.4)] flex flex-col items-center justify-between text-center min-h-[320px] h-fit">
+          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-3 mb-2">
             <h2 className="text-lg font-black text-white tracking-wide">Sign of the Day</h2>
             {signOfTheDay && (
               <span className={`text-xs font-black px-3 py-1 rounded-full border uppercase tracking-wider ${
@@ -2292,7 +2292,7 @@ function App() {
     return (
       <div className="flex flex-col space-y-6">
         {/* Search, Filter & Add Student Controls */}
-        <div className="bg-[#0f172a]/40 backdrop-blur-sm border border-white/10 rounded-3xl p-6 shadow-xl text-left flex flex-col space-y-4">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-3xl p-8 text-left flex flex-col space-y-5">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Widescreen Search Student Bar */}
             <div className="relative flex-1 font-sans">
@@ -2304,14 +2304,14 @@ function App() {
                 placeholder="Search student name"
                 value={studentSearch}
                 onChange={(e) => setStudentSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-purple-950/60 border border-purple-800/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs font-bold text-slate-100 placeholder-purple-400 shadow-inner"
+                className="w-full pl-12 pr-4 py-3.5 bg-slate-800/60 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-sm font-bold text-slate-100 placeholder-slate-400 shadow-inner"
               />
             </div>
             
             {/* Add Student trigger button */}
             <button
               onClick={() => setIsAddStudentOpen(true)}
-              className="px-5 py-2.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white text-xs font-black rounded-xl tracking-wider transition-all border border-[#60a5fa]/30 shadow-md active:scale-95 uppercase flex items-center justify-center space-x-1.5"
+              className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-black rounded-xl tracking-widest transition-all border border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.6)] active:scale-95 uppercase flex items-center justify-center space-x-2"
             >
               <span>Add Student</span>
             </button>
@@ -3427,7 +3427,7 @@ const renderSpellingView = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-5xl">
         <button
           onClick={() => setModeTutorialModal('sandbox')}
-          className="bg-[#0f172a]/85 hover:bg-[#1e293b] backdrop-blur-sm border-2 border-fuchsia-500/30 hover:border-fuchsia-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-fuchsia-500/50 hover:border-fuchsia-400 rounded-[32px] p-12 min-h-[360px] shadow-[0_0_30px_rgba(217,70,239,0.5)] flex flex-col items-center text-center transition-all transform hover:scale-105 group"
         >
           <div className="w-24 h-24 rounded-full bg-purple-900/50 flex items-center justify-center mb-6 border border-purple-700/50 group-hover:border-fuchsia-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">👐</span>
@@ -3441,7 +3441,7 @@ const renderSpellingView = () => {
 
         <button
           onClick={() => setModeTutorialModal('game')}
-          className="bg-[#0f172a]/85 hover:bg-[#1e293b] backdrop-blur-sm border-2 border-cyan-500/30 hover:border-cyan-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-cyan-500/50 hover:border-cyan-400 rounded-[32px] p-12 min-h-[360px] shadow-[0_0_30px_rgba(6,182,212,0.5)] flex flex-col items-center text-center transition-all transform hover:scale-105 group"
         >
           <div className="w-24 h-24 rounded-full bg-cyan-900/30 flex items-center justify-center mb-6 border border-cyan-500/50 group-hover:border-cyan-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">🎮</span>
@@ -3455,7 +3455,7 @@ const renderSpellingView = () => {
 
         <button
           onClick={() => setModeTutorialModal('spelling')}
-          className="bg-[#0f172a]/85 hover:bg-[#1e293b] backdrop-blur-sm border-2 border-emerald-500/30 hover:border-emerald-500 rounded-[32px] p-8 shadow-xl flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-emerald-500/50 hover:border-emerald-400 rounded-[32px] p-12 min-h-[360px] shadow-[0_0_30px_rgba(16,185,129,0.5)] flex flex-col items-center text-center transition-all transform hover:scale-105 group"
         >
           <div className="w-24 h-24 rounded-full bg-emerald-900/30 flex items-center justify-center mb-6 border border-emerald-500/50 group-hover:border-emerald-400 group-hover:scale-110 transition-all">
             <span className="text-5xl">🔤</span>
