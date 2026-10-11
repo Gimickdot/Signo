@@ -519,6 +519,7 @@ function App() {
   const [activeStudentId, setActiveStudentId] = useState<string | null>(null);
   const [studentSearch, setStudentSearch] = useState('');
   const [studentFilter, setStudentFilter] = useState('All');
+  const [studentCurrentPage, setStudentCurrentPage] = useState(1);
   
   // Add Student Popup states
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
@@ -2289,6 +2290,12 @@ function App() {
       return matchesSearch && matchesGrade;
     });
 
+    const studentsPerPage = 6;
+    const totalPages = Math.max(1, Math.ceil(filteredStudents.length / studentsPerPage));
+    const currentPage = Math.min(studentCurrentPage, totalPages);
+    const startIndex = (currentPage - 1) * studentsPerPage;
+    const paginatedStudents = filteredStudents.slice(startIndex, startIndex + studentsPerPage);
+
     return (
       <div className="flex flex-col space-y-6">
         {/* Search, Filter & Add Student Controls */}
@@ -2303,7 +2310,7 @@ function App() {
                 type="text"
                 placeholder="Search student name"
                 value={studentSearch}
-                onChange={(e) => setStudentSearch(e.target.value)}
+                onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
                 className="w-full pl-14 pr-5 py-4 bg-slate-800/60 border border-cyan-500/40 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-base md:text-lg font-bold text-slate-100 placeholder-slate-400 shadow-[0_0_15px_rgba(6,182,212,0.15)]"
               />
             </div>
@@ -2322,7 +2329,7 @@ function App() {
             {['All', 'Grade 1', 'Grade 2', 'Grade 3'].map((grade) => (
               <button
                 key={grade}
-                onClick={() => setStudentFilter(grade)}
+                onClick={() => { setStudentFilter(grade); setStudentCurrentPage(1); }}
                 className={`px-6 py-3 rounded-xl text-sm font-black tracking-widest whitespace-nowrap transition duration-200 border ${studentFilter === grade ? (grade === 'Grade 2' ? 'bg-yellow-600 border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.6)] text-white scale-105' : grade === 'Grade 3' ? 'bg-emerald-600 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.6)] text-white scale-105' : 'bg-blue-600 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.6)] text-white scale-105') : (grade === 'Grade 2' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-yellow-300 hover:border-yellow-400' : grade === 'Grade 3' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-emerald-300 hover:border-emerald-400' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-blue-300 hover:border-blue-400')}`}
               >
                 {grade}
@@ -2333,8 +2340,8 @@ function App() {
 
         {/* Dynamic Students Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          {filteredStudents.length > 0 ? (
-            filteredStudents.map((std) => (
+          {paginatedStudents.length > 0 ? (
+            paginatedStudents.map((std) => (
               <div 
                 key={std.id} 
                 className={`backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-900/70 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:border-blue-400 hover:bg-blue-800/80" : std.grade === "Grade 2" ? "bg-yellow-900/70 border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:bg-yellow-800/80" : std.grade === "Grade 3" ? "bg-emerald-900/70 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:border-emerald-400 hover:bg-emerald-800/80" : "bg-slate-900/95 border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:bg-slate-800"}`}
@@ -2398,7 +2405,7 @@ function App() {
             type="text"
             placeholder="Search students..."
             value={studentSearch}
-            onChange={(e) => setStudentSearch(e.target.value)}
+            onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
             className="w-full pl-12 pr-4 py-3 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-sm text-slate-100 placeholder-purple-400"
           />
         </div>
