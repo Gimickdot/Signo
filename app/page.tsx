@@ -2626,6 +2626,21 @@ function App() {
             </div>
           </div>
         )}
+          {/* Center Pop-up Message when Wrong (MALI) */}
+          {sessionMode === 'game' && gameSelectedAnswer && currentQuestion && gameSelectedAnswer !== currentQuestion.correctAnswer && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none animate-fadeIn">
+              <div className="bg-gradient-to-br from-rose-600 via-rose-700 to-red-800 border-4 border-rose-300 rounded-3xl px-12 py-8 shadow-[0_0_70px_rgba(225,29,72,1)] text-center flex flex-col items-center animate-bounce">
+                <div className="text-6xl mb-2 select-none drop-shadow-md">❌</div>
+                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-none">
+                  MALI
+                </h2>
+                <p className="text-xl md:text-2xl font-bold text-yellow-300 mt-3 uppercase tracking-wide drop-shadow-md">
+                  Try again
+                </p>
+              </div>
+            </div>
+          )}
+
         
         <div className="absolute bottom-[-20px] right-[-40px] w-48 h-48 md:w-64 md:h-64 z-40 pointer-events-none">
           <SpacemanVtuber />
