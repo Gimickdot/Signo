@@ -4819,15 +4819,14 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <div>
                   <label className="block text-xs font-bold text-purple-200 mb-1">Grade Level:</label>
                   <select
-                    value={newStudentGrade}
-                    onChange={(e) => setNewStudentGrade(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-[#3b125e] text-white border border-purple-800/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs font-bold shadow-inner"
-                  >
-                    
-                    
-                    <option value="Grade 1" className="bg-[#3b125e] text-white">Grade 1</option>`n<option value="Grade 2" className="bg-[#3b125e] text-white">Grade 2</option>
-                    <option value="Grade 3" className="bg-[#3b125e] text-white">Grade 3</option>
-                  </select>
+                      value={newStudentGrade}
+                      onChange={(e) => setNewStudentGrade(e.target.value)}
+                      className={`w-full px-4 py-3 bg-[#3b125e] border border-purple-800/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-sm font-bold shadow-inner cursor-pointer ${newStudentGrade === 'Grade 1' ? 'text-blue-400' : newStudentGrade === 'Grade 2' ? 'text-yellow-400' : 'text-emerald-400'}`}
+                    >
+                      <option value="Grade 1" className="bg-[#3b125e] text-blue-400 font-bold">Grade 1</option>
+                      <option value="Grade 2" className="bg-[#3b125e] text-yellow-400 font-bold">Grade 2</option>
+                      <option value="Grade 3" className="bg-[#3b125e] text-emerald-400 font-bold">Grade 3</option>
+                    </select>
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-purple-200 mb-1">Avatar / Character Emoji:</label>
@@ -4846,7 +4845,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     ))}
                   </div>
                 </div>
-                <button type="submit" disabled={isAddingStudent} className={isAddingStudent ? 'w-full py-2.5 text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md uppercase mt-6 bg-gray-500 cursor-not-allowed' : 'w-full py-2.5 text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md uppercase mt-6 bg-[#b01bb8] hover:bg-[#c924d2] active:scale-95'}> {isAddingStudent ? 'Launching...' : 'Launch Explorer'}</button>
+                <button type="submit" disabled={isAddingStudent} className={isAddingStudent ? 'w-full py-3 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-md uppercase mt-6 bg-gray-500 cursor-not-allowed' : 'w-full py-3 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)] uppercase mt-6 bg-emerald-600 hover:bg-emerald-500 active:scale-95 border border-emerald-400'}> {isAddingStudent ? 'Adding...' : 'Add Explorer'}</button>
               </form>
             </div>
           </div>
