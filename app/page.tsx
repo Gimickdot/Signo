@@ -4854,7 +4854,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         {/* Modal / Popup for Viewing Student Profile */}
         {selectedProfileStudent && (
           <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 font-sans text-left">
-            <div className="bg-[#3a1c6a] border-2 border-purple-500/20 rounded-[32px] p-8 w-full max-w-sm shadow-2xl relative">
+            <div className={`border-2 rounded-[32px] p-8 w-full max-w-sm shadow-2xl relative ${selectedProfileStudent.grade === 'Grade 1' ? 'bg-blue-950 border-blue-500/50 shadow-[0_0_40px_rgba(59,130,246,0.3)]' : selectedProfileStudent.grade === 'Grade 2' ? 'bg-yellow-950 border-yellow-500/50 shadow-[0_0_40px_rgba(234,179,8,0.3)]' : selectedProfileStudent.grade === 'Grade 3' ? 'bg-emerald-950 border-emerald-500/50 shadow-[0_0_40px_rgba(16,185,129,0.3)]' : 'bg-[#3a1c6a] border-purple-500/20'}`}>
               <button 
                 onClick={() => { setSelectedProfileStudent(null); setIsEditingProfile(false); }}
                 className="absolute top-4 right-4 text-purple-300 hover:text-white font-bold"
@@ -4871,7 +4871,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                         setEditStudentGrade(selectedProfileStudent.grade); 
                         setEditStudentEmoji(selectedProfileStudent.emoji); 
                     }}
-                    className="absolute top-4 left-4 text-purple-300 hover:text-fuchsia-400 font-bold text-xs uppercase tracking-wide flex items-center space-x-1"
+                    className="absolute top-4 left-5 text-white/70 hover:text-white font-black text-lg uppercase tracking-wide flex items-center space-x-2"
                     title="Edit Profile"
                   >
                     <span>✏️</span> <span>Edit</span>
@@ -4881,19 +4881,19 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       {selectedProfileStudent.emoji}
                     </div>
                     <h3 className="text-4xl font-black text-white">{selectedProfileStudent.name}</h3>
-                    <p className="text-sm text-purple-300 font-bold uppercase">{selectedProfileStudent.grade}</p>
-                    <div className="w-full bg-purple-950/60 rounded-2xl p-5 text-sm space-y-4 text-left mt-4 border border-purple-800/30">
+                    <p className="text-sm text-white/80 font-black uppercase tracking-widest">{selectedProfileStudent.grade}</p>
+                    <div className="w-full bg-black/30 rounded-2xl p-5 text-sm space-y-4 text-left mt-4 border border-white/10">
                       <div className="flex justify-between border-b border-purple-900/40 pb-2">
-                        <span className="text-purple-300 font-semibold">🏆 Total Points Awarded:</span> 
+                        <span className="text-white/70 font-semibold">🏆 Total Points Awarded:</span> 
                         <span className="font-bold text-yellow-300">⭐ {selectedProfileStudent.points} Points</span>
                       </div>
                       <div className="flex justify-between border-b border-purple-900/40 pb-2">
-                        <span className="text-purple-300 font-semibold">🎮 Last Played Mode:</span> 
+                        <span className="text-white/70 font-semibold">🎮 Last Played Mode:</span> 
                         <span className="font-bold text-emerald-400">{selectedProfileStudent.lastMode || 'Not played yet'}</span>
                       </div>
                       <div className="flex justify-between pb-1">
-                        <span className="text-purple-300 font-semibold">📅 Date Joined:</span> 
-                        <span className="font-bold text-purple-200">
+                        <span className="text-white/70 font-semibold">📅 Date Joined:</span> 
+                        <span className="font-bold text-white">
                           {selectedProfileStudent.createdAt ? new Date(selectedProfileStudent.createdAt).toLocaleDateString() : 'N/A'}
                         </span>
                       </div>
