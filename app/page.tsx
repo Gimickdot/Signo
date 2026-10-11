@@ -2070,6 +2070,8 @@ function App() {
       }
     } catch (err) {
       console.error('Error adding student:', err);
+    } finally {
+      setIsAddingStudent(false);
     }
     
     setIsAddStudentOpen(false);
@@ -2317,7 +2319,7 @@ function App() {
             
             {/* Add Student trigger button */}
             <button
-              onClick={() => setIsAddStudentOpen(true)}
+              onClick={() => { setIsAddingStudent(false); setNewStudentName(''); setIsAddStudentOpen(true); }}
               className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-black rounded-xl tracking-widest transition-all border border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.6)] active:scale-95 uppercase flex items-center justify-center space-x-2"
             >
               <span>Add Student</span>
@@ -2718,9 +2720,9 @@ function App() {
               <h3 className="text-white font-black text-sm">Spelling Progress</h3>
               <span className="text-cyan-300 font-bold text-[10px] uppercase tracking-wider">Word {spellingCurrentWordIndex + 1}/5</span>
             </div>
-            <div className="w-full bg-purple-950/60 rounded-full h-4 border border-purple-800/50 overflow-hidden">
+            <div className="w-full bg-purple-950/60 rounded-full h-4 border border-emerald-500/30 overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 h-4 rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]" 
+                className="bg-gradient-to-r from-emerald-500 to-teal-400 h-4 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0.7)]" 
                 style={{ width: `${(spellingCurrentWordIndex / 5) * 100}%` }}
               ></div>
             </div>
@@ -2735,9 +2737,9 @@ function App() {
               <h3 className="text-white font-black text-sm">{gameCategory ? `${gameCategory} Adventure` : 'Adventure Progress'}</h3>
               <span className="text-cyan-300 font-bold text-[10px] uppercase tracking-wider">Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
             </div>
-            <div className="w-full bg-purple-950/60 rounded-full h-4 border border-purple-800/50 overflow-hidden">
+            <div className="w-full bg-purple-950/60 rounded-full h-4 border border-emerald-500/30 overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-cyan-400 to-fuchsia-500 h-4 rounded-full transition-all duration-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]" 
+                className="bg-gradient-to-r from-emerald-500 to-teal-400 h-4 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0.7)]" 
                 style={{ width: `${((currentQuestionIndex % 5) / 5) * 100}%` }}
               ></div>
             </div>
@@ -2844,17 +2846,21 @@ function App() {
                 ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
                 : 'border-white/10'
             }`}>
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Sign Demonstration</span>
-                  <h2 className="text-2xl font-black text-white mt-0.5">{selectedSign.name}</h2>
+              <div className="flex flex-col items-center justify-center mb-5 text-center relative w-full pt-1">
+                  <div className="flex items-center justify-center space-x-3 mb-1">
+                    <span className="text-xs md:text-sm font-black text-yellow-300 uppercase tracking-widest font-sans">
+                      Sign Demonstration
+                    </span>
+                    <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
+                      categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
+                    }`}>
+                      {selectedSign.category}
+                    </span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-wide uppercase drop-shadow-[0_2px_15px_rgba(255,255,255,0.4)]">
+                    {selectedSign.name}
+                  </h2>
                 </div>
-                <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
-                  categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
-                }`}>
-                  {selectedSign.category}
-                </span>
-              </div>
               
               <div className="relative w-full flex-1 min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem] flex items-center justify-center rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
                 {selectedSign.category === 'ALPHABET' ? (
@@ -3027,18 +3033,50 @@ const renderSpellingView = () => {
           ) : (
             <>
               {playingStudent && (
-                <div className="bg-fuchsia-600/20 border border-fuchsia-500/50 rounded-2xl p-4 flex items-center justify-between shadow-lg flex-shrink-0">
+                <div className={`rounded-2xl p-4 flex items-center justify-between shadow-lg flex-shrink-0 border transition-all ${
+                  playingStudent.grade === 'Grade 1'
+                    ? 'bg-blue-900/40 border-blue-500/60 shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+                    : playingStudent.grade === 'Grade 2'
+                    ? 'bg-yellow-900/40 border-yellow-500/60 shadow-[0_0_20px_rgba(234,179,8,0.3)]'
+                    : playingStudent.grade === 'Grade 3'
+                    ? 'bg-emerald-900/40 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
+                    : 'bg-fuchsia-600/20 border-fuchsia-500/50'
+                }`}>
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 rounded-full bg-fuchsia-500/20 border border-fuchsia-400/50 flex items-center justify-center text-xl">
+                    <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-xl ${
+                      playingStudent.grade === 'Grade 1'
+                        ? 'bg-blue-500/30 border-blue-400/60'
+                        : playingStudent.grade === 'Grade 2'
+                        ? 'bg-yellow-500/30 border-yellow-400/60'
+                        : playingStudent.grade === 'Grade 3'
+                        ? 'bg-emerald-500/30 border-emerald-400/60'
+                        : 'bg-fuchsia-500/20 border-fuchsia-400/50'
+                    }`}>
                       {playingStudent.emoji}
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-fuchsia-300 uppercase tracking-widest font-sans">Currently Playing</p>
+                      <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                        playingStudent.grade === 'Grade 1'
+                          ? 'text-blue-300'
+                          : playingStudent.grade === 'Grade 2'
+                          ? 'text-yellow-300'
+                          : playingStudent.grade === 'Grade 3'
+                          ? 'text-emerald-300'
+                          : 'text-fuchsia-300'
+                      }`}>Currently Playing</p>
                       <h3 className="text-xl font-black text-white">{playingStudent.name}</h3>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-[10px] font-black text-fuchsia-300 uppercase tracking-widest font-sans">Total Score</p>
+                    <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                      playingStudent.grade === 'Grade 1'
+                        ? 'text-blue-300'
+                        : playingStudent.grade === 'Grade 2'
+                        ? 'text-yellow-300'
+                        : playingStudent.grade === 'Grade 3'
+                        ? 'text-emerald-300'
+                        : 'text-fuchsia-300'
+                    }`}>Total Score</p>
                     <h3 className="text-xl font-black text-yellow-400">{playingStudent.points} Points</h3>
                   </div>
                 </div>
@@ -3271,18 +3309,50 @@ const renderSpellingView = () => {
         ) : (
           <>
             {playingStudent && (
-          <div className="bg-fuchsia-600/20 border border-fuchsia-500/50 rounded-2xl p-4 flex items-center justify-between shadow-lg">
+          <div className={`rounded-2xl p-4 flex items-center justify-between shadow-lg border transition-all ${
+            playingStudent.grade === 'Grade 1'
+              ? 'bg-blue-900/40 border-blue-500/60 shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+              : playingStudent.grade === 'Grade 2'
+              ? 'bg-yellow-900/40 border-yellow-500/60 shadow-[0_0_20px_rgba(234,179,8,0.3)]'
+              : playingStudent.grade === 'Grade 3'
+              ? 'bg-emerald-900/40 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
+              : 'bg-fuchsia-600/20 border-fuchsia-500/50'
+          }`}>
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 rounded-full bg-fuchsia-500/20 border border-fuchsia-400/50 flex items-center justify-center text-xl">
+              <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-xl ${
+                playingStudent.grade === 'Grade 1'
+                  ? 'bg-blue-500/30 border-blue-400/60'
+                  : playingStudent.grade === 'Grade 2'
+                  ? 'bg-yellow-500/30 border-yellow-400/60'
+                  : playingStudent.grade === 'Grade 3'
+                  ? 'bg-emerald-500/30 border-emerald-400/60'
+                  : 'bg-fuchsia-500/20 border-fuchsia-400/50'
+              }`}>
                 {playingStudent.emoji}
               </div>
               <div>
-                <p className="text-[10px] font-black text-fuchsia-300 uppercase tracking-widest font-sans">Currently Playing</p>
+                <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                  playingStudent.grade === 'Grade 1'
+                    ? 'text-blue-300'
+                    : playingStudent.grade === 'Grade 2'
+                    ? 'text-yellow-300'
+                    : playingStudent.grade === 'Grade 3'
+                    ? 'text-emerald-300'
+                    : 'text-fuchsia-300'
+                }`}>Currently Playing</p>
                 <h3 className="text-xl font-black text-white">{playingStudent.name}</h3>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[10px] font-black text-fuchsia-300 uppercase tracking-widest font-sans">Total Score</p>
+              <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                playingStudent.grade === 'Grade 1'
+                  ? 'text-blue-300'
+                  : playingStudent.grade === 'Grade 2'
+                  ? 'text-yellow-300'
+                  : playingStudent.grade === 'Grade 3'
+                  ? 'text-emerald-300'
+                  : 'text-fuchsia-300'
+              }`}>Total Score</p>
               <h3 className="text-xl font-black text-yellow-400">{playingStudent.points} Points</h3>
             </div>
           </div>
@@ -3383,17 +3453,21 @@ const renderSpellingView = () => {
           {/* Practice target for game mode */}
           {gameStep === 'practice' && selectedSign && (
             <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Sign Demonstration</span>
-                  <h2 className="text-2xl font-black text-white mt-0.5">{selectedSign.name}</h2>
+              <div className="flex flex-col items-center justify-center mb-5 text-center relative w-full pt-1">
+                  <div className="flex items-center justify-center space-x-3 mb-1">
+                    <span className="text-xs md:text-sm font-black text-yellow-300 uppercase tracking-widest font-sans">
+                      Sign Demonstration
+                    </span>
+                    <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
+                      categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
+                    }`}>
+                      {selectedSign.category}
+                    </span>
+                  </div>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-wide uppercase drop-shadow-[0_2px_15px_rgba(255,255,255,0.4)]">
+                    {selectedSign.name}
+                  </h2>
                 </div>
-                <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
-                  categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
-                }`}>
-                  {selectedSign.category}
-                </span>
-              </div>
               
               <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
                 {selectedSign.category === 'ALPHABET' ? (
@@ -4813,7 +4887,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 font-sans text-left">
             <div className="bg-[#3a1c6a] border-2 border-purple-500/20 rounded-[32px] p-8 w-full max-w-sm shadow-2xl relative">
               <button 
-                onClick={() => setIsAddStudentOpen(false)}
+                onClick={() => { setIsAddStudentOpen(false); setIsAddingStudent(false); }}
                 className="absolute top-4 right-4 text-purple-300 hover:text-white font-bold"
               >
                 ✕
