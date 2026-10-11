@@ -4806,7 +4806,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               <h3 className="text-xl font-black text-white mb-5 uppercase tracking-wide">Add Space Student</h3>
               <form onSubmit={handleAddStudentSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-purple-200 mb-1">Student Name:</label>
+                  <label className="block text-sm font-bold text-purple-200 mb-1">Student Name:</label>
                   <input
                     type="text"
                     required
@@ -4817,7 +4817,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-purple-200 mb-1">Grade Level:</label>
+                  <label className="block text-sm font-bold text-purple-200 mb-1">Grade Level:</label>
                   <select
                       value={newStudentGrade}
                       onChange={(e) => setNewStudentGrade(e.target.value)}
@@ -4829,7 +4829,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-purple-200 mb-1">Avatar / Character Emoji:</label>
+                  <label className="block text-sm font-bold text-purple-200 mb-1">Avatar / Character Emoji:</label>
                   <div className="flex space-x-4 mt-2">
                     {['👧', '👦'].map(em => (
                       <button
@@ -4880,9 +4880,9 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     <div className="text-6xl bg-yellow-500/10 w-24 h-24 rounded-full border-2 border-yellow-500/30 flex items-center justify-center select-none shadow-inner">
                       {selectedProfileStudent.emoji}
                     </div>
-                    <h3 className="text-2xl font-black text-white">{selectedProfileStudent.name}</h3>
-                    <p className="text-xs text-purple-300 font-bold uppercase">{selectedProfileStudent.grade}</p>
-                    <div className="w-full bg-purple-950/60 rounded-2xl p-4 text-xs space-y-3 text-left mt-4 border border-purple-800/30">
+                    <h3 className="text-4xl font-black text-white">{selectedProfileStudent.name}</h3>
+                    <p className="text-sm text-purple-300 font-bold uppercase">{selectedProfileStudent.grade}</p>
+                    <div className="w-full bg-purple-950/60 rounded-2xl p-5 text-sm space-y-4 text-left mt-4 border border-purple-800/30">
                       <div className="flex justify-between border-b border-purple-900/40 pb-2">
                         <span className="text-purple-300 font-semibold">🏆 Total Points Awarded:</span> 
                         <span className="font-bold text-yellow-300">⭐ {selectedProfileStudent.points} Points</span>
@@ -4901,9 +4901,9 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   </div>
                   <button
                     onClick={() => { setSelectedProfileStudent(null); setIsEditingProfile(false); }}
-                    className="w-full py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md active:scale-95 uppercase mt-6"
-                  >
-                    Close Profile
+                    className="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-md active:scale-95 uppercase mt-6 border border-rose-400"
+                    >
+                      Close Profile
                   </button>
                 </>
               ) : (
@@ -4911,7 +4911,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   <h3 className="text-xl font-black text-white mb-5 uppercase tracking-wide">Edit Profile</h3>
                   <form onSubmit={handleEditStudentSubmit} className="space-y-4">
                     <div>
-                      <label className="block text-xs font-bold text-purple-200 mb-1">Student Name:</label>
+                      <label className="block text-sm font-bold text-purple-200 mb-1">Student Name:</label>
                       <input
                         type="text"
                         required
@@ -4921,20 +4921,19 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-purple-200 mb-1">Grade Level:</label>
+                      <label className="block text-sm font-bold text-purple-200 mb-1">Grade Level:</label>
                       <select
-                        value={editStudentGrade}
-                        onChange={(e) => setEditStudentGrade(e.target.value)}
-                        className="w-full px-4 py-2.5 bg-[#3b125e] text-white border border-purple-800/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs font-bold shadow-inner"
-                      >
-                        
-                        
-                        <option value="Grade 1" className="bg-[#3b125e] text-white">Grade 1</option>`n<option value="Grade 2" className="bg-[#3b125e] text-white">Grade 2</option>
-                        <option value="Grade 3" className="bg-[#3b125e] text-white">Grade 3</option>
-                      </select>
+                          value={editStudentGrade}
+                          onChange={(e) => setEditStudentGrade(e.target.value)}
+                          className={`w-full px-4 py-3 bg-[#3b125e] border border-purple-800/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-sm font-bold shadow-inner cursor-pointer ${editStudentGrade === 'Grade 1' ? 'text-blue-400' : editStudentGrade === 'Grade 2' ? 'text-yellow-400' : 'text-emerald-400'}`}
+                        >
+                          <option value="Grade 1" className="bg-[#3b125e] text-blue-400 font-bold">Grade 1</option>
+                          <option value="Grade 2" className="bg-[#3b125e] text-yellow-400 font-bold">Grade 2</option>
+                          <option value="Grade 3" className="bg-[#3b125e] text-emerald-400 font-bold">Grade 3</option>
+                        </select>
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-purple-200 mb-1">Avatar / Character Emoji:</label>
+                      <label className="block text-sm font-bold text-purple-200 mb-1">Avatar / Character Emoji:</label>
                       <div className="flex space-x-4 mt-2">
                         {['👧', '👦'].map(em => (
                           <button
@@ -4954,15 +4953,15 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       <button
                         type="button"
                         onClick={() => setIsEditingProfile(false)}
-                        className="w-1/2 py-3 bg-purple-900/60 hover:bg-purple-800 text-purple-200 text-xs font-black rounded-xl tracking-wider transition-all shadow-md uppercase"
-                      >
-                        Cancel
+                        className="w-1/2 py-3 bg-rose-600 hover:bg-rose-500 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-md uppercase border border-rose-400"
+                        >
+                          Cancel
                       </button>
                       <button
                         type="submit"
-                        className="w-1/2 py-3 bg-emerald-500 hover:bg-emerald-400 text-white text-xs font-black rounded-xl tracking-wider transition-all shadow-md active:scale-95 shadow-emerald-500/20 uppercase"
-                      >
-                        Save Changes
+                        className="w-1/2 py-3 bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)] active:scale-95 border border-emerald-400 uppercase"
+                        >
+                          Save Changes
                       </button>
                     </div>
                   </form>
