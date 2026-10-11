@@ -2385,10 +2385,37 @@ function App() {
             <div className="col-span-full bg-[#0f172a]/30 backdrop-blur-sm border border-white/10 rounded-3xl p-12 text-center text-purple-300 font-sans flex flex-col items-center">
               <span className="text-4xl mb-2">🪐</span>
               <p className="text-sm font-bold">No students found matching your filters.</p>
+              </div>
+            )}
+          </div>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center space-x-6 mt-6 pb-2">
+              <button 
+                onClick={() => setStudentCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="w-12 h-12 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all text-2xl font-black shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+              >
+                &lt;
+              </button>
+              
+              <div className="flex items-center space-x-2 text-cyan-500/60 pb-2 text-4xl">
+                <span className={currentPage === 1 ? "text-cyan-300" : ""}>&bull;</span>
+                <span className={currentPage > 1 && currentPage < totalPages ? "text-cyan-300" : ""}>&bull;</span>
+                <span className={currentPage === totalPages ? "text-cyan-300" : ""}>&bull;</span>
+              </div>
+              
+              <button 
+                onClick={() => setStudentCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className="w-12 h-12 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all text-2xl font-black shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+              >
+                &gt;
+              </button>
             </div>
           )}
         </div>
-      </div>
     );
   };
 
