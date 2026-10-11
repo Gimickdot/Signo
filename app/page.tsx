@@ -2395,9 +2395,9 @@ function App() {
               <button 
                 onClick={() => setStudentCurrentPage(prev => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
-                className="w-12 h-12 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all text-2xl font-black shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+                className="w-12 h-12 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-[0_0_15px_rgba(6,182,212,0.2)]"
               >
-                &lt;
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-6 h-6 mr-1"><path d="M16 5v14l-11-7z" /></svg>
               </button>
               
               <div className="flex items-center space-x-2 text-cyan-500/60 pb-2 text-4xl">
@@ -2409,9 +2409,9 @@ function App() {
               <button 
                 onClick={() => setStudentCurrentPage(prev => Math.min(totalPages, prev + 1))}
                 disabled={currentPage === totalPages}
-                className="w-12 h-12 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all text-2xl font-black shadow-[0_0_15px_rgba(6,182,212,0.2)]"
+                className="w-12 h-12 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-[0_0_15px_rgba(6,182,212,0.2)]"
               >
-                &gt;
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-6 h-6 ml-1"><path d="M8 5v14l11-7z" /></svg>
               </button>
             </div>
           )}
