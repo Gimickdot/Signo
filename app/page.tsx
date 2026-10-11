@@ -4688,13 +4688,13 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             )}
           </div>
 
-          {/* Log Out button — bigger */}
-          <button
-            onClick={() => setShowLogoutConfirm(true)}
-            className="w-[calc(100%-16px)] py-3 bg-[#8b2ca3]/90 hover:bg-[#8b2ca3] text-white text-xs font-black rounded-xl tracking-wider transition-all border border-[#bf5cd7]/30 shadow-md active:scale-95 uppercase font-sans mt-4"
-          >
-            Log Out
-          </button>
+                      {/* Log Out button */}
+            <button
+              onClick={() => setShowLogoutConfirm(true)}
+              className="w-[calc(100%-16px)] py-3 bg-slate-900/60 hover:bg-red-600 text-white text-xs font-black rounded-xl tracking-wider transition-all duration-300 border-2 border-cyan-500/20 hover:border-red-400 shadow-xl hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] active:scale-95 uppercase font-sans mt-4"
+            >
+              LOG OUT
+            </button>
         </div>
         
         {/* Main Area */}
