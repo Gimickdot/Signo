@@ -10,7 +10,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
   if (isWide) {
     return (
-      <div className="w-full flex flex-col h-full overflow-hidden">
+      <div className="w-full flex flex-col h-screen overflow-hidden">
         <main className="flex-auto min-w-0 flex flex-col h-full overflow-hidden">
           {children}
         </main>
@@ -19,14 +19,12 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="w-full h-full overflow-y-auto">
-      <div className="max-w-2xl mx-4 mt-8 lg:mx-auto w-full px-2 md:px-0 flex flex-col min-h-full">
-        <Navbar />
-        <main className="flex-auto min-w-0 mt-6 flex flex-col">
-          {children}
-        </main>
-        <Footer />
-      </div>
+    <div className="max-w-2xl mx-4 mt-8 lg:mx-auto w-full px-2 md:px-0 flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-auto min-w-0 mt-6 flex flex-col">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 }

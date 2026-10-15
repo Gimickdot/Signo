@@ -239,9 +239,9 @@ function ProfileCustomizationModal({
 
 // --- Custom Space Theme SVG Components ---
 
-function AstronautLogo({ className = "w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40" }: { className?: string }) {
+function AstronautLogo({ className = "w-24 h-24" }: { className?: string }) {
   return (
-    <img src="/icon.png" alt="SIGNO Logo" className={`${className} object-contain select-none`} />
+    <img src="/icon.png" alt="SIGNO Logo" className={`${className} object-contain`} />
   );
 }
 
@@ -305,89 +305,6 @@ function PinkStar({ className = "w-6 h-6 animate-pulse" }: { className?: string 
   );
 }
 
-function MarsPlanet({ className = "w-24 h-24" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="45" fill="url(#marsGrad)" stroke="#991B1B" strokeWidth="2" />
-      {/* Craters */}
-      <circle cx="35" cy="35" r="8" fill="#7F1D1D" opacity="0.6" />
-      <circle cx="65" cy="45" r="12" fill="#7F1D1D" opacity="0.5" />
-      <circle cx="45" cy="70" r="7" fill="#7F1D1D" opacity="0.7" />
-      <circle cx="28" cy="55" r="5" fill="#7F1D1D" opacity="0.4" />
-      <circle cx="72" cy="70" r="6" fill="#7F1D1D" opacity="0.5" />
-      <defs>
-        <radialGradient id="marsGrad" cx="30%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#FB923C" />
-          <stop offset="50%" stopColor="#EA580C" />
-          <stop offset="100%" stopColor="#7F1D1D" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
-
-function NeptunePlanet({ className = "w-28 h-28" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Back ring */}
-      <ellipse cx="70" cy="70" rx="60" ry="16" stroke="#38BDF8" strokeWidth="6" opacity="0.6" transform="rotate(-25 70 70)" />
-      {/* Sphere */}
-      <circle cx="70" cy="70" r="38" fill="url(#neptuneGrad)" stroke="#0284C7" strokeWidth="2" />
-      {/* Atmosphere bands */}
-      <path d="M 38 60 C 50 68, 90 68, 102 60" stroke="#E0F2FE" strokeWidth="3" opacity="0.4" />
-      <path d="M 36 75 C 50 82, 90 82, 104 75" stroke="#0369A1" strokeWidth="4" opacity="0.5" />
-      {/* Front ring */}
-      <path d="M 12 70 C 12 85, 128 85, 128 70" stroke="#7DD3FC" strokeWidth="6" opacity="0.8" strokeLinecap="round" transform="rotate(-25 70 70)" />
-      <defs>
-        <radialGradient id="neptuneGrad" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#38BDF8" />
-          <stop offset="60%" stopColor="#0284C7" />
-          <stop offset="100%" stopColor="#082F49" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
-
-function MoonSatellite({ className = "w-16 h-16" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="40" cy="40" r="35" fill="url(#moonGrad)" stroke="#94A3B8" strokeWidth="2" />
-      <circle cx="30" cy="28" r="6" fill="#64748B" opacity="0.4" />
-      <circle cx="52" cy="35" r="9" fill="#64748B" opacity="0.4" />
-      <circle cx="36" cy="52" r="7" fill="#64748B" opacity="0.45" />
-      <circle cx="24" cy="44" r="4" fill="#64748B" opacity="0.3" />
-      <defs>
-        <radialGradient id="moonGrad" cx="30%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#F8FAFC" />
-          <stop offset="60%" stopColor="#CBD5E1" />
-          <stop offset="100%" stopColor="#64748B" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
-
-function SpaceRocket({ className = "w-16 h-16" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Flame trail */}
-      <path d="M 28 72 C 22 84, 18 92, 14 96 C 22 92, 30 84, 34 76 Z" fill="#F97316" />
-      <path d="M 26 74 C 22 82, 20 88, 16 92 C 22 88, 28 82, 30 76 Z" fill="#FACC15" />
-      {/* Rocket Fins */}
-      <path d="M 25 55 L 12 70 L 30 72 Z" fill="#DC2626" />
-      <path d="M 55 25 L 70 12 L 72 30 Z" fill="#DC2626" />
-      {/* Rocket Body */}
-      <path d="M 25 55 C 28 40, 40 28, 55 25 L 72 30 C 74 45, 62 57, 47 60 Z" fill="#F1F5F9" />
-      {/* Nose cone */}
-      <path d="M 55 25 C 70 10, 85 8, 90 10 C 92 15, 90 30, 75 45 L 72 30 Z" fill="#EF4444" />
-      {/* Cabin Window */}
-      <circle cx="56" cy="38" r="8" fill="#38BDF8" stroke="#0284C7" strokeWidth="2" />
-      <circle cx="54" cy="36" r="3" fill="#FFFFFF" opacity="0.8" />
-    </svg>
-  );
-}
-
 // --- Navigation Icon Button Component ---
 
 interface NavIconButtonProps {
@@ -402,14 +319,14 @@ function NavIconButton({ label, icon, isActive, onClick, accentClass = "bg-gradi
   return (
     <button
       onClick={onClick}
-      className={`relative w-full max-w-[84px] sm:max-w-[98px] md:max-w-[115px] py-1.5 sm:py-2.5 px-1 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl border-2 flex-shrink-0 ${
+      className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-xl md:rounded-2xl flex flex-col items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl border-2 flex-shrink-0 ${
         isActive
-          ? 'border-white ' + accentClass + ' shadow-[0_0_20px_rgba(6,182,212,0.5)] scale-105 ring-2 ring-white/50'
-          : 'border-cyan-500/30 bg-slate-900/80 hover:border-cyan-400 hover:bg-slate-800/90 shadow-md'
+          ? 'border-white ' + accentClass + ' shadow-fuchsia-500/30 scale-105 ring-2 ring-white/30'
+          : 'border-cyan-500/20 bg-slate-900/60 hover:border-cyan-400/50 hover:bg-slate-800/60'
       }`}
     >
-      <span className="text-2xl sm:text-3xl md:text-4xl mb-0.5 drop-shadow-md select-none">{icon}</span>
-      <span className="relative z-10 text-[10px] sm:text-[11px] md:text-xs font-black text-white tracking-wider uppercase drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.95)]">
+      <span className="text-xl sm:text-2xl md:text-3xl mb-0.5 md:mb-1 drop-shadow-md select-none">{icon}</span>
+      <span className="relative z-10 text-[8px] sm:text-[9px] md:text-[10px] font-black text-white tracking-widest uppercase drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.95)]">
         {label}
       </span>
     </button>
@@ -2251,88 +2168,88 @@ function App() {
     const totalSessionsCount = todayDbRecords.length;
 
     return (
-      <div className="flex flex-col space-y-2.5 sm:space-y-3 h-full overflow-hidden">
+      <div className="flex flex-col space-y-3 md:space-y-4 h-full">
         {/* Top Cards Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-3 shrink-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           {/* Card 1: Students — Teal/Cyan */}
-          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/50 rounded-2xl p-2.5 sm:p-3.5 flex items-center space-x-3 shadow-[0_0_20px_rgba(34,211,238,0.3)] relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/50 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex items-center space-x-3.5 shadow-[0_0_25px_rgba(34,211,238,0.4)] relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.15),transparent_70%)] pointer-events-none" />
-            <div className="text-2xl bg-cyan-300/20 w-10 h-10 rounded-xl border border-cyan-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
+            <div className="text-3xl bg-cyan-300/20 w-12 h-12 rounded-xl border border-cyan-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               👧
             </div>
             <div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow">{studentsList.length}</div>
-              <div className="text-[11px] sm:text-xs font-semibold text-cyan-200">Students</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-white drop-shadow">{studentsList.length}</div>
+              <div className="text-xs sm:text-sm font-semibold text-cyan-200">Students</div>
             </div>
           </div>
           
           {/* Card 2: Avg. Points — Amber/Gold */}
-          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/50 rounded-2xl p-2.5 sm:p-3.5 flex items-center space-x-3 shadow-[0_0_20px_rgba(251,191,36,0.3)] relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/50 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex items-center space-x-3.5 shadow-[0_0_25px_rgba(251,191,36,0.4)] relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,191,36,0.15),transparent_70%)] pointer-events-none" />
-            <div className="text-2xl bg-amber-300/20 w-10 h-10 rounded-xl border border-amber-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
+            <div className="text-3xl bg-amber-300/20 w-12 h-12 rounded-xl border border-amber-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ✨
             </div>
             <div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-white drop-shadow">
                 {avgPointsPercentage}
               </div>
-              <div className="text-[11px] sm:text-xs font-semibold text-amber-200 font-sans">Avg. Points</div>
+              <div className="text-xs sm:text-sm font-semibold text-amber-200 font-sans">Avg. Points</div>
             </div>
           </div>
           
           {/* Card 3: Total Sessions — Rose/Pink */}
-          <div className="bg-gradient-to-br from-[#9f1239] to-[#500724] backdrop-blur-sm border border-rose-400/30 rounded-2xl p-2.5 sm:p-3.5 flex items-center space-x-3 shadow-xl shadow-rose-900/40 relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#9f1239] to-[#500724] backdrop-blur-sm border border-rose-400/30 rounded-2xl md:rounded-3xl p-4 sm:p-5 flex items-center space-x-3.5 shadow-xl shadow-rose-900/40 relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,113,133,0.15),transparent_70%)] pointer-events-none" />
-            <div className="text-2xl bg-rose-300/20 w-10 h-10 rounded-xl border border-rose-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
+            <div className="text-3xl bg-rose-300/20 w-12 h-12 rounded-xl border border-rose-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ⏱️
             </div>
             <div>
-              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow">{totalSessionsCount}</div>
-              <div className="text-[11px] sm:text-xs font-semibold text-rose-200 font-sans flex items-center space-x-1">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-black text-white drop-shadow">{totalSessionsCount}</div>
+              <div className="text-xs sm:text-sm font-semibold text-rose-200 font-sans flex items-center space-x-1">
                 <span>Signs Practiced Today</span>
-                <span className="text-[9px] text-rose-300/80 font-normal">(24h Reset)</span>
+                <span className="text-[10px] text-rose-300/80 font-normal">(24h Reset)</span>
               </div>
             </div>
           </div>
         </div>
 
       {/* Bottom Row: Recent Activities & Dynamic Sign of the Day */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-3 flex-1 min-h-0 overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 md:gap-4 flex-1 min-h-0">
         {/* Recent Activities */}
-        <div className="lg:col-span-3 bg-slate-900/90 backdrop-blur-sm border border-cyan-500/40 rounded-2xl p-3 sm:p-4 shadow-[0_0_20px_rgba(6,182,212,0.3)] text-left flex flex-col min-h-0 overflow-hidden">
-          <div className="flex items-center space-x-2 text-sm sm:text-base font-black text-white mb-2 pb-1.5 border-b border-cyan-500/30 flex-shrink-0">
-            <span className="text-lg sm:text-xl">💡</span>
+        <div className="lg:col-span-3 bg-slate-900/90 backdrop-blur-sm border border-cyan-500/40 rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 shadow-[0_0_20px_rgba(6,182,212,0.3)] text-left flex flex-col min-h-0">
+          <div className="flex items-center space-x-2 text-base md:text-lg font-black text-white mb-2.5 pb-2 border-b border-cyan-500/30 flex-shrink-0">
+            <span className="text-xl md:text-2xl">💡</span>
             <h2>Recent Activities</h2>
           </div>
           
-          <div className="space-y-1.5 flex-1 min-h-0 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-purple-500 hover:scrollbar-thumb-fuchsia-400">
+          <div className="space-y-2 max-h-[200px] sm:max-h-[240px] md:max-h-[280px] lg:max-h-[calc(100vh-300px)] overflow-y-auto pr-1.5 scrollbar-thin scrollbar-thumb-purple-500 hover:scrollbar-thumb-fuchsia-400 flex-1">
             {teacherActivities.length > 0 ? teacherActivities.map((act, i) => (
-                <div key={act.id + i} className="bg-slate-800/60 border border-cyan-500/30 rounded-xl p-2 flex items-center justify-between hover:bg-white/10 transition-colors">
-                  <div className="flex items-center space-x-2.5">
-                    <div className="text-xl bg-amber-400/10 w-8 h-8 rounded-lg border border-amber-400/20 flex items-center justify-center flex-shrink-0">
+                <div key={act.id + i} className="bg-slate-800/60 border border-cyan-500/30 rounded-xl md:rounded-2xl p-2.5 sm:p-3 flex items-center justify-between hover:bg-white/10 transition-colors">
+                  <div className="flex items-center space-x-3">
+                    <div className="text-2xl bg-amber-400/10 w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl border border-amber-400/20 flex items-center justify-center flex-shrink-0">
                       {act.emoji}
                     </div>
                     <div>
-                      <h4 className="font-extrabold text-white text-xs sm:text-sm leading-tight">{act.name}</h4>
-                      <p className="text-[10px] sm:text-[11px] text-cyan-300 font-sans">
+                      <h4 className="font-extrabold text-white text-sm sm:text-base leading-tight">{act.name}</h4>
+                      <p className="text-[11px] sm:text-xs text-cyan-300 font-sans">
                         {act.type === 'ADD' ? 'Added new student' : act.type === 'EDIT' ? 'Updated profile' : act.type === 'DELETE' ? 'Deleted student' : `Played ${act.mode || 'session'}`}
                       </p>
                     </div>
                   </div>
-                  <span className="text-[9px] sm:text-[10px] text-cyan-300 font-sans font-medium flex-shrink-0">{getTimeAgo(act.timestamp || Date.now())}</span>
+                  <span className="text-[10px] sm:text-xs text-cyan-300 font-sans font-medium flex-shrink-0">{getTimeAgo(act.timestamp || Date.now())}</span>
                 </div>
               )) : (
-                <p className="text-cyan-400 text-xs font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
+                <p className="text-cyan-400 text-xs sm:text-sm font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
               )}
           </div>
         </div>
 
         {/* Dynamic Sign of the Day */}
-        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-2xl p-3 sm:p-4 shadow-[0_0_20px_rgba(217,70,239,0.3)] flex flex-col items-center justify-between text-center min-h-0 overflow-hidden">
-          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-1.5 mb-1.5 flex-shrink-0">
-            <h2 className="text-sm sm:text-base font-black text-white tracking-wide">Sign of the Day</h2>
+        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 shadow-[0_0_20px_rgba(217,70,239,0.3)] flex flex-col items-center justify-between text-center min-h-0">
+          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-2 mb-2 flex-shrink-0">
+            <h2 className="text-base md:text-lg font-black text-white tracking-wide">Sign of the Day</h2>
             {signOfTheDay && (
-              <span className={`text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded-full border uppercase tracking-wider ${
+              <span className={`text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${
                 categoryColors[signOfTheDay.category] || 'bg-purple-900/60 text-purple-200 border-purple-700/50'
               }`}>
                 {signOfTheDay.category}
@@ -2340,25 +2257,25 @@ function App() {
             )}
           </div>
           
-          <div className="my-auto flex flex-col items-center justify-center w-full py-1 min-h-0">
+          <div className="my-auto flex flex-col items-center justify-center w-full py-1">
             {signOfTheDay ? (
               <>
-                <div className="w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 flex items-center justify-center rounded-2xl bg-purple-950/70 border-2 border-fuchsia-500/40 p-2 shadow-xl shadow-fuchsia-900/30 transition-all flex-shrink-0 max-h-[110px]">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center rounded-2xl md:rounded-3xl bg-purple-950/70 border-2 border-fuchsia-500/40 p-2 shadow-xl shadow-fuchsia-900/30 transition-all flex-shrink-0">
                   {signOfTheDay.category === 'ALPHABET' ? (
                     <HandSVG letter={signOfTheDay.name} />
                   ) : (
-                    <span className="text-4xl sm:text-5xl select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
+                    <span className="text-5xl sm:text-6xl md:text-7xl select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
                       {signOfTheDay.category === 'GREETING' ? '👋' : signOfTheDay.category === 'DAYS' ? '📅' : signOfTheDay.category === 'FAMILY' ? '👨‍👩‍👧' : '🤟'}
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-sm sm:text-base md:text-lg font-black text-yellow-300 tracking-wider mt-1 uppercase drop-shadow-md">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-yellow-300 tracking-wider mt-1.5 uppercase drop-shadow-md">
                   "{signOfTheDay.name}"
                 </h3>
               </>
             ) : (
-              <p className="text-xs text-purple-300 font-sans font-medium">Loading sign...</p>
+              <p className="text-xs sm:text-sm text-purple-300 font-sans font-medium">Loading sign...</p>
             )}
           </div>
         </div>
@@ -2382,108 +2299,110 @@ function App() {
     const paginatedStudents = filteredStudents.slice(startIndex, startIndex + studentsPerPage);
 
     return (
-      <div className="flex flex-col space-y-2 sm:space-y-2.5 h-full overflow-hidden">
+      <div className="flex flex-col space-y-3 md:space-y-4 h-full">
         {/* Search, Filter & Add Student Controls */}
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] rounded-2xl p-2 sm:p-2.5 text-left flex flex-wrap items-center justify-between gap-2 shrink-0">
-          {/* Widescreen Search Student Bar */}
-          <div className="relative flex-1 min-w-[170px] max-w-xs sm:max-w-sm font-sans">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-cyan-400 text-sm">
-              🔍
-            </span>
-            <input
-              type="text"
-              placeholder="Search student name"
-              value={studentSearch}
-              onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
-              className="w-full pl-9 pr-3 py-1.5 bg-slate-800/60 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs font-bold text-slate-100 placeholder-slate-400 shadow-[0_0_10px_rgba(6,182,212,0.1)]"
-            />
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-5 text-left flex flex-col space-y-2.5 sm:space-y-3">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            {/* Widescreen Search Student Bar */}
+            <div className="relative flex-1 font-sans">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-cyan-400 text-lg md:text-xl">
+                🔍
+              </span>
+              <input
+                type="text"
+                placeholder="Search student name"
+                value={studentSearch}
+                onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
+                className="w-full pl-11 pr-4 py-2 sm:py-2.5 bg-slate-800/60 border border-cyan-500/40 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs sm:text-sm md:text-base font-bold text-slate-100 placeholder-slate-400 shadow-[0_0_10px_rgba(6,182,212,0.1)]"
+              />
+            </div>
+            
+            {/* Add Student trigger button */}
+            <button
+              onClick={() => { setIsAddingStudent(false); setNewStudentName(''); setIsAddStudentOpen(true); }}
+              className="px-5 py-2 sm:py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-black rounded-xl tracking-widest transition-all border border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)] active:scale-95 uppercase flex items-center justify-center space-x-2 flex-shrink-0"
+            >
+              <span>Add Student</span>
+            </button>
           </div>
 
-          {/* Filter pills */}
-          <div className="flex items-center gap-1 sm:gap-1.5 font-sans">
+          {/* Filter pills aligned right/middle */}
+          <div className="flex flex-wrap items-center gap-1.5 font-sans justify-start md:justify-end">
             {['All', 'Grade 1', 'Grade 2', 'Grade 3'].map((grade) => (
               <button
                 key={grade}
                 onClick={() => { setStudentFilter(grade); setStudentCurrentPage(1); }}
-                className={`px-2.5 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-black tracking-wider whitespace-nowrap transition duration-200 border ${studentFilter === grade ? (grade === 'Grade 2' ? 'bg-yellow-600 border-yellow-400 shadow-[0_0_12px_rgba(234,179,8,0.5)] text-white scale-105' : grade === 'Grade 3' ? 'bg-emerald-600 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.5)] text-white scale-105' : 'bg-blue-600 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.5)] text-white scale-105') : (grade === 'Grade 2' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-yellow-300 hover:border-yellow-400' : grade === 'Grade 3' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-emerald-300 hover:border-emerald-400' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-blue-300 hover:border-blue-400')}`}
+                className={`px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-lg md:rounded-xl text-xs font-black tracking-wider whitespace-nowrap transition duration-200 border ${studentFilter === grade ? (grade === 'Grade 2' ? 'bg-yellow-600 border-yellow-400 shadow-[0_0_12px_rgba(234,179,8,0.5)] text-white scale-105' : grade === 'Grade 3' ? 'bg-emerald-600 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.5)] text-white scale-105' : 'bg-blue-600 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.5)] text-white scale-105') : (grade === 'Grade 2' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-yellow-300 hover:border-yellow-400' : grade === 'Grade 3' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-emerald-300 hover:border-emerald-400' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-blue-300 hover:border-blue-400')}`}
               >
                 {grade}
               </button>
             ))}
           </div>
-          
-          {/* Add Student trigger button */}
-          <button
-            onClick={() => { setIsAddingStudent(false); setNewStudentName(''); setIsAddStudentOpen(true); }}
-            className="px-3.5 sm:px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black rounded-xl tracking-wider transition-all border border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)] active:scale-95 uppercase flex items-center justify-center space-x-1.5 flex-shrink-0"
-          >
-            <span>+ Add Student</span>
-          </button>
         </div>
 
         {/* Dynamic Students Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-2.5 text-left flex-1 min-h-0 overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-left">
           {paginatedStudents.length > 0 ? (
             paginatedStudents.map((std) => (
               <div 
                 key={std.id} 
-                className={`backdrop-blur-sm border-2 rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-900/70 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:border-blue-400 hover:bg-blue-800/80" : std.grade === "Grade 2" ? "bg-yellow-900/70 border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.25)] hover:border-yellow-400 hover:bg-yellow-800/80" : std.grade === "Grade 3" ? "bg-emerald-900/70 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:border-emerald-400 hover:bg-emerald-800/80" : "bg-slate-900/95 border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:border-cyan-400 hover:bg-slate-800"}`}
+                className={`backdrop-blur-sm border-2 rounded-2xl md:rounded-3xl p-3 sm:p-4 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-900/70 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:border-blue-400 hover:bg-blue-800/80" : std.grade === "Grade 2" ? "bg-yellow-900/70 border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.25)] hover:border-yellow-400 hover:bg-yellow-800/80" : std.grade === "Grade 3" ? "bg-emerald-900/70 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:border-emerald-400 hover:bg-emerald-800/80" : "bg-slate-900/95 border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:border-cyan-400 hover:bg-slate-800"}`}
               >
                 {/* Delete button (X) top right */}
                 <button
                   onClick={(e) => { e.stopPropagation(); setStudentIdToDelete(std.id); }}
-                  className="absolute top-2 right-2.5 text-cyan-400 hover:text-rose-400 font-black text-base select-none transition-colors"
+                  className="absolute top-2.5 right-3 text-cyan-400 hover:text-rose-400 font-black text-lg select-none transition-colors"
                   title="Remove student"
                 >
                   ✕
                 </button>
 
-                <div className="flex items-center space-x-2.5 sm:space-x-3 mb-1.5 mt-0.5">
+                <div className="flex items-center space-x-3.5 mb-2.5 mt-0.5">
                   {/* Circular profile emoji background */}
-                  <div className="text-2xl sm:text-3xl bg-yellow-500/10 min-w-[42px] w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-yellow-500/40 flex flex-col items-center justify-center select-none shadow-inner flex-shrink-0">
+                  <div className="text-3xl sm:text-4xl bg-yellow-500/10 min-w-[52px] w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-yellow-500/40 flex flex-col items-center justify-center select-none shadow-inner flex-shrink-0">
                     {std.emoji}
                   </div>
                   
                   {/* Right side: Name, Grade, Points */}
-                  <div className="flex flex-col items-start pr-3 flex-1 min-w-0">
-                    <h3 className="text-xs sm:text-sm font-black text-white leading-tight uppercase truncate w-full">{std.name}</h3>
-                    <p className="text-[10px] sm:text-[11px] text-purple-200 font-sans font-semibold mb-1">{std.grade}</p>
+                  <div className="flex flex-col items-start pr-4 flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg font-black text-white leading-tight uppercase truncate w-full mb-0.5">{std.name}</h3>
+                    <p className="text-xs text-purple-200 font-sans font-semibold mb-1.5">{std.grade}</p>
                     {/* Points badge with Star */}
                     <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-2 py-0.5 w-fit">
-                      <span className="text-yellow-400 text-[10px]">⭐</span>
-                      <span className="text-[10px] font-black text-yellow-300 font-sans tracking-wide">{std.points} pts</span>
+                      <span className="text-yellow-400 text-xs">⭐</span>
+                      <span className="text-[11px] font-black text-yellow-300 font-sans tracking-wide">{std.points} pts</span>
                     </div>
                   </div>
                 </div>
 
                 <button 
                   onClick={() => setSelectedProfileStudent(std)}
-                  className="w-full py-1.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white text-[10px] sm:text-[11px] font-black rounded-xl tracking-wider transition-all border border-[#60a5fa]/30 shadow-sm active:scale-95 uppercase"
+                  className="w-full py-2 bg-[#3b82f6] hover:bg-[#2563eb] text-white text-[11px] font-black rounded-lg md:rounded-xl tracking-wider transition-all border border-[#60a5fa]/30 shadow-sm active:scale-95 uppercase"
                 >
                   View Profile
                 </button>
               </div>
             ))
           ) : (
-            <div className="col-span-full bg-[#0f172a]/30 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center text-purple-300 font-sans flex flex-col items-center justify-center">
-              <span className="text-2xl mb-1">🪐</span>
-              <p className="text-xs font-bold">No students found matching your filters.</p>
+            <div className="col-span-full bg-[#0f172a]/30 backdrop-blur-sm border border-white/10 rounded-2xl md:rounded-3xl p-8 text-center text-purple-300 font-sans flex flex-col items-center">
+              <span className="text-3xl mb-1.5">🪐</span>
+              <p className="text-xs sm:text-sm font-bold">No students found matching your filters.</p>
             </div>
           )}
         </div>
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center space-x-6 sm:space-x-8 pt-0.5 pb-0.5 shrink-0">
+          <div className="flex items-center justify-center space-x-6 sm:space-x-8 mt-2 pb-1">
             <button 
               onClick={() => setStudentCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
-              className="w-8 h-8 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-md"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-md"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-4 h-4 mr-0.5"><path d="M16 5v14l-11-7z" /></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-5 h-5 mr-0.5"><path d="M16 5v14l-11-7z" /></svg>
             </button>
             
-            <div className="flex items-center space-x-2 text-cyan-500/60 pb-0.5 text-xl sm:text-2xl">
+            <div className="flex items-center space-x-2 text-cyan-500/60 pb-1 text-2xl sm:text-3xl">
               <span className={currentPage === 1 ? "text-cyan-300" : ""}>&bull;</span>
               <span className={currentPage > 1 && currentPage < totalPages ? "text-cyan-300" : ""}>&bull;</span>
               <span className={currentPage === totalPages ? "text-cyan-300" : ""}>&bull;</span>
@@ -2492,9 +2411,9 @@ function App() {
             <button 
               onClick={() => setStudentCurrentPage(prev => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
-              className="w-8 h-8 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-md"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-md"
             >
-              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-4 h-4 ml-0.5"><path d="M8 5v14l11-7z" /></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-5 h-5 ml-0.5"><path d="M8 5v14l11-7z" /></svg>
             </button>
           </div>
         )}
@@ -2503,7 +2422,7 @@ function App() {
   };
 
   const renderStudentSelectorSidebar = () => (
-      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2.5 text-left w-full h-full flex-1 min-h-0 overflow-y-auto">
+      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2.5 text-left w-full h-full max-h-[calc(100vh-140px)]">
         <div>
           <h2 className="text-lg sm:text-xl font-black text-white mb-0.5">Select Student</h2>
           <p className="text-[11px] font-bold text-purple-300 font-sans">Choose who is currently playing</p>
@@ -2943,7 +2862,7 @@ function App() {
                   </h2>
                 </div>
                 
-                <div className="relative w-full flex-1 min-h-0 flex items-center justify-center rounded-xl md:rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
+                <div className="relative w-full flex-1 min-h-[12rem] sm:min-h-[14rem] md:min-h-[16rem] lg:min-h-[18rem] max-h-[calc(100vh-270px)] flex items-center justify-center rounded-xl md:rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
                   {selectedSign.category === 'ALPHABET' ? (
                     <HandSVG letter={selectedSign.name} />
                   ) : (
@@ -3029,7 +2948,7 @@ const renderSpellingView = () => {
                <button onClick={() => setSpellingSetupMode('manual')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
                   <span className="text-3xl sm:text-5xl">👆</span>
                   <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-4 sm:mt-6 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors">Go back to Main Menu</button></div>) : spellingSetupMode === 'manual' && spellingCurrentWordList.length !== 5 ? (
-          <div className="flex-1 min-h-0 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl h-full relative overflow-hidden">
+          <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-6 shadow-xl h-full max-h-[calc(100vh-140px)] relative overflow-hidden">
              <div className="text-center mb-3 shrink-0 relative">
                <button onClick={() => setSpellingSetupMode(null)} className="absolute top-1 left-1 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1 text-xs sm:text-sm"><span className="text-lg mr-1">⬅️</span> Back</button>
                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">Select 5 Words</h2>
@@ -3264,7 +3183,7 @@ const renderSpellingView = () => {
                <button onClick={() => setGameSetupMode('manual')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
                   <span className="text-3xl sm:text-5xl">👆</span>
                   <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-4 sm:mt-6 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors">Go back to Main Menu</button></div>) : gameSetupMode === 'manual' && gameCategory !== 'CUSTOM' ? (
-          <div className="flex-1 min-h-0 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl h-full relative overflow-hidden">
+          <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-6 shadow-xl h-full max-h-[calc(100vh-140px)] relative overflow-hidden">
              <div className="text-center mb-3 shrink-0 relative">
                <button onClick={() => setGameSetupMode(null)} className="absolute top-1 left-1 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1 text-xs sm:text-sm"><span className="text-lg mr-1">⬅️</span> Back</button>
                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">Select 5 Questions</h2>
@@ -3544,7 +3463,7 @@ const renderSpellingView = () => {
                   </h2>
                 </div>
               
-              <div className="relative w-full flex-1 min-h-0 flex items-center justify-center rounded-xl md:rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
+              <div className="relative w-full flex-1 min-h-[12rem] sm:min-h-[14rem] md:min-h-[16rem] lg:min-h-[18rem] max-h-[calc(100vh-270px)] flex items-center justify-center rounded-xl md:rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
                 {selectedSign.category === 'ALPHABET' ? (
                   <HandSVG letter={selectedSign.name} />
                 ) : (
@@ -3975,40 +3894,40 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         </div>
 
         {/* 2 Cols Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-3 flex-1 min-h-0 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 md:gap-4 flex-1 min-h-0">
           
           {/* Progress Columns */}
-          <div className="lg:col-span-3 bg-slate-950/95 backdrop-blur-md border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-2xl p-2.5 sm:p-3.5 shadow-xl flex flex-col h-full flex-1 min-h-0 overflow-y-auto relative scrollbar-thin scrollbar-thumb-cyan-500">
+          <div className="lg:col-span-3 bg-slate-950/95 backdrop-blur-md border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col max-h-[calc(100vh-140px)] overflow-y-auto relative scrollbar-thin scrollbar-thumb-cyan-500">
             <div className="absolute top-[20%] left-[10%] opacity-5 text-5xl pointer-events-none select-none">🖐️</div>
             <div className="absolute bottom-[30%] right-[15%] opacity-5 text-5xl pointer-events-none select-none">✌️</div>
             <div className="absolute top-[60%] right-[30%] opacity-5 text-5xl pointer-events-none select-none">👍</div>
             <div className="absolute bottom-[10%] left-[25%] opacity-5 text-5xl pointer-events-none select-none">👌</div>
             
-            <div className="space-y-1.5 relative z-10 font-sans">
+            <div className="space-y-2 relative z-10 font-sans">
               {activeList.map((item) => (
-                <div key={item.name} className="flex items-center space-x-2.5 p-1 rounded-lg hover:bg-slate-900/50 transition-colors">
+                <div key={item.name} className="flex items-center space-x-3 p-1 rounded-lg hover:bg-slate-900/50 transition-colors">
                   {progressTab === 'titik' ? (
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center font-black text-xs sm:text-sm text-cyan-300 select-none flex-shrink-0 shadow-inner">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center font-black text-sm sm:text-base text-cyan-300 select-none flex-shrink-0 shadow-inner">
                       {item.name}
                     </div>
                   ) : (
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-base select-none flex-shrink-0">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-lg select-none flex-shrink-0">
                       {item.emoji}
                     </div>
                   )}
 
                   {progressTab === 'kilos' && (
-                    <div className="w-28 sm:w-36 text-xs font-bold text-slate-200 truncate flex-shrink-0 text-left">
+                    <div className="w-32 sm:w-44 text-xs sm:text-sm font-bold text-slate-200 truncate flex-shrink-0 text-left">
                       {item.name}
                     </div>
                   )}
 
-                  <div className="flex-1 bg-slate-900/80 rounded-full h-3.5 sm:h-4 border border-cyan-500/30 overflow-hidden shadow-inner relative">
-                    <div className={`${item.color} h-3.5 sm:h-4 rounded-full transition-all duration-500`} style={{ width: `${item.val}%` }}></div>
+                  <div className="flex-1 bg-slate-900/80 rounded-full h-4 sm:h-5 border border-cyan-500/30 overflow-hidden shadow-inner relative">
+                    <div className={`${item.color} h-4 sm:h-5 rounded-full transition-all duration-500`} style={{ width: `${item.val}%` }}></div>
                   </div>
 
-                  <div className="w-12 sm:w-14 flex items-center justify-end space-x-1 flex-shrink-0 text-right">
-                    <span className="text-[11px] sm:text-xs font-black text-slate-100">{item.val}%</span>
+                  <div className="w-14 sm:w-16 flex items-center justify-end space-x-1 flex-shrink-0 text-right">
+                    <span className="text-xs sm:text-sm font-black text-slate-100">{item.val}%</span>
                     {item.warn && (
                       <span className="text-xs text-yellow-400 select-none animate-pulse" title="Needs practice!">⚠️</span>
                     )}
@@ -4019,10 +3938,10 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           </div>
 
           {/* Leaderboard Column */}
-          <div className="lg:col-span-2 flex flex-col space-y-1.5 h-full flex-1 min-h-0 overflow-hidden">
-            <div className="flex items-center justify-between gap-1.5 w-full shrink-0">
-              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl px-2.5 py-1 w-fit shadow-md text-left select-none flex items-center h-8 sm:h-8.5 shrink-0">
-                <h3 className="text-[11px] sm:text-xs font-black text-white tracking-widest uppercase flex items-center space-x-1">
+          <div className="lg:col-span-2 flex flex-col space-y-2">
+            <div className="flex items-center justify-between gap-2 w-full shrink-0">
+              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl px-2.5 py-1.5 w-fit shadow-md text-left select-none flex items-center h-9 sm:h-10 shrink-0">
+                <h3 className="text-xs font-black text-white tracking-widest uppercase flex items-center space-x-1">
                   <span>🏆</span>
                   <span>Top Students</span>
                 </h3>
@@ -4034,7 +3953,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                      setProgressGradeFilter(e.target.value);
                      setProgressStudentId('ALL');
                   }}
-                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-xs font-bold rounded-xl px-2 h-8 sm:h-8.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
+                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-xs font-bold rounded-xl px-2.5 h-9 sm:h-10 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
                 >
                   <option value="ALL" className="bg-slate-800 text-white font-bold">All Grades</option>
                   <option value="Grade 1" className="bg-slate-800 text-blue-400 font-bold">Grade 1</option>
@@ -4042,29 +3961,29 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   <option value="Grade 3" className="bg-slate-800 text-emerald-400 font-bold">Grade 3</option>
                 </select>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
-                    <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                   </div>
                   <input
                     type="text"
                     placeholder="Search..."
                     value={progressSearchTerm}
                     onChange={(e) => setProgressSearchTerm(e.target.value)}
-                    className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-xs font-bold rounded-xl pl-7 pr-2 h-8 sm:h-8.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-24 sm:w-32 font-sans shadow-inner placeholder-slate-400"
+                    className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-xs font-bold rounded-xl pl-8 pr-2.5 h-9 sm:h-10 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-28 sm:w-36 font-sans shadow-inner placeholder-slate-400"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-2.5 sm:p-3 shadow-xl flex flex-col space-y-1.5 flex-1 min-h-0 justify-start overflow-y-auto scrollbar-thin scrollbar-thumb-fuchsia-500 pr-1">
-              <p className="text-[10px] sm:text-[11px] text-fuchsia-300 font-bold uppercase tracking-widest py-1 text-center bg-fuchsia-900/30 rounded-lg border border-fuchsia-400/30 shrink-0">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2 flex-1 justify-start overflow-y-auto max-h-[calc(100vh-190px)] scrollbar-thin scrollbar-thumb-fuchsia-500 pr-1">
+              <p className="text-xs text-fuchsia-300 font-bold uppercase tracking-widest py-1.5 text-center bg-fuchsia-900/30 rounded-lg border border-fuchsia-400/30">
                 👆 Click a student to view their progress
               </p>
               {sortedLeaderboard.map((std, index) => (
                 <div 
                   key={std.id}
                   onClick={() => setProgressStudentId(std.id)}
-                  className={`border rounded-xl p-2 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] shrink-0 ${
+                  className={`border rounded-xl p-2.5 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] shrink-0 ${
                     progressStudentId === std.id 
                       ? (std.grade === "Grade 1" ? 'bg-blue-900/60 border-blue-400 ring-2 ring-blue-400/50' : std.grade === "Grade 2" ? 'bg-yellow-900/60 border-yellow-400 ring-2 ring-yellow-400/50' : std.grade === "Grade 3" ? 'bg-emerald-900/60 border-emerald-400 ring-2 ring-emerald-400/50' : 'bg-cyan-900/60 border-cyan-400 ring-2 ring-cyan-400/50')
                       : (std.grade === "Grade 1" ? 'bg-blue-900/70 border-blue-800/50 hover:bg-blue-800/80 hover:border-blue-500/50' : std.grade === "Grade 2" ? 'bg-yellow-900/70 border-yellow-800/50 hover:bg-yellow-800/80 hover:border-yellow-500/50' : std.grade === "Grade 3" ? 'bg-emerald-900/70 border-emerald-800/50 hover:bg-emerald-800/80 hover:border-emerald-500/50' : 'bg-slate-800/95 border-slate-600 hover:bg-slate-700/90 hover:border-cyan-500/50')
@@ -4073,7 +3992,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   <div className={`absolute top-0 left-0 w-1.5 h-full ${std.grade === "Grade 1" ? "bg-blue-500" : std.grade === "Grade 2" ? "bg-yellow-500" : std.grade === "Grade 3" ? "bg-emerald-500" : "bg-cyan-500"}`} />
 
                   <div className="flex items-center space-x-2 text-left">
-                    <div className="text-lg bg-yellow-500/10 w-7 h-7 rounded-full border border-yellow-500/20 flex items-center justify-center select-none">
+                    <div className="text-xl bg-yellow-500/10 w-8 h-8 rounded-full border border-yellow-500/20 flex items-center justify-center select-none">
                       {std.emoji}
                     </div>
                     <div>
@@ -4083,11 +4002,11 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                   </div>
 
                   <div className="flex flex-col items-end">
-                    <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-1.5 py-0.5 select-none">
-                      <span className="text-yellow-400 text-[10px]">⭐</span>
-                      <span className="text-[11px] font-black text-yellow-300 font-sans">{std.points} Pts</span>
+                    <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-2 py-0.5 select-none">
+                      <span className="text-yellow-400 text-xs">⭐</span>
+                      <span className="text-xs font-black text-yellow-300 font-sans">{std.points} Pts</span>
                     </div>
-                    <span className="text-[9px] font-black text-slate-400 tracking-widest mt-0.5 font-sans opacity-70">
+                    <span className="text-[10px] font-black text-slate-400 tracking-widest mt-0.5 font-sans opacity-70">
                       #{index + 1}
                     </span>
                   </div>
@@ -4145,7 +4064,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           </div>
   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 font-sans flex-1 min-h-0">
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col justify-between flex-1 min-h-0 overflow-y-auto">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-5 shadow-xl flex flex-col justify-between max-h-[calc(100vh-230px)] overflow-y-auto">
               <h3 className="text-xs sm:text-sm font-black text-white uppercase tracking-widest">Platform Usage</h3>
               <div className="flex-1 flex flex-col justify-center items-center space-y-3 opacity-90 py-2 sm:py-3">
                 <div className="w-16 h-16 sm:w-18 sm:h-18 bg-blue-500/20 rounded-full border-4 border-blue-400 flex items-center justify-center">
@@ -4165,9 +4084,9 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
               </div>
             </div>
             
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2 flex-1 min-h-0 overflow-hidden">
-              <h3 className="text-xs sm:text-sm font-black text-white uppercase tracking-widest shrink-0">Top 5 Students</h3>
-              <div className="flex-1 min-h-0 flex flex-col space-y-2 pr-1 overflow-y-auto">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-5 shadow-xl flex flex-col space-y-2.5 max-h-[calc(100vh-230px)] overflow-y-auto">
+              <h3 className="text-xs sm:text-sm font-black text-white uppercase tracking-widest">Top 5 Students</h3>
+              <div className="flex-1 flex flex-col space-y-2 pr-1 overflow-y-auto">
                 {globalTopStudents.length > 0 ? globalTopStudents.map((student, i) => (
                   <div key={i} className="flex items-center justify-between bg-purple-950/40 p-2 sm:p-2.5 rounded-xl border border-purple-800/30">
                     <div className="flex items-center space-x-2.5">
@@ -4252,7 +4171,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         </div>
 
         {/* Table container */}
-        <div className="flex-1 min-h-0 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col space-y-3 w-full overflow-hidden">
+        <div className="flex-1 min-h-0 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-3 w-full max-h-[calc(100vh-230px)] overflow-hidden">
           <div className="flex items-center justify-between w-full shrink-0">
             <h3 className="text-xs sm:text-sm font-black text-white tracking-widest uppercase">Teacher Masterlist</h3>
             <div className="relative">
@@ -4390,13 +4309,13 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
   const renderAdminAnalyticsView = () => {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 text-left font-sans flex-1 min-h-0">
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col justify-between flex-1 min-h-0 overflow-y-auto">
-          <div className="flex items-center space-x-2 mb-3 shrink-0">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-5 shadow-xl flex flex-col justify-between max-h-[calc(100vh-160px)] overflow-y-auto">
+          <div className="flex items-center space-x-2 mb-4 shrink-0">
             <span className="inline-block w-3 h-3 bg-blue-500 rounded" />
             <h3 className="text-xs font-black text-white uppercase tracking-wider">Sessions Per Day</h3>
           </div>
           
-          <div className="flex items-end justify-between h-40 sm:h-48 border-b border-purple-800/40 pb-2 px-3 relative">
+          <div className="flex items-end justify-between h-44 sm:h-52 border-b border-purple-800/40 pb-2 px-3 relative">
             <div className="absolute inset-x-0 top-0 border-t border-purple-900/10 pointer-events-none" />
             <div className="absolute inset-x-0 top-[25%] border-t border-purple-900/10 pointer-events-none" />
             <div className="absolute inset-x-0 top-[50%] border-t border-purple-900/10 pointer-events-none" />
@@ -4435,8 +4354,8 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           </div>
         </div>
 
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col justify-between flex-1 min-h-0 overflow-y-auto">
-          <div className="flex items-center space-x-2 mb-3 shrink-0">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-5 shadow-xl flex flex-col justify-between max-h-[calc(100vh-160px)] overflow-y-auto">
+          <div className="flex items-center space-x-2 mb-4 shrink-0">
             <span className="inline-block w-3 h-3 bg-emerald-500 rounded" />
             <h3 className="text-xs font-black text-white uppercase tracking-wider">Paggamit ng Bawat Modyul</h3>
           </div>
@@ -4565,7 +4484,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           </button>
         </div>
 
-        <div className="bg-[#0b0416]/95 border-2 border-purple-950 rounded-2xl p-4 shadow-2xl font-mono text-[10px] sm:text-[11px] leading-relaxed overflow-y-auto flex-1 min-h-0">
+        <div className="bg-[#0b0416]/95 border-2 border-purple-950 rounded-2xl p-4 shadow-2xl font-mono text-[10px] sm:text-[11px] leading-relaxed max-h-[calc(100vh-210px)] overflow-y-auto flex-1 min-h-0">
           <div className="text-purple-400/60 border-b border-purple-950/50 pb-1.5 mb-3 select-none">
             --- signo-platform v1.0.0 · {adminLogTab === 'app' ? 'signo-app.log' : adminLogTab === 'audit' ? 'signo-audit.log' : 'signo-error.log'} ---
           </div>
@@ -4635,7 +4554,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
   if (currentView.startsWith('dashboard-')) {
     return (
-      <div className="h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center flex p-2 sm:p-3 text-white overflow-hidden font-sans">
+      <div className="h-screen w-full bg-[url('/bg.jpg')] bg-cover bg-center flex p-2 sm:p-3 md:p-4 text-white overflow-hidden font-sans">
         <style>{`
           @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -4661,9 +4580,9 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         `}</style>
 
         {/* Sidebar */}
-        <div className="w-28 sm:w-32 md:w-36 lg:w-40 bg-slate-900/90 backdrop-blur-md rounded-2xl sm:rounded-3xl flex flex-col items-center py-2.5 sm:py-3.5 border-2 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.45)] flex-shrink-0 justify-between">
+        <div className="w-20 sm:w-24 md:w-28 bg-slate-900/85 backdrop-blur-md rounded-2xl sm:rounded-3xl flex flex-col items-center py-3 sm:py-4 md:py-6 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.5)] flex-shrink-0 justify-between">
           {/* Profile avatar at top */}
-          <div className="flex flex-col items-center select-none text-center px-1 mb-1.5 sm:mb-2">
+          <div className="flex flex-col items-center select-none text-center px-1 mb-2 sm:mb-3">
             {userRole !== 'admin' && activeUser ? (
               <button
                 type="button"
@@ -4675,26 +4594,23 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   setProfileSaveMsg(null);
                   setShowProfileModal(true);
                 }}
-                className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border-2 border-cyan-400/60 shadow-[0_0_18px_rgba(6,182,212,0.5)] mb-1.5 overflow-hidden hover:border-fuchsia-400 hover:scale-105 transition-all active:scale-95 cursor-pointer ring-2 ring-cyan-400/25"
+                className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-1 sm:mb-2 overflow-hidden hover:border-fuchsia-400 hover:scale-105 transition-all active:scale-95 cursor-pointer"
                 style={{ backgroundColor: activeUser.profileBgColor || '#1c1ae3' }}
               >
-                <img src={TEACHER_ICONS.find(i => i.key === (activeUser.profileIcon || "tmale1"))?.src} alt="Profile" className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 object-contain" />
+                <img src={TEACHER_ICONS.find(i => i.key === (activeUser.profileIcon || "tmale1"))?.src} alt="Profile" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
               </button>
             ) : (
-              <div className="text-3xl sm:text-4xl md:text-5xl bg-white/15 w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border-2 border-cyan-400/60 shadow-[0_0_18px_rgba(6,182,212,0.5)] mb-1.5 select-none ring-2 ring-cyan-400/25">
+              <div className="text-2xl sm:text-3xl md:text-4xl bg-white/15 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-1 sm:mb-2 select-none">
                 {activeUser ? activeUser.emoji : (userRole === 'admin' ? '👑' : '👩‍🏫')}
               </div>
             )}
-            <span className="text-sm sm:text-base md:text-lg font-black text-white uppercase tracking-wider leading-tight truncate max-w-[95px] sm:max-w-[120px] md:max-w-[145px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            <span className="text-[10px] sm:text-xs md:text-sm font-black text-white uppercase tracking-wider leading-tight truncate max-w-[80px]">
               {activeUser ? activeUser.name.split(' ')[0] : (userRole === 'admin' ? 'Admin' : 'Guro')}
-            </span>
-            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-black text-cyan-300 tracking-wider uppercase mt-0.5 drop-shadow-sm">
-              {userRole === 'admin' ? 'ADMIN' : 'GURO'}
             </span>
           </div>
 
           {/* Nav buttons — centered */}
-          <div className="flex-1 flex flex-col items-center justify-center space-y-1.5 sm:space-y-2 md:space-y-2.5 w-full px-1.5 font-sans">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-2 sm:space-y-3 w-full px-1 font-sans">
             {userRole === 'admin' ? (
               <>
                 <NavIconButton
@@ -4763,26 +4679,26 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           {/* Log Out button */}
           <button
             onClick={() => setShowLogoutConfirm(true)}
-            className="w-[calc(100%-12px)] max-w-[120px] py-2 sm:py-2.5 bg-slate-900/80 hover:bg-rose-600 text-white text-[11px] sm:text-xs md:text-sm font-black rounded-xl tracking-wider transition-all duration-300 border-2 border-cyan-500/30 hover:border-rose-400 shadow-xl hover:shadow-[0_0_20px_rgba(244,63,94,0.7)] active:scale-95 uppercase font-sans mt-2"
+            className="w-[calc(100%-8px)] py-2 sm:py-2.5 bg-slate-900/60 hover:bg-red-600 text-white text-[10px] sm:text-xs font-black rounded-xl tracking-wider transition-all duration-300 border-2 border-cyan-500/20 hover:border-red-400 shadow-xl hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] active:scale-95 uppercase font-sans mt-2"
           >
             LOG OUT
           </button>
         </div>
         
         {/* Main Area */}
-        <div className="flex-1 min-h-0 flex flex-col pl-2 sm:pl-3.5 overflow-hidden">
+        <div className="flex-1 min-h-0 flex flex-col pl-2 sm:pl-3 md:pl-4 overflow-y-auto lg:overflow-hidden">
           {/* Greeting Box */}
           {currentView === 'dashboard-home' && (
-            <div className="flex justify-center w-full mb-2 sm:mb-2.5 mt-0.5 shrink-0">
-              <div className="bg-slate-900/90 backdrop-blur-md border border-cyan-400/50 rounded-full px-6 sm:px-8 py-1.5 sm:py-2 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
-                <h1 className="text-base sm:text-lg md:text-xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
+            <div className="flex justify-center w-full mb-2 sm:mb-3 mt-0.5 shrink-0">
+              <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-6 sm:px-8 py-1.5 sm:py-2 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
+                <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
                   {headerText}
                 </h1>
               </div>
             </div>
           )}
           {/* Main Dashboard Pages */}
-          <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+          <div className="flex-1 min-h-0 flex flex-col overflow-y-auto">
             {userRole === 'admin' ? (
               <>
                 {currentView === 'dashboard-home' && renderAdminOverview()}
@@ -5396,31 +5312,19 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
   const isVerifyEmail = currentView === 'verify-email';
 
   return (
-    <div className="min-h-screen h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center p-2 sm:p-4 relative overflow-y-auto overflow-x-hidden font-sans select-none">
+    <div className="min-h-screen w-full bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center p-3 sm:p-4 relative overflow-y-auto font-sans select-none">
       <style>{`
-        @keyframes float-slow {
+        @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-12px) rotate(2deg); }
-        }
-        @keyframes float-slow-reverse {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(12px) rotate(-2deg); }
-        }
-        @keyframes float-horizontal-slow {
-          0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-          50% { transform: translate(14px, -10px) rotate(2deg); }
-        }
-        @keyframes star-twinkle-glow {
-          0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7)); }
-          50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 16px rgba(250, 204, 21, 1)); }
-        }
-        @keyframes star-twinkle-cyan {
-          0%, 100% { transform: scale(1); opacity: 0.75; filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7)); }
-          50% { transform: scale(1.35); opacity: 1; filter: drop-shadow(0 0 16px rgba(56, 189, 248, 1)); }
+          50% { transform: translateY(-15px) rotate(2deg); }
         }
         @keyframes spin-slow {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(-8deg); }
+          50% { transform: rotate(8deg); }
         }
         @keyframes shooting-star-left {
           0% {
@@ -5430,101 +5334,52 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           }
           3% {
             opacity: 1;
-            width: 140px;
+            width: 150px;
           }
-          40% {
-            transform: translate(-480px, 480px) rotate(135deg);
+          34.9% {
+            transform: translate(-460px, 460px) rotate(135deg);
             opacity: 1;
-            width: 140px;
+            width: 150px;
           }
-          44% {
-            transform: translate(-480px, 480px) rotate(135deg);
+          35% {
+            transform: translate(-460px, 460px) rotate(135deg);
             opacity: 0;
             width: 0px;
           }
           100% {
-            transform: translate(-480px, 480px) rotate(135deg);
+            transform: translate(-460px, 460px) rotate(135deg);
             opacity: 0;
             width: 0px;
           }
         }
-        .animate-float-slow {
-          animation: float-slow 28s ease-in-out infinite;
-        }
-        .animate-float-slow-reverse {
-          animation: float-slow-reverse 32s ease-in-out infinite;
-        }
-        .animate-float-horizontal-slow {
-          animation: float-horizontal-slow 36s ease-in-out infinite;
-        }
-        .animate-star-twinkle-glow {
-          animation: star-twinkle-glow 4s ease-in-out infinite;
-        }
-        .animate-star-twinkle-cyan {
-          animation: star-twinkle-cyan 5s ease-in-out infinite;
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
         }
         .animate-spin-slow {
-          animation: spin-slow 100s linear infinite;
+          animation: spin-slow 35s linear infinite;
+        }
+        .animate-wiggle {
+          animation: wiggle 3s ease-in-out infinite;
         }
         .animate-shooting-star-left {
-          animation: shooting-star-left 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+          animation: shooting-star-left 10s linear infinite;
         }
       `}</style>
 
-      {/* Floating Slowly Moving Space Elements & Planets */}
-      <div className="absolute top-[6%] left-[5%] pointer-events-none transform -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-100 z-0">
-        <SaturnPlanet className="w-36 h-36 md:w-48 md:h-48 animate-float-slow" />
+      {/* Floating Space Elements */}
+      <div className="absolute top-[8%] left-[6%] pointer-events-none transform -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-100 z-0">
+        <SaturnPlanet className="w-36 h-36 md:w-48 md:h-48 animate-float" />
       </div>
 
-      <div className="absolute top-[8%] right-[8%] pointer-events-none scale-75 md:scale-100 z-0">
+      <div className="absolute top-[10%] right-[10%] pointer-events-none scale-75 md:scale-100 z-0">
         <EarthPlanet className="w-24 h-24 md:w-32 md:h-32 animate-spin-slow" />
       </div>
 
-      <div className="absolute bottom-[10%] left-[5%] pointer-events-none scale-85 md:scale-105 z-0">
-        <MarsPlanet className="w-24 h-24 md:w-32 md:h-32 animate-float-slow-reverse" />
+      <div className="absolute top-[40%] left-[8%] pointer-events-none z-0">
+        <PinkStar className="w-8 h-8 opacity-80" />
       </div>
-
-      <div className="absolute bottom-[10%] right-[6%] pointer-events-none scale-85 md:scale-110 z-0">
-        <NeptunePlanet className="w-28 h-28 md:w-36 md:h-36 animate-float-horizontal-slow" />
-      </div>
-
-      <div className="absolute top-[48%] left-[3%] pointer-events-none scale-75 md:scale-95 z-0">
-        <MoonSatellite className="w-16 h-16 md:w-20 md:h-20 animate-float-slow" />
-      </div>
-
-      <div className="absolute top-[40%] right-[4%] pointer-events-none scale-75 md:scale-95 z-0">
-        <MoonSatellite className="w-14 h-14 md:w-18 md:h-18 animate-float-slow-reverse" />
-      </div>
-
-      {/* Glowing Star Emojis */}
-      <div className="absolute top-[14%] left-[32%] pointer-events-none z-0 select-none animate-star-twinkle-glow text-2xl sm:text-3xl">
-        ⭐
-      </div>
-      <div className="absolute top-[22%] right-[22%] pointer-events-none z-0 select-none animate-star-twinkle-cyan text-2xl sm:text-3xl">
-        ✨
-      </div>
-      <div className="absolute bottom-[20%] left-[22%] pointer-events-none z-0 select-none animate-star-twinkle-glow text-3xl sm:text-4xl">
-        🌟
-      </div>
-      <div className="absolute top-[58%] right-[12%] pointer-events-none z-0 select-none animate-float-slow text-2xl sm:text-3xl">
-        💫
-      </div>
-      <div className="absolute bottom-[8%] right-[30%] pointer-events-none z-0 select-none animate-star-twinkle-cyan text-xl sm:text-2xl">
-        ⭐
-      </div>
-      <div className="absolute top-[6%] left-[44%] pointer-events-none z-0 select-none animate-star-twinkle-glow text-xl sm:text-2xl">
-        ✨
-      </div>
-      <div className="absolute bottom-[32%] left-[3%] pointer-events-none z-0 select-none animate-star-twinkle-cyan text-2xl sm:text-3xl">
-        🌟
-      </div>
-
-      {/* Pink Star SVGs */}
-      <div className="absolute top-[36%] left-[9%] pointer-events-none z-0">
-        <PinkStar className="w-8 h-8 opacity-80 animate-float-slow" />
-      </div>
-      <div className="absolute top-[25%] right-[9%] pointer-events-none z-0">
-        <PinkStar className="w-6 h-6 opacity-75 animate-float-slow-reverse" />
+      <div className="absolute top-[28%] right-[8%] pointer-events-none z-0">
+        <PinkStar className="w-6 h-6 opacity-75" />
       </div>
 
       <div className="absolute top-[20%] left-[45%] w-10 h-10 bg-white/10 rounded-full blur-sm pointer-events-none" />
@@ -5553,27 +5408,27 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_6px_#fff,0_0_10px_#38bdf8]" />
       </div>
 
-      {/* Auth Container with Logo positioned ABOVE the card box - Exactly matching user mockup */}
-      <div className="relative z-10 w-full max-w-[360px] sm:max-w-[390px] md:max-w-[410px] flex flex-col items-center justify-center my-auto shrink-0 px-2 sm:px-3">
-        {/* Logo cleanly positioned ABOVE the box - Perched on top border exactly like user mockup */}
-        <div className="relative z-20 -mb-6 sm:-mb-7 md:-mb-8 flex items-center justify-center shrink-0">
-          <AstronautLogo className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 drop-shadow-[0_10px_28px_rgba(6,182,212,0.65)]" />
+      {/* Card Body */}
+      <div className="w-full max-w-sm sm:max-w-md bg-[#3a1c6a]/90 backdrop-blur-md rounded-[28px] sm:rounded-[36px] border-2 border-purple-400/30 px-5 sm:px-8 py-5 sm:py-7 shadow-[0_0_60px_rgba(168,85,247,0.25)] relative z-10 text-center flex flex-col items-center my-auto mt-14 sm:mt-18 shrink-0">
+        {/* Logo Icon top overlap */}
+        <div className="absolute -top-14 sm:-top-18">
+          <AstronautLogo className="w-28 h-28 sm:w-36 sm:h-36 drop-shadow-xl" />
         </div>
-
-        {/* Card Body - Deep Slate Glassmorphism with Cyan/Fuchsia Neon Glow, Non-blending & Fully Visible */}
-        <div className="w-full bg-[#0a0f1d]/95 backdrop-blur-xl rounded-[24px] sm:rounded-[28px] border-2 border-cyan-400/80 px-4 sm:px-5 pt-7 sm:pt-8 md:pt-9 pb-3.5 sm:pb-4 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.2)] text-center flex flex-col items-center shrink-0">
+        
+        {/* Spacer */}
+        <div className="h-10 sm:h-14 w-full shrink-0"></div>
 
         {/* Switcher Tab header (Only show on Login forms, not on Register or Forgot password) */}
         {(isTeacherLogin || isAdminLogin) && (
-          <div className="flex border-b border-cyan-500/30 w-full mb-2.5 sm:mb-3 shrink-0">
+          <div className="flex border-b border-purple-500/40 w-full mb-3.5 sm:mb-4 mt-0.5 shrink-0">
             <button
               type="button"
               onClick={() => {
                 setCurrentView('teacher-login');
                 setUserRole('guro');
               }}
-              className={`flex-1 pb-1.5 text-xs sm:text-sm font-black tracking-wider uppercase transition-all ${
-                isTeacherLogin ? 'text-cyan-300 border-b-2 border-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'text-slate-400 hover:text-cyan-200'
+              className={`flex-1 pb-2 text-xs sm:text-sm font-black tracking-wide uppercase transition-all ${
+                isTeacherLogin ? 'text-white border-b-2 border-fuchsia-400' : 'text-purple-400 hover:text-purple-200'
               }`}
             >
               Guro Portal
@@ -5584,8 +5439,8 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setCurrentView('admin-login');
                 setUserRole('admin');
               }}
-              className={`flex-1 pb-1.5 text-xs sm:text-sm font-black tracking-wider uppercase transition-all ${
-                isAdminLogin ? 'text-cyan-300 border-b-2 border-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'text-slate-400 hover:text-cyan-200'
+              className={`flex-1 pb-2 text-xs sm:text-sm font-black tracking-wide uppercase transition-all ${
+                isAdminLogin ? 'text-white border-b-2 border-fuchsia-400' : 'text-purple-400 hover:text-purple-200'
               }`}
             >
               Admin Portal
@@ -5597,63 +5452,63 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         
         {/* 1. Teacher/Guro Login Form */}
         {isTeacherLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-1">
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2 shadow-md">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-2 rounded-xl text-xs font-sans font-black text-center mb-3 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 sm:p-3 rounded-2xl border border-purple-400/25 mb-3 sm:mb-4">
+              <div className="flex-shrink-0 bg-yellow-500 p-2 rounded-xl text-xl shadow-inner select-none">
                 👩‍🏫
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Kamusta, Guro!</h3>
-                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">Welcome back, Teacher!</p>
+                <h3 className="text-sm sm:text-base font-black text-white leading-tight">Kamusta, Guro!</h3>
+                <p className="text-[10px] sm:text-xs text-purple-200 font-bold">Welcome back, Teacher!</p>
               </div>
             </div>
 
-            <div className="mb-2 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Email Address:</label>
+            <div className="mb-3 text-left font-sans">
+              <label className="block text-xs sm:text-sm font-bold text-purple-200 mb-1">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3.5 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs sm:text-sm font-bold shadow-inner"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-2.5 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Password:</label>
+            <div className="mb-4 text-left font-sans">
+              <label className="block text-xs sm:text-sm font-bold text-purple-200 mb-1">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3.5 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs sm:text-sm font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="flex space-x-2 w-full mb-2">
+            <div className="flex space-x-2.5 w-full mb-3">
               <button
                 type="submit"
-                className="flex-1 py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95"
+                className="flex-1 py-2 sm:py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95"
               >
                 Sign In
               </button>
               <button
                 type="button"
                 onClick={() => setCurrentView('register')}
-                className="flex-1 py-2 sm:py-2.5 bg-slate-800 hover:bg-slate-700 text-cyan-200 hover:text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all border border-cyan-400/40 shadow-md active:scale-95"
+                className="flex-1 py-2 sm:py-2.5 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all border border-[#bf5cd7]/20 shadow-md active:scale-95"
               >
                 Register
               </button>
             </div>
 
-            <div className="w-full flex justify-center mb-1.5">
+            <div className="w-full flex justify-center mb-2.5 mt-0.5">
               <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
                 <GoogleLogin
                   onSuccess={handleGoogleLoginSuccess}
@@ -5662,7 +5517,6 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   }}
                   theme="outline"
                   shape="rectangular"
-                  size="medium"
                 />
               </GoogleOAuthProvider>
             </div>
@@ -5676,7 +5530,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setForgotPasswordStep('email');
                 setCurrentView('forgot-password');
               }}
-              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
+              className="text-[10px] sm:text-xs text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
             >
               Forgot password?
             </a>
@@ -5685,49 +5539,42 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 2. Admin Login Form */}
         {isAdminLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-1">
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2.5 shadow-md">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-2 rounded-xl text-xs font-sans font-black text-center mb-3 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
-                👑
-              </div>
-              <div className="text-left font-sans">
-                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Admin Portal</h3>
-                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">Welcome back, Administrator!</p>
-              </div>
-            </div>
+            <h2 className="text-sm sm:text-base font-black text-purple-200 uppercase tracking-widest text-center mb-4 font-sans">
+              Welcome back, Admin!</h2>
 
-            <div className="mb-2 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Username:</label>
+            <div className="mb-3 text-left font-sans">
+              <label className="block text-xs sm:text-sm font-bold text-purple-200 mb-1">Username:</label>
               <input
                 type="text"
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3.5 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs sm:text-sm font-bold shadow-inner"
                 placeholder="Enter your username"
               />
             </div>
 
-            <div className="mb-3 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Password:</label>
+            <div className="mb-4 text-left font-sans">
+              <label className="block text-xs sm:text-sm font-bold text-purple-200 mb-1">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3.5 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs sm:text-sm font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-40 sm:w-44 py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mx-auto mb-1"
+              className="w-36 py-2 sm:py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 mx-auto mb-3"
             >
               Sign In
             </button>
@@ -5736,73 +5583,73 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 3. Register Form */}
         {isRegister && (
-          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col">
+          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col mt-2">
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2 shadow-md">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-1.5 rounded-xl text-[11px] font-sans font-black text-center mb-2.5 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-2 bg-slate-800/90 px-2.5 py-1.5 rounded-xl border border-cyan-400/30 mb-2 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-cyan-400 to-blue-500 p-1 rounded-lg text-base sm:text-lg shadow-inner select-none">
-                📝
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 rounded-xl border border-purple-500/20 mb-3">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
+                👩‍🏫
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Register Account</h3>
-                <p className="text-[10px] sm:text-[11px] text-cyan-200 font-semibold">Mag-register muna para gamitin ang Signo!</p>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Register</h3>
+                <p className="text-[10px] text-purple-200 font-bold">Mag register muna para gamitin ang Signo!</p>
               </div>
             </div>
 
-            <div className="mb-1.5 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Full Name:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Full Name:</label>
               <input
                 type="text"
                 required
                 value={fullNameInput}
                 onChange={(e) => setFullNameInput(e.target.value)}
-                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Juan dela Cruz"
               />
             </div>
 
-            <div className="mb-1.5 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Email Address:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-1.5 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Password:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="mb-2 text-left font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Confirm Password:</label>
+            <div className="mb-3 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Confirmed Password:</label>
               <input
                 type="password"
                 required
                 value={confirmPasswordInput}
                 onChange={(e) => setConfirmPasswordInput(e.target.value)}
-                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
-                placeholder="Re-enter your password"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                placeholder="Enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] hover:shadow-[0_0_25px_rgba(217,70,239,0.7)] active:scale-95 mb-1.5"
+              className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-2.5"
             >
               Register
             </button>
@@ -5813,7 +5660,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 e.preventDefault();
                 setCurrentView('teacher-login');
               }}
-              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
+              className="text-[10px] text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
             >
               Already registered? Login
             </a>
@@ -5822,40 +5669,40 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 4. Forgot Password Form */}
         {isForgotPassword && (
-          <div className="w-full flex flex-col">
+          <div className="w-full flex flex-col mt-2">
             {authSuccessMsg && (
-              <div className="bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-bold text-center mb-2.5 shadow-md">
+              <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-3 py-2 rounded-xl text-[11px] font-sans font-bold text-center mb-3 shadow-sm">
                 ✅ {authSuccessMsg}
               </div>
             )}
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2.5 shadow-md">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-2 rounded-xl text-[11px] font-sans font-black text-center mb-3 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
 
-            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 rounded-xl border border-purple-500/20 mb-3">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
                 🔑
               </div>
               <div className="text-left font-sans">
                 <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Forgot Password</h3>
-                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">
-                  {forgotPasswordStep === 'email' ? 'I-reset ang password gamit ang rehistradong email' : 'I-enter ang 6-digit code at bagong password'}
+                <p className="text-[10px] text-purple-200 font-bold">
+                  {forgotPasswordStep === 'email' ? 'I-reset ang iyong password gamit ang rehistradong email' : 'I-enter ang 6-digit code at iyong bagong password'}
                 </p>
               </div>
             </div>
 
             {forgotPasswordStep === 'email' ? (
               <form onSubmit={handleForgotPasswordRequest} className="w-full flex flex-col">
-                <div className="mb-3 text-left font-sans">
-                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Email Address:</label>
+                <div className="mb-4 text-left font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Email Address:</label>
                   <input
                     type="email"
                     required
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
-                    className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                    className="w-full px-3 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -5863,7 +5710,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <button
                   type="submit"
                   disabled={authLoading}
-                  className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2.5 disabled:opacity-50"
+                  className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-3 disabled:opacity-50"
                 >
                   {authLoading ? 'Sending Code...' : 'Send Reset Code'}
                 </button>
@@ -5876,53 +5723,53 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     setAuthSuccessMsg(null);
                     setCurrentView('teacher-login');
                   }}
-                  className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
+                  className="text-[10px] text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
                 >
                   ← Back to Sign In
                 </a>
               </form>
             ) : (
               <form onSubmit={handleResetPasswordSubmit} className="w-full flex flex-col">
-                <p className="text-xs sm:text-sm text-cyan-200 mb-2 text-center font-sans">
+                <p className="text-xs text-purple-200 mb-2.5 text-center font-sans">
                   Naipadala ang reset code sa:<br />
-                  <span className="font-black text-yellow-300 break-all">{pendingEmail || emailInput}</span>
+                  <span className="font-bold text-yellow-300 break-all">{pendingEmail || emailInput}</span>
                 </p>
 
-                <div className="mb-2 text-center font-sans">
-                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">6-Digit Reset Code:</label>
+                <div className="mb-2.5 text-center font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">6-Digit Reset Code:</label>
                   <input
                     type="text"
                     maxLength={6}
                     required
                     value={resetOtpInput}
                     onChange={(e) => setResetOtpInput(e.target.value.replace(/[^0-9]/g, ''))}
-                    className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono text-center text-lg font-black tracking-[0.4em] shadow-inner"
+                    className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-mono text-center text-base font-bold tracking-[0.4em] shadow-inner"
                     placeholder="123456"
                   />
                 </div>
 
-                <div className="mb-2 text-left font-sans">
-                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">New Password:</label>
+                <div className="mb-2.5 text-left font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">New Password:</label>
                   <input
                     type="password"
                     required
                     minLength={6}
                     value={newPasswordInput}
                     onChange={(e) => setNewPasswordInput(e.target.value)}
-                    className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                    className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                     placeholder="Enter your password"
                   />
                 </div>
 
-                <div className="mb-2.5 text-left font-sans">
-                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Confirm New Password:</label>
+                <div className="mb-3 text-left font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Confirm New Password:</label>
                   <input
                     type="password"
                     required
                     minLength={6}
                     value={confirmNewPasswordInput}
                     onChange={(e) => setConfirmNewPasswordInput(e.target.value)}
-                    className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                    className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -5930,12 +5777,12 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <button
                   type="submit"
                   disabled={authLoading}
-                  className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2 disabled:opacity-50"
+                  className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-2.5 disabled:opacity-50"
                 >
                   {authLoading ? 'Resetting Password...' : 'Reset Password'}
                 </button>
 
-                <div className="flex justify-between items-center text-xs sm:text-sm font-sans pt-0.5">
+                <div className="flex justify-between items-center text-[10px] font-sans">
                   <a
                     href="#"
                     onClick={(e) => {
@@ -5944,7 +5791,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       setAuthError(null);
                       setAuthSuccessMsg(null);
                     }}
-                    className="text-cyan-300 font-bold hover:text-white transition-colors underline"
+                    className="text-purple-300 font-bold hover:text-white transition-colors underline"
                   >
                     ← Change Email
                   </a>
@@ -5957,7 +5804,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                       setForgotPasswordStep('email');
                       setCurrentView('teacher-login');
                     }}
-                    className="text-cyan-300 font-bold hover:text-white transition-colors underline"
+                    className="text-purple-300 font-bold hover:text-white transition-colors underline"
                   >
                     Back to Sign In
                   </a>
@@ -5969,42 +5816,42 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 5. Google Email Verification (OTP) Form */}
         {isVerifyEmail && (
-          <form onSubmit={handleVerifyOtpSubmit} className="w-full flex flex-col">
+          <form onSubmit={handleVerifyOtpSubmit} className="w-full flex flex-col mt-2">
             {authSuccessMsg && (
-              <div className="bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-bold text-center mb-2.5 shadow-md">
+              <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-3 py-2 rounded-xl text-[11px] font-sans font-bold text-center mb-3 shadow-sm">
                 ✅ {authSuccessMsg}
               </div>
             )}
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2.5 shadow-md">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-2 rounded-xl text-[11px] font-sans font-black text-center mb-3 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
             
-            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-cyan-400 to-blue-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 rounded-xl border border-purple-500/20 mb-3">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
                 📧
               </div>
               <div className="text-left font-sans">
                 <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Google Verification</h3>
-                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">Veripikahin ang iyong account</p>
+                <p className="text-[10px] text-purple-200 font-bold">Veripikahin ang iyong account</p>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-cyan-200 mb-2 text-center font-sans">
+            <p className="text-xs text-purple-200 mb-2.5 text-center font-sans">
               Naipadala ang 6-digit verification code sa:<br />
-              <span className="font-black text-yellow-300 break-all">{pendingEmail || emailInput || 'iyong email'}</span>
+              <span className="font-bold text-yellow-300 break-all">{pendingEmail || emailInput || 'iyong email'}</span>
             </p>
 
-            <div className="mb-2.5 text-center font-sans">
-              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">6-Digit Code:</label>
+            <div className="mb-3 text-center font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">6-Digit Code:</label>
               <input
                 type="text"
                 maxLength={6}
                 required
                 value={otpInput}
                 onChange={(e) => setOtpInput(e.target.value.replace(/[^0-9]/g, ''))}
-                className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono text-center text-lg font-black tracking-[0.4em] shadow-inner"
+                className="w-full px-3 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-mono text-center text-lg font-bold tracking-[0.4em] shadow-inner"
                 placeholder="123456"
               />
             </div>
@@ -6012,7 +5859,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             <button
               type="submit"
               disabled={authLoading}
-              className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2 disabled:opacity-50"
+              className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-2.5 disabled:opacity-50"
             >
               {authLoading ? 'Verifying...' : 'Verify Code'}
             </button>
@@ -6021,7 +5868,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               type="button"
               onClick={handleResendOtpSubmit}
               disabled={resendCooldown > 0 || authLoading}
-              className="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-200 hover:text-white font-bold rounded-xl text-xs sm:text-sm tracking-wider transition-all border border-cyan-400/30 shadow-md mb-2 disabled:opacity-50"
+              className="w-full py-1.5 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-bold rounded-xl text-xs tracking-wider transition-all border border-[#bf5cd7]/20 shadow-md mb-3 disabled:opacity-50"
             >
               {resendCooldown > 0 ? `Resend Code (${resendCooldown}s)` : 'Resend Code'}
             </button>
@@ -6034,13 +5881,13 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setAuthSuccessMsg(null);
                 setCurrentView('teacher-login');
               }}
-              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
+              className="text-[10px] text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
             >
               ← Back to Sign In
             </a>
           </form>
         )}
-        </div>
+
       </div>
       {/* Global Toast Notification */}
       {toastMessage && (
