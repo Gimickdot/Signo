@@ -2324,11 +2324,11 @@ function App() {
         </div>
 
         {/* Dynamic Sign of the Day */}
-        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-5 shadow-[0_0_20px_rgba(217,70,239,0.3)] flex flex-col items-center justify-between text-center min-h-0 overflow-hidden">
-          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-2 mb-1.5 flex-shrink-0">
-            <h2 className="text-sm sm:text-base md:text-lg font-black text-white tracking-wide">Sign of the Day</h2>
+        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-2xl md:rounded-3xl p-4 sm:p-5 md:p-6 shadow-[0_0_20px_rgba(217,70,239,0.3)] flex flex-col items-center justify-between text-center min-h-[320px] sm:min-h-[360px] md:min-h-[400px]">
+          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-2.5 mb-2 flex-shrink-0">
+            <h2 className="text-base sm:text-lg md:text-xl font-black text-white tracking-wide">Sign of the Day</h2>
             {signOfTheDay && (
-              <span className={`text-[9px] sm:text-[10px] md:text-xs font-black px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${
+              <span className={`text-[10px] sm:text-xs font-black px-3 py-1 rounded-full border uppercase tracking-wider ${
                 categoryColors[signOfTheDay.category] || 'bg-purple-900/60 text-purple-200 border-purple-700/50'
               }`}>
                 {signOfTheDay.category}
@@ -2336,20 +2336,23 @@ function App() {
             )}
           </div>
           
-          <div className="my-auto flex flex-col items-center justify-center w-full py-0.5">
+          <div className="my-auto flex flex-col items-center justify-center w-full py-2">
             {signOfTheDay ? (
               <>
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center rounded-2xl md:rounded-3xl bg-purple-950/70 border-2 border-fuchsia-500/40 p-2 shadow-xl shadow-fuchsia-900/30 transition-all flex-shrink-0">
-                  {signOfTheDay.category === 'ALPHABET' ? (
-                    <HandSVG letter={signOfTheDay.name} />
-                  ) : (
-                    <span className="text-4xl sm:text-5xl md:text-6xl select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
-                      {signOfTheDay.category === 'GREETING' ? '👋' : signOfTheDay.category === 'DAYS' ? '📅' : signOfTheDay.category === 'FAMILY' ? '👨‍👩‍👧' : '🤟'}
-                    </span>
-                  )}
+                {/* Double rounded frame matching provided photo */}
+                <div className="w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] h-48 sm:h-56 md:h-64 rounded-[32px] sm:rounded-[40px] border-2 sm:border-[3px] border-purple-500/80 bg-[#25083f]/95 p-2 sm:p-2.5 shadow-[0_0_25px_rgba(168,85,247,0.45)] flex items-center justify-center transition-all flex-shrink-0">
+                  <div className="w-full h-full rounded-[24px] sm:rounded-[30px] bg-[#431475]/95 border border-purple-400/40 flex items-center justify-center p-3 sm:p-4 shadow-inner relative overflow-hidden">
+                    {signOfTheDay.category === 'ALPHABET' ? (
+                      <HandSVG letter={signOfTheDay.name} />
+                    ) : (
+                      <span className="text-6xl sm:text-7xl md:text-8xl select-none drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)]">
+                        {signOfTheDay.category === 'GREETING' ? '👋' : signOfTheDay.category === 'DAYS' ? '📅' : signOfTheDay.category === 'FAMILY' ? '👨‍👩‍👧' : '🤟'}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                <h3 className="text-base sm:text-lg md:text-xl font-black text-yellow-300 tracking-wider mt-1 uppercase drop-shadow-md">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-yellow-300 tracking-wider mt-2.5 sm:mt-3.5 uppercase drop-shadow-[0_2px_10px_rgba(234,179,8,0.5)]">
                   "{signOfTheDay.name}"
                 </h3>
               </>
@@ -4765,7 +4768,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         </div>
         
         {/* Main Area */}
-        <div className="flex-1 min-h-0 flex flex-col pl-2 sm:pl-3 md:pl-4 overflow-y-auto lg:overflow-hidden">
+        <div className="flex-1 min-h-0 flex flex-col pl-2 sm:pl-3 md:pl-4 overflow-y-auto">
           {/* Greeting Box */}
           {currentView === 'dashboard-home' && (
             <div className="flex justify-center w-full mb-2 sm:mb-3 mt-0.5 shrink-0">
