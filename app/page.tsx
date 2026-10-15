@@ -239,7 +239,7 @@ function ProfileCustomizationModal({
 
 // --- Custom Space Theme SVG Components ---
 
-function AstronautLogo({ className = "w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48" }: { className?: string }) {
+function AstronautLogo({ className = "w-48 h-48 sm:w-56 sm:h-56" }: { className?: string }) {
   return (
     <img src="/icon.png" alt="SIGNO Logo" className={`${className} object-contain select-none`} />
   );
@@ -5552,15 +5552,15 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_6px_#fff,0_0_10px_#38bdf8]" />
       </div>
 
-      {/* Auth Container with Logo positioned ABOVE the card box */}
-      <div className="relative z-10 w-full max-w-md sm:max-w-lg md:max-w-xl flex flex-col items-center justify-center my-auto shrink-0 px-3 py-2">
-        {/* Logo cleanly positioned ABOVE the box - Enforced big size without clashing */}
-        <div className="mb-2 sm:mb-2.5 flex items-center justify-center shrink-0">
-          <AstronautLogo className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 drop-shadow-[0_10px_35px_rgba(6,182,212,0.7)]" />
+      {/* Auth Container with Logo positioned ABOVE the card box - Exactly matching user mockup */}
+      <div className="relative z-10 w-full max-w-[420px] sm:max-w-[450px] flex flex-col items-center justify-center my-auto shrink-0 px-3 pt-4 pb-2">
+        {/* Logo cleanly positioned ABOVE the box - Perched on top border exactly like user mockup */}
+        <div className="relative z-20 -mb-9 sm:-mb-11 flex items-center justify-center shrink-0">
+          <AstronautLogo className="w-48 h-48 sm:w-56 sm:h-56 drop-shadow-[0_12px_32px_rgba(6,182,212,0.65)]" />
         </div>
 
         {/* Card Body - Deep Slate Glassmorphism with Cyan/Fuchsia Neon Glow, Non-blending & Fully Visible */}
-        <div className="w-full bg-slate-900/95 backdrop-blur-xl rounded-[28px] sm:rounded-[36px] border-2 border-cyan-400/60 px-6 sm:px-8 py-4 sm:py-5 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.25)] text-center flex flex-col items-center shrink-0">
+        <div className="w-full bg-[#0a0f1d]/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] border-2 border-cyan-400/80 px-5 sm:px-6 pt-11 sm:pt-13 pb-5 sm:pb-6 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.2)] text-center flex flex-col items-center shrink-0">
 
         {/* Switcher Tab header (Only show on Login forms, not on Register or Forgot password) */}
         {(isTeacherLogin || isAdminLogin) && (
