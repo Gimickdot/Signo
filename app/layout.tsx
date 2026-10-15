@@ -49,12 +49,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        'text-black bg-white dark:text-white dark:bg-black',
+        'h-full overflow-hidden text-black bg-white dark:text-white dark:bg-black',
         GeistSans.variable,
         GeistMono.variable
       )}
     >
-      <body className="antialiased w-full min-h-screen m-0 p-0 bg-slate-950 text-slate-100">
+      <body className="antialiased w-full h-full overflow-hidden m-0 p-0 bg-slate-950 text-slate-100">
         <ClientLayout>
           {children}
         </ClientLayout>

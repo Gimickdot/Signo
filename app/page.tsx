@@ -319,14 +319,14 @@ function NavIconButton({ label, icon, isActive, onClick, accentClass = "bg-gradi
   return (
     <button
       onClick={onClick}
-      className={`relative w-18 h-18 md:w-20 md:h-20 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl border-2 ${
+      className={`relative w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-xl md:rounded-2xl flex flex-col items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl border-2 flex-shrink-0 ${
         isActive
           ? 'border-white ' + accentClass + ' shadow-fuchsia-500/30 scale-105 ring-2 ring-white/30'
           : 'border-cyan-500/20 bg-slate-900/60 hover:border-cyan-400/50 hover:bg-slate-800/60'
       }`}
     >
-      <span className="text-2xl md:text-3xl mb-1 drop-shadow-md select-none">{icon}</span>
-      <span className="relative z-10 text-[9px] md:text-[10px] font-black text-white tracking-widest uppercase drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.95)]">
+      <span className="text-xl sm:text-2xl md:text-3xl mb-0.5 md:mb-1 drop-shadow-md select-none">{icon}</span>
+      <span className="relative z-10 text-[8px] sm:text-[9px] md:text-[10px] font-black text-white tracking-widest uppercase drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.95)]">
         {label}
       </span>
     </button>
@@ -2168,88 +2168,88 @@ function App() {
     const totalSessionsCount = todayDbRecords.length;
 
     return (
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col space-y-2.5 sm:space-y-3 h-full overflow-hidden">
         {/* Top Cards Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-3 shrink-0">
           {/* Card 1: Students — Teal/Cyan */}
-          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/50 rounded-3xl p-10 flex items-center space-x-4 shadow-[0_0_30px_rgba(34,211,238,0.5)] relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#0e7490] to-[#164e63] backdrop-blur-sm border border-cyan-400/50 rounded-2xl p-2.5 sm:p-3.5 flex items-center space-x-3 shadow-[0_0_20px_rgba(34,211,238,0.3)] relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.15),transparent_70%)] pointer-events-none" />
-            <div className="text-4xl bg-cyan-300/20 w-16 h-16 rounded-2xl border border-cyan-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
+            <div className="text-2xl bg-cyan-300/20 w-10 h-10 rounded-xl border border-cyan-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               👧
             </div>
             <div>
-              <div className="text-4xl font-black text-white drop-shadow">{studentsList.length}</div>
-              <div className="text-sm font-semibold text-cyan-200">Students</div>
+              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow">{studentsList.length}</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-cyan-200">Students</div>
             </div>
           </div>
           
           {/* Card 2: Avg. Points — Amber/Gold */}
-          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/50 rounded-3xl p-10 flex items-center space-x-4 shadow-[0_0_30px_rgba(251,191,36,0.5)] relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#b45309] to-[#78350f] backdrop-blur-sm border border-amber-400/50 rounded-2xl p-2.5 sm:p-3.5 flex items-center space-x-3 shadow-[0_0_20px_rgba(251,191,36,0.3)] relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,191,36,0.15),transparent_70%)] pointer-events-none" />
-            <div className="text-4xl bg-amber-300/20 w-16 h-16 rounded-2xl border border-amber-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
+            <div className="text-2xl bg-amber-300/20 w-10 h-10 rounded-xl border border-amber-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ✨
             </div>
             <div>
-              <div className="text-4xl font-black text-white drop-shadow">
+              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow">
                 {avgPointsPercentage}
               </div>
-              <div className="text-sm font-semibold text-amber-200 font-sans">Avg. Points</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-amber-200 font-sans">Avg. Points</div>
             </div>
           </div>
           
           {/* Card 3: Total Sessions — Rose/Pink */}
-          <div className="bg-gradient-to-br from-[#9f1239] to-[#500724] backdrop-blur-sm border border-rose-400/30 rounded-3xl p-6 flex items-center space-x-4 shadow-xl shadow-rose-900/40 relative overflow-hidden text-left">
+          <div className="bg-gradient-to-br from-[#9f1239] to-[#500724] backdrop-blur-sm border border-rose-400/30 rounded-2xl p-2.5 sm:p-3.5 flex items-center space-x-3 shadow-xl shadow-rose-900/40 relative overflow-hidden text-left">
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(251,113,133,0.15),transparent_70%)] pointer-events-none" />
-            <div className="text-4xl bg-rose-300/20 w-16 h-16 rounded-2xl border border-rose-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
+            <div className="text-2xl bg-rose-300/20 w-10 h-10 rounded-xl border border-rose-300/40 flex items-center justify-center shadow-inner flex-shrink-0">
               ⏱️
             </div>
             <div>
-              <div className="text-4xl font-black text-white drop-shadow">{totalSessionsCount}</div>
-              <div className="text-sm font-semibold text-rose-200 font-sans flex items-center space-x-1">
+              <div className="text-xl sm:text-2xl md:text-3xl font-black text-white drop-shadow">{totalSessionsCount}</div>
+              <div className="text-[11px] sm:text-xs font-semibold text-rose-200 font-sans flex items-center space-x-1">
                 <span>Signs Practiced Today</span>
-                <span className="text-[10px] text-rose-300/80 font-normal">(24h Reset)</span>
+                <span className="text-[9px] text-rose-300/80 font-normal">(24h Reset)</span>
               </div>
             </div>
           </div>
         </div>
 
       {/* Bottom Row: Recent Activities & Dynamic Sign of the Day */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-3 flex-1 min-h-0 overflow-hidden">
         {/* Recent Activities */}
-        <div className="lg:col-span-3 bg-slate-900/90 backdrop-blur-sm border border-cyan-500/40 rounded-3xl p-8 shadow-[0_0_25px_rgba(6,182,212,0.4)] text-left">
-          <div className="flex items-center space-x-2 text-lg font-black text-white mb-4 pb-2 border-b border-cyan-500/30">
-            <span className="text-2xl">💡</span>
+        <div className="lg:col-span-3 bg-slate-900/90 backdrop-blur-sm border border-cyan-500/40 rounded-2xl p-3 sm:p-4 shadow-[0_0_20px_rgba(6,182,212,0.3)] text-left flex flex-col min-h-0 overflow-hidden">
+          <div className="flex items-center space-x-2 text-sm sm:text-base font-black text-white mb-2 pb-1.5 border-b border-cyan-500/30 flex-shrink-0">
+            <span className="text-lg sm:text-xl">💡</span>
             <h2>Recent Activities</h2>
           </div>
           
-          <div className="space-y-3 max-h-[380px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500 hover:scrollbar-thumb-fuchsia-400">
+          <div className="space-y-1.5 flex-1 min-h-0 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-purple-500 hover:scrollbar-thumb-fuchsia-400">
             {teacherActivities.length > 0 ? teacherActivities.map((act, i) => (
-                <div key={act.id + i} className="bg-slate-800/60 border border-cyan-500/30 rounded-2xl p-4 flex items-center justify-between hover:bg-white/10 transition-colors">
-                  <div className="flex items-center space-x-3.5">
-                    <div className="text-3xl bg-amber-400/10 w-12 h-12 rounded-xl border border-amber-400/20 flex items-center justify-center">
+                <div key={act.id + i} className="bg-slate-800/60 border border-cyan-500/30 rounded-xl p-2 flex items-center justify-between hover:bg-white/10 transition-colors">
+                  <div className="flex items-center space-x-2.5">
+                    <div className="text-xl bg-amber-400/10 w-8 h-8 rounded-lg border border-amber-400/20 flex items-center justify-center flex-shrink-0">
                       {act.emoji}
                     </div>
                     <div>
-                      <h4 className="font-extrabold text-white text-base">{act.name}</h4>
-                      <p className="text-xs text-cyan-300 font-sans">
+                      <h4 className="font-extrabold text-white text-xs sm:text-sm leading-tight">{act.name}</h4>
+                      <p className="text-[10px] sm:text-[11px] text-cyan-300 font-sans">
                         {act.type === 'ADD' ? 'Added new student' : act.type === 'EDIT' ? 'Updated profile' : act.type === 'DELETE' ? 'Deleted student' : `Played ${act.mode || 'session'}`}
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-cyan-300 font-sans font-medium">{getTimeAgo(act.timestamp || Date.now())}</span>
+                  <span className="text-[9px] sm:text-[10px] text-cyan-300 font-sans font-medium flex-shrink-0">{getTimeAgo(act.timestamp || Date.now())}</span>
                 </div>
               )) : (
-                <p className="text-cyan-400 text-sm font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
+                <p className="text-cyan-400 text-xs font-sans font-medium text-center py-4">No recent activities. Add students to see tracking!</p>
               )}
           </div>
         </div>
 
         {/* Dynamic Sign of the Day */}
-        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-3xl p-8 shadow-[0_0_25px_rgba(217,70,239,0.4)] flex flex-col items-center justify-between text-center min-h-[320px] h-fit">
-          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-3 mb-2">
-            <h2 className="text-lg font-black text-white tracking-wide">Sign of the Day</h2>
+        <div className="lg:col-span-2 bg-slate-900/90 backdrop-blur-sm border border-fuchsia-500/40 rounded-2xl p-3 sm:p-4 shadow-[0_0_20px_rgba(217,70,239,0.3)] flex flex-col items-center justify-between text-center min-h-0 overflow-hidden">
+          <div className="flex items-center justify-between w-full border-b border-fuchsia-500/30 pb-1.5 mb-1.5 flex-shrink-0">
+            <h2 className="text-sm sm:text-base font-black text-white tracking-wide">Sign of the Day</h2>
             {signOfTheDay && (
-              <span className={`text-xs font-black px-3 py-1 rounded-full border uppercase tracking-wider ${
+              <span className={`text-[9px] sm:text-[10px] font-black px-2 py-0.5 rounded-full border uppercase tracking-wider ${
                 categoryColors[signOfTheDay.category] || 'bg-purple-900/60 text-purple-200 border-purple-700/50'
               }`}>
                 {signOfTheDay.category}
@@ -2257,25 +2257,25 @@ function App() {
             )}
           </div>
           
-          <div className="my-3 flex flex-col items-center justify-center w-full">
+          <div className="my-auto flex flex-col items-center justify-center w-full py-1 min-h-0">
             {signOfTheDay ? (
               <>
-                <div className="w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 flex items-center justify-center rounded-3xl bg-purple-950/70 border-2 border-fuchsia-500/40 p-2 shadow-2xl shadow-fuchsia-900/30 my-2 transition-all">
+                <div className="w-18 h-18 sm:w-22 sm:h-22 md:w-26 md:h-26 flex items-center justify-center rounded-2xl bg-purple-950/70 border-2 border-fuchsia-500/40 p-2 shadow-xl shadow-fuchsia-900/30 transition-all flex-shrink-0 max-h-[110px]">
                   {signOfTheDay.category === 'ALPHABET' ? (
                     <HandSVG letter={signOfTheDay.name} />
                   ) : (
-                    <span className="text-7xl select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
+                    <span className="text-4xl sm:text-5xl select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
                       {signOfTheDay.category === 'GREETING' ? '👋' : signOfTheDay.category === 'DAYS' ? '📅' : signOfTheDay.category === 'FAMILY' ? '👨‍👩‍👧' : '🤟'}
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-yellow-300 tracking-wider mt-2 uppercase drop-shadow-md">
+                <h3 className="text-sm sm:text-base md:text-lg font-black text-yellow-300 tracking-wider mt-1 uppercase drop-shadow-md">
                   "{signOfTheDay.name}"
                 </h3>
               </>
             ) : (
-              <p className="text-sm text-purple-300 font-sans font-medium">Loading sign...</p>
+              <p className="text-xs text-purple-300 font-sans font-medium">Loading sign...</p>
             )}
           </div>
         </div>
@@ -2299,149 +2299,147 @@ function App() {
     const paginatedStudents = filteredStudents.slice(startIndex, startIndex + studentsPerPage);
 
     return (
-      <div className="flex flex-col space-y-6">
+      <div className="flex flex-col space-y-2 sm:space-y-2.5 h-full overflow-hidden">
         {/* Search, Filter & Add Student Controls */}
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-3xl p-8 text-left flex flex-col space-y-5">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            {/* Widescreen Search Student Bar */}
-            <div className="relative flex-1 font-sans">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-5 pointer-events-none text-cyan-400 text-xl md:text-2xl">
-                🔍
-              </span>
-              <input
-                type="text"
-                placeholder="Search student name"
-                value={studentSearch}
-                onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
-                className="w-full pl-14 pr-5 py-4 bg-slate-800/60 border border-cyan-500/40 rounded-2xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-base md:text-lg font-bold text-slate-100 placeholder-slate-400 shadow-[0_0_15px_rgba(6,182,212,0.15)]"
-              />
-            </div>
-            
-            {/* Add Student trigger button */}
-            <button
-              onClick={() => { setIsAddingStudent(false); setNewStudentName(''); setIsAddStudentOpen(true); }}
-              className="px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-black rounded-xl tracking-widest transition-all border border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.6)] active:scale-95 uppercase flex items-center justify-center space-x-2"
-            >
-              <span>Add Student</span>
-            </button>
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] rounded-2xl p-2 sm:p-2.5 text-left flex flex-wrap items-center justify-between gap-2 shrink-0">
+          {/* Widescreen Search Student Bar */}
+          <div className="relative flex-1 min-w-[170px] max-w-xs sm:max-w-sm font-sans">
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-cyan-400 text-sm">
+              🔍
+            </span>
+            <input
+              type="text"
+              placeholder="Search student name"
+              value={studentSearch}
+              onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
+              className="w-full pl-9 pr-3 py-1.5 bg-slate-800/60 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs font-bold text-slate-100 placeholder-slate-400 shadow-[0_0_10px_rgba(6,182,212,0.1)]"
+            />
           </div>
 
-          {/* Filter pills aligned right/middle */}
-          <div className="flex flex-wrap items-center gap-1.5 font-sans justify-start md:justify-end">
+          {/* Filter pills */}
+          <div className="flex items-center gap-1 sm:gap-1.5 font-sans">
             {['All', 'Grade 1', 'Grade 2', 'Grade 3'].map((grade) => (
               <button
                 key={grade}
                 onClick={() => { setStudentFilter(grade); setStudentCurrentPage(1); }}
-                className={`px-6 py-3 rounded-xl text-sm font-black tracking-widest whitespace-nowrap transition duration-200 border ${studentFilter === grade ? (grade === 'Grade 2' ? 'bg-yellow-600 border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.6)] text-white scale-105' : grade === 'Grade 3' ? 'bg-emerald-600 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.6)] text-white scale-105' : 'bg-blue-600 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.6)] text-white scale-105') : (grade === 'Grade 2' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-yellow-300 hover:border-yellow-400' : grade === 'Grade 3' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-emerald-300 hover:border-emerald-400' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-blue-300 hover:border-blue-400')}`}
+                className={`px-2.5 sm:px-3 py-1 rounded-lg text-[11px] sm:text-xs font-black tracking-wider whitespace-nowrap transition duration-200 border ${studentFilter === grade ? (grade === 'Grade 2' ? 'bg-yellow-600 border-yellow-400 shadow-[0_0_12px_rgba(234,179,8,0.5)] text-white scale-105' : grade === 'Grade 3' ? 'bg-emerald-600 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.5)] text-white scale-105' : 'bg-blue-600 border-blue-400 shadow-[0_0_12px_rgba(59,130,246,0.5)] text-white scale-105') : (grade === 'Grade 2' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-yellow-300 hover:border-yellow-400' : grade === 'Grade 3' ? 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-emerald-300 hover:border-emerald-400' : 'bg-slate-800/80 text-slate-300 border-cyan-500/30 hover:bg-slate-700 hover:text-blue-300 hover:border-blue-400')}`}
               >
                 {grade}
               </button>
             ))}
           </div>
+          
+          {/* Add Student trigger button */}
+          <button
+            onClick={() => { setIsAddingStudent(false); setNewStudentName(''); setIsAddStudentOpen(true); }}
+            className="px-3.5 sm:px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-black rounded-xl tracking-wider transition-all border border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.5)] active:scale-95 uppercase flex items-center justify-center space-x-1.5 flex-shrink-0"
+          >
+            <span>+ Add Student</span>
+          </button>
         </div>
 
         {/* Dynamic Students Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-2.5 text-left flex-1 min-h-0 overflow-hidden">
           {paginatedStudents.length > 0 ? (
             paginatedStudents.map((std) => (
               <div 
                 key={std.id} 
-                className={`backdrop-blur-sm border-2 rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-900/70 border-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:border-blue-400 hover:bg-blue-800/80" : std.grade === "Grade 2" ? "bg-yellow-900/70 border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:border-yellow-400 hover:bg-yellow-800/80" : std.grade === "Grade 3" ? "bg-emerald-900/70 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:border-emerald-400 hover:bg-emerald-800/80" : "bg-slate-900/95 border-cyan-500/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:border-cyan-400 hover:bg-slate-800"}`}
+                className={`backdrop-blur-sm border-2 rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between relative overflow-hidden transition-all ${std.grade === "Grade 1" ? "bg-blue-900/70 border-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:border-blue-400 hover:bg-blue-800/80" : std.grade === "Grade 2" ? "bg-yellow-900/70 border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.25)] hover:border-yellow-400 hover:bg-yellow-800/80" : std.grade === "Grade 3" ? "bg-emerald-900/70 border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.25)] hover:border-emerald-400 hover:bg-emerald-800/80" : "bg-slate-900/95 border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)] hover:border-cyan-400 hover:bg-slate-800"}`}
               >
                 {/* Delete button (X) top right */}
                 <button
                   onClick={(e) => { e.stopPropagation(); setStudentIdToDelete(std.id); }}
-                  className="absolute top-4 right-5 text-cyan-400 hover:text-rose-400 font-black text-xl select-none transition-colors"
+                  className="absolute top-2 right-2.5 text-cyan-400 hover:text-rose-400 font-black text-base select-none transition-colors"
                   title="Remove student"
                 >
                   ✕
                 </button>
 
-                <div className="flex items-center space-x-5 mb-5 mt-2">
+                <div className="flex items-center space-x-2.5 sm:space-x-3 mb-1.5 mt-0.5">
                   {/* Circular profile emoji background */}
-                  <div className="text-6xl bg-yellow-500/10 min-w-[96px] w-24 h-24 rounded-full border-2 border-yellow-500/40 flex flex-col items-center justify-center select-none shadow-inner flex-shrink-0">
+                  <div className="text-2xl sm:text-3xl bg-yellow-500/10 min-w-[42px] w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-yellow-500/40 flex flex-col items-center justify-center select-none shadow-inner flex-shrink-0">
                     {std.emoji}
                   </div>
                   
                   {/* Right side: Name, Grade, Points */}
-                  <div className="flex flex-col items-start pr-6 flex-1">
-                    <h3 className="text-xl md:text-2xl font-black text-white leading-tight uppercase mb-1">{std.name}</h3>
-                    <p className="text-sm text-purple-200 font-sans font-semibold mb-3">{std.grade}</p>
+                  <div className="flex flex-col items-start pr-3 flex-1 min-w-0">
+                    <h3 className="text-xs sm:text-sm font-black text-white leading-tight uppercase truncate w-full">{std.name}</h3>
+                    <p className="text-[10px] sm:text-[11px] text-purple-200 font-sans font-semibold mb-1">{std.grade}</p>
                     {/* Points badge with Star */}
-                    <div className="flex items-center space-x-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-3 py-1 w-fit">
-                      <span className="text-yellow-400 text-sm">⭐</span>
-                      <span className="text-xs font-black text-yellow-300 font-sans tracking-wide">Total Points: {std.points}</span>
+                    <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-2 py-0.5 w-fit">
+                      <span className="text-yellow-400 text-[10px]">⭐</span>
+                      <span className="text-[10px] font-black text-yellow-300 font-sans tracking-wide">{std.points} pts</span>
                     </div>
                   </div>
                 </div>
 
                 <button 
                   onClick={() => setSelectedProfileStudent(std)}
-                  className="w-full py-2.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white text-xs font-black rounded-xl tracking-wider transition-all border border-[#60a5fa]/30 shadow-md active:scale-95 uppercase"
+                  className="w-full py-1.5 bg-[#3b82f6] hover:bg-[#2563eb] text-white text-[10px] sm:text-[11px] font-black rounded-xl tracking-wider transition-all border border-[#60a5fa]/30 shadow-sm active:scale-95 uppercase"
                 >
                   View Profile
                 </button>
               </div>
             ))
           ) : (
-            <div className="col-span-full bg-[#0f172a]/30 backdrop-blur-sm border border-white/10 rounded-3xl p-12 text-center text-purple-300 font-sans flex flex-col items-center">
-              <span className="text-4xl mb-2">🪐</span>
-              <p className="text-sm font-bold">No students found matching your filters.</p>
-              </div>
-            )}
-          </div>
-
-          {/* Pagination Controls */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center space-x-10 mt-6 pb-2">
-              <button 
-                onClick={() => setStudentCurrentPage(prev => Math.max(1, prev - 1))}
-                disabled={currentPage === 1}
-                className="w-16 h-16 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-10 h-10 mr-1"><path d="M16 5v14l-11-7z" /></svg>
-              </button>
-              
-              <div className="flex items-center space-x-3 text-cyan-500/60 pb-3 text-6xl">
-                <span className={currentPage === 1 ? "text-cyan-300" : ""}>&bull;</span>
-                <span className={currentPage > 1 && currentPage < totalPages ? "text-cyan-300" : ""}>&bull;</span>
-                <span className={currentPage === totalPages ? "text-cyan-300" : ""}>&bull;</span>
-              </div>
-              
-              <button 
-                onClick={() => setStudentCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                disabled={currentPage === totalPages}
-                className="w-16 h-16 rounded-full bg-slate-800/80 border-2 border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)]"
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-10 h-10 ml-1"><path d="M8 5v14l11-7z" /></svg>
-              </button>
+            <div className="col-span-full bg-[#0f172a]/30 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center text-purple-300 font-sans flex flex-col items-center justify-center">
+              <span className="text-2xl mb-1">🪐</span>
+              <p className="text-xs font-bold">No students found matching your filters.</p>
             </div>
           )}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center space-x-6 sm:space-x-8 pt-0.5 pb-0.5 shrink-0">
+            <button 
+              onClick={() => setStudentCurrentPage(prev => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+              className="w-8 h-8 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-md"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-4 h-4 mr-0.5"><path d="M16 5v14l-11-7z" /></svg>
+            </button>
+            
+            <div className="flex items-center space-x-2 text-cyan-500/60 pb-0.5 text-xl sm:text-2xl">
+              <span className={currentPage === 1 ? "text-cyan-300" : ""}>&bull;</span>
+              <span className={currentPage > 1 && currentPage < totalPages ? "text-cyan-300" : ""}>&bull;</span>
+              <span className={currentPage === totalPages ? "text-cyan-300" : ""}>&bull;</span>
+            </div>
+            
+            <button 
+              onClick={() => setStudentCurrentPage(prev => Math.min(totalPages, prev + 1))}
+              disabled={currentPage === totalPages}
+              className="w-8 h-8 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-slate-700 hover:border-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:bg-slate-800/80 disabled:hover:border-cyan-500/40 disabled:cursor-not-allowed transition-all shadow-md"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" className="w-4 h-4 ml-0.5"><path d="M8 5v14l11-7z" /></svg>
+            </button>
+          </div>
+        )}
+      </div>
     );
   };
 
   const renderStudentSelectorSidebar = () => (
-      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col h-[480px] lg:h-auto space-y-4 text-left w-full max-h-[85vh]">
+      <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2.5 text-left w-full h-full flex-1 min-h-0 overflow-y-auto">
         <div>
-          <h2 className="text-2xl font-black text-white mb-1">Select Student</h2>
-          <p className="text-xs font-bold text-purple-300 font-sans">Choose who is currently playing</p>
+          <h2 className="text-lg sm:text-xl font-black text-white mb-0.5">Select Student</h2>
+          <p className="text-[11px] font-bold text-purple-300 font-sans">Choose who is currently playing</p>
         </div>
         
         <div className="relative w-full font-sans">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-purple-400 text-lg">🔍</span>
+          <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400 text-sm">🔍</span>
           <input
             type="text"
             placeholder="Search students..."
             value={studentSearch}
             onChange={(e) => { setStudentSearch(e.target.value); setStudentCurrentPage(1); }}
-            className="w-full pl-12 pr-4 py-3 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-sm text-slate-100 placeholder-purple-400"
+            className="w-full pl-9 pr-3 py-1.5 sm:py-2 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs text-slate-100 placeholder-purple-400"
           />
         </div>
 
-        <div className="flex-1 overflow-y-auto space-y-4 pr-2 scrollbar-thin scrollbar-thumb-purple-800">
+        <div className="flex-1 overflow-y-auto space-y-2 pr-1.5 scrollbar-thin scrollbar-thumb-purple-800">
           {studentsList.filter(s => s.name.toLowerCase().includes(studentSearch.toLowerCase())).length === 0 ? (
-             <p className="text-sm text-purple-400 text-center py-4">No students found.</p>
+             <p className="text-xs text-purple-400 text-center py-3">No students found.</p>
           ) : (
             studentsList.filter(s => s.name.toLowerCase().includes(studentSearch.toLowerCase())).map(student => {
               const isActive = activeStudentId === student.id || (!activeStudentId && studentsList[0]?.id === student.id);
@@ -2484,16 +2482,16 @@ function App() {
                       }
                     }}
                     disabled={!!activeStudentId && activeStudentId !== student.id}
-                  className={`w-full flex items-center p-3 rounded-2xl transition duration-200 text-left border ${
+                  className={`w-full flex items-center p-2 sm:p-2.5 rounded-xl transition duration-200 text-left border ${
                     (!!activeStudentId && activeStudentId !== student.id) ? 'opacity-40 cursor-not-allowed grayscale ' : ''} ${isActive ? bgActive : bgInactive
                   }`}
                 >
-                  <div className={`flex-shrink-0 w-12 h-12 aspect-square rounded-2xl ${circleBg} flex items-center justify-center text-xl mr-3 shadow-inner border border-white/10`}>
+                  <div className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 aspect-square rounded-xl ${circleBg} flex items-center justify-center text-lg sm:text-xl mr-2.5 shadow-inner border border-white/10`}>
                     {student.emoji}
                   </div>
-                  <div>
-                    <h4 className={`text-base leading-tight font-black tracking-wide ${isActive ? 'text-white' : 'text-slate-200'}`}>{student.name}</h4>
-                    <p className={`text-sm font-bold font-sans ${pointsText}`}>{student.points} Points</p>
+                  <div className="min-w-0 flex-1">
+                    <h4 className={`text-xs sm:text-sm leading-tight font-black tracking-wide truncate ${isActive ? 'text-white' : 'text-slate-200'}`}>{student.name}</h4>
+                    <p className={`text-[10px] sm:text-xs font-bold font-sans ${pointsText}`}>{student.points} Points</p>
                   </div>
                 </button>
               )
@@ -2525,12 +2523,12 @@ function App() {
   }, [isCorrectSign]);
 
   const renderLiveCameraFeed = () => (
-    <div className={`bg-[#0f172a]/85 backdrop-blur-sm border rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 ${
+    <div className={`bg-[#0f172a]/85 backdrop-blur-sm border rounded-2xl md:rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 flex-shrink-0 ${
       isCorrectSign 
-        ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
+        ? 'border-4 border-emerald-400 ring-4 sm:ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
         : 'border-white/10'
     }`}>
-      <div className={`px-5 py-3 border-b transition-all duration-300 flex items-center justify-between ${
+      <div className={`px-3.5 py-2 md:px-4 md:py-2.5 border-b transition-all duration-300 flex items-center justify-between ${
         isCorrectSign ? 'border-emerald-400/50 bg-emerald-950/40' : 'border-purple-800/40 bg-purple-950/20'
       }`}>
         <div className="flex items-center space-x-2">
@@ -2538,7 +2536,7 @@ function App() {
             <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isCorrectSign ? 'bg-emerald-400' : 'bg-cyan-400'}`}></span>
             <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${isCorrectSign ? 'bg-emerald-500' : 'bg-cyan-500'}`}></span>
           </span>
-          <span className={`text-xs font-black uppercase tracking-wider ${isCorrectSign ? 'text-emerald-300' : 'text-cyan-300'}`}>
+          <span className={`text-[11px] sm:text-xs font-black uppercase tracking-wider ${isCorrectSign ? 'text-emerald-300' : 'text-cyan-300'}`}>
             {isCorrectSign ? '✨ CORRECT SIGN DETECTED!' : 'Live Space Feed'}
           </span>
         </div>
@@ -2547,10 +2545,10 @@ function App() {
         </div>
       </div>
 
-      <div className="relative h-48 md:h-72 lg:h-80 2xl:h-[22rem] w-full bg-slate-950 flex items-center justify-center overflow-hidden rounded-b-xl flex-shrink-0">
+      <div className="relative h-36 sm:h-44 md:h-52 lg:h-56 xl:h-64 2xl:h-72 w-full bg-slate-950 flex items-center justify-center overflow-hidden rounded-b-xl flex-shrink-0">
         {!(isModelLoaded && isCameraReady) && !modelError && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950/90 text-slate-300 p-4">
-            <svg className="animate-spin h-9 w-9 text-cyan-400 mb-2.5" fill="none" viewBox="0 0 24 24">
+            <svg className="animate-spin h-8 w-8 text-cyan-400 mb-2" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
             </svg>
@@ -2560,10 +2558,10 @@ function App() {
         
         {modelError && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-slate-950/95 text-slate-300 p-4 text-center">
-            <svg className="h-10 w-10 text-rose-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-8 w-8 text-rose-500 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            <p className="font-black text-sm text-rose-400">Failed to Load Model</p>
+            <p className="font-black text-xs sm:text-sm text-rose-400">Failed to Load Model</p>
             <p className="text-[10px] text-slate-500 max-w-xs mt-1 font-sans">{modelError}</p>
           </div>
         )}
@@ -2586,20 +2584,20 @@ function App() {
           </>
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 font-sans">
-            <svg className="w-14 h-14 mb-2 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 mb-1.5 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
             </svg>
-            <p className="text-xs font-semibold">Camera is sleeping</p>
+            <p className="text-[11px] sm:text-xs font-semibold">Camera is sleeping</p>
           </div>
         )}
 
         {/* Speed Warning Message */}
         {speedWarning && !isCorrectSign && (
           <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none animate-fadeIn">
-            <div className="bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-600 border-4 border-yellow-300 rounded-3xl px-12 py-8 shadow-[0_0_70px_rgba(245,158,11,1)] text-center flex flex-col items-center animate-bounce">
-              <div className="text-6xl mb-2 select-none drop-shadow-md">⚠️</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-tight">
-                YOU'RE TOO FAST!<br/><span className="text-xl md:text-2xl text-yellow-100">KEEP CALM AND SLOW DOWN</span>
+            <div className="bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-600 border-4 border-yellow-300 rounded-2xl md:rounded-3xl px-8 py-5 shadow-[0_0_70px_rgba(245,158,11,1)] text-center flex flex-col items-center animate-bounce">
+              <div className="text-4xl sm:text-5xl mb-1 select-none drop-shadow-md">⚠️</div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-tight">
+                YOU'RE TOO FAST!<br/><span className="text-sm sm:text-base md:text-lg text-yellow-100">KEEP CALM AND SLOW DOWN</span>
               </h2>
             </div>
           </div>
@@ -2608,9 +2606,9 @@ function App() {
         {/* Range Warning Message */}
         {rangeWarning && !speedWarning && !isCorrectSign && (
           <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none animate-fadeIn">
-            <div className="bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-600 border-4 border-yellow-300 rounded-3xl px-12 py-8 shadow-[0_0_70px_rgba(245,158,11,1)] text-center flex flex-col items-center animate-bounce">
-              <div className="text-6xl mb-2 select-none drop-shadow-md">🔍</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-none">
+            <div className="bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-600 border-4 border-yellow-300 rounded-2xl md:rounded-3xl px-8 py-5 shadow-[0_0_70px_rgba(245,158,11,1)] text-center flex flex-col items-center animate-bounce">
+              <div className="text-4xl sm:text-5xl mb-1 select-none drop-shadow-md">🔍</div>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-none">
                 {rangeWarning === 'too close' ? 'TOO CLOSE!' : rangeWarning === 'too far' ? 'TOO FAR!' : 'NO USER DETECTED!'}
               </h2>
             </div>
@@ -2620,41 +2618,41 @@ function App() {
         {/* Center Pop-up Celebration Message when Correct */}
         {isCorrectSign && (
           <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none animate-fadeIn">
-            <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 border-4 border-emerald-300 rounded-3xl px-12 py-8 shadow-[0_0_70px_rgba(52,211,153,1)] text-center flex flex-col items-center animate-bounce">
-              <div className="text-6xl mb-2 select-none drop-shadow-md">✨</div>
-              <h2 className="text-4xl md:text-5xl font-black text-yellow-300 uppercase tracking-widest drop-shadow-lg leading-none">
+            <div className="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 border-4 border-emerald-300 rounded-2xl md:rounded-3xl px-8 py-5 shadow-[0_0_70px_rgba(52,211,153,1)] text-center flex flex-col items-center animate-bounce">
+              <div className="text-4xl sm:text-5xl mb-1 select-none drop-shadow-md">✨</div>
+              <h2 className="text-3xl sm:text-4xl font-black text-yellow-300 uppercase tracking-widest drop-shadow-lg leading-none">
                 TAMA!
               </h2>
             </div>
           </div>
         )}
-          {/* Center Pop-up Message when Wrong (MALI) */}
-          {sessionMode === 'game' && gameSelectedAnswer && currentQuestion && gameSelectedAnswer !== currentQuestion.correctAnswer && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none animate-fadeIn">
-              <div className="bg-gradient-to-br from-rose-600 via-rose-700 to-red-800 border-4 border-rose-300 rounded-3xl px-12 py-8 shadow-[0_0_70px_rgba(225,29,72,1)] text-center flex flex-col items-center animate-bounce">
-                <div className="text-6xl mb-2 select-none drop-shadow-md">❌</div>
-                <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-none">
-                  MALI
-                </h2>
-                <p className="text-xl md:text-2xl font-bold text-yellow-300 mt-3 uppercase tracking-wide drop-shadow-md">
-                  Try again
-                </p>
-              </div>
-            </div>
-          )}
 
-        
-        <div className="absolute bottom-[-20px] right-[-40px] w-48 h-48 md:w-64 md:h-64 z-40 pointer-events-none">
+        {/* Center Pop-up Message when Wrong (MALI) */}
+        {sessionMode === 'game' && gameSelectedAnswer && currentQuestion && gameSelectedAnswer !== currentQuestion.correctAnswer && (
+          <div className="absolute inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm pointer-events-none animate-fadeIn">
+            <div className="bg-gradient-to-br from-rose-600 via-rose-700 to-red-800 border-4 border-rose-300 rounded-2xl md:rounded-3xl px-8 py-5 shadow-[0_0_70px_rgba(225,29,72,1)] text-center flex flex-col items-center animate-bounce">
+              <div className="text-4xl sm:text-5xl mb-1 select-none drop-shadow-md">❌</div>
+              <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-widest drop-shadow-lg leading-none">
+                MALI
+              </h2>
+              <p className="text-base sm:text-lg font-bold text-yellow-300 mt-2 uppercase tracking-wide drop-shadow-md">
+                Try again
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="absolute bottom-[-15px] right-[-25px] w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 z-40 pointer-events-none">
           <SpacemanVtuber />
         </div>
       </div>
 
-      <div className="px-5 py-3 border-t border-purple-800/40 bg-purple-950/10 flex items-center justify-between">
+      <div className="px-3.5 py-2 md:px-4 md:py-2.5 border-t border-purple-800/40 bg-purple-950/10 flex items-center justify-between">
         {currentView !== 'dashboard-game' && currentView !== 'dashboard-spelling' ? (
-          <div className="flex bg-purple-900/40 rounded-xl p-1 border border-purple-800/50">
+          <div className="flex bg-purple-900/40 rounded-xl p-0.5 sm:p-1 border border-purple-800/50">
             <button
               onClick={() => setRecognitionMode('gestures')}
-              className={`px-3 py-1 text-[10px] font-black uppercase tracking-wider rounded-lg transition-all ${
+              className={`px-2.5 sm:px-3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider rounded-lg transition-all ${
                 recognitionMode === 'gestures' ? 'bg-fuchsia-600 text-white shadow-md' : 'text-purple-300 hover:text-white'
               }`}
             >
@@ -2662,7 +2660,7 @@ function App() {
             </button>
             <button
               onClick={() => setRecognitionMode('alphabets')}
-              className={`px-3 py-1 text-[10px] font-black uppercase tracking-wider rounded-lg transition-all ${
+              className={`px-2.5 sm:px-3 py-1 text-[9px] sm:text-[10px] font-black uppercase tracking-wider rounded-lg transition-all ${
                 recognitionMode === 'alphabets' ? 'bg-fuchsia-600 text-white shadow-md' : 'text-purple-300 hover:text-white'
               }`}
             >
@@ -2677,7 +2675,7 @@ function App() {
               setShowCameraTooltip(false);
               hasSeenCameraTooltipRef.current = true;
             }}
-            className={`px-4 py-1.5 rounded-xl text-xs font-black uppercase tracking-wider transition duration-300 ${
+            className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-lg md:rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition duration-300 ${
             webcamEnabledByUser 
               ? 'bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/25' 
               : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/25'
@@ -2687,9 +2685,9 @@ function App() {
           </button>
           
           {showCameraTooltip && (
-            <div className="absolute bottom-[calc(100%+12px)] right-0 bg-white px-4 py-3 rounded-2xl shadow-2xl border-2 border-rose-400 w-56 animate-bounce z-50 pointer-events-none">
-              <div className="flex items-start space-x-3">
-                <div className="text-2xl mt-0.5">💡</div>
+            <div className="absolute bottom-[calc(100%+12px)] right-0 bg-white px-3.5 py-2.5 rounded-2xl shadow-2xl border-2 border-rose-400 w-52 animate-bounce z-50 pointer-events-none">
+              <div className="flex items-start space-x-2.5">
+                <div className="text-xl mt-0.5">💡</div>
                 <div>
                   <h4 className="text-rose-600 font-black text-xs uppercase tracking-wider mb-0.5">Camera On</h4>
                   <p className="text-[10px] text-slate-600 font-sans font-bold leading-tight">Click here to turn off the camera anytime!</p>
@@ -2702,27 +2700,27 @@ function App() {
       </div>
 
       {currentView === 'dashboard-spelling' && (
-        <div className="px-5 py-4 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-4">
+        <div className="px-3.5 py-2.5 md:px-4 md:py-3 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-2">
           <div>
-            <div className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Game Status</div>
-            <div className="flex items-center space-x-3.5 p-3 bg-purple-950/40 rounded-2xl border border-purple-850/50 text-slate-300 font-sans">
-              <div className="flex-shrink-0 w-8 h-8 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                <span className="text-sm animate-pulse">🤔</span>
+            <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Game Status</div>
+            <div className="flex items-center space-x-2.5 p-2 bg-purple-950/40 rounded-xl border border-purple-850/50 text-slate-300 font-sans">
+              <div className="flex-shrink-0 w-6 h-6 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
+                <span className="text-xs animate-pulse">🤔</span>
               </div>
               <div>
-                <p className="text-xs font-black text-slate-200">Show the sign for the current letter to the camera</p>
+                <p className="text-[11px] font-black text-slate-200">Show the sign for the current letter to the camera</p>
               </div>
             </div>
           </div>
 
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-white font-black text-sm">Spelling Progress</h3>
+            <div className="flex items-center justify-between mb-1.5">
+              <h3 className="text-white font-black text-xs sm:text-sm">Spelling Progress</h3>
               <span className="text-cyan-300 font-bold text-[10px] uppercase tracking-wider">Word {spellingCurrentWordIndex + 1}/5</span>
             </div>
-            <div className="w-full bg-purple-950/60 rounded-full h-4 border border-emerald-500/30 overflow-hidden">
+            <div className="w-full bg-purple-950/60 rounded-full h-3 border border-emerald-500/30 overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-emerald-500 to-teal-400 h-4 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0.7)]" 
+                className="bg-gradient-to-r from-emerald-500 to-teal-400 h-3 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0.7)]" 
                 style={{ width: `${(spellingCurrentWordIndex / 5) * 100}%` }}
               ></div>
             </div>
@@ -2731,19 +2729,19 @@ function App() {
       )}
       
       {currentView === 'dashboard-game' && (
-        <div className="px-5 py-4 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-4">
+        <div className="px-3.5 py-2.5 md:px-4 md:py-3 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-2">
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-white font-black text-sm">{gameCategory ? `${gameCategory} Adventure` : 'Adventure Progress'}</h3>
+            <div className="flex items-center justify-between mb-1.5">
+              <h3 className="text-white font-black text-xs sm:text-sm">{gameCategory ? `${gameCategory} Adventure` : 'Adventure Progress'}</h3>
               <span className="text-cyan-300 font-bold text-[10px] uppercase tracking-wider">Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
             </div>
-            <div className="w-full bg-purple-950/60 rounded-full h-4 border border-emerald-500/30 overflow-hidden">
+            <div className="w-full bg-purple-950/60 rounded-full h-3 border border-emerald-500/30 overflow-hidden">
               <div 
-                className="bg-gradient-to-r from-emerald-500 to-teal-400 h-4 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0.7)]" 
+                className="bg-gradient-to-r from-emerald-500 to-teal-400 h-3 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(16,185,129,0.7)]" 
                 style={{ width: `${((currentQuestionIndex % 5) / 5) * 100}%` }}
               ></div>
             </div>
-            <p className="text-purple-300 text-[10px] font-sans mt-3 text-center">Answer questions and master signs to level up!</p>
+            <p className="text-purple-300 text-[9px] sm:text-[10px] font-sans mt-1 text-center">Answer questions and master signs to level up!</p>
           </div>
         </div>
       )}
@@ -2751,172 +2749,172 @@ function App() {
   );
 
       const renderSandboxView = () => (
-    <div className="flex flex-col lg:flex-row gap-6 h-full overflow-hidden">
+    <div className="flex flex-col lg:flex-row gap-3 md:gap-4 h-full overflow-hidden">
       {/* Main Sandbox Area */}
-      <div className="flex-1 flex flex-col space-y-6 h-full overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch h-full min-h-0">
+      <div className="flex-1 flex flex-col space-y-3 md:space-y-4 h-full overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 items-stretch h-full min-h-0">
           
           {/* LEFT COLUMN */}
-          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
-            <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
-              <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
+          <div className="flex flex-col space-y-2.5 sm:space-y-3 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-1">
+            <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl md:rounded-2xl px-4 py-1.5 w-fit shadow-md flex-shrink-0 text-left">
+              <h1 className="text-sm md:text-base font-black text-white tracking-wide uppercase">
                 {headerText}
               </h1>
             </div>
             {renderLiveCameraFeed()}
             {/* Explorer Section */}
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col space-y-4 text-left">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3.5 sm:space-y-0">
-            <div>
-              <h2 className="text-lg font-black text-white">FSL Sign Explorer</h2>
-              <p className="text-[10px] font-bold text-purple-300 font-sans">Select a sign below to see its demonstration and practice it</p>
-            </div>
-            
-            <div className="relative w-full sm:max-w-xs font-sans">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400">🔍</span>
-              <input
-                type="text"
-                placeholder="Search signs..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs text-slate-100 placeholder-purple-400"
-              />
-            </div>
-          </div>
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2.5 text-left flex-1 min-h-0">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+                <div>
+                  <h2 className="text-sm sm:text-base font-black text-white">FSL Sign Explorer</h2>
+                  <p className="text-[10px] font-bold text-purple-300 font-sans">Select a sign below to see its demonstration</p>
+                </div>
+                
+                <div className="relative w-full sm:max-w-xs font-sans">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400 text-xs">🔍</span>
+                  <input
+                    type="text"
+                    placeholder="Search signs..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-8 pr-3 py-1.5 bg-purple-950/65 border border-purple-800/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs text-slate-100 placeholder-purple-400"
+                  />
+                </div>
+              </div>
 
-          {/* Category Pills */}
-          <div className="flex overflow-x-auto pb-1 space-x-1.5 scrollbar-thin scrollbar-thumb-purple-800">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl text-[10px] font-black whitespace-nowrap transition duration-200 ${
-                  selectedCategory === cat
-                    ? 'bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white shadow-md border border-fuchsia-400/30'
-                    : 'bg-purple-950/60 text-purple-300 hover:text-white border border-purple-900/40'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Sign Selector Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-h-[140px] overflow-y-auto pr-1.5 scrollbar-thin scrollbar-thumb-purple-800">
-            {filteredSigns.length > 0 ? (
-              filteredSigns.map((sign) => {
-                const isSelected = selectedSignId === sign.id;
-                return (
+              {/* Category Pills */}
+              <div className="flex overflow-x-auto pb-0.5 space-x-1.5 scrollbar-thin scrollbar-thumb-purple-800 flex-shrink-0">
+                {categories.map((cat) => (
                   <button
-                    key={sign.id}
-                    onClick={() => setSelectedSignId(sign.id)}
-                    className={`flex flex-col justify-between p-3 rounded-xl transition duration-200 text-left border ${
-                      isSelected
-                        ? 'bg-purple-900/60 border-fuchsia-500 shadow-md ring-2 ring-fuchsia-600/30'
-                        : 'bg-purple-950/30 hover:bg-purple-950/50 border-purple-900/40'
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-2.5 py-1 rounded-lg text-[9px] font-black whitespace-nowrap transition duration-200 ${
+                      selectedCategory === cat
+                        ? 'bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white shadow-md border border-fuchsia-400/30'
+                        : 'bg-purple-950/60 text-purple-300 hover:text-white border border-purple-900/40'
                     }`}
                   >
-                    <div className="flex items-center space-x-2 mb-1.5">
-                      <span className={`text-[11px] font-extrabold truncate ${isSelected ? 'text-white' : 'text-slate-200'}`}>{sign.name}</span>
-                    </div>
-                    <span className={`self-start text-[8px] font-black px-1.5 py-0.5 rounded border uppercase tracking-wider ${
-                      categoryColors[sign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
-                    }`}>
-                      {sign.category}
-                    </span>
+                    {cat}
                   </button>
-                );
-              })
-            ) : (
-              <div className="col-span-full flex flex-col items-center justify-center h-24 text-purple-400 font-sans">
-                <span className="text-xl mb-1">👽</span>
-                <p className="text-xs">No space gestures found</p>
+                ))}
               </div>
-            )}
-          </div>
-        </div>
+
+              {/* Sign Selector Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 max-h-[110px] sm:max-h-[130px] md:max-h-[150px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-purple-800 flex-1">
+                {filteredSigns.length > 0 ? (
+                  filteredSigns.map((sign) => {
+                    const isSelected = selectedSignId === sign.id;
+                    return (
+                      <button
+                        key={sign.id}
+                        onClick={() => setSelectedSignId(sign.id)}
+                        className={`flex flex-col justify-between p-2 rounded-xl transition duration-200 text-left border ${
+                          isSelected
+                            ? 'bg-purple-900/60 border-fuchsia-500 shadow-md ring-2 ring-fuchsia-600/30'
+                            : 'bg-purple-950/30 hover:bg-purple-950/50 border-purple-900/40'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-1.5 mb-1">
+                          <span className={`text-[10px] font-extrabold truncate ${isSelected ? 'text-white' : 'text-slate-200'}`}>{sign.name}</span>
+                        </div>
+                        <span className={`self-start text-[7px] font-black px-1.5 py-0.5 rounded border uppercase tracking-wider ${
+                          categoryColors[sign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
+                        }`}>
+                          {sign.category}
+                        </span>
+                      </button>
+                    );
+                  })
+                ) : (
+                  <div className="col-span-full flex flex-col items-center justify-center h-20 text-purple-400 font-sans">
+                    <span className="text-lg mb-1">👽</span>
+                    <p className="text-xs">No space gestures found</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
           
-                    {/* RIGHT COLUMN */}
-          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-2">
+          {/* RIGHT COLUMN */}
+          <div className="flex flex-col space-y-3 h-full min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 pr-1">
             {/* Sign Demonstration & Accuracy Feed */}
-          {selectedSign && (
-            <div className={`bg-[#0f172a]/85 backdrop-blur-sm border rounded-3xl p-6 shadow-xl flex flex-col justify-start space-y-4 text-left h-full overflow-y-auto transition-all duration-300 lg:mt-0 ${
-              isCorrectSign 
-                ? 'border-4 border-emerald-400 ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
-                : 'border-white/10'
-            }`}>
-              <div className="flex flex-col items-center justify-center mb-5 text-center relative w-full pt-1">
-                  <div className="flex items-center justify-center space-x-3 mb-1">
-                    <span className="text-xs md:text-sm font-black text-yellow-300 uppercase tracking-widest font-sans">
+            {selectedSign && (
+              <div className={`bg-[#0f172a]/85 backdrop-blur-sm border rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between space-y-2.5 text-left h-full overflow-hidden transition-all duration-300 lg:mt-0 ${
+                isCorrectSign 
+                  ? 'border-4 border-emerald-400 ring-4 sm:ring-8 ring-emerald-500/50 shadow-[0_0_60px_rgba(52,211,153,0.9)]' 
+                  : 'border-white/10'
+              }`}>
+                <div className="flex flex-col items-center justify-center mb-1 text-center relative w-full pt-0.5 flex-shrink-0">
+                  <div className="flex items-center justify-center space-x-2 mb-0.5">
+                    <span className="text-[11px] sm:text-xs font-black text-yellow-300 uppercase tracking-widest font-sans">
                       Sign Demonstration
                     </span>
-                    <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black border uppercase tracking-wider ${
                       categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
                     }`}>
                       {selectedSign.category}
                     </span>
                   </div>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-wide uppercase drop-shadow-[0_2px_15px_rgba(255,255,255,0.4)]">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-wide uppercase drop-shadow-[0_2px_15px_rgba(255,255,255,0.4)]">
                     {selectedSign.name}
                   </h2>
                 </div>
-              
-              <div className="relative w-full flex-1 min-h-[20rem] md:min-h-[24rem] lg:min-h-[28rem] flex items-center justify-center rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
-                {selectedSign.category === 'ALPHABET' ? (
-                  <HandSVG letter={selectedSign.name} />
-                ) : (
-                  <video
-                    key={selectedSign.id}
-                    src={`/fsl/demos/${selectedSign.id}.mov`}
-                    autoPlay
-                    loop
-                    muted
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-              
-              {/* Accuracy Validation Panel */}
-              <div className="border-t border-purple-800/40 pt-4 mt-4">
-                <div className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Practice Mode Feedback</div>
                 
-                {(!lastPrediction || lastPrediction === 'No sign detected') ? (
-                  <div className="flex items-center space-x-3.5 p-3 bg-purple-950/40 rounded-2xl border border-purple-850/50 text-slate-300 font-sans">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                      <span className="text-sm animate-pulse">🌌</span>
+                <div className="relative w-full flex-1 min-h-0 flex items-center justify-center rounded-xl md:rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
+                  {selectedSign.category === 'ALPHABET' ? (
+                    <HandSVG letter={selectedSign.name} />
+                  ) : (
+                    <video
+                      key={selectedSign.id}
+                      src={`/fsl/demos/${selectedSign.id}.mov`}
+                      autoPlay
+                      loop
+                      muted
+                      className="w-full h-full object-contain"
+                    />
+                  )}
+                </div>
+                
+                {/* Accuracy Validation Panel */}
+                <div className="border-t border-purple-800/40 pt-2 mt-auto flex-shrink-0">
+                  <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1.5 font-sans">Practice Mode Feedback</div>
+                  
+                  {(!lastPrediction || lastPrediction === 'No sign detected') ? (
+                    <div className="flex items-center space-x-2.5 p-2 bg-purple-950/40 rounded-xl border border-purple-850/50 text-slate-300 font-sans">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
+                        <span className="text-xs animate-pulse">🌌</span>
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-slate-200">Waiting for your space gesture...</p>
+                        <p className="text-[10px] text-slate-400">Perform the sign shown above in the camera frame.</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs font-black text-slate-200">Waiting for your space gesture...</p>
-                      <p className="text-[10px] text-slate-400">Perform the sign shown above in the camera frame.</p>
+                  ) : lastPrediction === selectedSign.name ? (
+                    <div className="flex items-center space-x-2.5 p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400 animate-bounce">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                        ✨
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-emerald-300">OUT OF THIS WORLD! (CORRECT)</p>
+                        <p className="text-[10px] text-emerald-500/80 font-sans">Awesome job! You made the gesture perfectly.</p>
+                      </div>
                     </div>
-                  </div>
-                ) : lastPrediction === selectedSign.name ? (
-                  <div className="flex items-center space-x-3.5 p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-emerald-400 animate-bounce">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
-                      ✨
+                  ) : (
+                    <div className="flex items-center space-x-2.5 p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">
+                        ☄️
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-rose-300">TRY AGAIN</p>
+                        <p className="text-[10px] text-rose-400/80 font-sans">
+                          Detected: <strong className="underline uppercase">{lastPrediction}</strong> (wanted: {selectedSign.name}).
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-black text-emerald-300">OUT OF THIS WORLD! (CORRECT)</p>
-                      <p className="text-[10px] text-emerald-500/80 font-sans">Awesome job! You made the gesture perfectly.</p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center space-x-3.5 p-3 bg-rose-500/10 rounded-2xl border border-rose-500/20 text-rose-400">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">
-                      ☄️
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-rose-300">TRY AGAIN</p>
-                      <p className="text-[10px] text-rose-400/80 font-sans">
-                        Detected: <strong className="underline uppercase">{lastPrediction}</strong> (wanted: {selectedSign.name}).
-                      </p>
-                    </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            )}
           </div>
           
         </div>
@@ -2927,36 +2925,36 @@ function App() {
 const renderSpellingView = () => {
     const playingStudent = studentsList.find(s => s.id === activeStudentId);
     return (
-      <div className="flex flex-col lg:flex-row gap-6 h-full overflow-hidden">
-        <div className="flex-1 flex flex-col space-y-6 h-full overflow-hidden">
+      <div className="flex flex-col lg:flex-row gap-3 md:gap-4 h-full overflow-hidden">
+        <div className="flex-1 flex flex-col space-y-3 md:space-y-4 h-full overflow-hidden">
           {!activeStudentId ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-              <h2 className="text-4xl font-black text-white mb-2">Spelling Game</h2>
-              <p className="font-bold text-yellow-400 text-lg animate-pulse">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1">Spelling Game</h2>
+              <p className="font-bold text-yellow-400 text-sm sm:text-base md:text-lg animate-pulse">
                 ⚠️ Please select a student from the sidebar before playing!
               </p>
             </div>
                   ) : spellingSetupMode === null ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-            <h2 className="text-4xl font-black text-white mb-2">Spelling Setup</h2>
-            <p className="text-lg text-purple-200 mb-8">How would you like to pick the 5 words?</p>
-            <div className="flex space-x-6">
-               <button onClick={() => setSpellingSetupMode('random')} className="px-8 py-10 bg-gradient-to-br from-purple-700 to-indigo-800 border-2 border-indigo-400/50 rounded-3xl hover:scale-105 transition-all text-white font-black text-2xl shadow-xl flex flex-col items-center space-y-4">
-                  <span className="text-5xl">🔀</span>
+          <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1">Spelling Setup</h2>
+            <p className="text-sm sm:text-base text-purple-200 mb-4 sm:mb-6">How would you like to pick the 5 words?</p>
+            <div className="flex space-x-4 sm:space-x-6">
+               <button onClick={() => setSpellingSetupMode('random')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-purple-700 to-indigo-800 border-2 border-indigo-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
+                  <span className="text-3xl sm:text-5xl">🔀</span>
                   <span>Randomize 5</span>
                </button>
-               <button onClick={() => setSpellingSetupMode('manual')} className="px-8 py-10 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-3xl hover:scale-105 transition-all text-white font-black text-2xl shadow-xl flex flex-col items-center space-y-4">
-                  <span className="text-5xl">👆</span>
-                  <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-8 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-sm transition-colors">Go back to Main Menu</button></div>) : spellingSetupMode === 'manual' && spellingCurrentWordList.length !== 5 ? (
-          <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl h-full max-h-[calc(100vh-160px)] relative overflow-hidden">
-             <div className="text-center mb-4 shrink-0 relative">
-               <button onClick={() => setSpellingSetupMode(null)} className="absolute top-2 left-2 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1"><span className="text-2xl mr-2">⬅️</span> Back</button>
-               <h2 className="text-3xl font-black text-white mb-2">Select 5 Words</h2>
-               <p className="text-purple-200 text-sm">Handpick spelling words. Words with a ✅ have already been completed by this student.</p>
+               <button onClick={() => setSpellingSetupMode('manual')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
+                  <span className="text-3xl sm:text-5xl">👆</span>
+                  <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-4 sm:mt-6 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors">Go back to Main Menu</button></div>) : spellingSetupMode === 'manual' && spellingCurrentWordList.length !== 5 ? (
+          <div className="flex-1 min-h-0 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl h-full relative overflow-hidden">
+             <div className="text-center mb-3 shrink-0 relative">
+               <button onClick={() => setSpellingSetupMode(null)} className="absolute top-1 left-1 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1 text-xs sm:text-sm"><span className="text-lg mr-1">⬅️</span> Back</button>
+               <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">Select 5 Words</h2>
+               <p className="text-purple-200 text-xs sm:text-sm">Handpick spelling words. Words with a ✅ have already been completed by this student.</p>
                
-               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4 mt-4 px-12">
-                 <input type="text" placeholder="Search words..." value={spellingSearchTerm} onChange={e => setSpellingSearchTerm(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-64" />
-                 <select value={spellingLengthFilter} onChange={e => setSpellingLengthFilter(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-48">
+               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-3 mt-3 px-8">
+                 <input type="text" placeholder="Search words..." value={spellingSearchTerm} onChange={e => setSpellingSearchTerm(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-56" />
+                 <select value={spellingLengthFilter} onChange={e => setSpellingLengthFilter(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-40">
                    <option value="All">All Lengths</option>
                    <option value="3">3 Letters</option>
                    <option value="4">4 Letters</option>
@@ -2966,8 +2964,8 @@ const renderSpellingView = () => {
                </div>
              </div>
              
-             <div className="flex-1 overflow-y-auto pr-2 pb-20 scrollbar-thin scrollbar-thumb-fuchsia-500">
-               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 content-start">
+             <div className="flex-1 overflow-y-auto pr-1.5 pb-16 scrollbar-thin scrollbar-thumb-fuchsia-500">
+               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2.5 content-start">
                {spellingWords.filter(word => {
                  const isCompletedFilter = dbProgressRecords.some((r: any) => r.studentId === activeStudentId && r.category === 'SPELLING_WORD_' + word );
                  if (spellingLengthFilter === 'COMPLETED' && !isCompletedFilter) return false;
@@ -2984,32 +2982,32 @@ const renderSpellingView = () => {
                        if (prev.length >= 5) return prev;
                        return [...prev, word];
                      });
-                   }} className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex flex-col items-center justify-center text-center ${isSelected ? 'bg-fuchsia-600/40 border-fuchsia-400 shadow-[0_0_15px_rgba(217,70,239,0.5)]' : 'bg-purple-900/40 border-purple-500/30 hover:border-fuchsia-400/50 hover:bg-purple-800/60'}`}>
-                      <div className="flex justify-center items-center space-x-2 mb-1">
-                         <span className="text-lg font-black text-white tracking-widest">{word}</span>
-                         {isCompleted && <span className="text-emerald-400 text-sm" title="Completed">✅</span>}
+                   }} className={`p-2.5 sm:p-3 rounded-xl border-2 cursor-pointer transition-all flex flex-col items-center justify-center text-center ${isSelected ? 'bg-fuchsia-600/40 border-fuchsia-400 shadow-[0_0_12px_rgba(217,70,239,0.5)]' : 'bg-purple-900/40 border-purple-500/30 hover:border-fuchsia-400/50 hover:bg-purple-800/60'}`}>
+                      <div className="flex justify-center items-center space-x-1.5 mb-0.5">
+                         <span className="text-sm sm:text-base font-black text-white tracking-widest">{word}</span>
+                         {isCompleted && <span className="text-emerald-400 text-xs" title="Completed">✅</span>}
                       </div>
                    </div>
                  );
                })}
                </div>
              </div>
-             <div className="absolute bottom-0 left-0 w-full bg-purple-950/90 backdrop-blur-md border-t border-purple-500/30 p-4 rounded-b-3xl flex justify-between items-center px-8">
-                <div className="text-xl font-black text-white">Selected: <span className={spellingManualSelection.length === 5 ? 'text-emerald-400' : 'text-fuchsia-400'}>{spellingManualSelection.length} / 5</span></div>
-                <button onClick={() => { setSpellingCurrentWordList(spellingManualSelection); setSpellingCurrentWordIndex(0); setSpellingProgressIndex(0); setSpellingScore(0); setSpellingShowGameOver(false); }} disabled={spellingManualSelection.length !== 5} className={`px-8 py-3 rounded-xl font-black text-lg transition-all ${spellingManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
+             <div className="absolute bottom-0 left-0 w-full bg-purple-950/90 backdrop-blur-md border-t border-purple-500/30 p-3 rounded-b-2xl sm:rounded-b-3xl flex justify-between items-center px-6">
+                <div className="text-base sm:text-lg font-black text-white">Selected: <span className={spellingManualSelection.length === 5 ? 'text-emerald-400' : 'text-fuchsia-400'}>{spellingManualSelection.length} / 5</span></div>
+                <button onClick={() => { setSpellingCurrentWordList(spellingManualSelection); setSpellingCurrentWordIndex(0); setSpellingProgressIndex(0); setSpellingScore(0); setSpellingShowGameOver(false); }} disabled={spellingManualSelection.length !== 5} className={`px-6 py-2 rounded-xl font-black text-sm sm:text-base transition-all ${spellingManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
              </div>
           </div>
           ) : isSavingProgress ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-6 bg-[#0f172a]/90 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
-                <div className="w-20 h-20 border-8 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
-                <h2 className="text-4xl font-black text-white animate-pulse mt-4">Saving Progress...</h2>
-                <p className="text-xl text-purple-200">Please wait while we record your awesome score!</p>
+            <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-[#0f172a]/90 backdrop-blur-md border border-white/10 rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+                <div className="w-14 h-14 border-4 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white animate-pulse mt-2">Saving Progress...</h2>
+                <p className="text-base text-purple-200">Please wait while we record your awesome score!</p>
             </div>
           ) : spellingShowGameOver ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-              <h2 className="text-5xl font-black text-yellow-400 mb-2 drop-shadow-lg">🎉 Fantastic Spelling! 🎉</h2>
-              <p className="text-xl text-white font-bold">You completed the spelling challenge!</p>
-              <div className="flex space-x-6 mt-8">
+            <div className="flex-1 flex flex-col items-center justify-center space-y-5 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-yellow-400 mb-1 drop-shadow-lg">🎉 Fantastic Spelling! 🎉</h2>
+              <p className="text-base sm:text-lg text-white font-bold">You completed the spelling challenge!</p>
+              <div className="flex space-x-4 mt-4">
                 <button 
                   onClick={() => {
                     setSpellingScore(0);
@@ -3021,29 +3019,29 @@ const renderSpellingView = () => {
                       setSpellingManualSelection([]);
                       setRecognitionMode('alphabets');
                   }}
-                  className="px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-2xl text-white font-black text-xl hover:scale-105 transition-transform shadow-xl"
+                  className="px-6 py-3 bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"
                 >
                   Play Again
                 </button>
                 <button 
-                  onClick={() => { sessionPointsEarnedRef.current = 0; setSpellingShowGameOver(false); setSpellingSetupMode(null); setSpellingCurrentWordList([]); setSpellingManualSelection([]); setRecognitionMode('alphabets'); setSpellingScore(0); setActiveStudentId(null); setCurrentView('dashboard-sesyon'); }} className="px-8 py-4 bg-purple-900/80 border-2 border-purple-500/50 rounded-2xl text-white font-black text-xl hover:scale-105 transition-transform shadow-xl"> Go back to Main Menu
+                  onClick={() => { sessionPointsEarnedRef.current = 0; setSpellingShowGameOver(false); setSpellingSetupMode(null); setSpellingCurrentWordList([]); setSpellingManualSelection([]); setRecognitionMode('alphabets'); setSpellingScore(0); setActiveStudentId(null); setCurrentView('dashboard-sesyon'); }} className="px-6 py-3 bg-purple-900/80 border-2 border-purple-500/50 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"> Go back to Main Menu
                 </button>
               </div>
             </div>
           ) : (
             <>
               {playingStudent && (
-                <div className={`rounded-2xl p-4 flex items-center justify-between shadow-lg flex-shrink-0 border transition-all ${
+                <div className={`rounded-xl md:rounded-2xl p-2.5 sm:p-3 px-4 flex items-center justify-between shadow-md flex-shrink-0 border transition-all ${
                   playingStudent.grade === 'Grade 1'
-                    ? 'bg-blue-900/40 border-blue-500/60 shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+                    ? 'bg-blue-900/40 border-blue-500/60 shadow-[0_0_15px_rgba(59,130,246,0.25)]'
                     : playingStudent.grade === 'Grade 2'
-                    ? 'bg-yellow-900/40 border-yellow-500/60 shadow-[0_0_20px_rgba(234,179,8,0.3)]'
+                    ? 'bg-yellow-900/40 border-yellow-500/60 shadow-[0_0_15px_rgba(234,179,8,0.25)]'
                     : playingStudent.grade === 'Grade 3'
-                    ? 'bg-emerald-900/40 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
+                    ? 'bg-emerald-900/40 border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.25)]'
                     : 'bg-fuchsia-600/20 border-fuchsia-500/50'
                 }`}>
-                  <div className="flex items-center space-x-4">
-                    <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-xl ${
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg ${
                       playingStudent.grade === 'Grade 1'
                         ? 'bg-blue-500/30 border-blue-400/60'
                         : playingStudent.grade === 'Grade 2'
@@ -3055,7 +3053,7 @@ const renderSpellingView = () => {
                       {playingStudent.emoji}
                     </div>
                     <div>
-                      <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                      <p className={`text-[9px] font-black uppercase tracking-widest font-sans ${
                         playingStudent.grade === 'Grade 1'
                           ? 'text-blue-300'
                           : playingStudent.grade === 'Grade 2'
@@ -3064,11 +3062,11 @@ const renderSpellingView = () => {
                           ? 'text-emerald-300'
                           : 'text-fuchsia-300'
                       }`}>Currently Playing</p>
-                      <h3 className="text-xl font-black text-white">{playingStudent.name}</h3>
+                      <h3 className="text-base font-black text-white leading-tight">{playingStudent.name}</h3>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                    <p className={`text-[9px] font-black uppercase tracking-widest font-sans ${
                       playingStudent.grade === 'Grade 1'
                         ? 'text-blue-300'
                         : playingStudent.grade === 'Grade 2'
@@ -3077,14 +3075,14 @@ const renderSpellingView = () => {
                         ? 'text-emerald-300'
                         : 'text-fuchsia-300'
                     }`}>Total Score</p>
-                    <h3 className="text-xl font-black text-yellow-400">{playingStudent.points} Points</h3>
+                    <h3 className="text-base font-black text-yellow-400">{playingStudent.points} Points</h3>
                   </div>
                 </div>
               )}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch h-full min-h-0">
-                <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto pr-2">
-                  <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
-                    <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 items-stretch h-full min-h-0 flex-1">
+                <div className="flex flex-col space-y-2.5 h-full min-h-0 overflow-y-auto pr-1">
+                  <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl md:rounded-2xl px-4 py-1.5 w-fit shadow-md flex-shrink-0 text-left">
+                    <h1 className="text-sm md:text-base font-black text-white tracking-wide uppercase">
                       {headerText}
                     </h1>
                   </div>
@@ -3092,28 +3090,28 @@ const renderSpellingView = () => {
                 </div>
                 
                 {/* Spelling Logic Panel */}
-                <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-start text-left h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between text-left h-full overflow-hidden">
+                  <div className="flex items-center justify-between mb-1.5 flex-shrink-0">
                     <div>
-                      <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Spelling Game - Word {spellingCurrentWordIndex + 1} of 5</span>
-                      <h2 className="text-xl font-black text-white mt-1 leading-snug">Spell the word:</h2>
+                      <span className="text-[9px] sm:text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Spelling Game - Word {spellingCurrentWordIndex + 1} of 5</span>
+                      <h2 className="text-base sm:text-lg font-black text-white mt-0.5 leading-snug">Spell the word:</h2>
                     </div>
                   </div>
 
                   {currentSpellingWord && (
-                    <div className="w-full flex justify-center mb-4 mt-2">
+                    <div className="w-full flex justify-center my-1 flex-shrink-0">
                       <img 
                         src={`/SpellingImg/${currentSpellingWord}.${['MAN', 'MUG'].includes(currentSpellingWord) ? 'png' : 'jpg'}`} 
                         alt={currentSpellingWord} 
-                        className="w-80 h-48 md:w-[32rem] md:h-64 object-cover rounded-2xl border-4 border-purple-500/50 shadow-lg" 
+                        className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-36 object-cover rounded-xl border-2 border-purple-500/50 shadow-md" 
                       />
                     </div>
                   )}
                   
-                  <div className="w-full flex justify-center mb-8 mt-2">
-                    <div className="flex space-x-3">
+                  <div className="w-full flex justify-center my-1.5 sm:my-2 flex-shrink-0">
+                    <div className="flex space-x-2 sm:space-x-2.5">
                       {currentSpellingWord.split('').map((letter, idx) => (
-                        <div key={idx} className={`w-16 h-20 md:w-20 md:h-24 rounded-2xl border-4 flex items-center justify-center text-4xl md:text-5xl font-black transition-all ${
+                        <div key={idx} className={`w-10 h-12 sm:w-12 sm:h-14 md:w-14 md:h-16 rounded-xl border-2 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-black transition-all ${
                           idx < spellingProgressIndex || spellingWordCompleted ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' :
                           idx === spellingProgressIndex ? 'bg-fuchsia-500/20 border-fuchsia-400 text-white animate-pulse' :
                           'bg-purple-950/60 border-purple-800/50 text-slate-600'
@@ -3124,16 +3122,16 @@ const renderSpellingView = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-center mb-6">
-                     <span className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Instructional Overlay</span>
-                     <div className="w-32 h-32 md:w-40 md:h-40 bg-purple-950/70 border-2 border-fuchsia-500/50 rounded-3xl flex items-center justify-center p-2 shadow-2xl">
+                  <div className="flex flex-col items-center justify-center my-auto flex-shrink-0">
+                     <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Instructional Overlay</span>
+                     <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-purple-950/70 border-2 border-fuchsia-500/50 rounded-2xl flex items-center justify-center p-1.5 shadow-xl">
                        {spellingWordCompleted ? (
-                         <div className="text-4xl">✨</div>
+                         <div className="text-3xl sm:text-4xl">✨</div>
                        ) : (
                          <HandSVG letter={currentSpellingWord[spellingProgressIndex]} />
                        )}
                      </div>
-                     <p className="mt-4 text-fuchsia-300 font-bold text-center">
+                     <p className="mt-1.5 text-xs sm:text-sm text-fuchsia-300 font-bold text-center">
                        {spellingWordCompleted ? 'Word Completed!' : `Do this sign for the letter '${currentSpellingWord[spellingProgressIndex]}'`}
                      </p>
                   </div>
@@ -3143,7 +3141,7 @@ const renderSpellingView = () => {
           )}
         </div>
         {/* Students Sidebar */}
-        <div className="w-full lg:w-72 flex-shrink-0">
+        <div className="w-full lg:w-60 xl:w-64 flex-shrink-0">
           {renderStudentSelectorSidebar()}
         </div>
       </div>
@@ -3153,7 +3151,7 @@ const renderSpellingView = () => {
   const renderGameView = () => {
     const playingStudent = studentsList.find(s => s.id === activeStudentId);
     return (
-    <div className="flex flex-col lg:flex-row gap-6 h-full overflow-hidden">
+    <div className="flex flex-col lg:flex-row gap-3 md:gap-4 h-full overflow-hidden">
       {/* Kinect Cursor */}
       <div 
         id="kinect-cursor"
@@ -3163,35 +3161,35 @@ const renderSpellingView = () => {
         <div id="kinect-cursor-progress" className="w-full h-full bg-cyan-400 rounded-full transition-transform duration-75" style={{ transform: 'scale(0)' }}></div>
       </div>
 
-      <div className="flex-1 flex flex-col space-y-6 h-full overflow-hidden">
+      <div className="flex-1 flex flex-col space-y-3 md:space-y-4 h-full overflow-hidden">
         {!activeStudentId ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-            <h2 className="text-4xl font-black text-white mb-2">Situational Game</h2>
-            <p className="font-bold text-yellow-400 text-lg animate-pulse">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1">Situational Game</h2>
+            <p className="font-bold text-yellow-400 text-sm sm:text-base md:text-lg animate-pulse">
               ⚠️ Please select a student from the sidebar before playing!
             </p>
           </div>
         ) : gameSetupMode === null ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-            <h2 className="text-4xl font-black text-white mb-2">Game Setup</h2>
-            <p className="text-lg text-purple-200 mb-8">How would you like to pick the 5 questions?</p>
-            <div className="flex space-x-6">
-               <button onClick={() => setGameSetupMode('random')} className="px-8 py-10 bg-gradient-to-br from-purple-700 to-indigo-800 border-2 border-indigo-400/50 rounded-3xl hover:scale-105 transition-all text-white font-black text-2xl shadow-xl flex flex-col items-center space-y-4">
-                  <span className="text-5xl">🔀</span>
+          <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1">Game Setup</h2>
+            <p className="text-sm sm:text-base text-purple-200 mb-4 sm:mb-6">How would you like to pick the 5 questions?</p>
+            <div className="flex space-x-4 sm:space-x-6">
+               <button onClick={() => setGameSetupMode('random')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-purple-700 to-indigo-800 border-2 border-indigo-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
+                  <span className="text-3xl sm:text-5xl">🔀</span>
                   <span>Randomize 5</span>
                </button>
-               <button onClick={() => setGameSetupMode('manual')} className="px-8 py-10 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-3xl hover:scale-105 transition-all text-white font-black text-2xl shadow-xl flex flex-col items-center space-y-4">
-                  <span className="text-5xl">👆</span>
-                  <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-8 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-sm transition-colors">Go back to Main Menu</button></div>) : gameSetupMode === 'manual' && gameCategory !== 'CUSTOM' ? (
-          <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl h-full max-h-[calc(100vh-160px)] relative overflow-hidden">
-             <div className="text-center mb-4 shrink-0 relative">
-               <button onClick={() => setGameSetupMode(null)} className="absolute top-2 left-2 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1"><span className="text-2xl mr-2">⬅️</span> Back</button>
-               <h2 className="text-3xl font-black text-white mb-2">Select 5 Questions</h2>
-               <p className="text-purple-200 text-sm">Handpick questions. Questions with a ✅ have already been completed by this student.</p>
+               <button onClick={() => setGameSetupMode('manual')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
+                  <span className="text-3xl sm:text-5xl">👆</span>
+                  <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-4 sm:mt-6 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors">Go back to Main Menu</button></div>) : gameSetupMode === 'manual' && gameCategory !== 'CUSTOM' ? (
+          <div className="flex-1 min-h-0 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl h-full relative overflow-hidden">
+             <div className="text-center mb-3 shrink-0 relative">
+               <button onClick={() => setGameSetupMode(null)} className="absolute top-1 left-1 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1 text-xs sm:text-sm"><span className="text-lg mr-1">⬅️</span> Back</button>
+               <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">Select 5 Questions</h2>
+               <p className="text-purple-200 text-xs sm:text-sm">Handpick questions. Questions with a ✅ have already been completed by this student.</p>
                
-               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4 mt-4 px-12">
-                 <input type="text" placeholder="Search questions..." value={gameSearchTerm} onChange={e => setGameSearchTerm(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-64" />
-                 <select value={gameCategoryFilter} onChange={e => setGameCategoryFilter(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-48">
+               <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-3 mt-3 px-8">
+                 <input type="text" placeholder="Search questions..." value={gameSearchTerm} onChange={e => setGameSearchTerm(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-56" />
+                 <select value={gameCategoryFilter} onChange={e => setGameCategoryFilter(e.target.value)} className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-full md:w-40">
                    <option value="All">All Categories</option>
                    {Array.from(new Set(gameQuestions.map(q => q.category))).map(cat => (
                      <option key={cat} value={cat}>{cat}</option>
@@ -3201,8 +3199,8 @@ const renderSpellingView = () => {
                </div>
              </div>
              
-             <div className="flex-1 overflow-y-auto pr-2 pb-20 scrollbar-thin scrollbar-thumb-fuchsia-500">
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 content-start">
+             <div className="flex-1 overflow-y-auto pr-1.5 pb-16 scrollbar-thin scrollbar-thumb-fuchsia-500">
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 content-start">
                {gameQuestions.filter(q => {
                  const isCompletedFilter = dbProgressRecords.some((r: any) => r.studentId === activeStudentId && r.category === 'QUESTION_' + q.id );
                  if (gameCategoryFilter === 'COMPLETED' && !isCompletedFilter) return false;
@@ -3219,37 +3217,37 @@ const renderSpellingView = () => {
                        if (prev.length >= 5) return prev;
                        return [...prev, q.id];
                      });
-                   }} className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex flex-col ${isSelected ? 'bg-fuchsia-600/40 border-fuchsia-400 shadow-[0_0_15px_rgba(217,70,239,0.5)]' : 'bg-purple-900/40 border-purple-500/30 hover:border-fuchsia-400/50 hover:bg-purple-800/60'}`}>
-                      <div className="flex justify-between items-start mb-2">
-                         <span className="text-xs font-black text-cyan-300 uppercase tracking-wider bg-cyan-900/50 px-2 py-1 rounded-md">{q.category}</span>
-                         {isCompleted && <span className="text-emerald-400 text-xl" title="Completed">✅</span>}
+                   }} className={`p-2.5 sm:p-3 rounded-xl border-2 cursor-pointer transition-all flex flex-col ${isSelected ? 'bg-fuchsia-600/40 border-fuchsia-400 shadow-[0_0_12px_rgba(217,70,239,0.5)]' : 'bg-purple-900/40 border-purple-500/30 hover:border-fuchsia-400/50 hover:bg-purple-800/60'}`}>
+                      <div className="flex justify-between items-start mb-1">
+                         <span className="text-[10px] font-black text-cyan-300 uppercase tracking-wider bg-cyan-900/50 px-2 py-0.5 rounded-md">{q.category}</span>
+                         {isCompleted && <span className="text-emerald-400 text-base" title="Completed">✅</span>}
                       </div>
-                      <p className="text-sm text-white font-semibold">{q.situation}</p>
+                      <p className="text-xs sm:text-sm text-white font-semibold">{q.situation}</p>
                    </div>
                  );
                })}
                </div>
              </div>
-             <div className="absolute bottom-0 left-0 w-full bg-purple-950/90 backdrop-blur-md border-t border-purple-500/30 p-4 rounded-b-3xl flex justify-between items-center px-8">
-                <div className="text-xl font-black text-white">Selected: <span className={gameManualSelection.length === 5 ? 'text-emerald-400' : 'text-fuchsia-400'}>{gameManualSelection.length} / 5</span></div>
-                <button onClick={() => { setGameCategory('CUSTOM'); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); }} disabled={gameManualSelection.length !== 5} className={`px-8 py-3 rounded-xl font-black text-lg transition-all ${gameManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
+             <div className="absolute bottom-0 left-0 w-full bg-purple-950/90 backdrop-blur-md border-t border-purple-500/30 p-3 rounded-b-2xl sm:rounded-b-3xl flex justify-between items-center px-6">
+                <div className="text-base sm:text-lg font-black text-white">Selected: <span className={gameManualSelection.length === 5 ? 'text-emerald-400' : 'text-fuchsia-400'}>{gameManualSelection.length} / 5</span></div>
+                <button onClick={() => { setGameCategory('CUSTOM'); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); }} disabled={gameManualSelection.length !== 5} className={`px-6 py-2 rounded-xl font-black text-sm sm:text-base transition-all ${gameManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
              </div>
           </div>
         ) : !gameCategory ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full">
              <div className="text-center">
-               <h2 className="text-4xl font-black text-white mb-2">Adventure Map</h2>
-               <p className={`font-bold ${!activeStudentId ? 'text-yellow-400 text-lg animate-pulse' : 'text-purple-300'}`}>
+               <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1">Adventure Map</h2>
+               <p className={`font-bold text-xs sm:text-sm ${!activeStudentId ? 'text-yellow-400 animate-pulse' : 'text-purple-300'}`}>
                  {!activeStudentId ? '⚠️ Please select a student from the sidebar before playing!' : 'Choose a category to start playing!'}
                </p>
              </div>
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 w-full max-w-xl">
                 {['GREETING', 'EVERYDAY', 'DAYS', 'FAMILY'].map(cat => (
                   <button 
                     key={cat} 
                     disabled={!activeStudentId}
                     onClick={() => { setGameCategory(cat); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); }} 
-                    className={`bg-gradient-to-br from-purple-900/80 to-purple-800/80 border-2 p-8 rounded-3xl text-white font-black text-2xl transition-all shadow-lg flex items-center justify-center group ${!activeStudentId ? 'border-purple-800/50 opacity-50 cursor-not-allowed grayscale' : 'border-purple-500/50 hover:border-fuchsia-400 hover:from-fuchsia-600/40 hover:to-purple-700/60 hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]'}`}
+                    className={`bg-gradient-to-br from-purple-900/80 to-purple-800/80 border-2 p-5 sm:p-6 rounded-2xl sm:rounded-3xl text-white font-black text-lg sm:text-xl transition-all shadow-md flex items-center justify-center group ${!activeStudentId ? 'border-purple-800/50 opacity-50 cursor-not-allowed grayscale' : 'border-purple-500/50 hover:border-fuchsia-400 hover:from-fuchsia-600/40 hover:to-purple-700/60 hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]'}`}
                   >
                     <span className={!activeStudentId ? '' : 'group-hover:scale-110 transition-transform'}>{cat}</span>
                   </button>
@@ -3257,22 +3255,22 @@ const renderSpellingView = () => {
              </div>
              <button 
                 onClick={() => setGameSetupMode(null)} 
-                className="mt-8 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-sm"
+                className="mt-4 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs"
              >
                 Go back to Menu
              </button>
           </div>
           ) : isSavingProgress ? (
-            <div className="flex-1 flex flex-col items-center justify-center space-y-6 bg-[#0f172a]/90 backdrop-blur-md border border-white/10 rounded-3xl p-10 shadow-xl h-full text-center">
-                <div className="w-20 h-20 border-8 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
-                <h2 className="text-4xl font-black text-white animate-pulse mt-4">Saving Progress...</h2>
-                <p className="text-xl text-purple-200">Please wait while we record your awesome score!</p>
+            <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-[#0f172a]/90 backdrop-blur-sm border border-white/10 rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+                <div className="w-14 h-14 border-4 border-fuchsia-500 border-t-transparent rounded-full animate-spin"></div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white animate-pulse mt-2">Saving Progress...</h2>
+                <p className="text-base text-purple-200">Please wait while we record your awesome score!</p>
             </div>
           ) : showGameOver ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-            <h2 className="text-5xl font-black text-yellow-400 mb-2 drop-shadow-lg">🎉 Great Job! 🎉</h2>
-            <p className="text-xl text-white font-bold">You completed 5 questions in the {gameCategory} category!</p>
-            <div className="flex space-x-6 mt-8">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-5 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-yellow-400 mb-1 drop-shadow-lg">🎉 Great Job! 🎉</h2>
+            <p className="text-base sm:text-lg text-white font-bold">You completed 5 questions in the {gameCategory} category!</p>
+            <div className="flex space-x-4 mt-4">
               <button 
                 onClick={() => {
                   setQuestionsCompleted(0);
@@ -3289,37 +3287,37 @@ const renderSpellingView = () => {
                     setGameCategory(null);
                     setGameManualSelection([]);
                     }}
-                    className="px-8 py-4 bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-2xl text-white font-black text-xl hover:scale-105 transition-transform shadow-xl"
+                    className="px-6 py-3 bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"
                 >
                 Play Again
               </button>
               <button 
-                  onClick={() => { setShowGameOver(false); setGameSetupMode(null); setGameCategory(null); setGameManualSelection([]); setActiveStudentId(null); setCurrentView('dashboard-sesyon'); }} className="px-8 py-4 bg-purple-900/80 border-2 border-purple-500/50 rounded-2xl text-white font-black text-xl hover:scale-105 transition-transform shadow-xl"> Go back to Main Menu
+                  onClick={() => { setShowGameOver(false); setGameSetupMode(null); setGameCategory(null); setGameManualSelection([]); setActiveStudentId(null); setCurrentView('dashboard-sesyon'); }} className="px-6 py-3 bg-purple-900/80 border-2 border-purple-500/50 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"> Go back to Main Menu
               </button>
 
             </div>
           </div>
         ) : !activeStudentId ? (
-          <div className="flex-1 flex flex-col items-center justify-center space-y-8 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-10 shadow-xl h-full text-center">
-            <h2 className="text-4xl font-black text-white mb-2">{gameCategory} Adventure</h2>
-            <p className="font-bold text-yellow-400 text-lg animate-pulse">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-4 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-6 shadow-xl h-full text-center">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-1">{gameCategory} Adventure</h2>
+            <p className="font-bold text-yellow-400 text-sm sm:text-base animate-pulse">
               ⚠️ Please select a student from the sidebar before playing!
             </p>
           </div>
         ) : (
           <>
             {playingStudent && (
-          <div className={`rounded-2xl p-4 flex items-center justify-between shadow-lg border transition-all ${
+          <div className={`rounded-xl md:rounded-2xl p-2.5 sm:p-3 px-4 flex items-center justify-between shadow-md border transition-all ${
             playingStudent.grade === 'Grade 1'
-              ? 'bg-blue-900/40 border-blue-500/60 shadow-[0_0_20px_rgba(59,130,246,0.3)]'
+              ? 'bg-blue-900/40 border-blue-500/60 shadow-[0_0_15px_rgba(59,130,246,0.25)]'
               : playingStudent.grade === 'Grade 2'
-              ? 'bg-yellow-900/40 border-yellow-500/60 shadow-[0_0_20px_rgba(234,179,8,0.3)]'
+              ? 'bg-yellow-900/40 border-yellow-500/60 shadow-[0_0_15px_rgba(234,179,8,0.25)]'
               : playingStudent.grade === 'Grade 3'
-              ? 'bg-emerald-900/40 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
+              ? 'bg-emerald-900/40 border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.25)]'
               : 'bg-fuchsia-600/20 border-fuchsia-500/50'
           }`}>
-            <div className="flex items-center space-x-4">
-              <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-xl ${
+            <div className="flex items-center space-x-3">
+              <div className={`w-8 h-8 rounded-full border flex items-center justify-center text-lg ${
                 playingStudent.grade === 'Grade 1'
                   ? 'bg-blue-500/30 border-blue-400/60'
                   : playingStudent.grade === 'Grade 2'
@@ -3331,7 +3329,7 @@ const renderSpellingView = () => {
                 {playingStudent.emoji}
               </div>
               <div>
-                <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+                <p className={`text-[9px] font-black uppercase tracking-widest font-sans ${
                   playingStudent.grade === 'Grade 1'
                     ? 'text-blue-300'
                     : playingStudent.grade === 'Grade 2'
@@ -3340,11 +3338,11 @@ const renderSpellingView = () => {
                     ? 'text-emerald-300'
                     : 'text-fuchsia-300'
                 }`}>Currently Playing</p>
-                <h3 className="text-xl font-black text-white">{playingStudent.name}</h3>
+                <h3 className="text-base font-black text-white leading-tight">{playingStudent.name}</h3>
               </div>
             </div>
             <div className="text-right">
-              <p className={`text-[10px] font-black uppercase tracking-widest font-sans ${
+              <p className={`text-[9px] font-black uppercase tracking-widest font-sans ${
                 playingStudent.grade === 'Grade 1'
                   ? 'text-blue-300'
                   : playingStudent.grade === 'Grade 2'
@@ -3353,14 +3351,14 @@ const renderSpellingView = () => {
                   ? 'text-emerald-300'
                   : 'text-fuchsia-300'
               }`}>Total Score</p>
-              <h3 className="text-xl font-black text-yellow-400">{playingStudent.points} Points</h3>
+              <h3 className="text-base font-black text-yellow-400">{playingStudent.points} Points</h3>
             </div>
           </div>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch h-full min-h-0">
-          <div className="flex flex-col space-y-4 h-full min-h-0 overflow-y-auto pr-2">
-            <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-6 py-2.5 w-fit shadow-lg flex-shrink-0 text-left">
-              <h1 className="text-lg md:text-xl font-black text-white tracking-wide uppercase">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-4 items-stretch h-full min-h-0 flex-1">
+          <div className="flex flex-col space-y-2.5 h-full min-h-0 overflow-y-auto pr-1">
+            <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl md:rounded-2xl px-4 py-1.5 w-fit shadow-md flex-shrink-0 text-left">
+              <h1 className="text-sm md:text-base font-black text-white tracking-wide uppercase">
                 {headerText}
               </h1>
             </div>
@@ -3369,80 +3367,74 @@ const renderSpellingView = () => {
           
           {/* Game Mode Panel */}
           {gameStep !== 'practice' && currentQuestion && (
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between text-left h-full overflow-hidden">
+              <div className="flex items-center justify-between mb-1.5 flex-shrink-0">
                 <div>
-                  <span className="text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Situational Game - Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
-                  <h2 className="text-xl font-black text-white mt-1 leading-snug">{currentQuestion.situation}</h2>
+                  <span className="text-[9px] sm:text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Situational Game - Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
+                  <h2 className="text-sm sm:text-base font-black text-white mt-0.5 leading-snug">{currentQuestion.situation}</h2>
                   {currentQuestion.requiredExpression && (
-                    <div className="mt-2 inline-flex items-center bg-cyan-500/20 px-4 py-1.5 rounded-full border border-cyan-500/50">
-                      <span className="text-cyan-300 text-sm font-black uppercase tracking-wider">
+                    <div className="mt-1 inline-flex items-center bg-cyan-500/20 px-3 py-1 rounded-full border border-cyan-500/50">
+                      <span className="text-cyan-300 text-xs font-black uppercase tracking-wider">
                         🎭 Make a {currentQuestion.requiredExpression} face!
                       </span>
                     </div>
                   )}
                 </div>
-                <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider bg-fuchsia-600/30 text-fuchsia-300 border-fuchsia-500/50`}>
+                <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black border uppercase tracking-wider bg-fuchsia-600/30 text-fuchsia-300 border-fuchsia-500/50 flex-shrink-0`}>
                   {currentQuestion.category}
                 </span>
               </div>
               
-              <div className="w-full flex justify-center mb-4">
+              <div className="w-full flex justify-center my-1 flex-shrink-0">
                 <img 
                   src={currentQuestion.image || `/fsl/situations/category_${currentQuestion.category.toLowerCase()}.jpg`} 
                   alt={currentQuestion.situation} 
-                  className="rounded-2xl border-2 border-fuchsia-500/30 shadow-lg object-cover w-full h-40 md:h-48 max-w-md"
+                  className="rounded-xl border-2 border-fuchsia-500/30 shadow-md object-cover w-full h-24 sm:h-28 md:h-32 lg:h-36 max-w-xs md:max-w-sm"
                 />
               </div>
               
-              <div className="flex flex-col space-y-3 my-4">
+              <div className="flex flex-col space-y-1.5 sm:space-y-2 my-1.5 flex-1 justify-center">
                 {['A', 'B', 'C'].map((opt) => (
-                  <div key={opt} id={`game-option-${opt}`} className={`p-4 rounded-2xl border-2 transition-all ${
+                  <div key={opt} id={`game-option-${opt}`} className={`p-2 sm:p-2.5 rounded-xl border-2 transition-all ${
                     gameSelectedAnswer === opt 
                       ? (opt === currentQuestion.correctAnswer ? 'bg-emerald-500/20 border-emerald-500' : 'bg-rose-500/20 border-rose-500')
                       : 'bg-purple-950/40 border-purple-800/50'
                   }`}>
-                    <div className="flex items-center space-x-4">
-                      <span className="text-2xl font-black text-fuchsia-400">{opt}</span>
-                      <span className="text-lg font-bold text-white">{currentQuestion.options[opt as 'A' | 'B' | 'C'].signName}</span>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg sm:text-xl font-black text-fuchsia-400">{opt}</span>
+                      <span className="text-xs sm:text-sm md:text-base font-bold text-white">{currentQuestion.options[opt as 'A' | 'B' | 'C'].signName}</span>
                     </div>
                   </div>
                 ))}
               </div>
               
-              <div className="border-t border-purple-800/40 pt-4 mt-auto">
-                <div className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Game Status</div>
+              <div className="border-t border-purple-800/40 pt-2 mt-auto flex-shrink-0">
+                <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Game Status</div>
                 {gameStep === 'question' ? (
-                  <div className="flex flex-col space-y-2">
-                    <div className="relative flex items-center space-x-3.5 p-3 bg-purple-950/40 rounded-2xl border border-purple-850/50 text-slate-300 font-sans">
-                      {/* Animated tooltip arrow for children */}
-                      <div className="absolute -top-12 left-4 animate-bounce flex flex-col items-center">
-                        <span className="bg-yellow-400 text-purple-950 text-sm font-black px-3 py-1.5 rounded-lg shadow-lg border border-yellow-300 mb-1">Point your hand to choose!</span>
-                        <div className="w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-yellow-400"></div>
-                      </div>
-                      
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                        <span className="text-sm animate-pulse">🤔</span>
+                  <div className="flex flex-col space-y-1">
+                    <div className="relative flex items-center space-x-2.5 p-2 bg-purple-950/40 rounded-xl border border-purple-850/50 text-slate-300 font-sans">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
+                        <span className="text-xs animate-pulse">🤔</span>
                       </div>
                       <div>
-                        <p className="text-xs font-black text-slate-200">Hover the blue circle over an answer!</p>
+                        <p className="text-[11px] font-black text-slate-200">Hover the blue circle over an answer!</p>
                       </div>
                     </div>
                   </div>
                 ) : gameStep === 'correct' ? (
-                  <div className="flex items-center space-x-3.5 p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-emerald-400 animate-bounce">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">✨</div>
+                  <div className="flex items-center space-x-2.5 p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400 animate-bounce">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">✨</div>
                     <div>
-                      <p className="text-sm font-black text-emerald-300">CORRECT!</p>
-                      <p className="text-[10px] text-emerald-500/80 font-sans">Get ready to practice the sign...</p>
+                      <p className="text-xs font-black text-emerald-300">CORRECT!</p>
+                      <p className="text-[9px] text-emerald-500/80 font-sans">Get ready to practice the sign...</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-3.5 p-3 bg-rose-500/10 rounded-2xl border border-rose-500/20 text-rose-400">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">☄️</div>
+                  <div className="flex items-center space-x-2.5 p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">☄️</div>
                     <div>
-                      <p className="text-sm font-black text-rose-300">TRY AGAIN</p>
-                      <p className="text-[10px] text-rose-400/80 font-sans">You selected {gameSelectedAnswer}. Try another option!</p>
+                      <p className="text-xs font-black text-rose-300">TRY AGAIN</p>
+                      <p className="text-[9px] text-rose-400/80 font-sans">You selected {gameSelectedAnswer}. Try another option!</p>
                     </div>
                   </div>
                 )}
@@ -3452,24 +3444,24 @@ const renderSpellingView = () => {
 
           {/* Practice target for game mode */}
           {gameStep === 'practice' && selectedSign && (
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col justify-between text-left h-full">
-              <div className="flex flex-col items-center justify-center mb-5 text-center relative w-full pt-1">
-                  <div className="flex items-center justify-center space-x-3 mb-1">
-                    <span className="text-xs md:text-sm font-black text-yellow-300 uppercase tracking-widest font-sans">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between text-left h-full overflow-hidden">
+              <div className="flex flex-col items-center justify-center mb-1 text-center relative w-full pt-0.5 flex-shrink-0">
+                  <div className="flex items-center justify-center space-x-2 mb-0.5">
+                    <span className="text-[11px] sm:text-xs font-black text-yellow-300 uppercase tracking-widest font-sans">
                       Sign Demonstration
                     </span>
-                    <span className={`inline-flex items-center px-3 py-0.5 rounded-full text-[10px] font-black border uppercase tracking-wider ${
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black border uppercase tracking-wider ${
                       categoryColors[selectedSign.category] || 'bg-slate-800 text-slate-400 border-slate-700'
                     }`}>
                       {selectedSign.category}
                     </span>
                   </div>
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-wide uppercase drop-shadow-[0_2px_15px_rgba(255,255,255,0.4)]">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-wide uppercase drop-shadow-[0_2px_15px_rgba(255,255,255,0.4)]">
                     {selectedSign.name}
                   </h2>
                 </div>
               
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
+              <div className="relative w-full flex-1 min-h-0 flex items-center justify-center rounded-xl md:rounded-2xl overflow-hidden bg-slate-950 border border-purple-800/30">
                 {selectedSign.category === 'ALPHABET' ? (
                   <HandSVG letter={selectedSign.name} />
                 ) : (
@@ -3479,19 +3471,19 @@ const renderSpellingView = () => {
                     autoPlay
                     loop
                     muted
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 )}
               </div>
               
-              <div className="border-t border-purple-800/40 pt-4 mt-4">
-                <div className="text-[10px] font-black uppercase tracking-wider text-purple-300 mb-2 font-sans">Practice Mode Feedback</div>
+              <div className="border-t border-purple-800/40 pt-2 mt-auto flex-shrink-0">
+                <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Practice Mode Feedback</div>
                 
                 {(!lastPrediction || lastPrediction === 'No sign detected') ? (
-                  <div className="flex flex-col space-y-2">
-                    <div className="flex items-center space-x-3.5 p-3 bg-purple-950/40 rounded-2xl border border-purple-850/50 text-slate-300 font-sans">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                        <span className="text-sm animate-pulse">🌌</span>
+                  <div className="flex flex-col space-y-1">
+                    <div className="flex items-center space-x-2.5 p-2 bg-purple-950/40 rounded-xl border border-purple-850/50 text-slate-300 font-sans">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
+                        <span className="text-xs animate-pulse">🌌</span>
                       </div>
                       <div>
                         <p className="text-xs font-black text-slate-200">Waiting for your space gesture...</p>
@@ -3499,16 +3491,12 @@ const renderSpellingView = () => {
                       </div>
                     </div>
                     {currentQuestion.requiredExpression && (
-                      <div className="relative flex items-center space-x-3.5 p-3 bg-cyan-950/40 rounded-2xl border border-cyan-500/50 text-cyan-300 font-sans shadow-[0_0_15px_rgba(6,182,212,0.4)] animate-pulse">
-                        <div className="absolute -top-10 right-4 animate-bounce flex flex-col items-center">
-                          <span className="bg-yellow-400 text-purple-950 text-[10px] font-black px-2 py-1 rounded-md shadow-lg border border-yellow-300 mb-1">Make this face!</span>
-                          <div className="w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-t-4 border-t-yellow-400"></div>
-                        </div>
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full border border-cyan-500/50 flex items-center justify-center bg-cyan-500/20 text-xl">
+                      <div className="relative flex items-center space-x-2.5 p-2 bg-cyan-950/40 rounded-xl border border-cyan-500/50 text-cyan-300 font-sans shadow-[0_0_15px_rgba(6,182,212,0.4)] animate-pulse">
+                        <div className="flex-shrink-0 w-6 h-6 rounded-full border border-cyan-500/50 flex items-center justify-center bg-cyan-500/20 text-base">
                           {currentQuestion.requiredExpression === 'happy' ? '😁' : currentQuestion.requiredExpression === 'sad' ? '😢' : currentQuestion.requiredExpression === 'angry' ? '😠' : '😐'}
                         </div>
                         <div>
-                          <p className="text-sm font-black text-cyan-300 uppercase tracking-widest">🎭 Requires Expression</p>
+                          <p className="text-xs font-black text-cyan-300 uppercase tracking-widest">🎭 Requires Expression</p>
                           <p className="text-[10px] text-cyan-400/80">Make a <strong className="uppercase">{currentQuestion.requiredExpression}</strong> face while doing the sign!</p>
                         </div>
                       </div>
@@ -3516,27 +3504,27 @@ const renderSpellingView = () => {
                   </div>
                 ) : lastPrediction === selectedSign.name ? (
                   currentQuestion.requiredExpression && lastEmotionPrediction !== currentQuestion.requiredExpression ? (
-                    <div className="flex items-center space-x-3.5 p-3 bg-yellow-500/10 rounded-2xl border border-yellow-500/20 text-yellow-400">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center border border-yellow-500/30">⚠️</div>
+                    <div className="flex items-center space-x-2.5 p-2 bg-yellow-500/10 rounded-xl border border-yellow-500/20 text-yellow-400">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-yellow-500/20 flex items-center justify-center border border-yellow-500/30">⚠️</div>
                       <div>
-                        <p className="text-sm font-black text-yellow-300">ALMOST THERE!</p>
-                        <p className="text-[10px] text-yellow-500/80 font-sans">Sign is correct, but we need a <strong className="uppercase">{currentQuestion.requiredExpression}</strong> face! (Detected: {lastEmotionPrediction || 'none'} | Mesh: {lastFaceMeshLengthRef.current || 0} | Err: {modelError || 'none'} | {fallbackDebugRef.current})</p>
+                        <p className="text-xs font-black text-yellow-300">ALMOST THERE!</p>
+                        <p className="text-[10px] text-yellow-500/80 font-sans">Sign is correct, but we need a <strong className="uppercase">{currentQuestion.requiredExpression}</strong> face!</p>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center space-x-3.5 p-3 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-emerald-400 animate-bounce">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">✨</div>
+                    <div className="flex items-center space-x-2.5 p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400 animate-bounce">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">✨</div>
                       <div>
-                        <p className="text-sm font-black text-emerald-300">OUT OF THIS WORLD! (CORRECT)</p>
+                        <p className="text-xs font-black text-emerald-300">OUT OF THIS WORLD! (CORRECT)</p>
                         <p className="text-[10px] text-emerald-500/80 font-sans">Awesome job! You made the gesture perfectly.</p>
                       </div>
                     </div>
                   )
                 ) : (
-                  <div className="flex items-center space-x-3.5 p-3 bg-rose-500/10 rounded-2xl border border-rose-500/20 text-rose-400">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">☄️</div>
+                  <div className="flex items-center space-x-2.5 p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">☄️</div>
                     <div>
-                      <p className="text-sm font-black text-rose-300">TRY AGAIN</p>
+                      <p className="text-xs font-black text-rose-300">TRY AGAIN</p>
                       <p className="text-[10px] text-rose-400/80 font-sans">Detected: <strong className="underline uppercase">{lastPrediction}</strong> (wanted: {selectedSign.name}).</p>
                     </div>
                   </div>
@@ -3552,7 +3540,7 @@ const renderSpellingView = () => {
       </div>
 
       {/* Students Sidebar */}
-      <div className="w-full lg:w-72 flex-shrink-0">
+      <div className="w-full lg:w-60 xl:w-64 flex-shrink-0">
         {renderStudentSelectorSidebar()}
       </div>
     </div>
@@ -3560,52 +3548,52 @@ const renderSpellingView = () => {
   };
 
   const renderSesyonMenu = () => (
-    <div className="flex flex-col items-center justify-center space-y-8 min-h-[60vh]">
-      <div className="flex justify-center w-full mb-8">
-        <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-12 py-6 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
-          <h1 className="text-3xl md:text-5xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)] mb-2">Choose Session Mode</h1>
-          <p className="text-lg md:text-xl font-bold text-cyan-200 font-sans">Select how you want to practice today</p>
+    <div className="flex flex-col items-center justify-center space-y-3 sm:space-y-4 py-2 w-full max-w-5xl mx-auto flex-1 min-h-0">
+      <div className="flex justify-center w-full mb-1 sm:mb-2 shrink-0">
+        <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-6 sm:px-8 py-2 sm:py-2.5 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)] mb-0.5">Choose Session Mode</h1>
+          <p className="text-xs sm:text-sm font-bold text-cyan-200 font-sans">Select how you want to practice today</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 lg:gap-6 w-full max-w-5xl">
         <button
           onClick={() => setModeTutorialModal('sandbox')}
-          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-fuchsia-500/50 hover:border-fuchsia-400 rounded-[32px] p-12 min-h-[360px] shadow-[0_0_30px_rgba(217,70,239,0.5)] flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-fuchsia-500/50 hover:border-fuchsia-400 rounded-2xl md:rounded-[28px] p-4 sm:p-5 md:p-6 min-h-[220px] md:min-h-[260px] shadow-[0_0_25px_rgba(217,70,239,0.35)] flex flex-col items-center text-center transition-all transform hover:scale-[1.02] group"
         >
-          <div className="w-24 h-24 rounded-full bg-purple-900/50 flex items-center justify-center mb-6 border border-purple-700/50 group-hover:border-fuchsia-400 group-hover:scale-110 transition-all">
-            <span className="text-5xl">👐</span>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-purple-900/50 flex items-center justify-center mb-3 sm:mb-4 border border-purple-700/50 group-hover:border-fuchsia-400 group-hover:scale-105 transition-all">
+            <span className="text-2xl sm:text-3xl md:text-4xl">👐</span>
           </div>
-          <h2 className="text-3xl font-black text-fuchsia-400 mb-3">Practice</h2>
-          <p className="text-sm font-sans text-slate-300 mb-6">Explore and practice FSL signs at your own pace with real-time AI feedback.</p>
-          <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-fuchsia-300 bg-fuchsia-950/60 border border-fuchsia-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-fuchsia-600 group-hover:text-white transition-all">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-black text-fuchsia-400 mb-1.5">Practice</h2>
+          <p className="text-xs sm:text-sm font-sans text-slate-300 line-clamp-2 sm:line-clamp-3 mb-3">Explore and practice FSL signs at your own pace with real-time AI feedback.</p>
+          <span className="mt-auto inline-flex items-center space-x-1 text-xs sm:text-sm font-black text-fuchsia-300 bg-fuchsia-950/60 border border-fuchsia-500/40 px-4 py-1.5 rounded-full uppercase tracking-wider group-hover:bg-fuchsia-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
           </span>
         </button>
 
         <button
           onClick={() => setModeTutorialModal('game')}
-          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-cyan-500/50 hover:border-cyan-400 rounded-[32px] p-12 min-h-[360px] shadow-[0_0_30px_rgba(6,182,212,0.5)] flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-cyan-500/50 hover:border-cyan-400 rounded-2xl md:rounded-[28px] p-4 sm:p-5 md:p-6 min-h-[220px] md:min-h-[260px] shadow-[0_0_25px_rgba(6,182,212,0.35)] flex flex-col items-center text-center transition-all transform hover:scale-[1.02] group"
         >
-          <div className="w-24 h-24 rounded-full bg-cyan-900/30 flex items-center justify-center mb-6 border border-cyan-500/50 group-hover:border-cyan-400 group-hover:scale-110 transition-all">
-            <span className="text-5xl">🎮</span>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-cyan-900/30 flex items-center justify-center mb-3 sm:mb-4 border border-cyan-500/50 group-hover:border-cyan-400 group-hover:scale-105 transition-all">
+            <span className="text-2xl sm:text-3xl md:text-4xl">🎮</span>
           </div>
-          <h2 className="text-3xl font-black text-cyan-300 mb-3">Situational Game</h2>
-          <p className="text-sm font-sans text-cyan-100/80 mb-6">Play an interactive game where you respond to scenarios using FSL.</p>
-          <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-cyan-600 group-hover:text-white transition-all">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-black text-cyan-300 mb-1.5">Situational Game</h2>
+          <p className="text-xs sm:text-sm font-sans text-cyan-100/80 line-clamp-2 sm:line-clamp-3 mb-3">Play an interactive game where you respond to scenarios using FSL.</p>
+          <span className="mt-auto inline-flex items-center space-x-1 text-xs sm:text-sm font-black text-cyan-300 bg-cyan-950/60 border border-cyan-500/40 px-4 py-1.5 rounded-full uppercase tracking-wider group-hover:bg-cyan-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
           </span>
         </button>
 
         <button
           onClick={() => setModeTutorialModal('spelling')}
-          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-emerald-500/50 hover:border-emerald-400 rounded-[32px] p-12 min-h-[360px] shadow-[0_0_30px_rgba(16,185,129,0.5)] flex flex-col items-center text-center transition-all transform hover:scale-105 group"
+          className="bg-slate-900/85 hover:bg-slate-800 backdrop-blur-sm border-2 border-emerald-500/50 hover:border-emerald-400 rounded-2xl md:rounded-[28px] p-4 sm:p-5 md:p-6 min-h-[220px] md:min-h-[260px] shadow-[0_0_25px_rgba(16,185,129,0.35)] flex flex-col items-center text-center transition-all transform hover:scale-[1.02] group"
         >
-          <div className="w-24 h-24 rounded-full bg-emerald-900/30 flex items-center justify-center mb-6 border border-emerald-500/50 group-hover:border-emerald-400 group-hover:scale-110 transition-all">
-            <span className="text-5xl">🔤</span>
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-emerald-900/30 flex items-center justify-center mb-3 sm:mb-4 border border-emerald-500/50 group-hover:border-emerald-400 group-hover:scale-105 transition-all">
+            <span className="text-2xl sm:text-3xl md:text-4xl">🔤</span>
           </div>
-          <h2 className="text-3xl font-black text-emerald-300 mb-3">Spelling Game</h2>
-          <p className="text-sm font-sans text-emerald-100/80 mb-6">Practice your FSL alphabet by spelling out words!</p>
-          <span className="mt-auto inline-flex items-center space-x-1.5 text-sm font-black text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 px-6 py-2 rounded-full uppercase tracking-wider group-hover:bg-emerald-600 group-hover:text-white transition-all">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-black text-emerald-300 mb-1.5">Spelling Game</h2>
+          <p className="text-xs sm:text-sm font-sans text-emerald-100/80 line-clamp-2 sm:line-clamp-3 mb-3">Practice your FSL alphabet by spelling out words!</p>
+          <span className="mt-auto inline-flex items-center space-x-1 text-xs sm:text-sm font-black text-emerald-300 bg-emerald-950/60 border border-emerald-500/40 px-4 py-1.5 rounded-full uppercase tracking-wider group-hover:bg-emerald-600 group-hover:text-white transition-all">
             <span>❓ Tutorial & Start</span>
           </span>
         </button>
@@ -3792,39 +3780,39 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
     const activeList = (progressTab === 'titik' ? lettersProgress : kilosProgress) as any[];
 
     return (
-      <div className="flex flex-col space-y-5 text-left">
+      <div className="flex flex-col space-y-2 text-left flex-1 min-h-0">
         {showCsvConfirm && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fadeIn">
-            <div className="bg-[#020617] border-2 border-emerald-500/30 p-8 rounded-[32px] shadow-[0_0_50px_rgba(16,185,129,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mb-4 text-emerald-400 shadow-inner border border-emerald-400/30">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+            <div className="bg-[#020617] border-2 border-emerald-500/30 p-6 sm:p-8 rounded-[32px] shadow-[0_0_50px_rgba(16,185,129,0.2)] max-w-sm w-full mx-4 flex flex-col items-center text-center">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mb-3 text-emerald-400 shadow-inner border border-emerald-400/30">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               </div>
-              <h3 className="text-xl font-black text-white mb-2 uppercase tracking-wide">Export CSV?</h3>
-              <div className="text-purple-200 text-sm font-medium mb-5 text-center leading-relaxed flex flex-col items-center">
+              <h3 className="text-lg sm:text-xl font-black text-white mb-1.5 uppercase tracking-wide">Export CSV?</h3>
+              <div className="text-purple-200 text-xs sm:text-sm font-medium mb-4 text-center leading-relaxed flex flex-col items-center">
                 Are you sure you want to export the progress for:
-                <span className="inline-block mt-2 px-4 py-1.5 bg-emerald-500/10 border-2 border-emerald-400/50 text-emerald-300 font-black rounded-xl uppercase tracking-widest shadow-inner text-xs">
+                <span className="inline-block mt-1.5 px-3 py-1 bg-emerald-500/10 border-2 border-emerald-400/50 text-emerald-300 font-black rounded-xl uppercase tracking-widest shadow-inner text-xs">
                   {selectionText}
                 </span>
               </div>
               
-              <div className="w-full flex flex-col space-y-2 mb-6">
+              <div className="w-full flex flex-col space-y-1.5 mb-5">
                 <span className="text-[10px] font-black text-emerald-200/80 uppercase tracking-widest text-left ml-1">Select Data to Export:</span>
-                <div className="flex bg-black/40 p-1.5 rounded-2xl border border-white/10 shadow-inner">
+                <div className="flex bg-black/40 p-1 rounded-xl border border-white/10 shadow-inner">
                   <button
                     onClick={() => setCsvExportType('both')}
-                    className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${csvExportType === 'both' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
+                    className={`flex-1 py-1.5 text-xs font-black rounded-lg transition-all ${csvExportType === 'both' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
                   >
                     BOTH
                   </button>
                   <button
                     onClick={() => setCsvExportType('letters')}
-                    className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${csvExportType === 'letters' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
+                    className={`flex-1 py-1.5 text-xs font-black rounded-lg transition-all ${csvExportType === 'letters' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
                   >
                     LETTERS
                   </button>
                   <button
                     onClick={() => setCsvExportType('gestures')}
-                    className={`flex-1 py-2 text-xs font-black rounded-xl transition-all ${csvExportType === 'gestures' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
+                    className={`flex-1 py-1.5 text-xs font-black rounded-lg transition-all ${csvExportType === 'gestures' ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'text-emerald-400 hover:text-white hover:bg-white/5'}`}
                   >
                     GESTURES
                   </button>
@@ -3833,13 +3821,13 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
               <div className="flex items-center space-x-3 w-full">
                 <button 
                   onClick={() => setShowCsvConfirm(false)}
-                  className="flex-1 py-3 bg-purple-900/60 hover:bg-purple-800 text-purple-200 text-sm font-black rounded-xl tracking-wider transition-all shadow-md"
+                  className="flex-1 py-2.5 bg-purple-900/60 hover:bg-purple-800 text-purple-200 text-xs sm:text-sm font-black rounded-xl tracking-wider transition-all shadow-md"
                 >
                   CANCEL
                 </button>
                 <button 
                   onClick={executeExportCSV}
-                  className="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+                  className="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)]"
                 >
                   EXPORT
                 </button>
@@ -3847,48 +3835,47 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
         )}
-        <div className="relative flex flex-col md:flex-row items-end justify-between gap-6 mb-4 w-full h-[140px]">
-          <div className="absolute inset-0 flex justify-center pointer-events-none z-0">
-              <div className="bg-[#0f172a] backdrop-blur-md border border-cyan-400/80 rounded-[40px] px-24 py-8 h-fit shadow-[0_0_30px_rgba(6,182,212,0.4)] text-center hidden lg:block mt-1">
-                <h1 className="text-5xl font-black text-white tracking-widest uppercase" style={{ textShadow: '0 0 20px rgba(6,182,212,1), 0 0 30px rgba(6,182,212,0.8)' }}>PROGRESS</h1>
-              </div>
+        <div className="flex flex-wrap items-center justify-between gap-2.5 mb-1.5 w-full shrink-0">
+          <div className="flex items-center space-x-2">
+            {/* Sub tabs switcher */}
+            <div className="flex items-center space-x-1 bg-slate-800/40 border border-cyan-500/30 rounded-xl p-1 w-fit font-sans">
+              <button
+                type="button"
+                onClick={() => setProgressTab('titik')}
+                className={`px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
+                  progressTab === 'titik'
+                    ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
+                    : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
+                }`}
+              >
+                <span>abc</span>
+                <span>Letters</span>
+              </button>
+              
+              <button
+                type="button"
+                onClick={() => setProgressTab('kilos')}
+                className={`px-3.5 py-1.5 rounded-lg text-xs md:text-sm font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
+                  progressTab === 'kilos'
+                    ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
+                    : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
+                }`}
+              >
+                <span>✌️</span>
+                <span>Gestures</span>
+              </button>
             </div>
-          <div className="flex-1 flex justify-start z-10 w-full md:w-auto">
-          {/* Sub tabs switcher */}
-          <div className="flex items-center space-x-1.5 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-1.5 w-fit font-sans">
-            <button
-              type="button"
-              onClick={() => setProgressTab('titik')}
-              className={`px-5 py-2.5 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
-                progressTab === 'titik'
-                  ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
-                  : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
-              }`}
-            >
-              <span>abc</span>
-              <span>Letters</span>
-            </button>
-            
-            <button
-              type="button"
-              onClick={() => setProgressTab('kilos')}
-              className={`px-5 py-2.5 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border flex items-center space-x-1.5 ${
-                progressTab === 'kilos'
-                  ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
-                  : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
-              }`}
-            >
-              <span>✌️</span>
-              <span>Gestures</span>
-            </button>
           </div>
 
+          <div className="hidden md:flex bg-[#0f172a] backdrop-blur-md border border-cyan-400/80 rounded-full px-6 py-1.5 shadow-[0_0_20px_rgba(6,182,212,0.4)] text-center">
+            <h1 className="text-lg lg:text-xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">PROGRESS</h1>
           </div>
-          <div className="flex-1 flex justify-end z-10 w-full md:w-auto space-x-2">
+
+          <div className="flex items-center space-x-2">
             {progressStudentId !== 'ALL' && (
               <button
                 onClick={() => setProgressStudentId('ALL')}
-                className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-sm md:text-base font-black px-6 py-3 rounded-xl border border-fuchsia-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide"
+                className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white text-xs md:text-sm font-black px-3.5 py-1.5 rounded-xl border border-fuchsia-400 shadow-md transition-all active:scale-95 uppercase tracking-wide"
               >
                 ← View Class Progress
               </button>
@@ -3896,7 +3883,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
           
             <button
               onClick={handleExportClick}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm md:text-base font-black px-5 py-2.5 rounded-xl border border-emerald-400 shadow-lg transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm font-black px-3.5 py-1.5 rounded-xl border border-emerald-400 shadow-md transition-all active:scale-95 uppercase tracking-wide flex items-center space-x-1.5"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
               <span>Export CSV</span>
@@ -3905,40 +3892,40 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         </div>
 
         {/* 2 Cols Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-2.5 sm:gap-3 flex-1 min-h-0 overflow-hidden">
           
           {/* Progress Columns */}
-          <div className="lg:col-span-3 bg-slate-950/95 backdrop-blur-md border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-3xl p-6 shadow-xl flex flex-col max-h-[70vh] overflow-y-auto relative">
+          <div className="lg:col-span-3 bg-slate-950/95 backdrop-blur-md border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.3)] rounded-2xl p-2.5 sm:p-3.5 shadow-xl flex flex-col h-full flex-1 min-h-0 overflow-y-auto relative scrollbar-thin scrollbar-thumb-cyan-500">
             <div className="absolute top-[20%] left-[10%] opacity-5 text-5xl pointer-events-none select-none">🖐️</div>
             <div className="absolute bottom-[30%] right-[15%] opacity-5 text-5xl pointer-events-none select-none">✌️</div>
             <div className="absolute top-[60%] right-[30%] opacity-5 text-5xl pointer-events-none select-none">👍</div>
             <div className="absolute bottom-[10%] left-[25%] opacity-5 text-5xl pointer-events-none select-none">👌</div>
             
-            <div className="space-y-4 relative z-10 font-sans">
+            <div className="space-y-1.5 relative z-10 font-sans">
               {activeList.map((item) => (
-                <div key={item.name} className="flex items-center space-x-4">
+                <div key={item.name} className="flex items-center space-x-2.5 p-1 rounded-lg hover:bg-slate-900/50 transition-colors">
                   {progressTab === 'titik' ? (
-                    <div className="w-12 h-12 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center font-black text-lg text-cyan-300 select-none flex-shrink-0 shadow-inner">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center font-black text-xs sm:text-sm text-cyan-300 select-none flex-shrink-0 shadow-inner">
                       {item.name}
                     </div>
                   ) : (
-                    <div className="w-12 h-12 rounded-xl bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-xl select-none flex-shrink-0">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-800/80 border border-cyan-500/40 flex items-center justify-center text-base select-none flex-shrink-0">
                       {item.emoji}
                     </div>
                   )}
 
                   {progressTab === 'kilos' && (
-                    <div className="w-48 text-sm font-bold text-slate-200 truncate flex-shrink-0 text-left">
+                    <div className="w-28 sm:w-36 text-xs font-bold text-slate-200 truncate flex-shrink-0 text-left">
                       {item.name}
                     </div>
                   )}
 
-                  <div className="flex-1 bg-slate-900/80 rounded-full h-6 border border-cyan-500/30 overflow-hidden shadow-inner relative">
-                    <div className={`${item.color} h-6 rounded-full transition-all duration-500`} style={{ width: `${item.val}%` }}></div>
+                  <div className="flex-1 bg-slate-900/80 rounded-full h-3.5 sm:h-4 border border-cyan-500/30 overflow-hidden shadow-inner relative">
+                    <div className={`${item.color} h-3.5 sm:h-4 rounded-full transition-all duration-500`} style={{ width: `${item.val}%` }}></div>
                   </div>
 
-                  <div className="w-16 flex items-center justify-end space-x-1.5 flex-shrink-0 text-right">
-                    <span className="text-sm md:text-base font-black text-slate-100">{item.val}%</span>
+                  <div className="w-12 sm:w-14 flex items-center justify-end space-x-1 flex-shrink-0 text-right">
+                    <span className="text-[11px] sm:text-xs font-black text-slate-100">{item.val}%</span>
                     {item.warn && (
                       <span className="text-xs text-yellow-400 select-none animate-pulse" title="Needs practice!">⚠️</span>
                     )}
@@ -3948,77 +3935,76 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             </div>
           </div>
 
-{/* Leaderboard Column */}
-          <div className="lg:col-span-2 flex flex-col space-y-4">
-            <div className="flex items-center justify-between gap-2 w-full">
-                <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl px-3 py-2 w-fit shadow-lg text-left select-none flex items-center h-12 shrink-0">
-                <h3 className="text-sm font-black text-white tracking-widest uppercase flex items-center space-x-1.5">
+          {/* Leaderboard Column */}
+          <div className="lg:col-span-2 flex flex-col space-y-1.5 h-full flex-1 min-h-0 overflow-hidden">
+            <div className="flex items-center justify-between gap-1.5 w-full shrink-0">
+              <div className="bg-slate-800/80 backdrop-blur-md border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-xl px-2.5 py-1 w-fit shadow-md text-left select-none flex items-center h-8 sm:h-8.5 shrink-0">
+                <h3 className="text-[11px] sm:text-xs font-black text-white tracking-widest uppercase flex items-center space-x-1">
                   <span>🏆</span>
                   <span>Top Students</span>
                 </h3>
               </div>
-            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <select
-                value={progressGradeFilter}
-                onChange={(e) => {
-                   setProgressGradeFilter(e.target.value);
-                   setProgressStudentId('ALL');
-                }}
-                className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm font-bold rounded-xl px-3 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
-              >
-                <option value="ALL" className="bg-slate-800 text-white font-bold">All Grades</option>
-                <option value="Grade 1" className="bg-slate-800 text-blue-400 font-bold">Grade 1</option>
-                <option value="Grade 2" className="bg-slate-800 text-yellow-400 font-bold">Grade 2</option>
-                <option value="Grade 3" className="bg-slate-800 text-emerald-400 font-bold">Grade 3</option>
-                
-              </select>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  value={progressGradeFilter}
+                  onChange={(e) => {
+                     setProgressGradeFilter(e.target.value);
+                     setProgressStudentId('ALL');
+                  }}
+                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-xs font-bold rounded-xl px-2 h-8 sm:h-8.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans shadow-inner cursor-pointer"
+                >
+                  <option value="ALL" className="bg-slate-800 text-white font-bold">All Grades</option>
+                  <option value="Grade 1" className="bg-slate-800 text-blue-400 font-bold">Grade 1</option>
+                  <option value="Grade 2" className="bg-slate-800 text-yellow-400 font-bold">Grade 2</option>
+                  <option value="Grade 3" className="bg-slate-800 text-emerald-400 font-bold">Grade 3</option>
+                </select>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
+                    <svg className="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={progressSearchTerm}
+                    onChange={(e) => setProgressSearchTerm(e.target.value)}
+                    className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-xs font-bold rounded-xl pl-7 pr-2 h-8 sm:h-8.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-24 sm:w-32 font-sans shadow-inner placeholder-slate-400"
+                  />
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  value={progressSearchTerm}
-                  onChange={(e) => setProgressSearchTerm(e.target.value)}
-                  className="bg-slate-800/80 border border-cyan-500/40 text-slate-100 text-sm font-bold rounded-xl pl-11 pr-4 h-12 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-32 md:w-40 lg:w-48 font-sans shadow-inner placeholder-slate-400"
-                />
               </div>
             </div>
-            </div>
 
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-3xl p-6 shadow-xl flex flex-col space-y-3.5 flex-1 justify-start overflow-y-auto max-h-[65vh] scrollbar-thin scrollbar-thumb-fuchsia-500 pr-2">
-              <p className="text-sm md:text-base text-fuchsia-300 font-bold uppercase tracking-widest mb-3 text-center bg-fuchsia-900/30 py-4 rounded-xl border border-fuchsia-400/30">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-2.5 sm:p-3 shadow-xl flex flex-col space-y-1.5 flex-1 min-h-0 justify-start overflow-y-auto scrollbar-thin scrollbar-thumb-fuchsia-500 pr-1">
+              <p className="text-[10px] sm:text-[11px] text-fuchsia-300 font-bold uppercase tracking-widest py-1 text-center bg-fuchsia-900/30 rounded-lg border border-fuchsia-400/30 shrink-0">
                 👆 Click a student to view their progress
               </p>
               {sortedLeaderboard.map((std, index) => (
                 <div 
                   key={std.id}
                   onClick={() => setProgressStudentId(std.id)}
-                  className={`border rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] shrink-0 ${
+                  className={`border rounded-xl p-2 flex items-center justify-between shadow-md relative overflow-hidden cursor-pointer transition-all active:scale-[0.98] shrink-0 ${
                     progressStudentId === std.id 
                       ? (std.grade === "Grade 1" ? 'bg-blue-900/60 border-blue-400 ring-2 ring-blue-400/50' : std.grade === "Grade 2" ? 'bg-yellow-900/60 border-yellow-400 ring-2 ring-yellow-400/50' : std.grade === "Grade 3" ? 'bg-emerald-900/60 border-emerald-400 ring-2 ring-emerald-400/50' : 'bg-cyan-900/60 border-cyan-400 ring-2 ring-cyan-400/50')
                       : (std.grade === "Grade 1" ? 'bg-blue-900/70 border-blue-800/50 hover:bg-blue-800/80 hover:border-blue-500/50' : std.grade === "Grade 2" ? 'bg-yellow-900/70 border-yellow-800/50 hover:bg-yellow-800/80 hover:border-yellow-500/50' : std.grade === "Grade 3" ? 'bg-emerald-900/70 border-emerald-800/50 hover:bg-emerald-800/80 hover:border-emerald-500/50' : 'bg-slate-800/95 border-slate-600 hover:bg-slate-700/90 hover:border-cyan-500/50')
                   }`}
                 >
-                  <div className={`absolute top-0 left-0 w-2 h-full ${std.grade === "Grade 1" ? "bg-blue-500" : std.grade === "Grade 2" ? "bg-yellow-500" : std.grade === "Grade 3" ? "bg-emerald-500" : "bg-cyan-500"}`} />
+                  <div className={`absolute top-0 left-0 w-1.5 h-full ${std.grade === "Grade 1" ? "bg-blue-500" : std.grade === "Grade 2" ? "bg-yellow-500" : std.grade === "Grade 3" ? "bg-emerald-500" : "bg-cyan-500"}`} />
 
-                  <div className="flex items-center space-x-3 text-left">
-                    <div className="text-3xl bg-yellow-500/10 w-11 h-11 rounded-full border border-yellow-500/20 flex items-center justify-center select-none">
+                  <div className="flex items-center space-x-2 text-left">
+                    <div className="text-lg bg-yellow-500/10 w-7 h-7 rounded-full border border-yellow-500/20 flex items-center justify-center select-none">
                       {std.emoji}
                     </div>
                     <div>
-                      <h4 className="font-extrabold text-white text-base leading-tight">{std.name}</h4>
-                      <p className="text-[10px] text-purple-300 font-bold uppercase mt-0.5">{std.grade}</p>
+                      <h4 className="font-extrabold text-white text-xs sm:text-sm leading-tight">{std.name}</h4>
+                      <p className="text-[9px] text-purple-300 font-bold uppercase mt-0.5">{std.grade}</p>
                     </div>
                   </div>
 
                   <div className="flex flex-col items-end">
-                    <div className="flex items-center space-x-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-3 py-1 select-none">
-                      <span className="text-yellow-400 text-sm">⭐</span>
-                      <span className="text-sm font-black text-yellow-300 font-sans">{std.points} Points</span>
+                    <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-1.5 py-0.5 select-none">
+                      <span className="text-yellow-400 text-[10px]">⭐</span>
+                      <span className="text-[11px] font-black text-yellow-300 font-sans">{std.points} Pts</span>
                     </div>
-                    <span className="text-sm font-black text-slate-400 tracking-widest mt-1 font-sans opacity-70">
+                    <span className="text-[9px] font-black text-slate-400 tracking-widest mt-0.5 font-sans opacity-70">
                       #{index + 1}
                     </span>
                   </div>
@@ -4026,7 +4012,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
               ))}
 
               {sortedLeaderboard.length === 0 && (
-                <p className="text-purple-300 text-sm font-sans font-medium text-center py-6">No students registered yet.</p>
+                <p className="text-purple-300 text-xs font-sans font-medium text-center py-4">No students registered yet.</p>
               )}
             </div>
           </div>
@@ -4047,48 +4033,48 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       const globalTopStudents = [...studentsList].sort((a, b) => (b.points || 0) - (a.points || 0)).slice(0, 5);
   
       return (
-        <div className="flex flex-col space-y-6 text-left w-full">
+        <div className="flex flex-col space-y-3 sm:space-y-4 text-left w-full flex-1 min-h-0">
           {/* Stats row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
-            <div className="bg-[#10b981]/95 border border-[#34d399]/30 rounded-3xl p-6 shadow-xl flex items-center justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 font-sans shrink-0">
+            <div className="bg-[#10b981]/95 border border-[#34d399]/30 rounded-2xl p-3.5 sm:p-4 shadow-lg flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-3xl font-black text-white">{totalTeachers}</span>
-                <span className="text-[10px] font-black text-emerald-100 uppercase tracking-widest mt-1">Registered Teachers</span>
+                <span className="text-2xl sm:text-3xl font-black text-white">{totalTeachers}</span>
+                <span className="text-[10px] font-black text-emerald-100 uppercase tracking-widest mt-0.5">Registered Teachers</span>
               </div>
-              <div className="text-3xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center select-none shadow-inner">👨‍🏫</div>
+              <div className="text-2xl bg-white/20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center select-none shadow-inner">👨‍🏫</div>
             </div>
   
-            <div className="bg-[#f59e0b]/95 border border-[#fbbf24]/30 rounded-3xl p-6 shadow-xl flex items-center justify-between">
+            <div className="bg-[#f59e0b]/95 border border-[#fbbf24]/30 rounded-2xl p-3.5 sm:p-4 shadow-lg flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-3xl font-black text-white">{totalStudents}</span>
-                <span className="text-[10px] font-black text-amber-100 uppercase tracking-widest mt-1">Registered Students</span>
+                <span className="text-2xl sm:text-3xl font-black text-white">{totalStudents}</span>
+                <span className="text-[10px] font-black text-amber-100 uppercase tracking-widest mt-0.5">Registered Students</span>
               </div>
-              <div className="text-3xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center select-none shadow-inner">🧑‍🎓</div>
+              <div className="text-2xl bg-white/20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center select-none shadow-inner">🧑‍🎓</div>
             </div>
   
-            <div className="bg-[#3b82f6]/95 border border-[#60a5fa]/30 rounded-3xl p-6 shadow-xl flex items-center justify-between">
+            <div className="bg-[#3b82f6]/95 border border-[#60a5fa]/30 rounded-2xl p-3.5 sm:p-4 shadow-lg flex items-center justify-between">
               <div className="flex flex-col">
-                <span className="text-3xl font-black text-white">{totalPoints}</span>
-                <span className="text-[10px] font-black text-blue-100 uppercase tracking-widest mt-1">Total Points</span>
+                <span className="text-2xl sm:text-3xl font-black text-white">{totalPoints}</span>
+                <span className="text-[10px] font-black text-blue-100 uppercase tracking-widest mt-0.5">Total Points</span>
               </div>
-              <div className="text-3xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center select-none shadow-inner">⭐</div>
+              <div className="text-2xl bg-white/20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center select-none shadow-inner">⭐</div>
             </div>
           </div>
   
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col space-y-4">
-              <h3 className="text-sm font-black text-white uppercase tracking-widest">Platform Usage</h3>
-              <div className="flex-1 flex flex-col justify-center items-center space-y-4 opacity-90 py-4">
-                <div className="w-20 h-20 bg-blue-500/20 rounded-full border-4 border-blue-400 flex items-center justify-center">
-                  <span className="text-2xl font-black text-blue-300">{totalSessions}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 font-sans flex-1 min-h-0">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col justify-between flex-1 min-h-0 overflow-y-auto">
+              <h3 className="text-xs sm:text-sm font-black text-white uppercase tracking-widest">Platform Usage</h3>
+              <div className="flex-1 flex flex-col justify-center items-center space-y-3 opacity-90 py-2 sm:py-3">
+                <div className="w-16 h-16 sm:w-18 sm:h-18 bg-blue-500/20 rounded-full border-4 border-blue-400 flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl font-black text-blue-300">{totalSessions}</span>
                 </div>
                 <div className="text-center">
-                  <p className="text-blue-300 font-bold text-lg">Total Signs Practiced</p>
-                  <p className="text-xs text-purple-300 mt-1">All games and practices in Signo</p>
+                  <p className="text-blue-300 font-bold text-base sm:text-lg">Total Signs Practiced</p>
+                  <p className="text-xs text-purple-300 mt-0.5">All games and practices in Signo</p>
                 </div>
                 
-                <div className="w-full border-t border-white/10 pt-4 mt-2">
-                  <div className="flex items-center justify-between px-4">
+                <div className="w-full border-t border-white/10 pt-3 mt-1">
+                  <div className="flex items-center justify-between px-3">
                      <span className="text-xs font-bold text-slate-300">Database Connection</span>
                      <span className="text-xs font-black text-emerald-400 flex items-center"><span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse mr-2"></span> Connected</span>
                   </div>
@@ -4096,19 +4082,19 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
               </div>
             </div>
             
-            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col space-y-4">
-              <h3 className="text-sm font-black text-white uppercase tracking-widest">Top 5 Students</h3>
-              <div className="flex-1 flex flex-col space-y-3 pr-2">
+            <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col space-y-2 flex-1 min-h-0 overflow-hidden">
+              <h3 className="text-xs sm:text-sm font-black text-white uppercase tracking-widest shrink-0">Top 5 Students</h3>
+              <div className="flex-1 min-h-0 flex flex-col space-y-2 pr-1 overflow-y-auto">
                 {globalTopStudents.length > 0 ? globalTopStudents.map((student, i) => (
-                  <div key={i} className="flex items-center justify-between bg-purple-950/40 p-3 rounded-xl border border-purple-800/30">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-lg">{student.emoji || '👤'}</div>
+                  <div key={i} className="flex items-center justify-between bg-purple-950/40 p-2 sm:p-2.5 rounded-xl border border-purple-800/30">
+                    <div className="flex items-center space-x-2.5">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 flex items-center justify-center text-base sm:text-lg">{student.emoji || '👤'}</div>
                       <div className="flex flex-col">
                         <span className="text-white text-xs font-bold uppercase">{student.name}</span>
                         <span className="text-purple-300 text-[10px]">{student.grade}</span>
                       </div>
                     </div>
-                    <div className="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-[10px] font-black tracking-widest">
+                    <div className="bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-widest">
                       {student.points || 0} PTS
                     </div>
                   </div>
@@ -4154,75 +4140,75 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
     };
 
     return (
-      <div className="flex flex-col space-y-6 text-left">
+      <div className="flex flex-col space-y-3 sm:space-y-4 text-left flex-1 min-h-0">
         {/* Stats row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
-          <div className="bg-[#10b981]/95 border border-[#34d399]/30 rounded-3xl p-6 shadow-xl flex items-center justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 font-sans shrink-0">
+          <div className="bg-[#10b981]/95 border border-[#34d399]/30 rounded-2xl p-3.5 sm:p-4 shadow-lg flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-3xl font-black text-white">{aktiboCount}</span>
-              <span className="text-[10px] font-black text-emerald-100 uppercase tracking-widest mt-1">Active Teachers</span>
+              <span className="text-2xl sm:text-3xl font-black text-white">{aktiboCount}</span>
+              <span className="text-[10px] font-black text-emerald-100 uppercase tracking-widest mt-0.5">Active Teachers</span>
             </div>
-            <div className="text-3xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center select-none shadow-inner">✔️</div>
+            <div className="text-2xl bg-white/20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center select-none shadow-inner">✔️</div>
           </div>
 
-          <div className="bg-[#ef4444]/95 border border-[#f87171]/30 rounded-3xl p-6 shadow-xl flex items-center justify-between">
+          <div className="bg-[#ef4444]/95 border border-[#f87171]/30 rounded-2xl p-3.5 sm:p-4 shadow-lg flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-3xl font-black text-white">{hindiAktiboCount}</span>
-              <span className="text-[10px] font-black text-rose-100 uppercase tracking-widest mt-1">Inactive</span>
+              <span className="text-2xl sm:text-3xl font-black text-white">{hindiAktiboCount}</span>
+              <span className="text-[10px] font-black text-rose-100 uppercase tracking-widest mt-0.5">Inactive</span>
             </div>
-            <div className="text-3xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center select-none shadow-inner">⏸️</div>
+            <div className="text-2xl bg-white/20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center select-none shadow-inner">⏸️</div>
           </div>
 
-          <div className="bg-[#06b6d4]/95 border border-[#22d3ee]/30 rounded-3xl p-6 shadow-xl flex items-center justify-between">
+          <div className="bg-[#06b6d4]/95 border border-[#22d3ee]/30 rounded-2xl p-3.5 sm:p-4 shadow-lg flex items-center justify-between">
             <div className="flex flex-col">
-              <span className="text-3xl font-black text-white">{sessionsCount}</span>
-              <span className="text-[10px] font-black text-cyan-100 uppercase tracking-widest mt-1">Signs Practiced</span>
+              <span className="text-2xl sm:text-3xl font-black text-white">{sessionsCount}</span>
+              <span className="text-[10px] font-black text-cyan-100 uppercase tracking-widest mt-0.5">Signs Practiced</span>
             </div>
-            <div className="text-3xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center select-none shadow-inner">📹</div>
+            <div className="text-2xl bg-white/20 w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center select-none shadow-inner">📹</div>
           </div>
         </div>
 
         {/* Table container */}
-        <div className="flex-1 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col space-y-4 w-full">
-          <div className="flex items-center justify-between w-full">
-            <h3 className="text-sm font-black text-white tracking-widest uppercase">Teacher Masterlist</h3>
+        <div className="flex-1 min-h-0 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col space-y-3 w-full overflow-hidden">
+          <div className="flex items-center justify-between w-full shrink-0">
+            <h3 className="text-xs sm:text-sm font-black text-white tracking-widest uppercase">Teacher Masterlist</h3>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
               <input
                 type="text"
                 placeholder="Search..."
                 value={guroSearchTerm}
                 onChange={(e) => setGuroSearchTerm(e.target.value)}
-                className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl pl-9 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-64 font-sans"
+                className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl pl-8 pr-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-48 sm:w-60 font-sans"
               />
             </div>
           </div>
-          <div className="flex-1 overflow-y-auto pr-2 w-full scrollbar-thin scrollbar-thumb-fuchsia-500">
-            <div className="w-full min-w-[800px] flex flex-col font-sans text-xs">
+          <div className="flex-1 min-h-0 overflow-y-auto pr-1 w-full scrollbar-thin scrollbar-thumb-fuchsia-500">
+            <div className="w-full min-w-[700px] flex flex-col font-sans text-xs">
               {/* Grid Header */}
-              <div className="grid grid-cols-12 gap-4 border-b border-purple-800/40 text-purple-200 font-black uppercase tracking-wider text-[10px] pb-4 pt-2 px-4 sticky top-0 bg-[#0f172a] z-10 shadow-sm w-full">
+              <div className="grid grid-cols-12 gap-3 border-b border-purple-800/40 text-purple-200 font-black uppercase tracking-wider text-[10px] pb-2 pt-1 px-3 sticky top-0 bg-[#0f172a] z-10 shadow-sm w-full">
                 <div className="col-span-3 flex items-center">Teacher</div>
                 <div className="col-span-3 flex items-center">Email</div>
                 <div className="col-span-3 flex items-center">School</div>
                 <div className="col-span-1 flex items-center justify-center">Students</div>
                 <div className="col-span-1 flex items-center justify-center">Signs</div>
-                <div className="col-span-1 flex items-center justify-end pr-2">Action</div>
+                <div className="col-span-1 flex items-center justify-end pr-1">Action</div>
               </div>
               
               {/* Grid Body */}
               <div className="divide-y divide-purple-800/20 text-slate-100 font-semibold w-full">
                 {filteredTeachers.map((teacher) => (
-                  <div key={teacher.id} className="grid grid-cols-12 gap-4 items-center hover:bg-purple-950/20 transition py-4 px-4 w-full">
+                  <div key={teacher.id} className="grid grid-cols-12 gap-3 items-center hover:bg-purple-950/20 transition py-2.5 px-3 w-full">
                     {/* Guro Col */}
-                    <div className="col-span-3 flex items-center space-x-3 overflow-hidden">
-                      <div className="text-2xl w-9 h-9 rounded-full bg-purple-950/60 border border-purple-850/40 flex items-center justify-center select-none flex-shrink-0">
+                    <div className="col-span-3 flex items-center space-x-2.5 overflow-hidden">
+                      <div className="text-xl w-8 h-8 rounded-full bg-purple-950/60 border border-purple-850/40 flex items-center justify-center select-none flex-shrink-0">
                         {teacher.emoji}
                       </div>
                       <div className="flex flex-col truncate">
                         <span className="text-white font-bold uppercase tracking-wider text-xs truncate">{teacher.name}</span>
-                        <span className={`text-[9px] px-2 py-0.5 mt-1 rounded-full w-fit uppercase font-black tracking-widest ${teacher.status === 'Aktibo' || teacher.status === 'AKTIBO' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`}>
+                        <span className={`text-[9px] px-1.5 py-0.2 mt-0.5 rounded-full w-fit uppercase font-black tracking-widest ${teacher.status === 'Aktibo' || teacher.status === 'AKTIBO' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'}`}>
                           {teacher.status === 'AKTIBO' || teacher.status === 'Aktibo' ? 'Active' : 'Inactive'}
                         </span>
                       </div>
@@ -4241,15 +4227,15 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     <div className="col-span-1 text-center font-black text-slate-200">{teacher.sessionsCount}</div>
                     
                     {/* Aksyon Col */}
-                    <div className="col-span-1 flex items-center justify-end space-x-3 pr-2">
+                    <div className="col-span-1 flex items-center justify-end space-x-2 pr-1">
                       {(teacher.status === 'Hindi Aktibo' || teacher.status === 'HINDI_AKTIBO') && (
                         <button 
                           type="button"
                           onClick={() => handleToggleTeacherStatus(teacher.id, 'Hindi Aktibo')}
-                          className="text-emerald-500 hover:text-emerald-400 transition bg-emerald-500/10 p-1.5 rounded-lg border border-emerald-500/20" 
+                          className="text-emerald-500 hover:text-emerald-400 transition bg-emerald-500/10 p-1 rounded-lg border border-emerald-500/20" 
                           title="Restore"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                           </svg>
                         </button>
@@ -4263,10 +4249,10 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                             setTeacherToDelete(teacher.id);
                           }
                         }}
-                        className={`${(teacher.status === 'Aktibo' || teacher.status === 'AKTIBO') ? 'text-amber-500 hover:text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-red-500 hover:text-red-400 bg-red-500/10 border-red-500/20'} transition p-1.5 rounded-lg border`} 
+                        className={`${(teacher.status === 'Aktibo' || teacher.status === 'AKTIBO') ? 'text-amber-500 hover:text-amber-400 bg-amber-500/10 border-amber-500/20' : 'text-red-500 hover:text-red-400 bg-red-500/10 border-red-500/20'} transition p-1 rounded-lg border`} 
                         title={(teacher.status === 'Aktibo' || teacher.status === 'AKTIBO') ? "Deactivate" : "Permanently Delete"}
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           {(teacher.status === 'Aktibo' || teacher.status === 'AKTIBO') ? (
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           ) : (
@@ -4278,7 +4264,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   </div>
                 ))}
                 {filteredTeachers.length === 0 && (
-                  <div className="w-full text-center py-8 text-purple-300 font-bold">No teachers found.</div>
+                  <div className="w-full text-center py-6 text-purple-300 font-bold">No teachers found.</div>
                 )}
               </div>
             </div>
@@ -4320,96 +4306,96 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
   const renderAdminAnalyticsView = () => {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-left font-sans">
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col justify-between">
-          <div className="flex items-center space-x-2 mb-6">
-            <span className="inline-block w-3.5 h-3.5 bg-blue-500 rounded" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 text-left font-sans flex-1 min-h-0">
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col justify-between flex-1 min-h-0 overflow-y-auto">
+          <div className="flex items-center space-x-2 mb-3 shrink-0">
+            <span className="inline-block w-3 h-3 bg-blue-500 rounded" />
             <h3 className="text-xs font-black text-white uppercase tracking-wider">Sessions Per Day</h3>
           </div>
           
-          <div className="flex items-end justify-between h-64 border-b border-purple-800/40 pb-2 px-4 relative">
+          <div className="flex items-end justify-between h-40 sm:h-48 border-b border-purple-800/40 pb-2 px-3 relative">
             <div className="absolute inset-x-0 top-0 border-t border-purple-900/10 pointer-events-none" />
             <div className="absolute inset-x-0 top-[25%] border-t border-purple-900/10 pointer-events-none" />
             <div className="absolute inset-x-0 top-[50%] border-t border-purple-900/10 pointer-events-none" />
             <div className="absolute inset-x-0 top-[75%] border-t border-purple-900/10 pointer-events-none" />
 
-            <div className="flex flex-col items-center flex-1 space-y-2 z-10">
+            <div className="flex flex-col items-center flex-1 space-y-1.5 z-10">
               <span className="text-[10px] font-black text-red-400">8</span>
-              <div className="w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '80px' }} />
-              <span className="text-[10px] font-bold text-purple-300 mt-1">Lun</span>
+              <div className="w-8 sm:w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '60px' }} />
+              <span className="text-[10px] font-bold text-purple-300 mt-0.5">Lun</span>
             </div>
-            <div className="flex flex-col items-center flex-1 space-y-2 z-10">
+            <div className="flex flex-col items-center flex-1 space-y-1.5 z-10">
               <span className="text-[10px] font-black text-red-400">12</span>
-              <div className="w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '120px' }} />
-              <span className="text-[10px] font-bold text-purple-300 mt-1">Mar</span>
+              <div className="w-8 sm:w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '90px' }} />
+              <span className="text-[10px] font-bold text-purple-300 mt-0.5">Mar</span>
             </div>
-            <div className="flex flex-col items-center flex-1 space-y-2 z-10">
+            <div className="flex flex-col items-center flex-1 space-y-1.5 z-10">
               <span className="text-[10px] font-black text-red-400">10</span>
-              <div className="w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '100px' }} />
-              <span className="text-[10px] font-bold text-purple-300 mt-1">Miy</span>
+              <div className="w-8 sm:w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '75px' }} />
+              <span className="text-[10px] font-bold text-purple-300 mt-0.5">Miy</span>
             </div>
-            <div className="flex flex-col items-center flex-1 space-y-2 z-10">
+            <div className="flex flex-col items-center flex-1 space-y-1.5 z-10">
               <span className="text-[10px] font-black text-red-400">14</span>
-              <div className="w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '140px' }} />
-              <span className="text-[10px] font-bold text-purple-300 mt-1">Huw</span>
+              <div className="w-8 sm:w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '105px' }} />
+              <span className="text-[10px] font-bold text-purple-300 mt-0.5">Huw</span>
             </div>
-            <div className="flex flex-col items-center flex-1 space-y-2 z-10">
+            <div className="flex flex-col items-center flex-1 space-y-1.5 z-10">
               <span className="text-[10px] font-black text-red-400">16</span>
-              <div className="w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '160px' }} />
-              <span className="text-[10px] font-bold text-purple-300 mt-1">Biy</span>
+              <div className="w-8 sm:w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '120px' }} />
+              <span className="text-[10px] font-bold text-purple-300 mt-0.5">Biy</span>
             </div>
-            <div className="flex flex-col items-center flex-1 space-y-2 z-10">
+            <div className="flex flex-col items-center flex-1 space-y-1.5 z-10">
               <span className="text-[10px] font-black text-red-400">6</span>
-              <div className="w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '60px' }} />
-              <span className="text-[10px] font-bold text-purple-300 mt-1">Sab</span>
+              <div className="w-8 sm:w-10 bg-gradient-to-t from-red-800 to-red-500 rounded-t-lg transition-all duration-500 hover:opacity-90" style={{ height: '45px' }} />
+              <span className="text-[10px] font-bold text-purple-300 mt-0.5">Sab</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-[32px] p-6 shadow-xl flex flex-col justify-between">
-          <div className="flex items-center space-x-2 mb-6">
-            <span className="inline-block w-3.5 h-3.5 bg-emerald-500 rounded" />
+        <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl p-3 sm:p-4 shadow-xl flex flex-col justify-between flex-1 min-h-0 overflow-y-auto">
+          <div className="flex items-center space-x-2 mb-3 shrink-0">
+            <span className="inline-block w-3 h-3 bg-emerald-500 rounded" />
             <h3 className="text-xs font-black text-white uppercase tracking-wider">Paggamit ng Bawat Modyul</h3>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-around h-64">
-            <div className="relative w-40 h-40 rounded-full flex items-center justify-center flex-shrink-0" style={{
+          <div className="flex flex-col sm:flex-row items-center justify-around h-44 sm:h-52">
+            <div className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full flex items-center justify-center flex-shrink-0" style={{
               background: 'conic-gradient(#06b6d4 0% 44%, #10b981 44% 73%, #ec4899 73% 89%, #8b5cf6 89% 100%)'
             }}>
-              <div className="w-26 h-26 rounded-full bg-[#1e083c] flex flex-col items-center justify-center text-center shadow-lg border border-purple-900/40">
-                <span className="text-xl font-black text-white leading-none">338</span>
-                <span className="text-[8px] text-purple-300 font-bold uppercase mt-1">kabuuang gamit</span>
+              <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-[#1e083c] flex flex-col items-center justify-center text-center shadow-lg border border-purple-900/40">
+                <span className="text-lg sm:text-xl font-black text-white leading-none">338</span>
+                <span className="text-[8px] text-purple-300 font-bold uppercase mt-0.5">kabuuang gamit</span>
               </div>
             </div>
 
-            <div className="space-y-3 w-full md:w-auto text-xs font-semibold mt-4 md:mt-0">
-              <div className="flex items-center justify-between md:space-x-12">
-                <div className="flex items-center space-x-2.5">
-                  <span className="w-3.5 h-3.5 rounded-md bg-[#06b6d4]" />
+            <div className="space-y-2 w-full sm:w-auto text-xs font-semibold mt-3 sm:mt-0">
+              <div className="flex items-center justify-between sm:space-x-8">
+                <div className="flex items-center space-x-2">
+                  <span className="w-3 h-3 rounded-md bg-[#06b6d4]" />
                   <span className="text-slate-200">Letra</span>
                 </div>
                 <span className="text-cyan-400 font-black">44%</span>
               </div>
               
-              <div className="flex items-center justify-between md:space-x-12">
-                <div className="flex items-center space-x-2.5">
-                  <span className="w-3.5 h-3.5 rounded-md bg-[#10b981]" />
+              <div className="flex items-center justify-between sm:space-x-8">
+                <div className="flex items-center space-x-2">
+                  <span className="w-3 h-3 rounded-md bg-[#10b981]" />
                   <span className="text-slate-200">Pagbati</span>
                 </div>
                 <span className="text-emerald-400 font-black">29%</span>
               </div>
 
-              <div className="flex items-center justify-between md:space-x-12">
-                <div className="flex items-center space-x-2.5">
-                  <span className="w-3.5 h-3.5 rounded-md bg-[#ec4899]" />
+              <div className="flex items-center justify-between sm:space-x-8">
+                <div className="flex items-center space-x-2">
+                  <span className="w-3 h-3 rounded-md bg-[#ec4899]" />
                   <span className="text-slate-200">I-Spell!</span>
                 </div>
                 <span className="text-pink-400 font-black">16%</span>
               </div>
 
-              <div className="flex items-center justify-between md:space-x-12">
-                <div className="flex items-center space-x-2.5">
-                  <span className="w-3.5 h-3.5 rounded-md bg-[#8b5cf6]" />
+              <div className="flex items-center justify-between sm:space-x-8">
+                <div className="flex items-center space-x-2">
+                  <span className="w-3 h-3 rounded-md bg-[#8b5cf6]" />
                   <span className="text-slate-200">Practice</span>
                 </div>
                 <span className="text-purple-400 font-black">12%</span>
@@ -4457,12 +4443,12 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
     ];
 
     return (
-      <div className="flex flex-col space-y-5 text-left font-sans">
-        <div className="flex items-center space-x-3 bg-slate-800/40 border border-cyan-500/30 rounded-2xl p-2 w-fit">
+      <div className="flex flex-col space-y-3 text-left font-sans flex-1 min-h-0">
+        <div className="flex items-center space-x-2 bg-slate-800/40 border border-cyan-500/30 rounded-xl p-1.5 w-fit shrink-0">
           <button
             type="button"
             onClick={() => setAdminLogTab('app')}
-            className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border ${
+            className={`px-4 py-1.5 rounded-lg text-xs md:text-sm font-black tracking-wide transition duration-200 border ${
               adminLogTab === 'app'
                 ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                 : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -4474,7 +4460,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <button
             type="button"
             onClick={() => setAdminLogTab('audit')}
-            className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border ${
+            className={`px-4 py-1.5 rounded-lg text-xs md:text-sm font-black tracking-wide transition duration-200 border ${
               adminLogTab === 'audit'
                 ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                 : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -4486,7 +4472,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           <button
             type="button"
             onClick={() => setAdminLogTab('error')}
-            className={`px-6 py-3 rounded-xl text-sm md:text-base font-black tracking-wide transition duration-200 border ${
+            className={`px-4 py-1.5 rounded-lg text-xs md:text-sm font-black tracking-wide transition duration-200 border ${
               adminLogTab === 'error'
                 ? 'bg-[#3b82f6] text-white border-[#60a5fa]/30 shadow-md'
                 : 'bg-purple-950/60 text-purple-300 hover:text-white border-transparent'
@@ -4496,12 +4482,12 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           </button>
         </div>
 
-        <div className="bg-[#0b0416]/95 border-2 border-purple-950 rounded-2xl p-6 shadow-2xl font-mono text-[11px] leading-relaxed max-h-[60vh] overflow-y-auto">
-          <div className="text-purple-400/60 border-b border-purple-950/50 pb-2 mb-4 select-none">
+        <div className="bg-[#0b0416]/95 border-2 border-purple-950 rounded-2xl p-4 shadow-2xl font-mono text-[10px] sm:text-[11px] leading-relaxed overflow-y-auto flex-1 min-h-0">
+          <div className="text-purple-400/60 border-b border-purple-950/50 pb-1.5 mb-3 select-none">
             --- signo-platform v1.0.0 · {adminLogTab === 'app' ? 'signo-app.log' : adminLogTab === 'audit' ? 'signo-audit.log' : 'signo-error.log'} ---
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {dbLogs.length > 0 ? (
               dbLogs.map((log: any, idx: number) => {
                 let lvlColor = "text-emerald-400";
@@ -4566,7 +4552,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
   if (currentView.startsWith('dashboard-')) {
     return (
-      <div className="h-screen w-full bg-[url('/bg.jpg')] bg-cover bg-center flex p-4 text-white overflow-hidden font-sans">
+      <div className="h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center flex p-2 sm:p-3 text-white overflow-hidden font-sans">
         <style>{`
           @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -4592,9 +4578,9 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         `}</style>
 
         {/* Sidebar */}
-        <div className="w-24 md:w-28 bg-slate-900/85 backdrop-blur-md rounded-3xl flex flex-col items-center py-6 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.5)] flex-shrink-0">
+        <div className="w-18 sm:w-22 md:w-26 bg-slate-900/85 backdrop-blur-md rounded-2xl flex flex-col items-center py-2 sm:py-3 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.5)] flex-shrink-0 justify-between">
           {/* Profile avatar at top */}
-          <div className="flex flex-col items-center select-none text-center px-2 mb-4">
+          <div className="flex flex-col items-center select-none text-center px-1 mb-1 sm:mb-2">
             {userRole !== 'admin' && activeUser ? (
               <button
                 type="button"
@@ -4606,23 +4592,23 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   setProfileSaveMsg(null);
                   setShowProfileModal(true);
                 }}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-2 overflow-hidden hover:border-fuchsia-400 hover:scale-105 transition-all active:scale-95 cursor-pointer"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-1 overflow-hidden hover:border-fuchsia-400 hover:scale-105 transition-all active:scale-95 cursor-pointer"
                 style={{ backgroundColor: activeUser.profileBgColor || '#1c1ae3' }}
               >
-                <img src={TEACHER_ICONS.find(i => i.key === (activeUser.profileIcon || "tmale1"))?.src} alt="Profile" className="w-12 h-12 object-contain" />
+                <img src={TEACHER_ICONS.find(i => i.key === (activeUser.profileIcon || "tmale1"))?.src} alt="Profile" className="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
               </button>
             ) : (
-              <div className="text-4xl md:text-5xl bg-white/15 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-2 select-none">
+              <div className="text-xl sm:text-2xl bg-white/15 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center border-2 border-white/30 shadow-xl mb-1 select-none">
                 {activeUser ? activeUser.emoji : (userRole === 'admin' ? '👑' : '👩‍🏫')}
               </div>
             )}
-            <span className="text-xs md:text-sm font-black text-white uppercase tracking-widest leading-tight truncate max-w-[90px]">
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-black text-white uppercase tracking-wider leading-tight truncate max-w-[70px]">
               {activeUser ? activeUser.name.split(' ')[0] : (userRole === 'admin' ? 'Admin' : 'Guro')}
             </span>
           </div>
 
           {/* Nav buttons — centered */}
-          <div className="flex-1 flex flex-col items-center justify-center space-y-4 w-full px-1 font-sans">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-1.5 sm:space-y-2 w-full px-1 font-sans">
             {userRole === 'admin' ? (
               <>
                 <NavIconButton
@@ -4688,29 +4674,29 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             )}
           </div>
 
-                      {/* Log Out button */}
-            <button
-              onClick={() => setShowLogoutConfirm(true)}
-              className="w-[calc(100%-16px)] py-3 bg-slate-900/60 hover:bg-red-600 text-white text-xs font-black rounded-xl tracking-wider transition-all duration-300 border-2 border-cyan-500/20 hover:border-red-400 shadow-xl hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] active:scale-95 uppercase font-sans mt-4"
-            >
-              LOG OUT
-            </button>
+          {/* Log Out button */}
+          <button
+            onClick={() => setShowLogoutConfirm(true)}
+            className="w-[calc(100%-6px)] py-1.5 sm:py-2 bg-slate-900/60 hover:bg-red-600 text-white text-[9px] sm:text-[10px] font-black rounded-xl tracking-wider transition-all duration-300 border-2 border-cyan-500/20 hover:border-red-400 shadow-xl hover:shadow-[0_0_20px_rgba(239,68,68,0.7)] active:scale-95 uppercase font-sans mt-1.5"
+          >
+            LOG OUT
+          </button>
         </div>
         
         {/* Main Area */}
-        <div className="flex-1 flex flex-col pl-4 md:pl-6 overflow-y-auto">
+        <div className="flex-1 min-h-0 flex flex-col pl-2 sm:pl-3 overflow-hidden">
           {/* Greeting Box */}
           {currentView === 'dashboard-home' && (
-            <div className="flex justify-center w-full mb-8 mt-4">
-              <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-10 py-4 shadow-[0_0_20px_rgba(6,182,212,0.6)] flex-shrink-0 text-center">
-                <h1 className="text-2xl md:text-4xl font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
+            <div className="flex justify-center w-full mb-1.5 sm:mb-2 mt-0.5 shrink-0">
+              <div className="bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 rounded-full px-5 sm:px-6 py-1 sm:py-1.5 shadow-[0_0_15px_rgba(6,182,212,0.5)] flex-shrink-0 text-center">
+                <h1 className="text-sm sm:text-base md:text-lg font-black text-white tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(6,182,212,0.8)]">
                   {headerText}
                 </h1>
               </div>
             </div>
           )}
           {/* Main Dashboard Pages */}
-          <div className="flex-1">
+          <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
             {userRole === 'admin' ? (
               <>
                 {currentView === 'dashboard-home' && renderAdminOverview()}
@@ -5324,7 +5310,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
   const isVerifyEmail = currentView === 'verify-email';
 
   return (
-    <div className="min-h-screen w-full bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center p-4 relative overflow-hidden font-sans select-none">
+    <div className="h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center p-2 sm:p-3 relative overflow-hidden font-sans select-none">
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -5421,25 +5407,25 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
       </div>
 
       {/* Card Body */}
-      <div className="w-full max-w-md bg-[#3a1c6a]/90 backdrop-blur-md rounded-[36px] border-2 border-purple-400/30 p-10 shadow-[0_0_60px_rgba(168,85,247,0.25)] relative z-10 text-center flex flex-col items-center">
+      <div className="w-full max-w-sm bg-[#3a1c6a]/90 backdrop-blur-md rounded-[28px] border-2 border-purple-400/30 px-5 sm:px-6 py-3.5 sm:py-4.5 shadow-[0_0_60px_rgba(168,85,247,0.25)] relative z-10 text-center flex flex-col items-center my-auto mt-10 sm:mt-12 shrink-0">
         {/* Logo Icon top overlap */}
-        <div className="absolute -top-24">
-          <AstronautLogo className="w-44 h-44 drop-shadow-xl" />
+        <div className="absolute -top-10 sm:-top-12">
+          <AstronautLogo className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-xl" />
         </div>
         
         {/* Spacer */}
-        <div className="h-20 w-full"></div>
+        <div className="h-7 sm:h-8 w-full shrink-0"></div>
 
         {/* Switcher Tab header (Only show on Login forms, not on Register or Forgot password) */}
         {(isTeacherLogin || isAdminLogin) && (
-          <div className="flex border-b border-purple-500/40 w-full mb-7 mt-2">
+          <div className="flex border-b border-purple-500/40 w-full mb-2.5 sm:mb-3 mt-0.5 shrink-0">
             <button
               type="button"
               onClick={() => {
                 setCurrentView('teacher-login');
                 setUserRole('guro');
               }}
-              className={`flex-1 pb-3 text-sm font-black tracking-wide uppercase transition-all ${
+              className={`flex-1 pb-1.5 text-xs sm:text-sm font-black tracking-wide uppercase transition-all ${
                 isTeacherLogin ? 'text-white border-b-2 border-fuchsia-400' : 'text-purple-400 hover:text-purple-200'
               }`}
             >
@@ -5451,7 +5437,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setCurrentView('admin-login');
                 setUserRole('admin');
               }}
-              className={`flex-1 pb-3 text-sm font-black tracking-wide uppercase transition-all ${
+              className={`flex-1 pb-1.5 text-xs sm:text-sm font-black tracking-wide uppercase transition-all ${
                 isAdminLogin ? 'text-white border-b-2 border-fuchsia-400' : 'text-purple-400 hover:text-purple-200'
               }`}
             >
@@ -5464,63 +5450,63 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         
         {/* 1. Teacher/Guro Login Form */}
         {isTeacherLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-2">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-0.5">
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-3 rounded-xl text-xs font-sans font-black text-center mb-5 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-1.5 rounded-xl text-[11px] font-sans font-black text-center mb-2.5 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-3 bg-[#4d286d]/85 p-4 rounded-2xl border border-purple-400/25 mb-6">
-              <div className="flex-shrink-0 bg-yellow-500 p-2.5 rounded-xl text-2xl shadow-inner select-none">
+            <div className="flex items-center space-x-2 bg-[#4d286d]/85 p-2 rounded-xl border border-purple-400/25 mb-2.5">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
                 👩‍🏫
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-base font-black text-white leading-tight">Kamusta, Guro!</h3>
-                <p className="text-xs text-purple-200 font-bold">Welcome back, Teacher!</p>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Kamusta, Guro!</h3>
+                <p className="text-[10px] text-purple-200 font-bold">Welcome back, Teacher!</p>
               </div>
             </div>
 
-            <div className="mb-5 text-left font-sans">
-              <label className="block text-sm font-bold text-purple-200 mb-1.5">Email Address:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-bold text-purple-200 mb-0.5">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-7 text-left font-sans">
-              <label className="block text-sm font-bold text-purple-200 mb-1.5">Password:</label>
+            <div className="mb-2.5 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-bold text-purple-200 mb-0.5">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="flex space-x-3 w-full mb-5">
+            <div className="flex space-x-2 w-full mb-2">
               <button
                 type="submit"
-                className="flex-1 py-3 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all shadow-lg active:scale-95"
+                className="flex-1 py-1.5 sm:py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
               >
                 Sign In
               </button>
               <button
                 type="button"
                 onClick={() => setCurrentView('register')}
-                className="flex-1 py-3 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all border border-[#bf5cd7]/20 shadow-lg active:scale-95"
+                className="flex-1 py-1.5 sm:py-2 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all border border-[#bf5cd7]/20 shadow-md active:scale-95"
               >
                 Register
               </button>
             </div>
 
-            <div className="w-full flex justify-center mb-4 mt-2">
+            <div className="w-full flex justify-center mb-1.5">
               <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
                 <GoogleLogin
                   onSuccess={handleGoogleLoginSuccess}
@@ -5542,7 +5528,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setForgotPasswordStep('email');
                 setCurrentView('forgot-password');
               }}
-              className="text-xs text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
+              className="text-[10px] text-purple-300 font-bold hover:text-white transition-colors underline font-sans"
             >
               Forgot password?
             </a>
@@ -5551,42 +5537,42 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 2. Admin Login Form */}
         {isAdminLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-2">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-0.5">
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-3 rounded-xl text-xs font-sans font-black text-center mb-5 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-1.5 rounded-xl text-[11px] font-sans font-black text-center mb-2.5 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <h2 className="text-base font-black text-purple-200 uppercase tracking-widest text-center mb-6 font-sans">
+            <h2 className="text-xs sm:text-sm font-black text-purple-200 uppercase tracking-widest text-center mb-2.5 font-sans">
               Welcome back, Admin!</h2>
 
-            <div className="mb-5 text-left font-sans">
-              <label className="block text-sm font-bold text-purple-200 mb-1.5">Username:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-bold text-purple-200 mb-0.5">Username:</label>
               <input
                 type="text"
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your username"
               />
             </div>
 
-            <div className="mb-7 text-left font-sans">
-              <label className="block text-sm font-bold text-purple-200 mb-1.5">Password:</label>
+            <div className="mb-2.5 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-bold text-purple-200 mb-0.5">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-sm font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-40 py-3 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all shadow-lg active:scale-95 mx-auto mb-5"
+              className="w-32 py-1.5 sm:py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mx-auto mb-2"
             >
               Sign In
             </button>
@@ -5595,73 +5581,73 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 3. Register Form */}
         {isRegister && (
-          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col mt-6">
+          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col mt-2">
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-black text-center mb-4 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-1.5 rounded-xl text-[11px] font-sans font-black text-center mb-2.5 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-3 bg-[#4d286d]/85 p-3 rounded-2xl border border-purple-500/20 mb-5">
-              <div className="flex-shrink-0 bg-yellow-500 p-2 rounded-xl text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 rounded-xl border border-purple-500/20 mb-3">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
                 👩‍🏫
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm font-black text-white leading-tight">Register</h3>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Register</h3>
                 <p className="text-[10px] text-purple-200 font-bold">Mag register muna para gamitin ang Signo!</p>
               </div>
             </div>
 
-            <div className="mb-4 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Full Name:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Full Name:</label>
               <input
                 type="text"
                 required
                 value={fullNameInput}
                 onChange={(e) => setFullNameInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Juan dela Cruz"
               />
             </div>
 
-            <div className="mb-4 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Email Address:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-4 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Password:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="mb-6 text-left font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">Confirmed Password:</label>
+            <div className="mb-3 text-left font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Confirmed Password:</label>
               <input
                 type="password"
                 required
                 value={confirmPasswordInput}
                 onChange={(e) => setConfirmPasswordInput(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                 placeholder="Enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-4"
+              className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-2.5"
             >
               Register
             </button>
@@ -5681,24 +5667,24 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 4. Forgot Password Form */}
         {isForgotPassword && (
-          <div className="w-full flex flex-col mt-4">
+          <div className="w-full flex flex-col mt-2">
             {authSuccessMsg && (
-              <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-bold text-center mb-4 shadow-sm">
+              <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-3 py-2 rounded-xl text-[11px] font-sans font-bold text-center mb-3 shadow-sm">
                 ✅ {authSuccessMsg}
               </div>
             )}
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-black text-center mb-4 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-2 rounded-xl text-[11px] font-sans font-black text-center mb-3 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
 
-            <div className="flex items-center space-x-3 bg-[#4d286d]/85 p-3 rounded-2xl border border-purple-500/20 mb-4">
-              <div className="flex-shrink-0 bg-yellow-500 p-2 rounded-xl text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 rounded-xl border border-purple-500/20 mb-3">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
                 🔑
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm font-black text-white leading-tight">Forgot Password</h3>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Forgot Password</h3>
                 <p className="text-[10px] text-purple-200 font-bold">
                   {forgotPasswordStep === 'email' ? 'I-reset ang iyong password gamit ang rehistradong email' : 'I-enter ang 6-digit code at iyong bagong password'}
                 </p>
@@ -5707,14 +5693,14 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
             {forgotPasswordStep === 'email' ? (
               <form onSubmit={handleForgotPasswordRequest} className="w-full flex flex-col">
-                <div className="mb-6 text-left font-sans">
-                  <label className="block text-xs font-bold text-purple-200 mb-1">Email Address:</label>
+                <div className="mb-4 text-left font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Email Address:</label>
                   <input
                     type="email"
                     required
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                    className="w-full px-3 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -5722,7 +5708,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <button
                   type="submit"
                   disabled={authLoading}
-                  className="w-full py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-4 disabled:opacity-50"
+                  className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-3 disabled:opacity-50"
                 >
                   {authLoading ? 'Sending Code...' : 'Send Reset Code'}
                 </button>
@@ -5742,46 +5728,46 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               </form>
             ) : (
               <form onSubmit={handleResetPasswordSubmit} className="w-full flex flex-col">
-                <p className="text-xs text-purple-200 mb-3 text-center font-sans">
+                <p className="text-xs text-purple-200 mb-2.5 text-center font-sans">
                   Naipadala ang reset code sa:<br />
                   <span className="font-bold text-yellow-300 break-all">{pendingEmail || emailInput}</span>
                 </p>
 
-                <div className="mb-3 text-center font-sans">
-                  <label className="block text-xs font-bold text-purple-200 mb-1">6-Digit Reset Code:</label>
+                <div className="mb-2.5 text-center font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">6-Digit Reset Code:</label>
                   <input
                     type="text"
                     maxLength={6}
                     required
                     value={resetOtpInput}
                     onChange={(e) => setResetOtpInput(e.target.value.replace(/[^0-9]/g, ''))}
-                    className="w-full px-4 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-mono text-center text-lg font-bold tracking-[0.4em] shadow-inner"
+                    className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-mono text-center text-base font-bold tracking-[0.4em] shadow-inner"
                     placeholder="123456"
                   />
                 </div>
 
-                <div className="mb-3 text-left font-sans">
-                  <label className="block text-xs font-bold text-purple-200 mb-1">New Password:</label>
+                <div className="mb-2.5 text-left font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">New Password:</label>
                   <input
                     type="password"
                     required
                     minLength={6}
                     value={newPasswordInput}
                     onChange={(e) => setNewPasswordInput(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                    className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                     placeholder="Enter your password"
                   />
                 </div>
 
-                <div className="mb-5 text-left font-sans">
-                  <label className="block text-xs font-bold text-purple-200 mb-1">Confirm New Password:</label>
+                <div className="mb-3 text-left font-sans">
+                  <label className="block text-[11px] font-bold text-purple-200 mb-0.5">Confirm New Password:</label>
                   <input
                     type="password"
                     required
                     minLength={6}
                     value={confirmNewPasswordInput}
                     onChange={(e) => setConfirmNewPasswordInput(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
+                    className="w-full px-3 py-1.5 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-sans text-xs font-bold shadow-inner"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -5789,7 +5775,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <button
                   type="submit"
                   disabled={authLoading}
-                  className="w-full py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-3 disabled:opacity-50"
+                  className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-2.5 disabled:opacity-50"
                 >
                   {authLoading ? 'Resetting Password...' : 'Reset Password'}
                 </button>
@@ -5828,42 +5814,42 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 5. Google Email Verification (OTP) Form */}
         {isVerifyEmail && (
-          <form onSubmit={handleVerifyOtpSubmit} className="w-full flex flex-col mt-4">
+          <form onSubmit={handleVerifyOtpSubmit} className="w-full flex flex-col mt-2">
             {authSuccessMsg && (
-              <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-bold text-center mb-4 shadow-sm">
+              <div className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 px-3 py-2 rounded-xl text-[11px] font-sans font-bold text-center mb-3 shadow-sm">
                 ✅ {authSuccessMsg}
               </div>
             )}
             {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-4 py-2.5 rounded-xl text-[11px] font-sans font-black text-center mb-4 shadow-sm">
+              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-2 rounded-xl text-[11px] font-sans font-black text-center mb-3 shadow-sm">
                 ⚠️ {authError}
               </div>
             )}
             
-            <div className="flex items-center space-x-3 bg-[#4d286d]/85 p-3 rounded-2xl border border-purple-500/20 mb-4">
-              <div className="flex-shrink-0 bg-yellow-500 p-2 rounded-xl text-xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-[#4d286d]/85 p-2.5 rounded-xl border border-purple-500/20 mb-3">
+              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
                 📧
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm font-black text-white leading-tight">Google Verification</h3>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Google Verification</h3>
                 <p className="text-[10px] text-purple-200 font-bold">Veripikahin ang iyong account</p>
               </div>
             </div>
 
-            <p className="text-xs text-purple-200 mb-3 text-center font-sans">
+            <p className="text-xs text-purple-200 mb-2.5 text-center font-sans">
               Naipadala ang 6-digit verification code sa:<br />
               <span className="font-bold text-yellow-300 break-all">{pendingEmail || emailInput || 'iyong email'}</span>
             </p>
 
-            <div className="mb-4 text-center font-sans">
-              <label className="block text-xs font-bold text-purple-200 mb-1">6-Digit Code:</label>
+            <div className="mb-3 text-center font-sans">
+              <label className="block text-[11px] font-bold text-purple-200 mb-0.5">6-Digit Code:</label>
               <input
                 type="text"
                 maxLength={6}
                 required
                 value={otpInput}
                 onChange={(e) => setOtpInput(e.target.value.replace(/[^0-9]/g, ''))}
-                className="w-full px-4 py-3 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-mono text-center text-xl font-bold tracking-[0.4em] shadow-inner"
+                className="w-full px-3 py-2 bg-white text-purple-950 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 font-mono text-center text-lg font-bold tracking-[0.4em] shadow-inner"
                 placeholder="123456"
               />
             </div>
@@ -5871,7 +5857,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             <button
               type="submit"
               disabled={authLoading}
-              className="w-full py-2.5 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-3 disabled:opacity-50"
+              className="w-full py-2 bg-[#b01bb8] hover:bg-[#c924d2] text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-md active:scale-95 mb-2.5 disabled:opacity-50"
             >
               {authLoading ? 'Verifying...' : 'Verify Code'}
             </button>
@@ -5880,7 +5866,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               type="button"
               onClick={handleResendOtpSubmit}
               disabled={resendCooldown > 0 || authLoading}
-              className="w-full py-2 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-bold rounded-xl text-xs tracking-wider transition-all border border-[#bf5cd7]/20 shadow-md mb-4 disabled:opacity-50"
+              className="w-full py-1.5 bg-[#8b2ca3]/85 hover:bg-[#8b2ca3] text-white font-bold rounded-xl text-xs tracking-wider transition-all border border-[#bf5cd7]/20 shadow-md mb-3 disabled:opacity-50"
             >
               {resendCooldown > 0 ? `Resend Code (${resendCooldown}s)` : 'Resend Code'}
             </button>
