@@ -241,7 +241,7 @@ function ProfileCustomizationModal({
 
 function AstronautLogo({ className = "w-24 h-24" }: { className?: string }) {
   return (
-    <img src="/icon.png" alt="SIGNO Logo" className={`${className} object-contain`} />
+    <img src="/icon.png" alt="SIGNO Logo" className={`${className} max-w-full max-h-24 sm:max-h-28 object-contain select-none`} />
   );
 }
 
@@ -5409,17 +5409,6 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         @keyframes float-horizontal-slow {
           0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
           50% { transform: translate(14px, -12px) rotate(4deg); }
-        }
-        @keyframes rocket-glide-1 {
-          0% { transform: translate(0px, 0px) rotate(0deg); }
-          50% { transform: translate(25px, -20px) rotate(-3deg); }
-          100% { transform: translate(0px, 0px) rotate(0deg); }
-        }
-        @keyframes rocket-glide-2 {
-          0% { transform: translate(0px, 0px) rotate(-45deg); }
-          50% { transform: translate(-22px, -18px) rotate(-42deg); }
-          100% { transform: translate(0px, 0px) rotate(-45deg); }
-        }
         @keyframes star-twinkle-glow {
           0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7)); }
           50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 16px rgba(250, 204, 21, 1)); }
@@ -5467,12 +5456,6 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         .animate-float-horizontal-slow {
           animation: float-horizontal-slow 16s ease-in-out infinite;
         }
-        .animate-rocket-glide-1 {
-          animation: rocket-glide-1 14s ease-in-out infinite;
-        }
-        .animate-rocket-glide-2 {
-          animation: rocket-glide-2 16s ease-in-out infinite;
-        }
         .animate-star-twinkle-glow {
           animation: star-twinkle-glow 4s ease-in-out infinite;
         }
@@ -5510,15 +5493,6 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
       <div className="absolute top-[40%] right-[4%] pointer-events-none scale-75 md:scale-95 z-0">
         <MoonSatellite className="w-14 h-14 md:w-18 md:h-18 animate-float-slow-reverse" />
-      </div>
-
-      {/* Slowly Gliding Rockets */}
-      <div className="absolute top-[16%] left-[18%] pointer-events-none z-0 scale-90 md:scale-110">
-        <SpaceRocket className="w-16 h-16 md:w-20 md:h-20 animate-rocket-glide-1 drop-shadow-[0_0_15px_rgba(249,115,22,0.6)]" />
-      </div>
-
-      <div className="absolute bottom-[26%] right-[16%] pointer-events-none z-0 scale-90 md:scale-110">
-        <SpaceRocket className="w-16 h-16 md:w-20 md:h-20 animate-rocket-glide-2 drop-shadow-[0_0_15px_rgba(249,115,22,0.6)]" />
       </div>
 
       {/* Glowing Star Emojis */}
@@ -5578,15 +5552,15 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_6px_#fff,0_0_10px_#38bdf8]" />
       </div>
 
-      {/* Card Body - Deep Slate Glassmorphism with Cyan/Fuchsia Neon Glow, Non-blending & Fully Visible */}
-      <div className="w-full max-w-md sm:max-w-lg md:max-w-xl bg-slate-900/95 backdrop-blur-xl rounded-[28px] sm:rounded-[36px] border-2 border-cyan-400/60 px-6 sm:px-8 py-5 sm:py-6 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.25)] relative z-10 text-center flex flex-col items-center my-auto mt-10 sm:mt-12 shrink-0 max-h-[94vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-        {/* Logo Icon top overlap */}
-        <div className="absolute -top-11 sm:-top-13">
-          <AstronautLogo className="w-22 h-22 sm:w-26 sm:h-26 drop-shadow-[0_10px_20px_rgba(6,182,212,0.5)]" />
+      {/* Auth Container with Logo positioned ABOVE the card box */}
+      <div className="relative z-10 w-full max-w-md sm:max-w-lg md:max-w-xl flex flex-col items-center justify-center my-auto shrink-0 px-3 py-2">
+        {/* Logo cleanly ABOVE the box */}
+        <div className="mb-2 sm:mb-2.5 flex items-center justify-center shrink-0">
+          <AstronautLogo className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[0_8px_25px_rgba(6,182,212,0.6)]" />
         </div>
-        
-        {/* Spacer */}
-        <div className="h-7 sm:h-8 w-full shrink-0"></div>
+
+        {/* Card Body - Deep Slate Glassmorphism with Cyan/Fuchsia Neon Glow, Non-blending & Fully Visible */}
+        <div className="w-full bg-slate-900/95 backdrop-blur-xl rounded-[28px] sm:rounded-[36px] border-2 border-cyan-400/60 px-6 sm:px-8 py-4 sm:py-5 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.25)] text-center flex flex-col items-center shrink-0">
 
         {/* Switcher Tab header (Only show on Login forms, not on Register or Forgot password) */}
         {(isTeacherLogin || isAdminLogin) && (
@@ -6064,7 +6038,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             </a>
           </form>
         )}
-
+        </div>
       </div>
       {/* Global Toast Notification */}
       {toastMessage && (
