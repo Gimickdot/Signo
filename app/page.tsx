@@ -239,7 +239,7 @@ function ProfileCustomizationModal({
 
 // --- Custom Space Theme SVG Components ---
 
-function AstronautLogo({ className = "w-48 h-48 sm:w-56 sm:h-56" }: { className?: string }) {
+function AstronautLogo({ className = "w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40" }: { className?: string }) {
   return (
     <img src="/icon.png" alt="SIGNO Logo" className={`${className} object-contain select-none`} />
   );
@@ -5396,19 +5396,20 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
   const isVerifyEmail = currentView === 'verify-email';
 
   return (
-    <div className="h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center p-2 sm:p-3 relative overflow-hidden font-sans select-none">
+    <div className="min-h-screen h-full w-full bg-[url('/bg.jpg')] bg-cover bg-center flex items-center justify-center p-2 sm:p-4 relative overflow-y-auto overflow-x-hidden font-sans select-none">
       <style>{`
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-16px) rotate(3deg); }
+          50% { transform: translateY(-12px) rotate(2deg); }
         }
         @keyframes float-slow-reverse {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(16px) rotate(-3deg); }
+          50% { transform: translateY(12px) rotate(-2deg); }
         }
         @keyframes float-horizontal-slow {
           0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-          50% { transform: translate(14px, -12px) rotate(4deg); }
+          50% { transform: translate(14px, -10px) rotate(2deg); }
+        }
         @keyframes star-twinkle-glow {
           0%, 100% { transform: scale(1); opacity: 0.85; filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.7)); }
           50% { transform: scale(1.3); opacity: 1; filter: drop-shadow(0 0 16px rgba(250, 204, 21, 1)); }
@@ -5429,32 +5430,32 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           }
           3% {
             opacity: 1;
-            width: 150px;
+            width: 140px;
           }
-          34.9% {
-            transform: translate(-460px, 460px) rotate(135deg);
+          40% {
+            transform: translate(-480px, 480px) rotate(135deg);
             opacity: 1;
-            width: 150px;
+            width: 140px;
           }
-          35% {
-            transform: translate(-460px, 460px) rotate(135deg);
+          44% {
+            transform: translate(-480px, 480px) rotate(135deg);
             opacity: 0;
             width: 0px;
           }
           100% {
-            transform: translate(-460px, 460px) rotate(135deg);
+            transform: translate(-480px, 480px) rotate(135deg);
             opacity: 0;
             width: 0px;
           }
         }
         .animate-float-slow {
-          animation: float-slow 12s ease-in-out infinite;
+          animation: float-slow 28s ease-in-out infinite;
         }
         .animate-float-slow-reverse {
-          animation: float-slow-reverse 14s ease-in-out infinite;
+          animation: float-slow-reverse 32s ease-in-out infinite;
         }
         .animate-float-horizontal-slow {
-          animation: float-horizontal-slow 16s ease-in-out infinite;
+          animation: float-horizontal-slow 36s ease-in-out infinite;
         }
         .animate-star-twinkle-glow {
           animation: star-twinkle-glow 4s ease-in-out infinite;
@@ -5463,10 +5464,10 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           animation: star-twinkle-cyan 5s ease-in-out infinite;
         }
         .animate-spin-slow {
-          animation: spin-slow 40s linear infinite;
+          animation: spin-slow 100s linear infinite;
         }
         .animate-shooting-star-left {
-          animation: shooting-star-left 10s linear infinite;
+          animation: shooting-star-left 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
         }
       `}</style>
 
@@ -5553,25 +5554,25 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
       </div>
 
       {/* Auth Container with Logo positioned ABOVE the card box - Exactly matching user mockup */}
-      <div className="relative z-10 w-full max-w-[420px] sm:max-w-[450px] flex flex-col items-center justify-center my-auto shrink-0 px-3 pt-4 pb-2">
+      <div className="relative z-10 w-full max-w-[360px] sm:max-w-[390px] md:max-w-[410px] flex flex-col items-center justify-center my-auto shrink-0 px-2 sm:px-3">
         {/* Logo cleanly positioned ABOVE the box - Perched on top border exactly like user mockup */}
-        <div className="relative z-20 -mb-9 sm:-mb-11 flex items-center justify-center shrink-0">
-          <AstronautLogo className="w-48 h-48 sm:w-56 sm:h-56 drop-shadow-[0_12px_32px_rgba(6,182,212,0.65)]" />
+        <div className="relative z-20 -mb-6 sm:-mb-7 md:-mb-8 flex items-center justify-center shrink-0">
+          <AstronautLogo className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 drop-shadow-[0_10px_28px_rgba(6,182,212,0.65)]" />
         </div>
 
         {/* Card Body - Deep Slate Glassmorphism with Cyan/Fuchsia Neon Glow, Non-blending & Fully Visible */}
-        <div className="w-full bg-[#0a0f1d]/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] border-2 border-cyan-400/80 px-5 sm:px-6 pt-11 sm:pt-13 pb-5 sm:pb-6 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.2)] text-center flex flex-col items-center shrink-0">
+        <div className="w-full bg-[#0a0f1d]/95 backdrop-blur-xl rounded-[24px] sm:rounded-[28px] border-2 border-cyan-400/80 px-4 sm:px-5 pt-7 sm:pt-8 md:pt-9 pb-3.5 sm:pb-4 shadow-[0_0_50px_rgba(6,182,212,0.4),0_0_25px_rgba(217,70,239,0.2)] text-center flex flex-col items-center shrink-0">
 
         {/* Switcher Tab header (Only show on Login forms, not on Register or Forgot password) */}
         {(isTeacherLogin || isAdminLogin) && (
-          <div className="flex border-b border-cyan-500/30 w-full mb-3 sm:mb-4 mt-0.5 shrink-0">
+          <div className="flex border-b border-cyan-500/30 w-full mb-2.5 sm:mb-3 shrink-0">
             <button
               type="button"
               onClick={() => {
                 setCurrentView('teacher-login');
                 setUserRole('guro');
               }}
-              className={`flex-1 pb-2 text-xs sm:text-sm md:text-base font-black tracking-wider uppercase transition-all ${
+              className={`flex-1 pb-1.5 text-xs sm:text-sm font-black tracking-wider uppercase transition-all ${
                 isTeacherLogin ? 'text-cyan-300 border-b-2 border-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'text-slate-400 hover:text-cyan-200'
               }`}
             >
@@ -5583,7 +5584,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setCurrentView('admin-login');
                 setUserRole('admin');
               }}
-              className={`flex-1 pb-2 text-xs sm:text-sm md:text-base font-black tracking-wider uppercase transition-all ${
+              className={`flex-1 pb-1.5 text-xs sm:text-sm font-black tracking-wider uppercase transition-all ${
                 isAdminLogin ? 'text-cyan-300 border-b-2 border-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'text-slate-400 hover:text-cyan-200'
               }`}
             >
@@ -5596,63 +5597,63 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         
         {/* 1. Teacher/Guro Login Form */}
         {isTeacherLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-0.5">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col">
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-3 shadow-md">
+              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2 shadow-md">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-3 bg-slate-800/90 p-2.5 sm:p-3 rounded-2xl border border-cyan-400/30 mb-3 sm:mb-3.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-2 rounded-xl text-xl sm:text-2xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2 shadow-md">
+              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
                 👩‍🏫
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm sm:text-base font-black text-white leading-tight">Kamusta, Guro!</h3>
-                <p className="text-xs sm:text-sm text-cyan-200 font-semibold">Welcome back, Teacher!</p>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Kamusta, Guro!</h3>
+                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">Welcome back, Teacher!</p>
               </div>
             </div>
 
-            <div className="mb-2.5 sm:mb-3 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Email Address:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-3 sm:mb-3.5 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Password:</label>
+            <div className="mb-2.5 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="flex space-x-2.5 w-full mb-3">
+            <div className="flex space-x-2 w-full mb-2">
               <button
                 type="submit"
-                className="flex-1 py-2.5 sm:py-3 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95"
+                className="flex-1 py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95"
               >
                 Sign In
               </button>
               <button
                 type="button"
                 onClick={() => setCurrentView('register')}
-                className="flex-1 py-2.5 sm:py-3 bg-slate-800 hover:bg-slate-700 text-cyan-200 hover:text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all border border-cyan-400/40 shadow-md active:scale-95"
+                className="flex-1 py-2 sm:py-2.5 bg-slate-800 hover:bg-slate-700 text-cyan-200 hover:text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all border border-cyan-400/40 shadow-md active:scale-95"
               >
                 Register
               </button>
             </div>
 
-            <div className="w-full flex justify-center mb-2">
+            <div className="w-full flex justify-center mb-1.5">
               <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
                 <GoogleLogin
                   onSuccess={handleGoogleLoginSuccess}
@@ -5661,6 +5662,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                   }}
                   theme="outline"
                   shape="rectangular"
+                  size="medium"
                 />
               </GoogleOAuthProvider>
             </div>
@@ -5674,7 +5676,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setForgotPasswordStep('email');
                 setCurrentView('forgot-password');
               }}
-              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-1"
+              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
             >
               Forgot password?
             </a>
@@ -5683,124 +5685,124 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 2. Admin Login Form */}
         {isAdminLogin && (
-          <form onSubmit={handleSignIn} className="w-full flex flex-col mt-0.5">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col">
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-3 shadow-md">
+              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2.5 shadow-md">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-3 bg-slate-800/90 p-2.5 sm:p-3 rounded-2xl border border-cyan-400/30 mb-3.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-2 rounded-xl text-xl sm:text-2xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2.5 shadow-md">
+              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
                 👑
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm sm:text-base font-black text-white leading-tight">Admin Portal</h3>
-                <p className="text-xs sm:text-sm text-cyan-200 font-semibold">Welcome back, Administrator!</p>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Admin Portal</h3>
+                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">Welcome back, Administrator!</p>
               </div>
             </div>
 
-            <div className="mb-2.5 sm:mb-3 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Username:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Username:</label>
               <input
                 type="text"
                 required
                 value={usernameInput}
                 onChange={(e) => setUsernameInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Enter your username"
               />
             </div>
 
-            <div className="mb-3.5 sm:mb-4 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Password:</label>
+            <div className="mb-3 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-40 sm:w-48 py-2.5 sm:py-3 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mx-auto mb-2"
+              className="w-40 sm:w-44 py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mx-auto mb-1"
             >
               Sign In
             </button>
           </form>
         )}
 
-        {/* 3. Register Form - Enlarged for readability and visibility */}
+        {/* 3. Register Form */}
         {isRegister && (
-          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col mt-1">
+          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col">
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-3 shadow-md">
+              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2 shadow-md">
                 ⚠️ {authError}
               </div>
             )}
-            <div className="flex items-center space-x-3 bg-slate-800/90 p-2.5 sm:p-3 rounded-2xl border border-cyan-400/30 mb-3 sm:mb-3.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-cyan-400 to-blue-500 p-2 rounded-xl text-xl sm:text-2xl shadow-inner select-none">
+            <div className="flex items-center space-x-2 bg-slate-800/90 px-2.5 py-1.5 rounded-xl border border-cyan-400/30 mb-2 shadow-md">
+              <div className="flex-shrink-0 bg-gradient-to-br from-cyan-400 to-blue-500 p-1 rounded-lg text-base sm:text-lg shadow-inner select-none">
                 📝
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm sm:text-base md:text-lg font-black text-white leading-tight">Register Account</h3>
-                <p className="text-xs sm:text-sm text-cyan-200 font-semibold">Mag-register muna para gamitin ang Signo!</p>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Register Account</h3>
+                <p className="text-[10px] sm:text-[11px] text-cyan-200 font-semibold">Mag-register muna para gamitin ang Signo!</p>
               </div>
             </div>
 
-            <div className="mb-2.5 sm:mb-3 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Full Name:</label>
+            <div className="mb-1.5 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Full Name:</label>
               <input
                 type="text"
                 required
                 value={fullNameInput}
                 onChange={(e) => setFullNameInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Juan dela Cruz"
               />
             </div>
 
-            <div className="mb-2.5 sm:mb-3 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Email Address:</label>
+            <div className="mb-1.5 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Email Address:</label>
               <input
                 type="email"
                 required
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Enter your email address"
               />
             </div>
 
-            <div className="mb-2.5 sm:mb-3 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Password:</label>
+            <div className="mb-1.5 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Password:</label>
               <input
                 type="password"
                 required
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Enter your password"
               />
             </div>
 
-            <div className="mb-3.5 sm:mb-4 text-left font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Confirm Password:</label>
+            <div className="mb-2 text-left font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Confirm Password:</label>
               <input
                 type="password"
                 required
                 value={confirmPasswordInput}
                 onChange={(e) => setConfirmPasswordInput(e.target.value)}
-                className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                className="w-full px-3 py-1 sm:py-1.5 bg-white text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                 placeholder="Re-enter your password"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] hover:shadow-[0_0_25px_rgba(217,70,239,0.7)] active:scale-95 mb-2.5"
+              className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] hover:shadow-[0_0_25px_rgba(217,70,239,0.7)] active:scale-95 mb-1.5"
             >
               Register
             </button>
@@ -5811,7 +5813,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 e.preventDefault();
                 setCurrentView('teacher-login');
               }}
-              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-1"
+              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
             >
               Already registered? Login
             </a>
@@ -5820,40 +5822,40 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 4. Forgot Password Form */}
         {isForgotPassword && (
-          <div className="w-full flex flex-col mt-1">
+          <div className="w-full flex flex-col">
             {authSuccessMsg && (
-              <div className="bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-bold text-center mb-3 shadow-md">
+              <div className="bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-bold text-center mb-2.5 shadow-md">
                 ✅ {authSuccessMsg}
               </div>
             )}
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-3 shadow-md">
+              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2.5 shadow-md">
                 ⚠️ {authError}
               </div>
             )}
 
-            <div className="flex items-center space-x-3 bg-slate-800/90 p-2.5 sm:p-3 rounded-2xl border border-cyan-400/30 mb-3 sm:mb-3.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-2 rounded-xl text-xl sm:text-2xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2.5 shadow-md">
+              <div className="flex-shrink-0 bg-gradient-to-br from-amber-400 to-yellow-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
                 🔑
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm sm:text-base font-black text-white leading-tight">Forgot Password</h3>
-                <p className="text-xs sm:text-sm text-cyan-200 font-semibold">
-                  {forgotPasswordStep === 'email' ? 'I-reset ang iyong password gamit ang rehistradong email' : 'I-enter ang 6-digit code at iyong bagong password'}
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Forgot Password</h3>
+                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">
+                  {forgotPasswordStep === 'email' ? 'I-reset ang password gamit ang rehistradong email' : 'I-enter ang 6-digit code at bagong password'}
                 </p>
               </div>
             </div>
 
             {forgotPasswordStep === 'email' ? (
               <form onSubmit={handleForgotPasswordRequest} className="w-full flex flex-col">
-                <div className="mb-3.5 sm:mb-4 text-left font-sans">
-                  <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Email Address:</label>
+                <div className="mb-3 text-left font-sans">
+                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Email Address:</label>
                   <input
                     type="email"
                     required
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
-                    className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                    className="w-full px-3 py-1.5 sm:py-2 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -5861,7 +5863,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <button
                   type="submit"
                   disabled={authLoading}
-                  className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-3 disabled:opacity-50"
+                  className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2.5 disabled:opacity-50"
                 >
                   {authLoading ? 'Sending Code...' : 'Send Reset Code'}
                 </button>
@@ -5874,53 +5876,53 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     setAuthSuccessMsg(null);
                     setCurrentView('teacher-login');
                   }}
-                  className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-1"
+                  className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
                 >
                   ← Back to Sign In
                 </a>
               </form>
             ) : (
               <form onSubmit={handleResetPasswordSubmit} className="w-full flex flex-col">
-                <p className="text-xs sm:text-sm text-cyan-200 mb-3 text-center font-sans">
+                <p className="text-xs sm:text-sm text-cyan-200 mb-2 text-center font-sans">
                   Naipadala ang reset code sa:<br />
                   <span className="font-black text-yellow-300 break-all">{pendingEmail || emailInput}</span>
                 </p>
 
-                <div className="mb-3 text-center font-sans">
-                  <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">6-Digit Reset Code:</label>
+                <div className="mb-2 text-center font-sans">
+                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">6-Digit Reset Code:</label>
                   <input
                     type="text"
                     maxLength={6}
                     required
                     value={resetOtpInput}
                     onChange={(e) => setResetOtpInput(e.target.value.replace(/[^0-9]/g, ''))}
-                    className="w-full px-3 py-2 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono text-center text-lg sm:text-xl font-black tracking-[0.4em] shadow-inner"
+                    className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono text-center text-lg font-black tracking-[0.4em] shadow-inner"
                     placeholder="123456"
                   />
                 </div>
 
-                <div className="mb-2.5 sm:mb-3 text-left font-sans">
-                  <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">New Password:</label>
+                <div className="mb-2 text-left font-sans">
+                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">New Password:</label>
                   <input
                     type="password"
                     required
                     minLength={6}
                     value={newPasswordInput}
                     onChange={(e) => setNewPasswordInput(e.target.value)}
-                    className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                    className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                     placeholder="Enter your password"
                   />
                 </div>
 
-                <div className="mb-3.5 sm:mb-4 text-left font-sans">
-                  <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">Confirm New Password:</label>
+                <div className="mb-2.5 text-left font-sans">
+                  <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">Confirm New Password:</label>
                   <input
                     type="password"
                     required
                     minLength={6}
                     value={confirmNewPasswordInput}
                     onChange={(e) => setConfirmNewPasswordInput(e.target.value)}
-                    className="w-full px-3.5 py-2 sm:py-2.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
+                    className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs sm:text-sm font-bold shadow-inner placeholder:text-slate-400"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -5928,12 +5930,12 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 <button
                   type="submit"
                   disabled={authLoading}
-                  className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-3 disabled:opacity-50"
+                  className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2 disabled:opacity-50"
                 >
                   {authLoading ? 'Resetting Password...' : 'Reset Password'}
                 </button>
 
-                <div className="flex justify-between items-center text-xs sm:text-sm font-sans pt-1">
+                <div className="flex justify-between items-center text-xs sm:text-sm font-sans pt-0.5">
                   <a
                     href="#"
                     onClick={(e) => {
@@ -5967,42 +5969,42 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* 5. Google Email Verification (OTP) Form */}
         {isVerifyEmail && (
-          <form onSubmit={handleVerifyOtpSubmit} className="w-full flex flex-col mt-1">
+          <form onSubmit={handleVerifyOtpSubmit} className="w-full flex flex-col">
             {authSuccessMsg && (
-              <div className="bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-bold text-center mb-3 shadow-md">
+              <div className="bg-emerald-500/15 border border-emerald-500/40 text-emerald-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-bold text-center mb-2.5 shadow-md">
                 ✅ {authSuccessMsg}
               </div>
             )}
             {authError && (
-              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-2 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-3 shadow-md">
+              <div className="bg-rose-500/15 border border-rose-500/40 text-rose-200 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-sans font-black text-center mb-2.5 shadow-md">
                 ⚠️ {authError}
               </div>
             )}
             
-            <div className="flex items-center space-x-3 bg-slate-800/90 p-2.5 sm:p-3 rounded-2xl border border-cyan-400/30 mb-3 sm:mb-3.5 shadow-md">
-              <div className="flex-shrink-0 bg-gradient-to-br from-cyan-400 to-blue-500 p-2 rounded-xl text-xl sm:text-2xl shadow-inner select-none">
+            <div className="flex items-center space-x-2.5 bg-slate-800/90 px-3 py-1.5 sm:py-2 rounded-xl border border-cyan-400/30 mb-2 shadow-md">
+              <div className="flex-shrink-0 bg-gradient-to-br from-cyan-400 to-blue-500 p-1.5 rounded-lg text-lg sm:text-xl shadow-inner select-none">
                 📧
               </div>
               <div className="text-left font-sans">
-                <h3 className="text-sm sm:text-base font-black text-white leading-tight">Google Verification</h3>
-                <p className="text-xs sm:text-sm text-cyan-200 font-semibold">Veripikahin ang iyong account</p>
+                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Google Verification</h3>
+                <p className="text-[11px] sm:text-xs text-cyan-200 font-semibold">Veripikahin ang iyong account</p>
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-cyan-200 mb-3 text-center font-sans">
+            <p className="text-xs sm:text-sm text-cyan-200 mb-2 text-center font-sans">
               Naipadala ang 6-digit verification code sa:<br />
               <span className="font-black text-yellow-300 break-all">{pendingEmail || emailInput || 'iyong email'}</span>
             </p>
 
-            <div className="mb-3.5 text-center font-sans">
-              <label className="block text-xs sm:text-sm font-black text-cyan-200 mb-1 tracking-wide">6-Digit Code:</label>
+            <div className="mb-2.5 text-center font-sans">
+              <label className="block text-[11px] sm:text-xs font-black text-cyan-200 mb-0.5 tracking-wide">6-Digit Code:</label>
               <input
                 type="text"
                 maxLength={6}
                 required
                 value={otpInput}
                 onChange={(e) => setOtpInput(e.target.value.replace(/[^0-9]/g, ''))}
-                className="w-full px-3 py-2 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono text-center text-lg sm:text-xl font-black tracking-[0.4em] shadow-inner"
+                className="w-full px-3 py-1.5 bg-white text-slate-900 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono text-center text-lg font-black tracking-[0.4em] shadow-inner"
                 placeholder="123456"
               />
             </div>
@@ -6010,7 +6012,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             <button
               type="submit"
               disabled={authLoading}
-              className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2.5 disabled:opacity-50"
+              className="w-full py-2 sm:py-2.5 bg-gradient-to-r from-fuchsia-600 via-pink-600 to-purple-600 hover:from-fuchsia-500 hover:to-pink-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] active:scale-95 mb-2 disabled:opacity-50"
             >
               {authLoading ? 'Verifying...' : 'Verify Code'}
             </button>
@@ -6019,7 +6021,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               type="button"
               onClick={handleResendOtpSubmit}
               disabled={resendCooldown > 0 || authLoading}
-              className="w-full py-2 bg-slate-800 hover:bg-slate-700 text-cyan-200 hover:text-white font-bold rounded-xl text-xs sm:text-sm tracking-wider transition-all border border-cyan-400/30 shadow-md mb-3 disabled:opacity-50"
+              className="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-200 hover:text-white font-bold rounded-xl text-xs sm:text-sm tracking-wider transition-all border border-cyan-400/30 shadow-md mb-2 disabled:opacity-50"
             >
               {resendCooldown > 0 ? `Resend Code (${resendCooldown}s)` : 'Resend Code'}
             </button>
@@ -6032,7 +6034,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 setAuthSuccessMsg(null);
                 setCurrentView('teacher-login');
               }}
-              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-1"
+              className="text-xs sm:text-sm text-cyan-300 font-bold hover:text-white transition-colors underline font-sans py-0.5"
             >
               ← Back to Sign In
             </a>
