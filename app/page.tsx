@@ -239,9 +239,9 @@ function ProfileCustomizationModal({
 
 // --- Custom Space Theme SVG Components ---
 
-function AstronautLogo({ className = "w-24 h-24" }: { className?: string }) {
+function AstronautLogo({ className = "w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48" }: { className?: string }) {
   return (
-    <img src="/icon.png" alt="SIGNO Logo" className={`${className} max-w-full max-h-24 sm:max-h-28 object-contain select-none`} />
+    <img src="/icon.png" alt="SIGNO Logo" className={`${className} object-contain select-none`} />
   );
 }
 
@@ -5554,9 +5554,9 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
       {/* Auth Container with Logo positioned ABOVE the card box */}
       <div className="relative z-10 w-full max-w-md sm:max-w-lg md:max-w-xl flex flex-col items-center justify-center my-auto shrink-0 px-3 py-2">
-        {/* Logo cleanly ABOVE the box */}
+        {/* Logo cleanly positioned ABOVE the box - Enforced big size without clashing */}
         <div className="mb-2 sm:mb-2.5 flex items-center justify-center shrink-0">
-          <AstronautLogo className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[0_8px_25px_rgba(6,182,212,0.6)]" />
+          <AstronautLogo className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 drop-shadow-[0_10px_35px_rgba(6,182,212,0.7)]" />
         </div>
 
         {/* Card Body - Deep Slate Glassmorphism with Cyan/Fuchsia Neon Glow, Non-blending & Fully Visible */}
