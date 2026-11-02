@@ -3860,6 +3860,43 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
     });
     const sortedLeaderboard = [...filteredLeaderboard].sort((a, b) => (b.points || 0) - (a.points || 0));
 
+    // Unified helper: Calculates exact overall progress (%) across all lessons (alphabet + gestures)
+    const calculateStudentOverallProgress = (studentId: string) => {
+      const pcts: number[] = [];
+
+      // 1. Alphabet Letters (A-Z)
+      alphabetLetters.forEach((letter) => {
+        const records = dbProgressRecords.filter((r: any) => 
+          r.studentId === studentId && r.category && r.category.toUpperCase() === letter.toUpperCase()
+        );
+        const maxOccurrences = letterFrequencies[letter] || 1;
+        const totalScore = records.reduce((acc: number, curr: any) => 
+          acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxOccurrences), 0
+        );
+        const val = Math.min(100, Math.round((totalScore / maxOccurrences) * 100));
+        pcts.push(val);
+      });
+
+      // 2. Sign Gestures (20 items)
+      defaultKilosList.forEach((item) => {
+        const records = dbProgressRecords.filter((r: any) => 
+          r.studentId === studentId && r.category && (
+            r.category.toUpperCase() === item.key.toUpperCase() ||
+            r.category.toUpperCase().includes(item.key.toUpperCase())
+          )
+        );
+        const maxScore = SIGN_MAX_OCCURRENCES[item.key.toUpperCase()] || 1;
+        const totalScore = records.reduce((acc: number, curr: any) => 
+          acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxScore), 0
+        );
+        const val = Math.min(100, Math.round((totalScore / maxScore) * 100));
+        pcts.push(val);
+      });
+
+      const sum = pcts.reduce((a, b) => a + b, 0);
+      return pcts.length > 0 ? Math.round(sum / pcts.length) : 0;
+    };
+
         const handleExportClick = () => {
       let targetStudents: any[] = [];
       if (progressStudentId !== 'ALL') {
@@ -3926,25 +3963,33 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
 
         if (csvExportType === 'both' || csvExportType === 'gestures') {
           defaultKilosList.forEach(kilo => {
-            const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category === kilo.key);
-            const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), 1), 0);
-            const val = Math.min(100, Math.round((totalScore / 1) * 100));
+            const records = dbProgressRecords.filter((r: any) => 
+              r.studentId === student.id && r.category && (
+                r.category.toUpperCase() === kilo.key.toUpperCase() ||
+                r.category.toUpperCase().includes(kilo.key.toUpperCase())
+              )
+            );
+            const maxScore = SIGN_MAX_OCCURRENCES[kilo.key.toUpperCase()] || 1;
+            const totalScore = records.reduce((acc: number, curr: any) => 
+              acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxScore), 0
+            );
+            const val = Math.min(100, Math.round((totalScore / maxScore) * 100));
             studentPercentages.push(val);
             gestureCols.push(`${val}%`);
           });
         }
 
-        const sumPct = studentPercentages.reduce((a, b) => a + b, 0);
-        const avgProgress = studentPercentages.length > 0 ? Math.round(sumPct / studentPercentages.length) : 0;
-        const isLeftBehind = avgProgress < 50;
-        const leftBehindIndicator = isLeftBehind ? "Left Behind (Low Progress)" : "On Track";
+        // Overall progress: < 50% is Left Behind, >= 50% is On Track
+        const overallProgress = calculateStudentOverallProgress(student.id);
+        const isLeftBehind = overallProgress < 50;
+        const leftBehindIndicator = isLeftBehind ? "Left Behind" : "On Track";
 
         const row = [
           `"${student.name}"`, 
           `"${handlingTeacher}"`,
           `"${student.grade || 'N/A'}"`, 
           student.points || 0,
-          `"${avgProgress}%"`,
+          `"${overallProgress}%"`,
           `"${leftBehindIndicator}"`
         ];
 
@@ -4207,15 +4252,20 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                           </span>
                         )}
                         {(() => {
-                          const stdRecords = dbProgressRecords.filter((r: any) => r.studentId === std.id);
-                          const totalCompleted = stdRecords.filter((r: any) => r.completed || (r.score && r.score > 0)).length;
-                          const isLagging = (std.points || 0) < 20 && totalCompleted < 5;
-                          return isLagging ? (
-                            <span className="text-[8px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-1 py-0.2 rounded font-black tracking-wide" title="Needs attention / Low progress">
+                          const overallProgress = calculateStudentOverallProgress(std.id);
+                          const isLeftBehind = overallProgress < 50;
+                          return isLeftBehind ? (
+                            <span 
+                              className="text-[8px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-1.5 py-0.5 rounded font-black tracking-wide" 
+                              title={`Overall Progress: ${overallProgress}% (< 50% = Left Behind)`}
+                            >
                               ⚠️ Left Behind
                             </span>
                           ) : (
-                            <span className="text-[8px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-1 py-0.2 rounded font-black tracking-wide">
+                            <span 
+                              className="text-[8px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-1.5 py-0.5 rounded font-black tracking-wide" 
+                              title={`Overall Progress: ${overallProgress}% (≥ 50% = On Track)`}
+                            >
                               ✅ On Track
                             </span>
                           );
