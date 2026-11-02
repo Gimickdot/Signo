@@ -44,7 +44,11 @@ export async function POST(request: Request) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'Hindi rehistrado ang account na ito. (Account not registered).' },
+        {
+          notRegistered: true,
+          email: cleanEmail,
+          error: 'This account is not registered, please contact the admin of the school.',
+        },
         { status: 401 }
       );
     }

@@ -445,6 +445,9 @@ function App() {
   const [isAddingTeacher, setIsAddingTeacher] = useState(false);
   const [addTeacherError, setAddTeacherError] = useState<string | null>(null);
   const [assignedTeacherId, setAssignedTeacherId] = useState<string>('');
+  // Unregistered Account Modal
+  const [unregisteredModalOpen, setUnregisteredModalOpen] = useState(false);
+  const [unregisteredEmail, setUnregisteredEmail] = useState('');
   const [navConfirmTab, setNavConfirmTab] = useState<any>(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [showCsvConfirm, setShowCsvConfirm] = useState(false);
@@ -1819,6 +1822,11 @@ function App() {
           setCurrentView('verify-email');
           return;
         }
+        if (data.notRegistered && role === 'guro') {
+          setUnregisteredEmail(data.email || emailOrUsername);
+          setUnregisteredModalOpen(true);
+          return;
+        }
         throw new Error(data.error || 'May naganap na error sa pag-connect sa server.');
       }
 
@@ -1857,6 +1865,11 @@ function App() {
           setPendingEmail(data.email);
           setAuthError(data.error || 'You need to verify your email first.');
           setCurrentView('verify-email');
+          return;
+        }
+        if (data.notRegistered || response.status === 401) {
+          setUnregisteredEmail(data.email || '');
+          setUnregisteredModalOpen(true);
           return;
         }
         throw new Error(data.error || 'May naganap na error sa pag-connect sa server.');
@@ -5098,6 +5111,50 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
         )}
 
         
+        {/* Unregistered Account Alert Modal */}
+        {unregisteredModalOpen && (
+          <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 backdrop-blur-sm animate-fadeIn p-4 font-sans text-center">
+            <div className="bg-[#0f172a] border-2 border-rose-500/50 p-6 sm:p-8 rounded-[32px] shadow-[0_0_50px_rgba(244,63,94,0.35)] max-w-md w-full mx-auto flex flex-col items-center relative">
+              <button 
+                onClick={() => setUnregisteredModalOpen(false)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-white font-black text-lg transition-colors"
+                title="Close"
+              >
+                ✕
+              </button>
+
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-rose-500/20 rounded-full flex items-center justify-center mb-4 text-3xl sm:text-4xl shadow-inner border border-rose-500/40 animate-pulse">
+                🚫
+              </div>
+
+              <h3 className="text-lg sm:text-xl font-black text-white mb-2 uppercase tracking-wide">
+                Account Not Registered
+              </h3>
+
+              {unregisteredEmail && (
+                <div className="mb-3 px-3.5 py-1.5 bg-rose-950/60 border border-rose-500/30 rounded-xl text-xs font-mono font-bold text-yellow-300 break-all max-w-full">
+                  {unregisteredEmail}
+                </div>
+              )}
+
+              <p className="text-slate-100 text-xs sm:text-sm font-bold mb-2 leading-relaxed">
+                This account is not registered, please contact the admin of the school.
+              </p>
+
+              <p className="text-slate-400 text-[11px] font-medium mb-6 leading-relaxed">
+                Ang account na ito ay hindi pa nakarehistro. Makipag-ugnayan sa Administrator ng paaralan upang mabigyan kayo ng Teacher Account.
+              </p>
+
+              <button 
+                onClick={() => setUnregisteredModalOpen(false)}
+                className="w-full py-3 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs sm:text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_20px_rgba(244,63,94,0.4)] active:scale-95 uppercase"
+              >
+                I Understand / Naintindihan
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Add Teacher Modal for Admin */}
         {isAddTeacherOpen && (
           <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[110] flex items-center justify-center p-4 font-sans text-left animate-fadeIn">

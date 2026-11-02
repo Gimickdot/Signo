@@ -41,7 +41,11 @@ export async function POST(request: Request) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'Hindi rehistrado ang Google account na ito. Makipag-ugnayan sa Administrator upang magawan ng account ang guro. (Account not registered. Please contact the Administrator).' },
+        {
+          notRegistered: true,
+          email: cleanEmail,
+          error: 'This account is not registered, please contact the admin of the school.',
+        },
         { status: 401 }
       );
     }
