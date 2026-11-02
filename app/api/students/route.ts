@@ -7,7 +7,7 @@ export async function GET(request: Request) {
     const teacherId = searchParams.get('teacherId');
 
     let whereClause: any = {};
-    if (teacherId) {
+    if (teacherId && teacherId !== 'ALL') {
       whereClause.teacherId = teacherId;
     }
 
@@ -16,6 +16,7 @@ export async function GET(request: Request) {
       include: {
         progress: true,
         sessions: true,
+        teacher: true,
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -47,6 +48,8 @@ export async function GET(request: Request) {
         name: s.name,
         grade: s.grade,
         teacherId: s.teacherId,
+        teacherName: s.teacher ? s.teacher.name : 'Unassigned',
+        teacherEmail: s.teacher ? s.teacher.email : '',
         points: totalPoints,
         emoji: emoji,
         lastMode: lastMode,
@@ -70,28 +73,42 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Pangalan at Teacher ID ay kailangan.' }, { status: 400 });
     }
 
+    const cleanName = name.trim();
+
     // Verify teacher exists
-    const teacher = await prisma.user.findUnique({
+    let teacher = await prisma.user.findUnique({
       where: { id: teacherId },
     });
 
-    let validTeacherId = teacherId;
     if (!teacher) {
-      // Fallback to any teacher or create system user if needed
-      const firstTeacher = await prisma.user.findFirst({ where: { role: 'GURO' } });
-      if (firstTeacher) {
-        validTeacherId = firstTeacher.id;
-      } else {
-        return NextResponse.json({ error: 'Hindi nahanap ang teacher account.' }, { status: 404 });
+      // Fallback if needed
+      teacher = await prisma.user.findFirst({ where: { role: 'GURO' } });
+      if (!teacher) {
+        return NextResponse.json({ error: 'Hindi nahanap ang teacher account. Magdagdag muna ng guro.' }, { status: 404 });
       }
+    }
+
+    // Enforce student uniqueness per handling teacher
+    const existingStudent = await prisma.student.findFirst({
+      where: {
+        teacherId: teacher.id,
+        name: { equals: cleanName, mode: 'insensitive' },
+      },
+    });
+
+    if (existingStudent) {
+      return NextResponse.json(
+        { error: `Ang estudyante na si "${cleanName}" ay nakatala na sa gurong si ${teacher.name}.` },
+        { status: 400 }
+      );
     }
 
     const student = await prisma.student.create({
       data: {
-        name,
+        name: cleanName,
         grade: grade || 'Grade 1',
-        teacherId: validTeacherId,
-        emoji: emoji || 'dY` ',
+        teacherId: teacher.id,
+        emoji: emoji || '👧',
         progress: {
           create: [
             { category: 'OVERALL', completed: true, score: parseInt(points, 10) || 0 },
@@ -100,6 +117,7 @@ export async function POST(request: Request) {
       },
       include: {
         progress: true,
+        teacher: true,
       },
     });
 
@@ -113,8 +131,10 @@ export async function POST(request: Request) {
         name: student.name,
         grade: student.grade,
         teacherId: student.teacherId,
+        teacherName: student.teacher ? student.teacher.name : teacher.name,
+        teacherEmail: student.teacher ? student.teacher.email : teacher.email,
         points: studentPoints,
-        emoji: emoji || 'dY` ',
+        emoji: student.emoji || '👧',
         lastMode: null,
         createdAt: student.createdAt,
       },
@@ -154,16 +174,61 @@ export async function PATCH(request: Request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    const currentStudent = await prisma.student.findUnique({
+      where: { id },
+    });
+
+    if (!currentStudent) {
+      return NextResponse.json({ error: 'Student not found' }, { status: 404 });
+    }
+
+    const cleanName = name.trim();
+
+    // Check if new name conflicts with another student under same teacher
+    if (cleanName.toLowerCase() !== currentStudent.name.toLowerCase()) {
+      const duplicate = await prisma.student.findFirst({
+        where: {
+          teacherId: currentStudent.teacherId,
+          name: { equals: cleanName, mode: 'insensitive' },
+          id: { not: id },
+        },
+      });
+      if (duplicate) {
+        return NextResponse.json(
+          { error: `Ang estudyante na si "${cleanName}" ay mayroon nang kaparehong pangalan sa klase ng gurong ito.` },
+          { status: 400 }
+        );
+      }
+    }
+
     const updatedStudent = await prisma.student.update({
       where: { id },
       data: {
-        name,
+        name: cleanName,
         grade,
         ...(emoji ? { emoji } : {})
       },
+      include: {
+        teacher: true,
+        progress: true,
+      },
     });
 
-    return NextResponse.json({ success: true, student: updatedStudent });
+    const totalPoints = updatedStudent.progress.reduce((acc, curr) => acc + (curr.category.length === 1 ? 0 : curr.score), 0);
+
+    return NextResponse.json({
+      success: true,
+      student: {
+        id: updatedStudent.id,
+        name: updatedStudent.name,
+        grade: updatedStudent.grade,
+        teacherId: updatedStudent.teacherId,
+        teacherName: updatedStudent.teacher?.name || 'Unassigned',
+        points: totalPoints,
+        emoji: updatedStudent.emoji,
+        createdAt: updatedStudent.createdAt,
+      },
+    });
   } catch (error) {
     console.error('Error updating student:', error);
     return NextResponse.json({ error: 'Failed to update student' }, { status: 500 });

@@ -40,17 +40,10 @@ export async function POST(request: Request) {
     });
 
     if (!user) {
-      // Auto-register new user as GURO (Teacher) but DO NOT verify them yet
-      user = await prisma.user.create({
-        data: {
-          email: cleanEmail,
-          name: payload.name || 'Guro',
-          school: 'Unknown School', // Default value
-          role: 'GURO',
-          emoji: '👨‍🏫',
-          isVerified: false,
-        },
-      });
+      return NextResponse.json(
+        { error: 'Hindi rehistrado ang Google account na ito. Makipag-ugnayan sa Administrator upang magawan ng account ang guro. (Account not registered. Please contact the Administrator).' },
+        { status: 401 }
+      );
     }
 
     // Check email verification status for existing users (who might not be verified yet)

@@ -27,6 +27,7 @@ export async function GET(request: Request) {
       where: studentWhere,
       include: {
         progress: true,
+        teacher: true,
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -42,6 +43,8 @@ export async function GET(request: Request) {
           grade: s.grade,
           points: score,
           emoji: emoji,
+          teacherId: s.teacherId,
+          teacherName: s.teacher?.name || 'Unassigned',
         };
       })
       .sort((a, b) => b.points - a.points);

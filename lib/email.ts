@@ -85,14 +85,14 @@ export async function sendVerificationEmail(toEmail: string, code: string, recip
         <div class="content">
           <div class="greeting">Magandang araw, ${nameDisplay}! 👋</div>
           <div class="instructions">
-            Salamat sa pagrehistro sa SIGNO Portal. Gamitin ang 6-digit verification code na ito para veripikahin ang iyong Google account:
+            Inihanda ang iyong Teacher Account sa SIGNO Portal. Gamitin ang 6-digit verification code na ito para ma-verify ang iyong account at makapagsimula:
           </div>
           <div class="otp-box">
             <div class="otp-code">${code}</div>
             <div class="expiry">⏳ Mag-eexpire sa loob ng 15 minuto</div>
           </div>
           <div class="instructions" style="margin-top: 20px; font-size: 13px;">
-            Kung hindi mo ginusto ang pagrehistro o pag-login na ito, maaari mong balewalain ang email na ito.
+            Kung hindi mo inaasahan ang email na ito, mangyaring makipag-ugnayan sa Administrator ng inyong paaralan.
           </div>
         </div>
         <div class="footer">

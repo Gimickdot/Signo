@@ -435,6 +435,16 @@ function App() {
   const [progressTab, setProgressTab] = useState<'titik' | 'kilos'>('titik');
   const [progressStudentId, setProgressStudentId] = useState<string>('ALL');
   const [teacherToDelete, setTeacherToDelete] = useState<string | number | null>(null);
+  // Admin Add Teacher states
+  const [isAddTeacherOpen, setIsAddTeacherOpen] = useState(false);
+  const [newTeacherName, setNewTeacherName] = useState('');
+  const [newTeacherEmail, setNewTeacherEmail] = useState('');
+  const [newTeacherSchool, setNewTeacherSchool] = useState('Philippine School For the Deaf - Pasay');
+  const [newTeacherPassword, setNewTeacherPassword] = useState('');
+  const [newTeacherEmoji, setNewTeacherEmoji] = useState('👩‍🏫');
+  const [isAddingTeacher, setIsAddingTeacher] = useState(false);
+  const [addTeacherError, setAddTeacherError] = useState<string | null>(null);
+  const [assignedTeacherId, setAssignedTeacherId] = useState<string>('');
   const [navConfirmTab, setNavConfirmTab] = useState<any>(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [showCsvConfirm, setShowCsvConfirm] = useState(false);
@@ -1868,6 +1878,45 @@ function App() {
     }
   };
 
+  const handleAddTeacherSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAddTeacherError(null);
+    if (!newTeacherName.trim() || !newTeacherEmail.trim() || !newTeacherPassword.trim()) {
+      setAddTeacherError('Paki-fill out ang lahat ng required fields.');
+      return;
+    }
+    setIsAddingTeacher(true);
+    try {
+      const res = await fetch('/api/admin/teachers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: newTeacherName.trim(),
+          email: newTeacherEmail.trim(),
+          school: newTeacherSchool.trim() || 'Philippine School For the Deaf - Pasay',
+          password: newTeacherPassword,
+          emoji: newTeacherEmoji,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Nabigong magdagdag ng guro.');
+      }
+      if (data.teacher) {
+        setTeachersList(prev => [data.teacher, ...prev]);
+      }
+      setIsAddTeacherOpen(false);
+      setNewTeacherName('');
+      setNewTeacherEmail('');
+      setNewTeacherPassword('');
+      showToast(data.message || 'Matagumpay na naidagdag ang guro!');
+    } catch (err: any) {
+      setAddTeacherError(err.message || 'Error sa pagdagdag ng guro.');
+    } finally {
+      setIsAddingTeacher(false);
+    }
+  };
+
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError(null);
@@ -2116,10 +2165,21 @@ function App() {
   const handleAddStudentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newStudentName.trim() || isAddingStudent) return;
-    if (studentsList.some(s => s.name.trim().toLowerCase() === newStudentName.trim().toLowerCase())) {
-      alert('A student with this name already exists in your class!');
+
+    const targetTeacherId = userRole === 'admin' 
+      ? (assignedTeacherId || (teachersList.length > 0 ? teachersList[0].id : '')) 
+      : (activeUser?.id || '');
+
+    if (userRole === 'admin' && !targetTeacherId) {
+      alert('Mangyaring magdagdag muna ng guro sa tab na Guro bago magtala ng mga mag-aaral.');
       return;
     }
+
+    if (studentsList.some(s => s.teacherId === targetTeacherId && s.name.trim().toLowerCase() === newStudentName.trim().toLowerCase())) {
+      alert('Mayroon nang mag-aaral na may parehong pangalan sa klase ng gurong ito!');
+      return;
+    }
+
     setIsAddingStudent(true);
     try {
       const response = await fetch('/api/students', {
@@ -2128,7 +2188,7 @@ function App() {
         body: JSON.stringify({
           name: newStudentName.trim(),
           grade: newStudentGrade,
-          teacherId: activeUser?.id || '',
+          teacherId: targetTeacherId,
           points: parseInt(newStudentPoints, 10) || 0,
           emoji: newStudentEmoji,
         }),
@@ -2138,17 +2198,15 @@ function App() {
       if (response.ok && data.student) {
         setStudentsList(prev => [data.student, ...prev]);
       } else {
-        const newStudent = {
-          id: String(Date.now()),
-          name: newStudentName,
-          grade: newStudentGrade,
-          points: parseInt(newStudentPoints, 10) || 0,
-          emoji: newStudentEmoji,
-        };
-        setStudentsList(prev => [newStudent, ...prev]);
+        alert(data.error || 'Hindi ma-save ang mag-aaral.');
+        setIsAddingStudent(false);
+        return;
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error adding student:', err);
+      alert(err.message || 'Error adding student');
+      setIsAddingStudent(false);
+      return;
     } finally {
       setIsAddingStudent(false);
     }
@@ -2159,7 +2217,7 @@ function App() {
     setNewStudentPoints('0');
     setNewStudentEmoji('👧');
     showToast('Successfully added student!');
-      logTeacherActivity(newStudentName.trim(), newStudentEmoji, 'ADD');
+    logTeacherActivity(newStudentName.trim(), newStudentEmoji, 'ADD');
   };
 
   // Delete a student from PostgreSQL Database
@@ -2448,7 +2506,14 @@ function App() {
                   {/* Right side: Name, Grade, Points */}
                   <div className="flex flex-col items-start pr-4 flex-1 min-w-0">
                     <h3 className="text-base sm:text-lg font-black text-white leading-tight uppercase truncate w-full mb-0.5">{std.name}</h3>
-                    <p className="text-xs text-purple-200 font-sans font-semibold mb-1.5">{std.grade}</p>
+                    <div className="flex items-center space-x-1.5 mb-1.5 flex-wrap">
+                      <p className="text-xs text-purple-200 font-sans font-semibold">{std.grade}</p>
+                      {(std.teacherName || (userRole === 'admin' && teachersList.find(t => t.id === std.teacherId)?.name)) && (
+                        <span className="text-[10px] bg-cyan-900/60 border border-cyan-400/40 text-cyan-200 px-1.5 py-0.2 rounded font-bold">
+                          👨‍🏫 {std.teacherName || teachersList.find(t => t.id === std.teacherId)?.name}
+                        </span>
+                      )}
+                    </div>
                     {/* Points badge with Star */}
                     <div className="flex items-center space-x-1 bg-yellow-500/10 border border-yellow-500/30 rounded-lg px-2 py-0.5 w-fit">
                       <span className="text-yellow-400 text-xs">⭐</span>
@@ -3798,7 +3863,14 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
         targetStudents = studentsList.filter((s: any) => progressGradeFilter === 'ALL' || s.grade === progressGradeFilter);
       }
 
-      const header = ["Student Name", "Teacher Name", "Grade", "Total Points"];
+      const header = [
+        "Student Name", 
+        "Teacher Name", 
+        "Grade", 
+        "Total Points", 
+        "Overall Progress (%)", 
+        "Left Behind Indicator"
+      ];
       if (csvExportType === 'both' || csvExportType === 'letters') {
         alphabetLetters.forEach(l => header.push(`Letter ${l} (%)`));
       }
@@ -3809,20 +3881,23 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       const rows = [header.join(",")];
 
       targetStudents.forEach((student: any) => {
-        const row = [
-          `"${student.name}"`, 
-          `"${activeUser ? activeUser.name : 'Admin'}"`,
-          `"${student.grade || 'N/A'}"`, 
-          student.points || 0
-        ];
-        
+        // Resolve handling teacher name accurately for both Admin and Teacher views
+        const handlingTeacher = student.teacherName 
+          || (teachersList.find(t => t.id === student.teacherId)?.name)
+          || (userRole === 'guro' && activeUser ? activeUser.name : 'Unassigned');
+
+        let studentPercentages: number[] = [];
+        let letterCols: string[] = [];
+        let gestureCols: string[] = [];
+
         if (csvExportType === 'both' || csvExportType === 'letters') {
           alphabetLetters.forEach(letter => {
             const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category && r.category.toUpperCase() === letter.toUpperCase());
             let maxOccurrences = letterFrequencies[letter] || 1;
             const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), maxOccurrences), 0);
             const val = Math.min(100, Math.round((totalScore / maxOccurrences) * 100));
-            row.push(`${val}%`);
+            studentPercentages.push(val);
+            letterCols.push(`${val}%`);
           });
         }
 
@@ -3831,8 +3906,30 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
             const records = dbProgressRecords.filter((r: any) => r.studentId === student.id && r.category === kilo.key);
             const totalScore = records.reduce((acc: number, curr: any) => acc + Math.min(Math.max(curr.score || 0, curr.completed ? 1 : 0), 1), 0);
             const val = Math.min(100, Math.round((totalScore / 1) * 100));
-            row.push(`${val}%`);
+            studentPercentages.push(val);
+            gestureCols.push(`${val}%`);
           });
+        }
+
+        const sumPct = studentPercentages.reduce((a, b) => a + b, 0);
+        const avgProgress = studentPercentages.length > 0 ? Math.round(sumPct / studentPercentages.length) : 0;
+        const isLeftBehind = avgProgress < 50;
+        const leftBehindIndicator = isLeftBehind ? "Left Behind (Low Progress)" : "On Track";
+
+        const row = [
+          `"${student.name}"`, 
+          `"${handlingTeacher}"`,
+          `"${student.grade || 'N/A'}"`, 
+          student.points || 0,
+          `"${avgProgress}%"`,
+          `"${leftBehindIndicator}"`
+        ];
+
+        if (csvExportType === 'both' || csvExportType === 'letters') {
+          row.push(...letterCols);
+        }
+        if (csvExportType === 'both' || csvExportType === 'gestures') {
+          row.push(...gestureCols);
         }
 
         rows.push(row.join(","));
@@ -3843,7 +3940,7 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      const teacherStr = activeUser ? activeUser.name.replace(/\s+/g, '_') : 'Admin';
+      const teacherStr = userRole === 'admin' ? 'Admin_Class_Overview' : (activeUser ? activeUser.name.replace(/\s+/g, '_') : 'Teacher');
       const targetStr = progressStudentId !== 'ALL' && targetStudents.length > 0 
         ? targetStudents[0].name.replace(/\s+/g, '_') 
         : progressGradeFilter.replace(' ', '_');
@@ -4079,7 +4176,28 @@ const filteredLeaderboard = studentsList.filter((s: any) => {
                     </div>
                     <div>
                       <h4 className="font-extrabold text-white text-xs sm:text-sm leading-tight">{std.name}</h4>
-                      <p className="text-[9px] text-purple-300 font-bold uppercase mt-0.5">{std.grade}</p>
+                      <div className="flex items-center space-x-1.5 mt-0.5 flex-wrap">
+                        <span className="text-[9px] text-purple-300 font-bold uppercase">{std.grade}</span>
+                        {userRole === 'admin' && (std.teacherName || teachersList.find(t => t.id === std.teacherId)?.name) && (
+                          <span className="text-[9px] text-cyan-300 font-bold">
+                            • 👨‍🏫 {std.teacherName || teachersList.find(t => t.id === std.teacherId)?.name}
+                          </span>
+                        )}
+                        {(() => {
+                          const stdRecords = dbProgressRecords.filter((r: any) => r.studentId === std.id);
+                          const totalCompleted = stdRecords.filter((r: any) => r.completed || (r.score && r.score > 0)).length;
+                          const isLagging = (std.points || 0) < 20 && totalCompleted < 5;
+                          return isLagging ? (
+                            <span className="text-[8px] bg-rose-500/20 text-rose-300 border border-rose-500/40 px-1 py-0.2 rounded font-black tracking-wide" title="Needs attention / Low progress">
+                              ⚠️ Left Behind
+                            </span>
+                          ) : (
+                            <span className="text-[8px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-1 py-0.2 rounded font-black tracking-wide">
+                              ✅ On Track
+                            </span>
+                          );
+                        })()}
+                      </div>
                     </div>
                   </div>
 
@@ -4254,9 +4372,26 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
 
         {/* Table container */}
         <div className="flex-1 min-h-0 bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col space-y-3 w-full max-h-[calc(100vh-230px)] overflow-hidden">
-          <div className="flex items-center justify-between w-full shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 w-full shrink-0">
             <h3 className="text-xs sm:text-sm font-black text-white tracking-widest uppercase">Teacher Masterlist</h3>
-            <div className="relative">
+            <div className="flex items-center space-x-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setNewTeacherName('');
+                  setNewTeacherEmail('');
+                  setNewTeacherSchool('Philippine School For the Deaf - Pasay');
+                  setNewTeacherPassword('');
+                  setNewTeacherEmoji('👩‍🏫');
+                  setAddTeacherError(null);
+                  setIsAddTeacherOpen(true);
+                }}
+                className="px-3 sm:px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black rounded-xl tracking-wider transition-all border border-emerald-400/50 shadow-[0_0_15px_rgba(16,185,129,0.4)] active:scale-95 uppercase flex items-center space-x-1.5 shrink-0"
+              >
+                <span>➕</span>
+                <span>Add Teacher</span>
+              </button>
+              <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
               </div>
@@ -4267,6 +4402,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                 onChange={(e) => setGuroSearchTerm(e.target.value)}
                 className="bg-purple-950/60 border border-purple-500/30 text-white text-xs rounded-xl pl-8 pr-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 w-48 sm:w-60 font-sans"
               />
+              </div>
             </div>
           </div>
           <div className="flex-1 min-h-0 overflow-y-auto pr-1 w-full scrollbar-thin scrollbar-thumb-fuchsia-500">
@@ -4953,6 +5089,126 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           </div>
         )}
 
+        
+        {/* Add Teacher Modal for Admin */}
+        {isAddTeacherOpen && (
+          <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[110] flex items-center justify-center p-4 font-sans text-left animate-fadeIn">
+            <div className="bg-[#0f172a] border-2 border-cyan-500/40 rounded-[32px] p-6 sm:p-8 w-full max-w-md shadow-[0_0_50px_rgba(6,182,212,0.25)] relative max-h-[90vh] overflow-y-auto">
+              <button 
+                onClick={() => { setIsAddTeacherOpen(false); setAddTeacherError(null); }}
+                className="absolute top-5 right-5 text-cyan-400 hover:text-white font-black text-lg transition-colors"
+              >
+                ✕
+              </button>
+
+              <div className="flex items-center space-x-3 mb-5">
+                <div className="text-3xl bg-cyan-500/20 w-12 h-12 rounded-2xl border border-cyan-400/40 flex items-center justify-center select-none shadow-inner">
+                  👩‍🏫
+                </div>
+                <div>
+                  <h3 className="text-lg sm:text-xl font-black text-white uppercase tracking-wide">Add Teacher Account</h3>
+                  <p className="text-xs text-cyan-300 font-medium">Magdagdag ng opisyal na guro ng paaralan</p>
+                </div>
+              </div>
+
+              {addTeacherError && (
+                <div className="bg-rose-500/10 border border-rose-500/40 text-rose-300 px-3.5 py-2 rounded-xl text-xs font-bold text-center mb-4">
+                  ⚠️ {addTeacherError}
+                </div>
+              )}
+
+              <form onSubmit={handleAddTeacherSubmit} className="space-y-3.5 text-xs">
+                <div>
+                  <label className="block text-cyan-200 font-bold mb-1">Teacher Full Name / Title:</label>
+                  <input
+                    type="text"
+                    required
+                    value={newTeacherName}
+                    onChange={(e) => setNewTeacherName(e.target.value)}
+                    placeholder="Hal. Gng. Maria Santos"
+                    className="w-full px-3.5 py-2.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-bold shadow-inner"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-cyan-200 font-bold mb-1">Teacher Gmail / Email Address:</label>
+                  <input
+                    type="email"
+                    required
+                    value={newTeacherEmail}
+                    onChange={(e) => setNewTeacherEmail(e.target.value)}
+                    placeholder="halimbawa@gmail.com"
+                    className="w-full px-3.5 py-2.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-bold shadow-inner"
+                  />
+                  <p className="text-[10px] text-cyan-400/80 mt-1">📧 Dito ipapadala ang 6-digit verification code para ma-verify ng guro ang account.</p>
+                </div>
+
+                <div>
+                  <label className="block text-cyan-200 font-bold mb-1">School / Institution:</label>
+                  <input
+                    type="text"
+                    required
+                    value={newTeacherSchool}
+                    onChange={(e) => setNewTeacherSchool(e.target.value)}
+                    placeholder="Philippine School For the Deaf - Pasay"
+                    className="w-full px-3.5 py-2.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-bold shadow-inner"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-cyan-200 font-bold mb-1">Initial Password:</label>
+                  <input
+                    type="password"
+                    required
+                    minLength={6}
+                    value={newTeacherPassword}
+                    onChange={(e) => setNewTeacherPassword(e.target.value)}
+                    placeholder="Kahit 6 o higit pang characters"
+                    className="w-full px-3.5 py-2.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-bold shadow-inner"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-cyan-200 font-bold mb-1">Teacher Avatar Emoji:</label>
+                  <div className="flex space-x-2 mt-1">
+                    {['👩‍🏫', '👨‍🏫', '🧑‍🏫', '👩‍🦰', '👨‍💼'].map(em => (
+                      <button
+                        key={em}
+                        type="button"
+                        onClick={() => setNewTeacherEmoji(em)}
+                        className={`text-2xl p-2 rounded-xl border-2 transition-all ${
+                          newTeacherEmoji === em ? 'border-cyan-400 bg-cyan-900/50 scale-105' : 'border-transparent bg-slate-800/50 hover:bg-slate-700'
+                        }`}
+                      >
+                        {em}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => { setIsAddTeacherOpen(false); setAddTeacherError(null); }}
+                    className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-black rounded-xl uppercase tracking-wider transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isAddingTeacher}
+                    className={`flex-1 py-2.5 text-white font-black rounded-xl uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)] border border-emerald-400 ${
+                      isAddingTeacher ? 'bg-gray-600 cursor-not-allowed' : 'bg-emerald-600 hover:bg-emerald-500 active:scale-95'
+                    }`}
+                  >
+                    {isAddingTeacher ? 'Adding & Sending Code...' : 'Add Teacher'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         {isAddStudentOpen && (
           <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 font-sans text-left">
             <div className="bg-[#3a1c6a] border-2 border-purple-500/20 rounded-[32px] p-8 w-full max-w-sm shadow-2xl relative">
@@ -4964,6 +5220,26 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               </button>
               <h3 className="text-xl font-black text-white mb-5 uppercase tracking-wide">Add Space Student</h3>
               <form onSubmit={handleAddStudentSubmit} className="space-y-4">
+                {userRole === 'admin' && (
+                  <div>
+                    <label className="block text-sm font-bold text-purple-200 mb-1">Assigned Teacher:</label>
+                    <select
+                      value={assignedTeacherId || (teachersList.length > 0 ? teachersList[0].id : '')}
+                      onChange={(e) => setAssignedTeacherId(e.target.value)}
+                      className="w-full px-4 py-2.5 bg-[#3b125e] text-white border border-purple-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-fuchsia-400 text-xs font-bold shadow-inner cursor-pointer"
+                    >
+                      {teachersList.length === 0 ? (
+                        <option value="">(No teachers available - please add a teacher first)</option>
+                      ) : (
+                        teachersList.map((t) => (
+                          <option key={t.id} value={t.id}>
+                            {t.name} ({t.email})
+                          </option>
+                        ))
+                      )}
+                    </select>
+                  </div>
+                )}
                 <div>
                   <label className="block text-sm font-bold text-purple-200 mb-1">Student Name:</label>
                   <input
@@ -5042,6 +5318,10 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     <h3 className="text-4xl font-black text-white">{selectedProfileStudent.name}</h3>
                     <p className="text-sm text-white/80 font-black uppercase tracking-widest">{selectedProfileStudent.grade}</p>
                     <div className="w-full bg-black/30 rounded-2xl p-5 text-sm space-y-4 text-left mt-4 border border-white/10">
+                      <div className="flex justify-between border-b border-purple-900/40 pb-2">
+                        <span className="text-white/70 font-semibold">👨‍🏫 Assigned Teacher:</span> 
+                        <span className="font-bold text-cyan-300">{selectedProfileStudent.teacherName || (teachersList.find(t => t.id === selectedProfileStudent.teacherId)?.name) || 'Assigned Teacher'}</span>
+                      </div>
                       <div className="flex justify-between border-b border-purple-900/40 pb-2">
                         <span className="text-white/70 font-semibold">🏆 Total Points Awarded:</span> 
                         <span className="font-bold text-yellow-300">⭐ {selectedProfileStudent.points} Points</span>
@@ -5607,19 +5887,12 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
               />
             </div>
 
-            <div className="flex space-x-2.5 w-full mb-3">
+            <div className="w-full mb-3">
               <button
                 type="submit"
-                className="flex-1 py-2 sm:py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)] active:scale-95"
+                className="w-full py-2.5 sm:py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)] active:scale-95"
               >
                 Sign In
-              </button>
-              <button
-                type="button"
-                onClick={() => setCurrentView('register')}
-                className="flex-1 py-2 sm:py-2.5 bg-fuchsia-600 hover:bg-fuchsia-500 text-white font-black rounded-xl text-xs sm:text-sm uppercase tracking-wider transition-all border border-fuchsia-400/40 shadow-[0_0_15px_rgba(217,70,239,0.4)] active:scale-95"
-              >
-                Register
               </button>
             </div>
 
@@ -5693,92 +5966,6 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
             >
               Sign In
             </button>
-          </form>
-        )}
-
-        {/* 3. Register Form */}
-        {isRegister && (
-          <form onSubmit={handleRegisterSubmit} className="w-full flex flex-col mt-2">
-            {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/30 text-rose-300 px-3 py-1.5 rounded-xl text-[11px] font-sans font-black text-center mb-2.5 shadow-sm">
-                ⚠️ {authError}
-              </div>
-            )}
-            <div className="flex items-center space-x-2.5 bg-slate-800/80 p-2.5 rounded-xl border border-cyan-500/30 mb-3">
-              <div className="flex-shrink-0 bg-yellow-500 p-1.5 rounded-lg text-lg shadow-inner select-none">
-                👩‍🏫
-              </div>
-              <div className="text-left font-sans">
-                <h3 className="text-xs sm:text-sm font-black text-white leading-tight">Register</h3>
-                <p className="text-[10px] text-cyan-200 font-bold">Mag register muna para gamitin ang Signo!</p>
-              </div>
-            </div>
-
-            <div className="mb-2 text-left font-sans">
-              <label className="block text-[11px] font-bold text-cyan-200 mb-0.5">Full Name:</label>
-              <input
-                type="text"
-                required
-                value={fullNameInput}
-                onChange={(e) => setFullNameInput(e.target.value)}
-                className="w-full px-3 py-1.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Juan dela Cruz"
-              />
-            </div>
-
-            <div className="mb-2 text-left font-sans">
-              <label className="block text-[11px] font-bold text-cyan-200 mb-0.5">Email Address:</label>
-              <input
-                type="email"
-                required
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full px-3 py-1.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your email address"
-              />
-            </div>
-
-            <div className="mb-2 text-left font-sans">
-              <label className="block text-[11px] font-bold text-cyan-200 mb-0.5">Password:</label>
-              <input
-                type="password"
-                required
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
-                className="w-full px-3 py-1.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your password"
-              />
-            </div>
-
-            <div className="mb-3 text-left font-sans">
-              <label className="block text-[11px] font-bold text-cyan-200 mb-0.5">Confirmed Password:</label>
-              <input
-                type="password"
-                required
-                value={confirmPasswordInput}
-                onChange={(e) => setConfirmPasswordInput(e.target.value)}
-                className="w-full px-3 py-1.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-sans text-xs font-bold shadow-inner"
-                placeholder="Enter your password"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-black rounded-xl text-xs uppercase tracking-wider transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)] active:scale-95 mb-2.5"
-            >
-              Register
-            </button>
-
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setCurrentView('teacher-login');
-              }}
-              className="text-[10px] text-cyan-300 font-bold hover:text-white transition-colors underline font-sans"
-            >
-              Already registered? Login
-            </a>
           </form>
         )}
 

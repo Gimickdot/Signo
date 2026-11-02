@@ -63,6 +63,8 @@ model Student {
   // Relations
   progress  Progress[]
   sessions  Session[]
+
+  @@unique([name, teacherId])
 }
 
 model Session {
