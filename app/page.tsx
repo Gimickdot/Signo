@@ -1881,10 +1881,18 @@ function App() {
   const handleAddTeacherSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setAddTeacherError(null);
-    if (!newTeacherName.trim() || !newTeacherEmail.trim() || !newTeacherPassword.trim()) {
+    const cleanTeacherName = newTeacherName.trim();
+    if (!cleanTeacherName || !newTeacherEmail.trim() || !newTeacherPassword.trim()) {
       setAddTeacherError('Paki-fill out ang lahat ng required fields.');
       return;
     }
+
+    // Enforce unique teacher name
+    if (teachersList.some(t => t.name.trim().toLowerCase() === cleanTeacherName.toLowerCase())) {
+      setAddTeacherError(`Mayroon nang guro na may pangalang "${cleanTeacherName}". Ang pangalan ng bawat guro ay dapat natatangi (unique).`);
+      return;
+    }
+
     setIsAddingTeacher(true);
     try {
       const res = await fetch('/api/admin/teachers', {
@@ -5128,6 +5136,7 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
                     placeholder="Hal. Gng. Maria Santos"
                     className="w-full px-3.5 py-2.5 bg-slate-800/90 text-white placeholder-slate-400 border border-cyan-500/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 font-bold shadow-inner"
                   />
+                  <p className="text-[10px] text-cyan-400/80 mt-1">🏷️ Tiyaking natatangi (unique) ang pangalan ng guro sa buong paaralan.</p>
                 </div>
 
                 <div>

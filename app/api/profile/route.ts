@@ -14,7 +14,20 @@ export async function PATCH(request: Request) {
     const updates: Record<string, string> = {};
 
     if (name && name.trim().length > 0) {
-      updates.name = name.trim();
+      const cleanName = name.trim();
+      const duplicateName = await prisma.user.findFirst({
+        where: {
+          name: { equals: cleanName, mode: 'insensitive' },
+          id: { not: userId },
+        },
+      });
+      if (duplicateName) {
+        return NextResponse.json(
+          { error: `Ang pangalang "${cleanName}" ay ginagamit na ng ibang guro. Ang pangalan ng guro ay dapat natatangi (unique).` },
+          { status: 400 }
+        );
+      }
+      updates.name = cleanName;
     }
     if (profileIcon !== undefined) {
       updates.profileIcon = profileIcon;

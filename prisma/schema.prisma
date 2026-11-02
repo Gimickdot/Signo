@@ -22,7 +22,7 @@ model User {
   id           String    @id @default(uuid())
   email        String    @unique
   passwordHash String?
-  name         String
+  name         String    @unique
   school       String
   role         Role      @default(GURO)
   status       Status    @default(AKTIBO)

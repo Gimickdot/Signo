@@ -46,6 +46,7 @@ export async function POST(request: Request) {
       );
     }
 
+    const cleanName = name.trim();
     const cleanEmail = email.trim().toLowerCase();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
@@ -55,7 +56,18 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if teacher already exists
+    // Check if teacher name already exists (teacher name must be unique)
+    const existingName = await prisma.user.findFirst({
+      where: { name: { equals: cleanName, mode: 'insensitive' } },
+    });
+    if (existingName) {
+      return NextResponse.json(
+        { error: `Ang pangalang "${cleanName}" ay ginagamit na. Ang pangalan ng bawat guro ay kailangang natatangi (unique).` },
+        { status: 400 }
+      );
+    }
+
+    // Check if teacher email already exists
     const existing = await prisma.user.findUnique({
       where: { email: cleanEmail },
     });
@@ -72,7 +84,7 @@ export async function POST(request: Request) {
     // Create teacher as GURO with isVerified: false
     const teacher = await prisma.user.create({
       data: {
-        name: name.trim(),
+        name: cleanName,
         email: cleanEmail,
         passwordHash: hashedPassword,
         school: school?.trim() || 'Philippine School For the Deaf - Pasay',
@@ -155,7 +167,22 @@ export async function PUT(request: Request) {
     if (status) {
       updateData.status = status === 'Aktibo' || status === 'AKTIBO' ? 'AKTIBO' : 'HINDI_AKTIBO';
     }
-    if (name) updateData.name = name;
+    if (name) {
+      const cleanName = name.trim();
+      const duplicateName = await prisma.user.findFirst({
+        where: {
+          name: { equals: cleanName, mode: 'insensitive' },
+          id: { not: id },
+        },
+      });
+      if (duplicateName) {
+        return NextResponse.json(
+          { error: `Ang pangalang "${cleanName}" ay ginagamit na ng ibang guro. Ang bawat pangalan ng guro ay dapat natatangi (unique).` },
+          { status: 400 }
+        );
+      }
+      updateData.name = cleanName;
+    }
     if (school) updateData.school = school;
 
     const updatedUser = await prisma.user.update({
