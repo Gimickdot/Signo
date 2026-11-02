@@ -1824,6 +1824,7 @@ function App() {
         }
         if (data.notRegistered && role === 'guro') {
           setUnregisteredEmail(data.email || emailOrUsername);
+          setAuthError(data.error || 'This account is not registered, please contact the admin of the school.');
           setUnregisteredModalOpen(true);
           return;
         }
@@ -1869,6 +1870,7 @@ function App() {
         }
         if (data.notRegistered || response.status === 401) {
           setUnregisteredEmail(data.email || '');
+          setAuthError(data.error || 'This account is not registered, please contact the admin of the school.');
           setUnregisteredModalOpen(true);
           return;
         }
@@ -5718,6 +5720,50 @@ const aktiboCount = teachersList.filter(t => t.status === 'Aktibo' || t.status =
           </div>
         )}
         
+      {/* Unregistered Account Alert Modal for Login View */}
+      {unregisteredModalOpen && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 backdrop-blur-sm animate-fadeIn p-4 font-sans text-center">
+          <div className="bg-[#0f172a] border-2 border-rose-500/50 p-6 sm:p-8 rounded-[32px] shadow-[0_0_50px_rgba(244,63,94,0.35)] max-w-md w-full mx-auto flex flex-col items-center relative">
+            <button 
+              onClick={() => setUnregisteredModalOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white font-black text-lg transition-colors"
+              title="Close"
+            >
+              ✕
+            </button>
+
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-rose-500/20 rounded-full flex items-center justify-center mb-4 text-3xl sm:text-4xl shadow-inner border border-rose-500/40 animate-pulse">
+              🚫
+            </div>
+
+            <h3 className="text-lg sm:text-xl font-black text-white mb-2 uppercase tracking-wide">
+              Account Not Registered
+            </h3>
+
+            {unregisteredEmail && (
+              <div className="mb-3 px-3.5 py-1.5 bg-rose-950/60 border border-rose-500/30 rounded-xl text-xs font-mono font-bold text-yellow-300 break-all max-w-full">
+                {unregisteredEmail}
+              </div>
+            )}
+
+            <p className="text-slate-100 text-xs sm:text-sm font-bold mb-2 leading-relaxed">
+              This account is not registered, please contact the admin of the school.
+            </p>
+
+            <p className="text-slate-400 text-[11px] font-medium mb-6 leading-relaxed">
+              Ang account na ito ay hindi pa nakarehistro. Makipag-ugnayan sa Administrator ng paaralan upang mabigyan kayo ng Teacher Account.
+            </p>
+
+            <button 
+              onClick={() => setUnregisteredModalOpen(false)}
+              className="w-full py-3 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs sm:text-sm font-black rounded-xl tracking-wider transition-all shadow-[0_0_20px_rgba(244,63,94,0.4)] active:scale-95 uppercase"
+            >
+              I Understand / Naintindihan
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Global Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[100] animate-bounce">
