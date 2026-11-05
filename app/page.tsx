@@ -2874,13 +2874,13 @@ function App() {
       {currentView === 'dashboard-spelling' && (
         <div className="px-3.5 py-2.5 md:px-4 md:py-3 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-2">
           <div>
-            <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Game Status</div>
-            <div className="flex items-center space-x-2.5 p-2 bg-purple-950/40 rounded-xl border border-purple-850/50 text-slate-300 font-sans">
-              <div className="flex-shrink-0 w-6 h-6 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                <span className="text-xs animate-pulse">🤔</span>
+            <div className="text-xs sm:text-sm font-black uppercase tracking-wider text-purple-300 mb-1.5 font-sans">Game Instruction:</div>
+            <div className="flex items-center space-x-3 p-2.5 sm:p-3 bg-purple-950/50 rounded-2xl border border-purple-700/60 text-slate-200 font-sans shadow-md">
+              <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-dashed border-purple-400/80 flex items-center justify-center bg-purple-900/40">
+                <span className="text-base sm:text-lg animate-pulse">🤔</span>
               </div>
               <div>
-                <p className="text-[11px] font-black text-slate-200">Show the sign for the current letter to the camera</p>
+                <p className="text-sm sm:text-base font-black text-white tracking-wide">Show the sign for the current letter to the camera</p>
               </div>
             </div>
           </div>
@@ -3580,33 +3580,33 @@ const renderSpellingView = () => {
                 ))}
               </div>
               
-              <div className="border-t border-purple-800/40 pt-2 mt-auto flex-shrink-0">
-                <div className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Game Status</div>
+              <div className="border-t border-purple-800/40 pt-2.5 mt-auto flex-shrink-0">
+                <div className="text-xs sm:text-sm font-black uppercase tracking-wider text-purple-300 mb-1.5 font-sans">Game Instruction:</div>
                 {gameStep === 'question' ? (
                   <div className="flex flex-col space-y-1">
-                    <div className="relative flex items-center space-x-2.5 p-2 bg-purple-950/40 rounded-xl border border-purple-850/50 text-slate-300 font-sans">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full border border-dashed border-purple-500/60 flex items-center justify-center">
-                        <span className="text-xs animate-pulse">🤔</span>
+                    <div className="relative flex items-center space-x-3 p-2.5 sm:p-3 bg-purple-950/50 rounded-2xl border border-purple-700/60 text-slate-200 font-sans shadow-md">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-dashed border-purple-400/80 flex items-center justify-center bg-purple-900/40">
+                        <span className="text-base sm:text-lg animate-pulse">🤔</span>
                       </div>
                       <div>
-                        <p className="text-[11px] font-black text-slate-200">Hover the blue circle over an answer!</p>
+                        <p className="text-sm sm:text-base font-black text-white tracking-wide">Hover the blue circle over an answer!</p>
                       </div>
                     </div>
                   </div>
                 ) : gameStep === 'correct' ? (
-                  <div className="flex items-center space-x-2.5 p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400 animate-bounce">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">✨</div>
+                  <div className="flex items-center space-x-3 p-2.5 sm:p-3 bg-emerald-500/20 rounded-2xl border border-emerald-500/40 text-emerald-300 animate-bounce">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/30 flex items-center justify-center border border-emerald-400 text-base">✨</div>
                     <div>
-                      <p className="text-xs font-black text-emerald-300">CORRECT!</p>
-                      <p className="text-[9px] text-emerald-500/80 font-sans">Get ready to practice the sign...</p>
+                      <p className="text-sm sm:text-base font-black text-emerald-200">CORRECT!</p>
+                      <p className="text-xs sm:text-sm text-emerald-300/90 font-sans font-bold">Get ready to practice the sign...</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-2.5 p-2 bg-rose-500/10 rounded-xl border border-rose-500/20 text-rose-400">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-rose-500/20 flex items-center justify-center border border-rose-500/30">☄️</div>
+                  <div className="flex items-center space-x-3 p-2.5 sm:p-3 bg-rose-500/20 rounded-2xl border border-rose-500/40 text-rose-300">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-rose-500/30 flex items-center justify-center border border-rose-400 text-base">☄️</div>
                     <div>
-                      <p className="text-xs font-black text-rose-300">TRY AGAIN</p>
-                      <p className="text-[9px] text-rose-400/80 font-sans">You selected {gameSelectedAnswer}. Try another option!</p>
+                      <p className="text-sm sm:text-base font-black text-rose-200">TRY AGAIN</p>
+                      <p className="text-xs sm:text-sm text-rose-300/90 font-sans font-bold">You selected {gameSelectedAnswer}. Try another option!</p>
                     </div>
                   </div>
                 )}
