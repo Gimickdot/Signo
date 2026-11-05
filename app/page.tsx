@@ -927,6 +927,92 @@ function App() {
     };
   }, [gameTutorialStep]);
 
+  // Spelling Game Tutorial State
+  const [showSpellingTutorialPrompt, setShowSpellingTutorialPrompt] = useState<boolean>(false);
+  const [spellingTutorialStep, setSpellingTutorialStep] = useState<number | null>(null);
+  const [spellingTutorialRect, setSpellingTutorialRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
+
+  const SPELLING_TUTORIAL_STEPS = [
+    {
+      step: 1,
+      targetId: 'tutorial-target-camera-btn',
+      title: 'Turn on camera',
+      text: 'Press to turn on the Camera to show the student',
+    },
+    {
+      step: 2,
+      targetId: 'spelling-tutorial-target-game-instruction',
+      title: 'Game Instruction',
+      text: 'In here students should Read and Flollow the Game Instruction.',
+    },
+    {
+      step: 3,
+      targetId: 'spelling-tutorial-target-the-image',
+      title: 'The Image',
+      text: 'In here students should look at the picture to know what to spell',
+    },
+    {
+      step: 4,
+      targetId: 'spelling-tutorial-target-instructional-overlay',
+      title: 'Follow the Instructional Overlay',
+      text: 'In here students will follow or do the image letter instruction to spell',
+    },
+    {
+      step: 5,
+      targetId: 'spelling-tutorial-target-progress-bar',
+      title: 'Student Progress bar',
+      text: 'In here students can see the progress if they are close to finishing the game',
+    },
+  ];
+
+  useEffect(() => {
+    if (spellingTutorialStep === null) {
+      setSpellingTutorialRect(null);
+      return;
+    }
+
+    const currentStepConfig = SPELLING_TUTORIAL_STEPS.find(s => s.step === spellingTutorialStep);
+    if (!currentStepConfig) return;
+
+    const updateRect = () => {
+      const el = document.getElementById(currentStepConfig.targetId);
+      if (el) {
+        const r = el.getBoundingClientRect();
+        setSpellingTutorialRect({
+          top: r.top,
+          left: r.left,
+          width: r.width,
+          height: r.height,
+        });
+      }
+    };
+
+    const el = document.getElementById(currentStepConfig.targetId);
+    if (el) {
+      try {
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      } catch (e) {
+        // ignore scroll error
+      }
+    }
+
+    updateRect();
+    const t1 = setTimeout(updateRect, 50);
+    const t2 = setTimeout(updateRect, 150);
+    const t3 = setTimeout(updateRect, 300);
+
+    window.addEventListener('resize', updateRect);
+    window.addEventListener('scroll', updateRect, true);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect, true);
+    };
+  }, [spellingTutorialStep]);
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [questionsCompleted, setQuestionsCompleted] = useState<number>(0);
   const [hasMadeMistakeOnCurrentQuestion, setHasMadeMistakeOnCurrentQuestion] = useState<boolean>(false);
@@ -2959,7 +3045,7 @@ function App() {
 
       {currentView === 'dashboard-spelling' && (
         <div className="px-3.5 py-2.5 md:px-4 md:py-3 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-2">
-          <div>
+          <div id="spelling-tutorial-target-game-instruction">
             <div className="text-xs sm:text-sm font-black uppercase tracking-wider text-purple-300 mb-1.5 font-sans">Game Instruction:</div>
             <div className="flex items-center space-x-3 p-2.5 sm:p-3 bg-purple-950/50 rounded-2xl border border-purple-700/60 text-slate-200 font-sans shadow-md">
               <div className="flex-shrink-0 w-8 h-8 rounded-full border-2 border-dashed border-purple-400/80 flex items-center justify-center bg-purple-900/40">
@@ -2971,7 +3057,7 @@ function App() {
             </div>
           </div>
 
-          <div>
+          <div id="spelling-tutorial-target-progress-bar">
             <div className="flex items-center justify-between mb-1.5">
               <h3 className="text-white font-black text-xs sm:text-sm">Spelling Progress</h3>
               <span className="text-cyan-300 font-bold text-[10px] uppercase tracking-wider">Word {spellingCurrentWordIndex + 1}/5</span>
@@ -3197,16 +3283,16 @@ const renderSpellingView = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1">Spelling Setup</h2>
             <p className="text-sm sm:text-base text-purple-200 mb-4 sm:mb-6">How would you like to pick the 5 words?</p>
             <div className="flex space-x-4 sm:space-x-6">
-               <button onClick={() => setSpellingSetupMode('random')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-purple-700 to-indigo-800 border-2 border-indigo-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
+               <button onClick={() => { setSpellingSetupMode('random'); setShowSpellingTutorialPrompt(true); }} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-purple-700 to-indigo-800 border-2 border-indigo-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
                   <span className="text-3xl sm:text-5xl">🔀</span>
                   <span>Randomize 5</span>
                </button>
                <button onClick={() => setSpellingSetupMode('manual')} className="px-6 py-6 sm:px-8 sm:py-8 bg-gradient-to-br from-fuchsia-700 to-pink-800 border-2 border-pink-400/50 rounded-2xl sm:rounded-3xl hover:scale-105 transition-all text-white font-black text-lg sm:text-2xl shadow-xl flex flex-col items-center space-y-2 sm:space-y-3">
                   <span className="text-3xl sm:text-5xl">👆</span>
-                  <span>Choose Manually</span></button></div><button onClick={() => setNavConfirmTab('dashboard-sesyon')} className="mt-4 sm:mt-6 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors">Go back to Main Menu</button></div>) : spellingSetupMode === 'manual' && spellingCurrentWordList.length !== 5 ? (
+                  <span>Choose Manually</span></button></div><button onClick={() => { setNavConfirmTab('dashboard-sesyon'); setShowSpellingTutorialPrompt(false); setSpellingTutorialStep(null); }} className="mt-4 sm:mt-6 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs sm:text-sm transition-colors">Go back to Main Menu</button></div>) : spellingSetupMode === 'manual' && spellingCurrentWordList.length !== 5 ? (
           <div className="flex-1 flex flex-col bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-4 sm:p-6 shadow-xl h-full max-h-[calc(100vh-140px)] relative overflow-hidden">
              <div className="text-center mb-3 shrink-0 relative">
-               <button onClick={() => setSpellingSetupMode(null)} className="absolute top-1 left-1 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1 text-xs sm:text-sm"><span className="text-lg mr-1">⬅️</span> Back</button>
+               <button onClick={() => { setSpellingSetupMode(null); setShowSpellingTutorialPrompt(false); setSpellingTutorialStep(null); }} className="absolute top-1 left-1 text-purple-300 hover:text-fuchsia-400 font-bold flex items-center transition-transform hover:-translate-x-1 text-xs sm:text-sm"><span className="text-lg mr-1">⬅️</span> Back</button>
                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white mb-1">Select 5 Words</h2>
                <p className="text-purple-200 text-xs sm:text-sm">Handpick spelling words. Words with a ✅ have already been completed by this student.</p>
                
@@ -3252,7 +3338,7 @@ const renderSpellingView = () => {
              </div>
              <div className="absolute bottom-0 left-0 w-full bg-purple-950/90 backdrop-blur-md border-t border-purple-500/30 p-3 rounded-b-2xl sm:rounded-b-3xl flex justify-between items-center px-6">
                 <div className="text-base sm:text-lg font-black text-white">Selected: <span className={spellingManualSelection.length === 5 ? 'text-emerald-400' : 'text-fuchsia-400'}>{spellingManualSelection.length} / 5</span></div>
-                <button onClick={() => { setSpellingCurrentWordList(spellingManualSelection); setSpellingCurrentWordIndex(0); setSpellingProgressIndex(0); setSpellingScore(0); setSpellingShowGameOver(false); }} disabled={spellingManualSelection.length !== 5} className={`px-6 py-2 rounded-xl font-black text-sm sm:text-base transition-all ${spellingManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
+                <button onClick={() => { setSpellingCurrentWordList(spellingManualSelection); setSpellingCurrentWordIndex(0); setSpellingProgressIndex(0); setSpellingScore(0); setSpellingShowGameOver(false); setShowSpellingTutorialPrompt(true); }} disabled={spellingManualSelection.length !== 5} className={`px-6 py-2 rounded-xl font-black text-sm sm:text-base transition-all ${spellingManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
              </div>
           </div>
           ) : isSavingProgress ? (
@@ -3276,13 +3362,15 @@ const renderSpellingView = () => {
                       setSpellingSetupMode(null);
                       setSpellingManualSelection([]);
                       setRecognitionMode('alphabets');
+                      setShowSpellingTutorialPrompt(false);
+                      setSpellingTutorialStep(null);
                   }}
                   className="px-6 py-3 bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"
                 >
                   Play Again
                 </button>
                 <button 
-                  onClick={() => { sessionPointsEarnedRef.current = 0; setSpellingShowGameOver(false); setSpellingSetupMode(null); setSpellingCurrentWordList([]); setSpellingManualSelection([]); setRecognitionMode('alphabets'); setSpellingScore(0); setActiveStudentId(null); setCurrentView('dashboard-sesyon'); }} className="px-6 py-3 bg-purple-900/80 border-2 border-purple-500/50 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"> Go back to Main Menu
+                  onClick={() => { sessionPointsEarnedRef.current = 0; setSpellingShowGameOver(false); setSpellingSetupMode(null); setSpellingCurrentWordList([]); setSpellingManualSelection([]); setRecognitionMode('alphabets'); setSpellingScore(0); setActiveStudentId(null); setShowSpellingTutorialPrompt(false); setSpellingTutorialStep(null); setCurrentView('dashboard-sesyon'); }} className="px-6 py-3 bg-purple-900/80 border-2 border-purple-500/50 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"> Go back to Main Menu
                 </button>
               </div>
             </div>
@@ -3349,38 +3437,40 @@ const renderSpellingView = () => {
                 
                 {/* Spelling Logic Panel */}
                 <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between text-left h-full overflow-hidden">
-                  <div className="flex items-center justify-between mb-1.5 flex-shrink-0">
-                    <div>
-                      <span className="text-[9px] sm:text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Spelling Game - Word {spellingCurrentWordIndex + 1} of 5</span>
-                      <h2 className="text-base sm:text-lg font-black text-white mt-0.5 leading-snug">Spell the word:</h2>
+                  <div id="spelling-tutorial-target-the-image" className="flex flex-col flex-shrink-0">
+                    <div className="flex items-center justify-between mb-1.5 flex-shrink-0">
+                      <div>
+                        <span className="text-[9px] sm:text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Spelling Game - Word {spellingCurrentWordIndex + 1} of 5</span>
+                        <h2 className="text-base sm:text-lg font-black text-white mt-0.5 leading-snug">Spell the word:</h2>
+                      </div>
+                    </div>
+
+                    {currentSpellingWord && (
+                      <div className="w-full flex justify-center my-1 flex-shrink-0">
+                        <img 
+                          src={`/SpellingImg/${currentSpellingWord}.${['MAN', 'MUG'].includes(currentSpellingWord) ? 'png' : 'jpg'}`} 
+                          alt={currentSpellingWord} 
+                          className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-36 object-cover rounded-xl border-2 border-purple-500/50 shadow-md" 
+                        />
+                      </div>
+                    )}
+                    
+                    <div className="w-full flex justify-center my-1.5 sm:my-2 flex-shrink-0">
+                      <div className="flex space-x-2 sm:space-x-2.5">
+                        {currentSpellingWord.split('').map((letter, idx) => (
+                          <div key={idx} className={`w-10 h-12 sm:w-12 sm:h-14 md:w-14 md:h-16 rounded-xl border-2 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-black transition-all ${
+                            idx < spellingProgressIndex || spellingWordCompleted ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' :
+                            idx === spellingProgressIndex ? 'bg-fuchsia-500/20 border-fuchsia-400 text-white animate-pulse' :
+                            'bg-purple-950/60 border-purple-800/50 text-slate-600'
+                          }`}>
+                            {idx < spellingProgressIndex || spellingWordCompleted ? letter : (idx === spellingProgressIndex ? '_' : '_')}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {currentSpellingWord && (
-                    <div className="w-full flex justify-center my-1 flex-shrink-0">
-                      <img 
-                        src={`/SpellingImg/${currentSpellingWord}.${['MAN', 'MUG'].includes(currentSpellingWord) ? 'png' : 'jpg'}`} 
-                        alt={currentSpellingWord} 
-                        className="w-48 h-28 sm:w-56 sm:h-32 md:w-64 md:h-36 object-cover rounded-xl border-2 border-purple-500/50 shadow-md" 
-                      />
-                    </div>
-                  )}
-                  
-                  <div className="w-full flex justify-center my-1.5 sm:my-2 flex-shrink-0">
-                    <div className="flex space-x-2 sm:space-x-2.5">
-                      {currentSpellingWord.split('').map((letter, idx) => (
-                        <div key={idx} className={`w-10 h-12 sm:w-12 sm:h-14 md:w-14 md:h-16 rounded-xl border-2 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-black transition-all ${
-                          idx < spellingProgressIndex || spellingWordCompleted ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400' :
-                          idx === spellingProgressIndex ? 'bg-fuchsia-500/20 border-fuchsia-400 text-white animate-pulse' :
-                          'bg-purple-950/60 border-purple-800/50 text-slate-600'
-                        }`}>
-                          {idx < spellingProgressIndex || spellingWordCompleted ? letter : (idx === spellingProgressIndex ? '_' : '_')}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center justify-center my-auto flex-shrink-0">
+                  <div id="spelling-tutorial-target-instructional-overlay" className="flex flex-col items-center justify-center my-auto flex-shrink-0">
                      <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-purple-300 mb-1 font-sans">Instructional Overlay</span>
                      <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-purple-950/70 border-2 border-fuchsia-500/50 rounded-2xl flex items-center justify-center p-1.5 shadow-xl">
                        {spellingWordCompleted ? (
@@ -3402,6 +3492,191 @@ const renderSpellingView = () => {
         <div className="w-full lg:w-60 xl:w-64 flex-shrink-0">
           {renderStudentSelectorSidebar()}
         </div>
+
+        {/* Pop up message after starting spelling game */}
+        {showSpellingTutorialPrompt && (
+          <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 animate-fadeIn">
+            <div className="relative w-full max-w-md bg-gradient-to-b from-slate-900 via-slate-900 to-purple-950 border-2 border-cyan-400/80 rounded-3xl p-6 sm:p-7 shadow-[0_0_50px_rgba(6,182,212,0.4)] text-center animate-scaleIn">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                <span className="text-3xl">🔤</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-white leading-snug mb-3">
+                Want a tutorial before you letting the students explore?
+              </h3>
+              <p className="text-purple-200 text-xs sm:text-sm font-sans mb-6">
+                Learn the camera setup, game instructions, image to spell, instructional overlay, and student progress bar!
+              </p>
+              <div className="flex items-center justify-center space-x-4">
+                {/* Left side green button */}
+                <button
+                  onClick={() => {
+                    setShowSpellingTutorialPrompt(false);
+                    setSpellingTutorialStep(1);
+                  }}
+                  className="flex-1 py-3 px-5 rounded-xl font-black text-sm sm:text-base uppercase tracking-wider bg-emerald-500 hover:bg-emerald-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95 transition-all"
+                >
+                  Yes
+                </button>
+                {/* Right side red button */}
+                <button
+                  onClick={() => {
+                    setShowSpellingTutorialPrompt(false);
+                    setSpellingTutorialStep(null);
+                  }}
+                  className="flex-1 py-3 px-5 rounded-xl font-black text-sm sm:text-base uppercase tracking-wider bg-rose-600 hover:bg-rose-500 text-white shadow-[0_0_20px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 transition-all"
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Dark screen spotlight tutorial */}
+        {spellingTutorialStep !== null && (() => {
+          const currentStepData = SPELLING_TUTORIAL_STEPS.find(s => s.step === spellingTutorialStep);
+          if (!currentStepData) return null;
+
+          const cardWidth = 360;
+          const cardHeight = 220;
+          const margin = 16;
+          const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+          const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+
+          let cardTop = margin;
+          let cardLeft = margin;
+
+          if (spellingTutorialRect) {
+            if (spellingTutorialRect.top > cardHeight + margin + 10) {
+              cardTop = spellingTutorialRect.top - cardHeight - margin;
+            } else {
+              cardTop = spellingTutorialRect.top + spellingTutorialRect.height + margin;
+            }
+            cardTop = Math.max(margin, Math.min(screenHeight - cardHeight - margin, cardTop));
+            cardLeft = spellingTutorialRect.left + (spellingTutorialRect.width / 2) - (cardWidth / 2);
+            cardLeft = Math.max(margin, Math.min(screenWidth - cardWidth - margin, cardLeft));
+          } else {
+            cardTop = screenHeight / 2 - cardHeight / 2;
+            cardLeft = screenWidth / 2 - cardWidth / 2;
+          }
+
+          const handleNextStep = () => {
+            if (spellingTutorialStep < 5) {
+              setSpellingTutorialStep(spellingTutorialStep + 1);
+            } else {
+              setSpellingTutorialStep(null);
+            }
+          };
+
+          return (
+            <>
+              {/* SVG mask dark backdrop */}
+              <div className="fixed inset-0 z-[140] pointer-events-none">
+                <svg className="w-full h-full" width="100%" height="100%">
+                  <defs>
+                    <mask id="spelling-tutorial-mask">
+                      <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                      {spellingTutorialRect && (
+                        <rect
+                          x={Math.max(0, spellingTutorialRect.left - 8)}
+                          y={Math.max(0, spellingTutorialRect.top - 8)}
+                          width={spellingTutorialRect.width + 16}
+                          height={spellingTutorialRect.height + 16}
+                          rx="16"
+                          ry="16"
+                          fill="black"
+                        />
+                      )}
+                    </mask>
+                  </defs>
+                  <rect
+                    x="0"
+                    y="0"
+                    width="100%"
+                    height="100%"
+                    fill="rgba(3, 7, 18, 0.88)"
+                    mask="url(#spelling-tutorial-mask)"
+                  />
+                </svg>
+              </div>
+
+              {/* Glowing border around highlighted target */}
+              {spellingTutorialRect && (
+                <div
+                  className="fixed pointer-events-none z-[142] rounded-2xl border-2 border-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.7)] ring-4 ring-cyan-500/30 transition-all duration-300"
+                  style={{
+                    top: `${Math.max(0, spellingTutorialRect.top - 8)}px`,
+                    left: `${Math.max(0, spellingTutorialRect.left - 8)}px`,
+                    width: `${spellingTutorialRect.width + 16}px`,
+                    height: `${spellingTutorialRect.height + 16}px`,
+                  }}
+                />
+              )}
+
+              {/* Floating tutorial message card */}
+              <div
+                className="fixed z-[150] bg-slate-900/95 border-2 border-cyan-400/90 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-[0_0_35px_rgba(6,182,212,0.6)] text-left flex flex-col justify-between transition-all duration-300 animate-fadeIn"
+                style={{
+                  top: `${cardTop}px`,
+                  left: `${cardLeft}px`,
+                  width: `min(${cardWidth}px, calc(100vw - 32px))`,
+                  minHeight: '190px',
+                }}
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between gap-2 mb-1.5">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
+                    Highlight {currentStepData.step} of 5
+                  </span>
+                  {/* Small X button to go to next highlight */}
+                  <button
+                    onClick={handleNextStep}
+                    className="w-7 h-7 flex items-center justify-center rounded-full bg-slate-800 hover:bg-rose-500/80 border border-slate-600 hover:border-rose-400 text-slate-300 hover:text-white transition-all text-sm font-bold shadow-sm"
+                    title={spellingTutorialStep < 5 ? "Go to next highlight" : "Finish tutorial"}
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Title & Content */}
+                <div className="my-1">
+                  <h4 className="text-base sm:text-lg font-black text-white tracking-wide">
+                    {currentStepData.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-cyan-100 font-sans font-medium leading-relaxed mt-1">
+                    {currentStepData.text}
+                  </p>
+                </div>
+
+                {/* Footer navigation */}
+                <div className="flex items-center justify-between pt-3 mt-2 border-t border-purple-800/40">
+                  <div className="flex items-center space-x-1.5">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => setSpellingTutorialStep(s)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          s === spellingTutorialStep
+                            ? 'w-6 bg-cyan-400'
+                            : s < spellingTutorialStep
+                            ? 'w-2 bg-emerald-400'
+                            : 'w-2 bg-slate-700 hover:bg-slate-500'
+                        }`}
+                        title={`Go to step ${s}`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    onClick={handleNextStep}
+                    className="px-4 py-1.5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all hover:scale-105 active:scale-95"
+                  >
+                    {spellingTutorialStep < 5 ? 'Next ➔' : 'Finish 🎉'}
+                  </button>
+                </div>
+              </div>
+            </>
+          );
+        })()}
       </div>
     );
   };
