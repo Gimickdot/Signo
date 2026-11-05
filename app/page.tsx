@@ -841,6 +841,92 @@ function App() {
   const [gameSearchTerm, setGameSearchTerm] = useState('');
   const [gameCategoryFilter, setGameCategoryFilter] = useState('All');
 
+  // Situational Game Tutorial State
+  const [showGameTutorialPrompt, setShowGameTutorialPrompt] = useState<boolean>(false);
+  const [gameTutorialStep, setGameTutorialStep] = useState<number | null>(null);
+  const [gameTutorialRect, setGameTutorialRect] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
+
+  const GAME_TUTORIAL_STEPS = [
+    {
+      step: 1,
+      targetId: 'tutorial-target-camera-btn',
+      title: 'Turn on camera',
+      text: 'Press to turn on the Camera to show the student',
+    },
+    {
+      step: 2,
+      targetId: 'tutorial-target-game-instruction',
+      title: 'Game Instruction',
+      text: 'In here students should Read and Flollow the Game Instruction.',
+    },
+    {
+      step: 3,
+      targetId: 'tutorial-target-read-question',
+      title: 'Read the question',
+      text: 'In here students will read the situational question',
+    },
+    {
+      step: 4,
+      targetId: 'tutorial-target-choices',
+      title: 'Choices',
+      text: 'In here students will hover on the chosen answer wrong answer = 1 point and correct answer = 2 points',
+    },
+    {
+      step: 5,
+      targetId: 'tutorial-target-progress-bar',
+      title: 'Student Progress bar',
+      text: 'In here students can see the progress if they are close to finishing the game',
+    },
+  ];
+
+  useEffect(() => {
+    if (gameTutorialStep === null) {
+      setGameTutorialRect(null);
+      return;
+    }
+
+    const currentStepConfig = GAME_TUTORIAL_STEPS.find(s => s.step === gameTutorialStep);
+    if (!currentStepConfig) return;
+
+    const updateRect = () => {
+      const el = document.getElementById(currentStepConfig.targetId);
+      if (el) {
+        const r = el.getBoundingClientRect();
+        setGameTutorialRect({
+          top: r.top,
+          left: r.left,
+          width: r.width,
+          height: r.height,
+        });
+      }
+    };
+
+    const el = document.getElementById(currentStepConfig.targetId);
+    if (el) {
+      try {
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      } catch (e) {
+        // ignore scroll error
+      }
+    }
+
+    updateRect();
+    const t1 = setTimeout(updateRect, 50);
+    const t2 = setTimeout(updateRect, 150);
+    const t3 = setTimeout(updateRect, 300);
+
+    window.addEventListener('resize', updateRect);
+    window.addEventListener('scroll', updateRect, true);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      window.removeEventListener('resize', updateRect);
+      window.removeEventListener('scroll', updateRect, true);
+    };
+  }, [gameTutorialStep]);
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [questionsCompleted, setQuestionsCompleted] = useState<number>(0);
   const [hasMadeMistakeOnCurrentQuestion, setHasMadeMistakeOnCurrentQuestion] = useState<boolean>(false);
@@ -2840,7 +2926,7 @@ function App() {
             </button>
           </div>
         ) : <div />}
-        <div className="relative">
+        <div id="tutorial-target-camera-btn" className="relative">
           <button
             onClick={() => {
               setWebcamEnabledByUser(prev => !prev);
@@ -2901,7 +2987,7 @@ function App() {
       )}
       
       {currentView === 'dashboard-game' && (
-        <div className="px-3.5 py-2.5 md:px-4 md:py-3 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-2">
+        <div id="tutorial-target-progress-bar" className="px-3.5 py-2.5 md:px-4 md:py-3 border-t border-purple-800/40 bg-purple-950/20 flex flex-col space-y-2">
           <div>
             <div className="flex items-center justify-between mb-1.5">
               <h3 className="text-white font-black text-xs sm:text-sm">{gameCategory ? `${gameCategory} Adventure` : 'Adventure Progress'}</h3>
@@ -3402,7 +3488,7 @@ const renderSpellingView = () => {
              </div>
              <div className="absolute bottom-0 left-0 w-full bg-purple-950/90 backdrop-blur-md border-t border-purple-500/30 p-3 rounded-b-2xl sm:rounded-b-3xl flex justify-between items-center px-6">
                 <div className="text-base sm:text-lg font-black text-white">Selected: <span className={gameManualSelection.length === 5 ? 'text-emerald-400' : 'text-fuchsia-400'}>{gameManualSelection.length} / 5</span></div>
-                <button onClick={() => { setGameCategory('CUSTOM'); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); }} disabled={gameManualSelection.length !== 5} className={`px-6 py-2 rounded-xl font-black text-sm sm:text-base transition-all ${gameManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
+                <button onClick={() => { setGameCategory('CUSTOM'); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); setShowGameTutorialPrompt(true); }} disabled={gameManualSelection.length !== 5} className={`px-6 py-2 rounded-xl font-black text-sm sm:text-base transition-all ${gameManualSelection.length === 5 ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.5)] hover:scale-105' : 'bg-slate-700 text-slate-400 cursor-not-allowed'}`}>Start Game</button>
              </div>
           </div>
         ) : !gameCategory ? (
@@ -3418,7 +3504,7 @@ const renderSpellingView = () => {
                   <button 
                     key={cat} 
                     disabled={!activeStudentId}
-                    onClick={() => { setGameCategory(cat); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); }} 
+                    onClick={() => { setGameCategory(cat); setCurrentQuestionIndex(0); setQuestionsCompleted(0); setShowGameOver(false); setHasMadeMistakeOnCurrentQuestion(false); setGameSelectedAnswer(null); setGameStep('question'); setShowGameTutorialPrompt(true); }} 
                     className={`bg-gradient-to-br from-purple-900/80 to-purple-800/80 border-2 p-5 sm:p-6 rounded-2xl sm:rounded-3xl text-white font-black text-lg sm:text-xl transition-all shadow-md flex items-center justify-center group ${!activeStudentId ? 'border-purple-800/50 opacity-50 cursor-not-allowed grayscale' : 'border-purple-500/50 hover:border-fuchsia-400 hover:from-fuchsia-600/40 hover:to-purple-700/60 hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]'}`}
                   >
                     <span className={!activeStudentId ? '' : 'group-hover:scale-110 transition-transform'}>{cat}</span>
@@ -3426,7 +3512,7 @@ const renderSpellingView = () => {
                 ))}
              </div>
              <button 
-                onClick={() => setGameSetupMode(null)} 
+                onClick={() => { setGameSetupMode(null); setShowGameTutorialPrompt(false); setGameTutorialStep(null); }} 
                 className="mt-4 text-purple-300 hover:text-white underline font-bold uppercase tracking-widest text-xs"
              >
                 Go back to Menu
@@ -3458,13 +3544,15 @@ const renderSpellingView = () => {
                   setGameSetupMode(null);
                     setGameCategory(null);
                     setGameManualSelection([]);
+                    setShowGameTutorialPrompt(false);
+                    setGameTutorialStep(null);
                     }}
                     className="px-6 py-3 bg-gradient-to-r from-fuchsia-600 to-pink-500 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"
                 >
                 Play Again
               </button>
               <button 
-                  onClick={() => { setShowGameOver(false); setGameSetupMode(null); setGameCategory(null); setGameManualSelection([]); setActiveStudentId(null); setCurrentView('dashboard-sesyon'); }} className="px-6 py-3 bg-purple-900/80 border-2 border-purple-500/50 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"> Go back to Main Menu
+                  onClick={() => { setShowGameOver(false); setGameSetupMode(null); setGameCategory(null); setGameManualSelection([]); setActiveStudentId(null); setShowGameTutorialPrompt(false); setGameTutorialStep(null); setCurrentView('dashboard-sesyon'); }} className="px-6 py-3 bg-purple-900/80 border-2 border-purple-500/50 rounded-xl text-white font-black text-base hover:scale-105 transition-transform shadow-lg"> Go back to Main Menu
               </button>
 
             </div>
@@ -3540,32 +3628,34 @@ const renderSpellingView = () => {
           {/* Game Mode Panel */}
           {gameStep !== 'practice' && currentQuestion && (
             <div className="bg-slate-900/80 backdrop-blur-sm border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.2)] rounded-2xl md:rounded-3xl p-3 sm:p-4 shadow-xl flex flex-col justify-between text-left h-full overflow-hidden">
-              <div className="flex items-center justify-between mb-1.5 flex-shrink-0">
-                <div>
-                  <span className="text-[9px] sm:text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Situational Game - Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
-                  <h2 className="text-sm sm:text-base font-black text-white mt-0.5 leading-snug">{currentQuestion.situation}</h2>
-                  {currentQuestion.requiredExpression && (
-                    <div className="mt-1 inline-flex items-center bg-cyan-500/20 px-3 py-1 rounded-full border border-cyan-500/50">
-                      <span className="text-cyan-300 text-xs font-black uppercase tracking-wider">
-                        🎭 Make a {currentQuestion.requiredExpression} face!
-                      </span>
-                    </div>
-                  )}
+              <div id="tutorial-target-read-question" className="flex flex-col flex-shrink-0">
+                <div className="flex items-center justify-between mb-1.5 flex-shrink-0">
+                  <div>
+                    <span className="text-[9px] sm:text-[10px] font-black text-yellow-300 uppercase tracking-widest font-sans">Situational Game - Level {Math.floor(currentQuestionIndex / 5) + 1}</span>
+                    <h2 className="text-sm sm:text-base font-black text-white mt-0.5 leading-snug">{currentQuestion.situation}</h2>
+                    {currentQuestion.requiredExpression && (
+                      <div className="mt-1 inline-flex items-center bg-cyan-500/20 px-3 py-1 rounded-full border border-cyan-500/50">
+                        <span className="text-cyan-300 text-xs font-black uppercase tracking-wider">
+                          🎭 Make a {currentQuestion.requiredExpression} face!
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black border uppercase tracking-wider bg-fuchsia-600/30 text-fuchsia-300 border-fuchsia-500/50 flex-shrink-0`}>
+                    {currentQuestion.category}
+                  </span>
                 </div>
-                <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-black border uppercase tracking-wider bg-fuchsia-600/30 text-fuchsia-300 border-fuchsia-500/50 flex-shrink-0`}>
-                  {currentQuestion.category}
-                </span>
+                
+                <div className="w-full flex justify-center my-1 flex-shrink-0">
+                  <img 
+                    src={currentQuestion.image || `/fsl/situations/category_${currentQuestion.category.toLowerCase()}.jpg`} 
+                    alt={currentQuestion.situation} 
+                    className="rounded-xl border-2 border-fuchsia-500/30 shadow-md object-cover w-full h-24 sm:h-28 md:h-32 lg:h-36 max-w-xs md:max-w-sm"
+                  />
+                </div>
               </div>
               
-              <div className="w-full flex justify-center my-1 flex-shrink-0">
-                <img 
-                  src={currentQuestion.image || `/fsl/situations/category_${currentQuestion.category.toLowerCase()}.jpg`} 
-                  alt={currentQuestion.situation} 
-                  className="rounded-xl border-2 border-fuchsia-500/30 shadow-md object-cover w-full h-24 sm:h-28 md:h-32 lg:h-36 max-w-xs md:max-w-sm"
-                />
-              </div>
-              
-              <div className="flex flex-col space-y-1.5 sm:space-y-2 my-1.5 flex-1 justify-center">
+              <div id="tutorial-target-choices" className="flex flex-col space-y-1.5 sm:space-y-2 my-1.5 flex-1 justify-center">
                 {['A', 'B', 'C'].map((opt) => (
                   <div key={opt} id={`game-option-${opt}`} className={`p-2 sm:p-2.5 rounded-xl border-2 transition-all ${
                     gameSelectedAnswer === opt 
@@ -3580,7 +3670,7 @@ const renderSpellingView = () => {
                 ))}
               </div>
               
-              <div className="border-t border-purple-800/40 pt-2.5 mt-auto flex-shrink-0">
+              <div id="tutorial-target-game-instruction" className="border-t border-purple-800/40 pt-2.5 mt-auto flex-shrink-0">
                 <div className="text-xs sm:text-sm font-black uppercase tracking-wider text-purple-300 mb-1.5 font-sans">Game Instruction:</div>
                 {gameStep === 'question' ? (
                   <div className="flex flex-col space-y-1">
@@ -3715,6 +3805,198 @@ const renderSpellingView = () => {
       <div className="w-full lg:w-60 xl:w-64 flex-shrink-0">
         {renderStudentSelectorSidebar()}
       </div>
+
+      {/* Pop up message after picking a category */}
+      {showGameTutorialPrompt && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 animate-fadeIn">
+          <div className="relative w-full max-w-md bg-gradient-to-b from-slate-900 via-slate-900 to-purple-950 border-2 border-cyan-400/80 rounded-3xl p-6 sm:p-7 shadow-[0_0_50px_rgba(6,182,212,0.4)] text-center animate-scaleIn">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-cyan-500/20 border border-cyan-400/50 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+              <span className="text-3xl">🎮</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white leading-snug mb-3">
+              Want a tutorial before you letting the students explore?
+            </h3>
+            <p className="text-purple-200 text-xs sm:text-sm font-sans mb-6">
+              Learn the camera setup, game instructions, question layout, answer options, and student progress bar!
+            </p>
+            <div className="flex items-center justify-center space-x-4">
+              {/* Left side green button */}
+              <button
+                onClick={() => {
+                  setShowGameTutorialPrompt(false);
+                  setGameTutorialStep(1);
+                }}
+                className="flex-1 py-3 px-5 rounded-xl font-black text-sm sm:text-base uppercase tracking-wider bg-emerald-500 hover:bg-emerald-400 text-white shadow-[0_0_20px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95 transition-all"
+              >
+                Yes
+              </button>
+              {/* Right side red button */}
+              <button
+                onClick={() => {
+                  setShowGameTutorialPrompt(false);
+                  setGameTutorialStep(null);
+                }}
+                className="flex-1 py-3 px-5 rounded-xl font-black text-sm sm:text-base uppercase tracking-wider bg-rose-600 hover:bg-rose-500 text-white shadow-[0_0_20px_rgba(244,63,94,0.4)] hover:scale-105 active:scale-95 transition-all"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Dark screen spotlight tutorial */}
+      {gameTutorialStep !== null && (() => {
+        const currentStepData = GAME_TUTORIAL_STEPS.find(s => s.step === gameTutorialStep);
+        if (!currentStepData) return null;
+
+        const cardWidth = 360;
+        const cardHeight = 220;
+        const margin = 16;
+        const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+        const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800;
+
+        let cardTop = margin;
+        let cardLeft = margin;
+
+        if (gameTutorialRect) {
+          // Determine if we should place the card above or below the target rect
+          if (gameTutorialRect.top > cardHeight + margin + 10) {
+            // Place above target
+            cardTop = gameTutorialRect.top - cardHeight - margin;
+          } else {
+            // Place below target
+            cardTop = gameTutorialRect.top + gameTutorialRect.height + margin;
+          }
+          // Clamp top to screen
+          cardTop = Math.max(margin, Math.min(screenHeight - cardHeight - margin, cardTop));
+
+          // Center horizontally relative to target
+          cardLeft = gameTutorialRect.left + (gameTutorialRect.width / 2) - (cardWidth / 2);
+          // Clamp left to screen
+          cardLeft = Math.max(margin, Math.min(screenWidth - cardWidth - margin, cardLeft));
+        } else {
+          cardTop = screenHeight / 2 - cardHeight / 2;
+          cardLeft = screenWidth / 2 - cardWidth / 2;
+        }
+
+        const handleNextStep = () => {
+          if (gameTutorialStep < 5) {
+            setGameTutorialStep(gameTutorialStep + 1);
+          } else {
+            setGameTutorialStep(null);
+          }
+        };
+
+        return (
+          <>
+            {/* SVG mask dark backdrop */}
+            <div className="fixed inset-0 z-[140] pointer-events-none">
+              <svg className="w-full h-full" width="100%" height="100%">
+                <defs>
+                  <mask id="game-tutorial-mask">
+                    <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                    {gameTutorialRect && (
+                      <rect
+                        x={Math.max(0, gameTutorialRect.left - 8)}
+                        y={Math.max(0, gameTutorialRect.top - 8)}
+                        width={gameTutorialRect.width + 16}
+                        height={gameTutorialRect.height + 16}
+                        rx="16"
+                        ry="16"
+                        fill="black"
+                      />
+                    )}
+                  </mask>
+                </defs>
+                <rect
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  fill="rgba(3, 7, 18, 0.88)"
+                  mask="url(#game-tutorial-mask)"
+                />
+              </svg>
+            </div>
+
+            {/* Glowing border around highlighted target */}
+            {gameTutorialRect && (
+              <div
+                className="fixed pointer-events-none z-[142] rounded-2xl border-2 border-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.7)] ring-4 ring-cyan-500/30 transition-all duration-300"
+                style={{
+                  top: `${Math.max(0, gameTutorialRect.top - 8)}px`,
+                  left: `${Math.max(0, gameTutorialRect.left - 8)}px`,
+                  width: `${gameTutorialRect.width + 16}px`,
+                  height: `${gameTutorialRect.height + 16}px`,
+                }}
+              />
+            )}
+
+            {/* Floating tutorial message card */}
+            <div
+              className="fixed z-[150] bg-slate-900/95 border-2 border-cyan-400/90 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-[0_0_35px_rgba(6,182,212,0.6)] text-left flex flex-col justify-between transition-all duration-300 animate-fadeIn"
+              style={{
+                top: `${cardTop}px`,
+                left: `${cardLeft}px`,
+                width: `min(${cardWidth}px, calc(100vw - 32px))`,
+                minHeight: '190px',
+              }}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between gap-2 mb-1.5">
+                <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
+                  Highlight {currentStepData.step} of 5
+                </span>
+                {/* Small X button to go to next highlight */}
+                <button
+                  onClick={handleNextStep}
+                  className="w-7 h-7 flex items-center justify-center rounded-full bg-slate-800 hover:bg-rose-500/80 border border-slate-600 hover:border-rose-400 text-slate-300 hover:text-white transition-all text-sm font-bold shadow-sm"
+                  title={gameTutorialStep < 5 ? "Go to next highlight" : "Finish tutorial"}
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Title & Content */}
+              <div className="my-1">
+                <h4 className="text-base sm:text-lg font-black text-white tracking-wide">
+                  {currentStepData.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-cyan-100 font-sans font-medium leading-relaxed mt-1">
+                  {currentStepData.text}
+                </p>
+              </div>
+
+              {/* Footer navigation */}
+              <div className="flex items-center justify-between pt-3 mt-2 border-t border-purple-800/40">
+                <div className="flex items-center space-x-1.5">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => setGameTutorialStep(s)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        s === gameTutorialStep
+                          ? 'w-6 bg-cyan-400'
+                          : s < gameTutorialStep
+                          ? 'w-2 bg-emerald-400'
+                          : 'w-2 bg-slate-700 hover:bg-slate-500'
+                      }`}
+                      title={`Go to step ${s}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={handleNextStep}
+                  className="px-4 py-1.5 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all hover:scale-105 active:scale-95"
+                >
+                  {gameTutorialStep < 5 ? 'Next ➔' : 'Finish 🎉'}
+                </button>
+              </div>
+            </div>
+          </>
+        );
+      })()}
     </div>
   );
   };
